@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="uniteRessource" load_steps=3 format=3 uid="uid://bsk2sk22dc3mh"]
+
+[ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="1_5vvtb"]
+[ext_resource type="Script" path="res://scripts/unites/general/RessourceUniteBase.gd" id="1_tmmjy"]
+
+[resource]
+script = ExtResource("1_tmmjy")
+image = ExtResource("1_5vvtb")
+P = 10
+D = 5
+V = 0
+S = 0
+race = ""
