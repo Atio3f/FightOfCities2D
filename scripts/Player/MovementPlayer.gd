@@ -1,12 +1,13 @@
 extends Node2D
 
-@onready var Souris = $"../Pointeur"
+@onready var Souris = $"../Pointeur_Selection"
 @onready var scene = $"../.."
 @onready var caseSelec = $"../../Map/CaseSelec"
 
 var x : float = 0
 var y : float = 0
 var emplacement : Vector2 = Vector2.ZERO
+
 
 func _ready() -> void:
 	x = 0
@@ -26,8 +27,16 @@ func _physics_process(_delta) -> void:
 	emplacement.y = y
 	x = x/3
 	y = y/3
-	Souris.positionSouris = scene.get_global_mouse_position()
-	Souris.smoothyPosition()	#Centre les coords du curseur au centre d'une case
-	caseSelec.position = Souris.positionSouris 						#On place caseSelec sur la case où se trouve la souris
+	var newPositionSouris : Vector2i = scene.get_global_mouse_position()
+	#On fait l'équivalent d'un smoothyPosition
+	#Centre les coords du curseur au centre d'une case
+	newPositionSouris = Vector2i(newPositionSouris) / 32
+	if(Souris.positionSouris != newPositionSouris) :
+		Souris.positionSouris = Vector2i(scene.get_global_mouse_position()) / 32
+		
+		caseSelec.global_position = Souris.getMiddleMouseCell()
+		Souris.changementEmplacement()
 	translate(emplacement)
 	
+
+

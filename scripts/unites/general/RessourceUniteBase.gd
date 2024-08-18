@@ -10,3 +10,6 @@ var pv_actuels : int
 @export var V : int		#Vitesse permet de se déplacer plus loin
 @export var S : int		#Sagesse permet d'xp plus vite
 @export_enum("Monkey", "Penguin","Chauve-Souris", "Autres") var race : String
+@export_range(1, 20) var range : int
+@export var couleurEquipe : String 
+@export var vitesseRestante : int
