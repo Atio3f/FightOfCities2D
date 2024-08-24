@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxyfefsgkgc4l"]
+
+[ext_resource type="TileSet" uid="uid://dqg14aj86so4a" path="res://nodes/tilemaps/unit_path_tileset.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/gridmap/mouvements/UnitPath.gd" id="2_0773b"]
+
+[node name="UnitPath" type="TileMap"]
+tile_set = ExtResource("2")
+format = 2
+script = ExtResource("2_0773b")

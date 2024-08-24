@@ -1,0 +1,25 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dqg14aj86so4a"]
+
+[ext_resource type="Texture2D" uid="uid://c8syc8qfmhps8" path="res://assets/tiles/flechesMouvement(32x32).png" id="1_xgv2r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f1ig"]
+texture = ExtResource("1_xgv2r")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_3f1ig")

@@ -1,10 +1,13 @@
 extends Control
 
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes
-@onready var bouttonFinTour : Button = $bouttonFinTour/Button
+@onready var bouttonFinTour : Button = $bouttonFinTour/ButtonFinTour
+@onready var map : Node2D = $"../../Map"
 
 var sourisOnInterface : bool = false	#Booléan de la présence ou non de la souris sur l'interface
 var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un endroit global
+
+
 
 func setActionsRest(actions : int) -> void:
 	labelActionsRest.text = "Actions " + str(actions) + "/3"
@@ -24,3 +27,7 @@ func _on_mouse_exited() -> void:
 
 func _on_button_fin_tour_pressed():
 	setActionsRest(3)
+	Global.nextTurn()
+	#Réalisation d'une boucle pour parcourir toutes les unités sur le terrain et leur permettre de 
+	for unit in map._units :
+		map._units[unit].nextTurn()
