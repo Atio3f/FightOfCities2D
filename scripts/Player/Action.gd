@@ -19,7 +19,7 @@ func _input(_event) -> void:
 			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
 			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
 			map._units[nvlUnite.case]  = nvlUnite
-			print("ezea")
+			print("CREATION SINGE BLEU")
 			#print(pointeurSouris.get_tile_data_at(pointeurSouris.positionSouris))
 			interfaceFinTour.setActionsRest(interfaceFinTour.actionsRest - 1)
 			#print(interfaceFinTour.actionsRest)
@@ -30,9 +30,10 @@ func _input(_event) -> void:
 			
 			nvlUnite.position = pointeurSouris.getMiddleMouseCell()	#Gestion de la position de l'unité
 			nvlUnite.case = pointeurSouris.positionSouris
-			nvlUnite.vitesseRestante = nvlUnite.V
+			
 			nvlUnite.couleurEquipe = "Rouge"	#Equipe des ennemis
 			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
+			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
 			
 			map._units[nvlUnite.case]  = nvlUnite
 		#Permet de sélectionner une unité ça a été déplacé dans PointeurSelect je crois

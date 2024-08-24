@@ -89,7 +89,7 @@ script = ExtResource("3_dk3t8")
 
 [node name="Movement" type="Camera2D" parent="Player"]
 position = Vector2(8, 8)
-zoom = Vector2(1.6, 1.6)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("2_gxil8")

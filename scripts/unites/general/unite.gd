@@ -10,7 +10,15 @@ extends Path2D
 var positionUnite : Vector2
 
 var pv_max : int
-var pv_actuels : int
+var pv_actuels : int :
+	set(value):
+		print(value)
+		if value > pv_max :
+			pv_actuels = pv_max
+		if value <= 0 :
+			print("L'unité de l'équipe ", couleurEquipe, " à la case", case ," a été tuée")
+			queue_free()	#Supprime l'unité quand elle est tuée
+		
 @export var P : int		#Puissance permet de faire plus de dégâts
 @export var D : int		#Défense permet d'avoir plus de PV
 @export var V : int		#Vitesse permet de se déplacer plus loin
@@ -18,6 +26,13 @@ var pv_actuels : int
 @export_enum("Monkey", "Penguin","Chauve-Souris", "Autres") var race : String
 @export_range(0, 30) var range : int
 @export var couleurEquipe : String 
+var attaquesMax : int	#Le nombre d'attaques maximales réalisables par l'unité
+var attaquesRestantes : int :	#Le nombre d'attaques qu'il reste à l'unité ce tour
+	set(value):
+		if value > attaquesMax :
+			attaquesRestantes = attaquesMax
+		else:
+			attaquesRestantes = value
 
 var vitesseRestante : int :
 	set(value):
@@ -59,13 +74,18 @@ func _ready() -> void:
 	
 	sprite.texture = ressource.image
 	pv_max = ressource.D * 2 + 14
-	pv_actuels = ressource.pv_actuels
+	if ressource.pv_actuels > 0:	#Si les pv restants sont inférieurs ou égaux à 0 alors l'unité va mourir direct
+		pv_actuels = ressource.pv_actuels
+	else :
+		pv_actuels = pv_max
 	P = ressource.P
 	D = ressource.D
 	V = ressource.V
 	S = ressource.S
 	race = ressource.race
 	range = ressource.range
+	attaquesMax = ressource.attaquesMax
+	attaquesRestantes = ressource.attaquesRestantes
 	if(ressource.couleurEquipe != ""):
 		couleurEquipe = ressource.couleurEquipe
 	#await get_tree().create_timer(3).timeout #Test temporaire du déplacement(fonctionne)
@@ -84,15 +104,6 @@ func deplacement(nouvellePosition : Vector2) -> void:
 	position = nouvellePosition
 	positionUnite = position
 
-#Lorsque l'unité est sélectionné, on retire d'abord l'affichage du contour de l'ancienne unité sélectionnée puis on affiche celui de cette unité 
-#avant de stocker cette unité dans Global 
-#Global.unitSelec ne sert plus à rien gérer dans le set de is_selectedcx
-func selectSelf() -> void:
-	if Global.unitSelec != null :
-		Global.unitSelec.contourSelec.visible = false
-	contourSelec.visible = true
-
-	Global.unitSelec = self
 
 	
 ##Création de 2fonctions pour vérifier quelle unité se trouve à l'emplacement du pointeur de souris ##Sert pas à grand chose je crois
@@ -137,6 +148,8 @@ func walk_along(path: PackedVector2Array) -> void:
 
 
 #Reçu depuis InterfaceFinTour, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements
-func nextTurn():
+func nextTurn() -> void:
 	if Global.ordreCouleur[Global.couleurTour] == couleurEquipe:
 		vitesseRestante = V
+		attaquesRestantes = attaquesMax
+	

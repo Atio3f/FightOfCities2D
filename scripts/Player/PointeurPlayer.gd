@@ -17,10 +17,6 @@ var cellSize : int = 32
 
 signal accept_pressed
 
-#func _process(delta) -> void:
-	#caseSelec.position = get_viewport().get_mouse_position()
-	#print(caseSelec.position)
-	#pass
 
 func _input(event) -> void:
 	#Inutile gérer par Movement maintenant
