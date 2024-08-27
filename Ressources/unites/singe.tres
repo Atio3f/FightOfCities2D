@@ -5,9 +5,12 @@
 
 [resource]
 script = ExtResource("1_tmmjy")
+nom = "Monkey"
+pv_max = 23
+pv_actuels = 23
 image = ExtResource("1_5vvtb")
 P = 10
-D = 5
+DR = 0
 V = 15
 S = 8
 G = 0
@@ -17,4 +20,22 @@ couleurEquipe = ""
 attaquesMax = 1
 attaquesRestantes = 0
 vitesseRestante = 15
-capacites = {}
+niveau = 0
+experience = 0.0
+capacites = {
+"AttackBased": {},
+"DeathBased": {
+"-PM": 1,
+"-VM": 1
+},
+"DefenseBased": {},
+"ItemBased": {},
+"KillBased": {},
+"MovementBased": {},
+"PermanentBuff": {},
+"PlacementBased": {
+"+PM": 1,
+"+VM": 1
+},
+"TurnBased": {}
+}

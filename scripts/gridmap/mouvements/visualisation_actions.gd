@@ -24,8 +24,8 @@ func draw_walkable_cells(cells: Dictionary, equipeUnite : String) -> void:
 	for cell in cells:
 		#On récupère la clé de cells(-> clé = coords case; valeur associée à la clé = coût case)
 		keyCell = cell
-		if map._units.has(keyCell) :
-			if map._units[keyCell].couleurEquipe == equipeUnite :
+		if Global._units.has(keyCell) :
+			if Global._units[keyCell].couleurEquipe == equipeUnite :
 				erase_cell(0, keyCell)
 			else:
 				set_cell(0, keyCell, 3, Vector2i(0,0))

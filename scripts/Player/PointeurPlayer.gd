@@ -110,7 +110,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 
 ## Generates a list of walkable cells based on unit movement value and tile movement cost
 func _dijkstra(cell: Vector2, max_distance: int, attackable_check: bool) -> Array:
-	var curr_unit = map._units[cell]
+	var curr_unit = Global._units[cell]
 	var movable_cells = [cell] # append our base cell to the array
 	var visited = [] # 2d array that keeps track of which cells we've already looked at while running the algorithm
 	var distances = [] # shows distance to each cell, might be useful. can omit if you want to
@@ -157,10 +157,10 @@ func _dijkstra(cell: Vector2, max_distance: int, attackable_check: bool) -> Arra
 					## the "or _units[coordinates].is_wait" is the line that you will use to calculate 
 					## Actual attack range for display on hover/walk
 					if map.is_occupied(coordinates):
-						if curr_unit.is_enemy != map._units[coordinates].is_enemy: #Remove this line if you want to make every unit impassable
+						if curr_unit.is_enemy != Global._units[coordinates].is_enemy: #Remove this line if you want to make every unit impassable
 							distance_to_node = current.priority + map.MAX_VALUE #Mark enemy tile as impassable
 						## remove this if you want attack ranges to be seen past units that are waiting
-						elif map._units[coordinates].is_wait and attackable_check:
+						elif Global._units[coordinates].is_wait and attackable_check:
 							occupied_cells.append(coordinates)
 					
 					visited[coordinates.y][coordinates.x] = true

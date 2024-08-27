@@ -11,7 +11,7 @@ const OBSTACLE_ATLAS_ID = 2
 @export var grid: Resource
 
 ## Mapping of coordinates of a cell to a reference to the unit it contains.
-var _units := {}
+#var _units := {}
 #var _active_unit: unite		#_active_unit a été remplacé par pointeurSelec.Selection
 var _walkable_cells := {}
 var _attackable_cells := []
@@ -44,7 +44,7 @@ func _get_configuration_warning() -> String:
 
 ## Returns `true` if the cell is occupied by a unit.
 func is_occupied(cell: Vector2i) -> bool:
-	return _units.has(cell)
+	return Global._units.has(cell)
 
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
@@ -71,13 +71,13 @@ func get_attackable_cells(unit: unite) -> Array:
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
-	_units.clear()
+	Global._units.clear()
 
 	for child in get_children():
 		var unit := child as unite
 		if not unit:
 			continue
-		_units[unit.cell] = unit
+		Global._units[unit.cell] = unit
 
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
@@ -123,7 +123,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 ## Generates a list of walkable cells based on unit movement value and tile movement cost
 func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool) -> Dictionary:
 	
-	var curr_unit = _units[cell]
+	var curr_unit = Global._units[cell]
 	#moveable_cells est maintenant un dictionnaire avec comme clé les coords d'une case et en valeur le coût de déplacement vers cette case
 	var movable_cells = {cell : 0} #Cellule où se trouve l'unité a un coût de 0 du coup
 	var visited = [] # 2d array that keeps track of which cells we've already looked at while running the algorithm
@@ -173,10 +173,10 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool) -> Dic
 					## Actual attack range for display on hover/walk
 					
 					if is_occupied(coordinatesI):
-						if curr_unit.couleurEquipe != _units[coordinatesI].couleurEquipe: #Remove this line if you want to make every unit impassable 
+						if curr_unit.couleurEquipe != Global._units[coordinatesI].couleurEquipe: #Remove this line if you want to make every unit impassable 
 							distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
 						## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
-						elif _units[coordinatesI].is_wait and attackable_check:
+						elif Global._units[coordinatesI].is_wait and attackable_check:
 							occupied_cells.append(coordinates)
 					
 					visited[coordinates.y][coordinates.x] = true
@@ -200,11 +200,11 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	if is_occupied(new_cell) or not new_cell in keysWalkableCells:
 		return
 	# warning-ignore:return_value_discarded
-	_units.erase(pointeurSelec.Selection.case)
+	Global._units.erase(pointeurSelec.Selection.case)
 	print("BBOUT")
 	#On crée 
 	var newCelli : Vector2i = new_cell
-	_units[newCelli] = pointeurSelec.Selection
+	Global._units[newCelli] = pointeurSelec.Selection
 	_deselect_active_unit()
 	#On réduit la vitesse restante pour le tour pour l'unité qui se déplace
 	pointeurSelec.Selection.vitesseRestante -= _walkable_cells[new_cell]
@@ -222,12 +222,13 @@ func _select_unit(cell: Vector2i) -> void:
 	
 	print("_select_unit")
 	print(cell)
-	if not _units.has(cell):
+	print(Global._units)
+	if not Global._units.has(cell):
 		print(cell)
-		print(_units)
+		print(Global._units)
 		print("NON")
 		return
-	pointeurSelec.Selection = _units[cell]
+	pointeurSelec.Selection = Global._units[cell]
 	pointeurSelec.Selection.is_selected = true
 	
 	## Acquire the walkable and attackable cells
@@ -245,7 +246,7 @@ func _select_unit(cell: Vector2i) -> void:
 ## Unit items, and the unit avatar (like in fire emblem: engage)
 ## That is the reason we make this a completely seperate function
 func _hover_display(cell: Vector2i) -> void:
-	var curr_unit = _units[cell]
+	var curr_unit = Global._units[cell]
 	
 	## Acquire the walkable and attackable cells
 	_walkable_cells = get_walkable_cells(curr_unit)
@@ -296,7 +297,7 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 	elif visuActions != null and _walkable_cells != {}:
 		_walkable_cells.clear() # Clearing out the walkable cells
 		visuActions.clearNumbers() # This is what clears all the colored tiles on the grid
-	if _units.has(new_cell) and pointeurSelec.Selection == null:
+	if Global._units.has(new_cell) and pointeurSelec.Selection == null:
 		_hover_display(new_cell)
 
 

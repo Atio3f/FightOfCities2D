@@ -17,10 +17,11 @@ var pv_actuels : int :
 			pv_actuels = pv_max
 		if value <= 0 :
 			print("L'unité de l'équipe ", couleurEquipe, " à la case", case ," a été tuée")
-			queue_free()	#Supprime l'unité quand elle est tuée
+			death() 
+			return 0
 		
 @export var P : int		#Puissance permet de faire plus de dégâts
-@export var D : int		#Défense permet d'avoir plus de PV
+@export var DR : int		#DR ou Damage Reduction permet de réduire les dégâts subis à chaque attaque
 @export var V : int		#Vitesse permet de se déplacer plus loin
 @export var S : int		#Sagesse permet d'xp plus vite
 @export_enum("Monkey", "Penguin","Chauve-Souris", "Autres") var race : String
@@ -71,23 +72,8 @@ signal signalFinMouvement
 @export var is_wait := false
 
 func _ready() -> void:
-	
 	sprite.texture = ressource.image
-	pv_max = ressource.D * 2 + 14
-	if ressource.pv_actuels > 0:	#Si les pv restants sont inférieurs ou égaux à 0 alors l'unité va mourir direct
-		pv_actuels = ressource.pv_actuels
-	else :
-		pv_actuels = pv_max
-	P = ressource.P
-	D = ressource.D
-	V = ressource.V
-	S = ressource.S
-	race = ressource.race
-	range = ressource.range
-	attaquesMax = ressource.attaquesMax
-	attaquesRestantes = ressource.attaquesRestantes
-	if(ressource.couleurEquipe != ""):
-		couleurEquipe = ressource.couleurEquipe
+	
 	#await get_tree().create_timer(3).timeout #Test temporaire du déplacement(fonctionne)
 	#deplacement(Vector2(200, 80 ))
 	
@@ -100,6 +86,37 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 	
+func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i) -> void:
+	
+	pv_max = pv_max
+	if ressource.pv_actuels > 0:	#Si les pv restants sont inférieurs ou égaux à 0 alors l'unité va mourir direct
+		pv_actuels = ressource.pv_actuels
+	else :
+		pv_actuels = pv_max
+	DR = ressource.DR
+	P = ressource.P
+	V = ressource.V
+	S = ressource.S
+	race = ressource.race
+	range = ressource.range
+	attaquesMax = ressource.attaquesMax
+	attaquesRestantes = ressource.attaquesRestantes
+	if(ressource.couleurEquipe != ""):
+		couleurEquipe = ressource.couleurEquipe
+		
+	
+	position = newPosition	#Gestion de la position de l'unité
+	case = positionCase
+	print(positionCase)
+	
+	couleurEquipe = "Rouge"	#Equipe des ennemis
+	Global._units[case]  = self
+	print(Global._units)
+	if !Global._unitsTeam.has(couleurEquipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore
+		Global._unitsTeam[couleurEquipe] = {}
+	if !Global._unitsTeam[couleurEquipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
+		Global._unitsTeam[couleurEquipe][race] = [self]
+
 func deplacement(nouvellePosition : Vector2) -> void:
 	position = nouvellePosition
 	positionUnite = position
@@ -153,3 +170,11 @@ func nextTurn() -> void:
 		vitesseRestante = V
 		attaquesRestantes = attaquesMax
 	
+
+#Fonction lorsqu'une unité meurt, active les effets de mort de l'unité si elle en a puis fais disparaître l'unité du jeu
+func death() -> void :
+	print(Global._units)
+	
+	Global._units.erase(case)
+	print(Global._units)
+	queue_free()	#Supprime l'unité
