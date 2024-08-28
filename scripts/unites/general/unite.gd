@@ -17,7 +17,7 @@ var pv_actuels : int :
 			pv_actuels = pv_max
 		if value <= 0 :
 			print("L'unité de l'équipe ", couleurEquipe, " à la case", case ," a été tuée")
-			death() 
+			mort() 
 			return 0
 		
 @export var P : int		#Puissance permet de faire plus de dégâts
@@ -26,7 +26,8 @@ var pv_actuels : int :
 @export var S : int		#Sagesse permet d'xp plus vite
 @export_enum("Monkey", "Penguin","Chauve-Souris", "Autres") var race : String
 @export_range(0, 30) var range : int
-@export var couleurEquipe : String 
+@export var couleurEquipe : String
+
 var attaquesMax : int	#Le nombre d'attaques maximales réalisables par l'unité
 var attaquesRestantes : int :	#Le nombre d'attaques qu'il reste à l'unité ce tour
 	set(value):
@@ -109,14 +110,16 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i) 
 	case = positionCase
 	print(positionCase)
 	
-	couleurEquipe = "Rouge"	#Equipe des ennemis
+	couleurEquipe = "Bleu"	#Equipe des ennemis
 	Global._units[case]  = self
-	print(Global._units)
+	print(couleurEquipe)
 	if !Global._unitsTeam.has(couleurEquipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore
 		Global._unitsTeam[couleurEquipe] = {}
 	if !Global._unitsTeam[couleurEquipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
 		Global._unitsTeam[couleurEquipe][race] = [self]
-
+	else :
+		Global._unitsTeam[couleurEquipe][race].append(self)
+	print(Global._unitsTeam)
 func deplacement(nouvellePosition : Vector2) -> void:
 	position = nouvellePosition
 	positionUnite = position
@@ -160,10 +163,6 @@ func walk_along(path: PackedVector2Array) -> void:
 	
 
 
-
-
-
-
 #Reçu depuis InterfaceFinTour, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements
 func nextTurn() -> void:
 	if Global.ordreCouleur[Global.couleurTour] == couleurEquipe:
@@ -172,9 +171,8 @@ func nextTurn() -> void:
 	
 
 #Fonction lorsqu'une unité meurt, active les effets de mort de l'unité si elle en a puis fais disparaître l'unité du jeu
-func death() -> void :
+func mort() -> void :
 	print(Global._units)
-	
-	Global._units.erase(case)
-	print(Global._units)
+	Global._units.erase(case)	#On supprime l'unité du dictionnaire général des unités
+	Global._unitsTeam[couleurEquipe][race].erase(self)	#On supprime l'unité du dictionnaire trié par équipe/race
 	queue_free()	#Supprime l'unité

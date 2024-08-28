@@ -6,6 +6,7 @@ var unitSelec : Node2D
 ## Mapping of coordinates of a cell to a reference to the unit it contains.
 var _units := {}
 
+#Dictionnaire des différentes équipes contenant à l'intérieur clé = nomEquipe; 
 var _unitsTeam := {}
 #Contient l'ordre des couleurs des équipes pour les tours
 var ordreCouleur : Array = Array([], TYPE_STRING, &"", null)

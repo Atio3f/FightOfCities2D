@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var Souris = $"../Pointeur_Selection"
 @onready var scene = $"../.."
-@onready var caseSelec = $"../../Map/CaseSelec"
+@onready var caseSelec = $"../Pointeur_Selection/CaseSelecJ1"
 
 var x : float = 0
 var y : float = 0
@@ -35,7 +35,7 @@ func _physics_process(_delta) -> void:
 		Souris.positionSouris = Vector2i(scene.get_global_mouse_position()) / 32
 		
 		caseSelec.global_position = Souris.getMiddleMouseCell()
-		Souris.changementEmplacement()
+		Souris.pointeurHasMove(Souris.positionSouris)
 	translate(emplacement)
 	
 
