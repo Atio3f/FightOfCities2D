@@ -34,8 +34,8 @@ capacites = {
 "MovementBased": {},
 "PermanentBuff": {},
 "PlacementBased": {
-"+PM": 1,
-"+VM": 1
+"+-P-Monkey": 1,
+"+-V-Monkey": 1
 },
 "TurnBased": {}
 }

@@ -6,7 +6,8 @@ var target : Node2D
 
 var positionSouris : Vector2i
 
-@onready var caseSelec = $"../../Map/CaseSelecJ1"
+@onready var caseSelec = $CaseSelecJ1
+@onready var caseTarget = $CaseTargetJ1
 @onready var position_cam = $"../Movement"
 @onready var terrain = $"../../Map/Terrain32x32"
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
@@ -244,7 +245,10 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 		_unit_path.draw(Selection.case, new_cell)
 		if Selection.attaquesRestantes > 0 and Global._units.has(new_cell) and Selection.couleurEquipe != Global._units[new_cell].couleurEquipe :
 			print("TARGET")
+			
 			target = Global._units[new_cell]
+			caseTarget.position = target.position
+			caseTarget.visible = true
 	elif visuActions != null and _walkable_cells != {}:
 		_walkable_cells.clear() # Clearing out the walkable cells
 		visuActions.clearNumbers() # This is what clears all the colored tiles on the grid

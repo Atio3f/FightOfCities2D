@@ -102,6 +102,7 @@ rotation = 3.14159
 texture = ExtResource("4_6b53y")
 
 [node name="CaseTargetJ1" type="Sprite2D" parent="Player/Pointeur_Selection"]
+visible = false
 top_level = true
 position = Vector2(80, 80)
 rotation = 3.14159

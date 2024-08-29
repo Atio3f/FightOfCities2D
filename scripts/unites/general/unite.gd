@@ -42,6 +42,7 @@ var vitesseRestante : int :
 			vitesseRestante = V
 		else:
 			vitesseRestante = value
+var capacites : Dictionary	#Dictionnaire des capacités de l'unité(voir RessourceUniteBase pour comprendre la structure du dico)
 
 var is_selected : bool = false:
 	set(value):
@@ -87,7 +88,21 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 	
-func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i) -> void:
+func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, newRessource : Resource) -> void:
+	print(Equipe)
+	
+	if !Global._unitsTeam.has(Equipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore. On les ajoute au début pour être certain de pouvoir y accéder pour les capacités
+		Global._unitsTeam[Equipe] = {}
+	if !Global._unitsTeam[Equipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
+		Global._unitsTeam[Equipe][race] = []
+	print(Global._unitsTeam)
+	ressource = newRessource
+	if ressource.capacites["PlacementBased"] != null :	#On check
+		for capa in ressource.capacites["PlacementBased"]:
+			2 +2 
+			if capa[0] == "+":	#Check si le premier caractère de la capacité est un +
+				var capaCible : PackedStringArray = capa.split("-", false)
+				Global.buffEquipe(Equipe, "SpawnBuff", capaCible[1], capaCible[2],ressource.capacites["PlacementBased"][capa])
 	
 	pv_max = pv_max
 	if ressource.pv_actuels > 0:	#Si les pv restants sont inférieurs ou égaux à 0 alors l'unité va mourir direct
@@ -104,22 +119,22 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i) 
 	attaquesRestantes = ressource.attaquesRestantes
 	if(ressource.couleurEquipe != ""):
 		couleurEquipe = ressource.couleurEquipe
-		
+	
 	
 	position = newPosition	#Gestion de la position de l'unité
 	case = positionCase
 	print(positionCase)
 	
-	couleurEquipe = "Bleu"	#Equipe des ennemis
+	couleurEquipe = Equipe	#Equipe des ennemis
 	Global._units[case]  = self
 	print(couleurEquipe)
-	if !Global._unitsTeam.has(couleurEquipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore
-		Global._unitsTeam[couleurEquipe] = {}
-	if !Global._unitsTeam[couleurEquipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
-		Global._unitsTeam[couleurEquipe][race] = [self]
-	else :
-		Global._unitsTeam[couleurEquipe][race].append(self)
+	
+	
+	Global._unitsTeam[couleurEquipe][race].append(self)
 	print(Global._unitsTeam)
+	
+	
+	
 func deplacement(nouvellePosition : Vector2) -> void:
 	position = nouvellePosition
 	positionUnite = position
@@ -162,6 +177,11 @@ func walk_along(path: PackedVector2Array) -> void:
 	
 	
 
+
+func boostStat(statUp : String, valeur : int):
+	set(statUp, self.get(statUp) + valeur)
+	
+	
 
 #Reçu depuis InterfaceFinTour, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements
 func nextTurn() -> void:
