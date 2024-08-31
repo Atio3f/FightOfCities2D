@@ -73,6 +73,16 @@ signal signalFinMouvement
 ## Designate the current unit in a "wait" state
 @export var is_wait := false
 
+var typeDeplacementPossible : Array 	#La liste des moyens de déplacement possible par l'unité
+
+var typeDeplacementActuel : String :		#Permet de savoir si l'unité est en train de voler ou non pour calculer les cases qu'il peut atteindre
+	set(value):
+		if typeDeplacementPossible.has(value) :
+			typeDeplacementActuel = value
+			
+
+
+
 func _ready() -> void:
 	sprite.texture = ressource.image
 	
@@ -90,11 +100,13 @@ func _ready() -> void:
 	
 func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, newRessource : Resource) -> void:
 	print(Equipe)
-	
+	race = ressource.race
 	if !Global._unitsTeam.has(Equipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore. On les ajoute au début pour être certain de pouvoir y accéder pour les capacités
 		Global._unitsTeam[Equipe] = {}
+	print(Global._unitsTeam[Equipe].has(race))
 	if !Global._unitsTeam[Equipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
 		Global._unitsTeam[Equipe][race] = []
+	
 	print(Global._unitsTeam)
 	ressource = newRessource
 	if ressource.capacites["PlacementBased"] != null :	#On check
@@ -113,12 +125,15 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	P = ressource.P
 	V = ressource.V
 	S = ressource.S
-	race = ressource.race
+	
 	range = ressource.range
 	attaquesMax = ressource.attaquesMax
 	attaquesRestantes = ressource.attaquesRestantes
 	if(ressource.couleurEquipe != ""):
 		couleurEquipe = ressource.couleurEquipe
+	
+	typeDeplacementPossible = ressource.typeDeplacementPossible
+	typeDeplacementActuel = ressource.typeDeplacementActuel
 	
 	
 	position = newPosition	#Gestion de la position de l'unité
@@ -129,9 +144,7 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	Global._units[case]  = self
 	print(couleurEquipe)
 	
-	
 	Global._unitsTeam[couleurEquipe][race].append(self)
-	print(Global._unitsTeam)
 	
 	
 	

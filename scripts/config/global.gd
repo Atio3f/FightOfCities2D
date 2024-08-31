@@ -21,6 +21,7 @@ var equipesData : Dictionary = {"Bleu" :
 		"Monkey" : [0, 0, 0, 0, 0, 0, 0, 0], #La liste contient les bonus pour tous les Monkeys sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		"Chauve-Souris" : [0, 0, 0, 0, 0, 0, 0, 0],	#La liste contient les bonus pour tous les Chauve-Souris sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		"Humain" : [0, 0, 0, 0, 0, 0, 0, 0],	#La liste contient les bonus pour tous les humains sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
+		"Taureaux" : [0, 0, 0, 0, 0, 0, 0, 0],	#La liste contient les bonus pour tous les taureaux sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		"All" : [0, 0, 0, 0, 0, 0, 0, 0]		#La liste contient les bonus pour toutes les unités sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		}
 	},
@@ -30,6 +31,7 @@ var equipesData : Dictionary = {"Bleu" :
 		"Monkey" : [0, 0, 0, 0, 0, 0, 0, 0], #La liste contient les bonus pour tous les Monkeys sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		"Chauve-Souris" : [0, 0, 0, 0, 0, 0, 0, 0],	#La liste contient les bonus pour tous les Chauve-Souris sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		"Humain" : [0, 0, 0, 0, 0, 0, 0, 0],	#La liste contient les bonus pour tous les humains sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
+		"Taureaux" : [0, 0, 0, 0, 0, 0, 0, 0],	#La liste contient les bonus pour tous les taureaux sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		"All" : [0, 0, 0, 0, 0, 0, 0, 0]		#La liste contient les bonus pour toutes les unités sur les stats suivantes : PV, DR, P, V, S, attaquesMax, attaquesRestantes, vitesseRestante
 		}
 	}

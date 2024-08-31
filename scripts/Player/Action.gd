@@ -35,6 +35,13 @@ func _input(_event) -> void:
 			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
 			print(nvlUnite.couleurEquipe)
 			
+		if Input.is_action_just_pressed("action3") and Global._units.has(pointeurSouris.positionSouris) == false:
+			var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	
+			
+			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
+			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/unites/taureauAile.tres"))
+			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
+			print(nvlUnite.couleurEquipe)
 			
 		#Permet de sélectionner une unité ça a été déplacé dans PointeurSelect je crois
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and Global._units.has(pointeurSouris.positionSouris) == true:	#On fait que les cas de figures où il y a une unité sur la case pour le moment

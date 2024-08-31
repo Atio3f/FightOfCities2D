@@ -92,13 +92,13 @@ func smoothyPosition() -> void:
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: unite) -> Dictionary:
-	return _dijkstra(unit.case, unit.vitesseRestante, false)
+	return _dijkstra(unit.case, unit.vitesseRestante, false, unit.typeDeplacementActuel)
 
 ## Return an array of cells a given unit can attack using dijkstra's and flood fill algorithm
 func get_attackable_cells(unit: unite) -> Array:
 	
 	var attackable_cells = []
-	var real_walkable_cells = _dijkstra(unit.case, unit.vitesseRestante, true)
+	var real_walkable_cells = _dijkstra(unit.case, unit.vitesseRestante, true, unit.typeDeplacementActuel)
 	
 	## iterate through every single cell and find their partners based on attack range(stat range)
 	for curr_cell in real_walkable_cells:
@@ -149,7 +149,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	return full_array.filter(func(i): return i not in wall_array)
 
 ## Generates a list of walkable cells based on unit movement value and tile movement cost
-func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool) -> Dictionary:
+func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDeplacement : String) -> Dictionary:	#typeDeplacement servira à influer sur les déplacements possibles(ex: vole change le coût de toutes les tuiles à 2)
 	print("DIJKSTRA")
 	var curr_unit = Global._units[cell]
 	#moveable_cells est maintenant un dictionnaire avec comme clé les coords d'une case et en valeur le coût de déplacement vers cette case
@@ -194,7 +194,10 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool) -> Dic
 				else:
 					tile_cost = _movement_costs[coordinates.y][coordinates.x]
 					
-					distance_to_node = current.priority + tile_cost #calculate tile cost normally
+					if typeDeplacement == "vole":
+						distance_to_node = current.priority + 2 #le coût de la case est toujours égal à 2 pour une unité volante
+					else :
+						distance_to_node = current.priority + tile_cost #calculate tile cost normally
 					
 					## Check to see if tile is occupied by opposite team or is waiting
 					## the "or _units[coordinates].is_wait" is the line that you will use to calculate 
