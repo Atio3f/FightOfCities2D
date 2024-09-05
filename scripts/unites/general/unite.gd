@@ -9,21 +9,59 @@ extends Path2D
 
 var positionUnite : Vector2
 
-var pv_max : int
+var pv_max : int :
+	set(value) :
+		pv_max = value
+		if(pv_actuels > pv_max) :	#Si les pv restants de l'unité dépassent ses pv max alors on les changent
+			pv_actuels = pv_max
+			
+
 var pv_actuels : int :
 	set(value):
 		print(value)
 		if value > pv_max :
 			pv_actuels = pv_max
-		if value <= 0 :
+		if value <= 0 :		#Indique que l'unité est morte
 			print("L'unité de l'équipe ", couleurEquipe, " à la case", case ," a été tuée")
-			mort() 
-			return 0
 		
 @export var P : int		#Puissance permet de faire plus de dégâts
+@export_enum("Physique", "Magique") var typeDegats : String	#Indique le type de dégâts qu'inflige l'unité avec ses attaques, permet de connaitre son type de défense
+
+
 @export var DR : int		#DR ou Damage Reduction permet de réduire les dégâts subis à chaque attaque
+
+
 @export var V : int		#Vitesse permet de se déplacer plus loin
+
+
 @export var S : int		#Sagesse permet d'xp plus vite
+@export_range(1, 3) var niveau : int :	#Le niveau de l'unité. Les niveaux 2 et 3 donnent chacun 50% de pv bonus ainsi que n DR avec n = niveau
+	set(value):
+		if (niveau - value) > 1  || (niveau - value) < -1:	#On ne peut pas retirer + d'un niveau à la fois
+			print("On ne peut pas retirer ou rajouter plus d'un niveau à la fois")
+			return null
+		elif niveau - value == -1 :	#On retire les gains d'un niveau lorsqu'on le perd
+			DR -= niveau
+			pv_max = pv_max / 1.5
+			for capa in capacites["LevelUpBased"] :	#Servira lorsqu'il y aura des unités qui se boost à chaque montée de niveau pour leur retirer en cas de perte de niveau
+				pass
+			niveau = value
+		else :				#On rajoute les gains d'un niveau lorsqu'on en gagne un
+			niveau = value
+			pv_max = pv_max * 1.5
+			DR += niveau
+			for capa in capacites["LevelUpBased"] :		#Servira lorsqu'il y aura des unités qui se boost à chaque montée de niveau
+				pass
+				
+const paliersNiveaux = [0, 100, 250]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
+
+@export var experience : float :#L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque, la moitié de ça lorsqu'elle prend des dégâts et pv unité tuée + 2S lors d'un kill
+	set(value):
+		while (value > paliersNiveaux[niveau]):	#Tant que l'unité peut monter de niveau avec l'experience obtenue on continue
+			niveau += 1
+		experience = value
+
+
 @export_enum("Monkey", "Penguin","Chauve-Souris", "Autres") var race : String
 @export_range(0, 30) var range : int
 @export var couleurEquipe : String
@@ -81,7 +119,7 @@ var typeDeplacementActuel : String :		#Permet de savoir si l'unité est en train
 			typeDeplacementActuel = value
 			
 
-
+ 
 
 func _ready() -> void:
 	sprite.texture = ressource.image
@@ -145,7 +183,8 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	print(couleurEquipe)
 	
 	Global._unitsTeam[couleurEquipe][race].append(self)
-	
+	sprite.texture = ressource.image
+	capacites = ressource.capacites
 	
 	
 func deplacement(nouvellePosition : Vector2) -> void:
@@ -203,8 +242,39 @@ func nextTurn() -> void:
 		attaquesRestantes = attaquesMax
 	
 
+func attaque(uniteAttaque : Node2D):
+	var totalDegats : int = P	#Les dégâts de base sont égaux à P
+	for capa in capacites["AttackBased"]:
+		pass
+	uniteAttaque.estAttaque(self, totalDegats)	#On envoie les infos de dégâts
+	attaquesRestantes -= 1	#On retire une attaque à l'unité 
+	
+
+func estAttaque(attaquant : Node2D, degats : int) -> void :
+	print(degats)
+	if(subirDegats(degats, attaquant.typeDegats)) :
+		if(attaquant.get_class() == "unite") :	#Préparation à l'arrivée des bâtiments et sorts
+			attaquant.getKill(self)
+		
+		mort(attaquant)
+	else :	#Si l'unité n'est pas morte avec cette attaque alors elle gagne de l'expérience
+		experience = experience + ((degats + S) /2)
+
+#Fonction servant à faire le décompte des pv, typeDegatsAttaquant indique le type de dégâts de l'attaque avant de renvoyer si l'unité est morte ou non
+func subirDegats(degats : int, typeDegatsAttaquant : String) -> bool :
+	var totalDegats : int = degats
+	if (typeDegatsAttaquant == typeDegats) :
+		totalDegats -= DR / 5
+	pv_actuels = totalDegats
+	return (pv_actuels <= 0) #On vérifie si l'unité est morte
+
+func getKill(unitTuee : unite) -> void:
+	experience = experience + unitTuee.pv_max + (2 * S)
+	for capa in capacites["KillBased"]:
+		pass
+
 #Fonction lorsqu'une unité meurt, active les effets de mort de l'unité si elle en a puis fais disparaître l'unité du jeu
-func mort() -> void :
+func mort(attaquant : unite) -> void :
 	print(Global._units)
 	Global._units.erase(case)	#On supprime l'unité du dictionnaire général des unités
 	Global._unitsTeam[couleurEquipe][race].erase(self)	#On supprime l'unité du dictionnaire trié par équipe/race

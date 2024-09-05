@@ -9,6 +9,7 @@ var pvTemporaires : int		#PV bonus qui ne peuvent pas être guéris, souvent obt
 @export var DR : int #Permet de réduire les dégâts subis(1DR = 1dégâts subi en moins par attaque)
 @export var image : Texture		#Sprite de l'unité
 @export var P : int		#Puissance permet de faire plus de dégâts
+@export_enum("Physique", "Magique") var typeDegats : String	#Indique le type de dégâts qu'inflige l'unité avec ses attaques, permet de connaitre son type de défense
 #@export var D : int		#Défense permet d'avoir plus de PV a été retiré pour simplifier
 
 @export var V : int		#Vitesse permet de se déplacer plus loin
@@ -47,5 +48,6 @@ const paliersNiveaux = [100, 250]	#L'expérience nécessaire pour monter au nive
 	#AttackBased = tout ce qui s'active lorsque l'unité attaquez
 	#KillBased = tout ce qui s'active lorsque l'unité tue une autre unité
 	#DefenseBased = tout ce qui s'active lorsque l'unité prend des dégâts ou se fait attaquer
+	#LevelUpBased = tout ce qui s'active lorsque l'unité monte de niveau
 	#DeathBased = tout ce qui s'active quand l'unité meurt
-@export var capacites : Dictionary = {"PlacementBased" : {},"PermanentBuff" : {}, "TurnBased" : {}, "ItemBased" : {}, "MovementBased" : {}, "AttackBased" : {}, "KillBased" : {},"DefenseBased" : {}, "DeathBased": {}}
+@export var capacites : Dictionary = {"PlacementBased" : {},"PermanentBuff" : {}, "TurnBased" : {}, "ItemBased" : {}, "MovementBased" : {}, "AttackBased" : {}, "KillBased" : {},"DefenseBased" : {}, "LevelUpBased" : {}, "DeathBased": {}}

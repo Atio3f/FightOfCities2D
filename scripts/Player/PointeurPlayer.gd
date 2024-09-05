@@ -239,7 +239,7 @@ func getMiddleMouseCell() -> Vector2:
 #On fait le calcul du nouvel emplacement dans Action. _hover_display et 
 #Fonction s'active depuis Movement à chaque fois que le curseur bouge
 func pointeurHasMove(new_cell: Vector2i) -> void:
-	print("PointeurHasMove")
+	#print("PointeurHasMove")
 	#print(_units.has(new_cell))
 	#print(new_cell)
 	#print(_units)
@@ -275,11 +275,17 @@ func _hover_display(cell: Vector2i) -> void:
 	visuActions.draw_walkable_cells(_walkable_cells, curr_unit.couleurEquipe)
 
 ## Selects or moves a unit based on where the cursor is.
-func cursorPressed(cell: Vector2i) -> void:
+func cursorPressed(cell: Vector2) -> void:
 	if not Selection:
 		_select_unit(cell)
 	elif Selection.is_selected:
-		_move_active_unit(cell)
+		var cellI : Vector2i = cell
+		if(cell in _walkable_cells.keys()) :	#Si la case du pointeur se trouve dans les cases où peut se déplacer l'unité alors on la déplace
+			_move_active_unit(cell)
+		elif (cell in _attackable_cells and Selection.attaquesRestantes > 0):
+			print(Global._units)
+			
+			Selection.attaque(Global._units[cellI])
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `pointeurSelec.Selection` and draws its walkable cells and interactive move path. 
@@ -315,7 +321,7 @@ func is_occupied(cell: Vector2i) -> bool:
 func _move_active_unit(new_cell: Vector2) -> void:
 	
 	var keysWalkableCells = _walkable_cells.keys()
-	if is_occupied(new_cell) or not new_cell in keysWalkableCells:
+	if is_occupied(new_cell) or not new_cell in keysWalkableCells:	#Check si le mouvement ne doit pas se dérouler
 		return
 	# warning-ignore:return_value_discarded
 	Global._units.erase(Selection.case)
@@ -340,6 +346,7 @@ func _deselect_active_unit() -> void:
 	#pointeurSelec.Selection = null Complètement con de retirer l'unité avant de la faire finalement bouger puisqu'on ne l'a plus en mémoire
 	visuActions.clearNumbers()
 	_unit_path.stop()
+	caseTarget.visible = false
 
 
 ## Clears the reference to the pointeurSelec.Selection and the corresponding walkable cells.
