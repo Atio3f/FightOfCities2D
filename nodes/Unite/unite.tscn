@@ -33,3 +33,11 @@ texture = ExtResource("3_tj7gm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/ZoneOccupe"]
 scale = Vector2(0.92, 0.92)
 shape = SubResource("RectangleShape2D_xeksa")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PathFollow2D"]
+visible = false
+offset_left = -15.0
+offset_top = -23.0
+offset_right = 25.0
+offset_bottom = -13.0
+scale = Vector2(0.743647, 0.82141)

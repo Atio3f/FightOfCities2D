@@ -11,6 +11,7 @@ pv_actuels = 23
 DR = 1
 image = ExtResource("1_5vvtb")
 P = 10
+typeDegats = "Physique"
 V = 15
 S = 8
 G = 0
@@ -33,6 +34,7 @@ capacites = {
 "DefenseBased": {},
 "ItemBased": {},
 "KillBased": {},
+"LevelUpBased": {},
 "MovementBased": {},
 "PermanentBuff": {},
 "PlacementBased": {

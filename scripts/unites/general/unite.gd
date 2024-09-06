@@ -5,7 +5,7 @@ extends Path2D
 
 @onready var sprite : Sprite2D = $PathFollow2D/SpriteUnite
 @onready var contourSelec : Sprite2D = $PathFollow2D/ContourSelection
-
+@onready var barreVie : ProgressBar = $PathFollow2D/BarreVie	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
 
 var positionUnite : Vector2
 
@@ -14,15 +14,22 @@ var pv_max : int :
 		pv_max = value
 		if(pv_actuels > pv_max) :	#Si les pv restants de l'unité dépassent ses pv max alors on les changent
 			pv_actuels = pv_max
-			
+		barreVie.max_value = pv_max
+		barreVie.value = pv_actuels
 
 var pv_actuels : int :
 	set(value):
+		print("SETTER")
 		print(value)
-		if value > pv_max :
+		print(pv_actuels)
+		if value > pv_max :	#Si la nouvelle valeur de pv_actuels dépasse le max de pv alors on 
 			pv_actuels = pv_max
+		else :
+			pv_actuels = value
 		if value <= 0 :		#Indique que l'unité est morte
 			print("L'unité de l'équipe ", couleurEquipe, " à la case", case ," a été tuée")
+		print(pv_actuels)
+		barreVie.value = pv_actuels
 		
 @export var P : int		#Puissance permet de faire plus de dégâts
 @export_enum("Physique", "Magique") var typeDegats : String	#Indique le type de dégâts qu'inflige l'unité avec ses attaques, permet de connaitre son type de défense
@@ -138,6 +145,7 @@ func _ready() -> void:
 	
 func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, newRessource : Resource) -> void:
 	print(Equipe)
+	ressource = newRessource
 	race = ressource.race
 	if !Global._unitsTeam.has(Equipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore. On les ajoute au début pour être certain de pouvoir y accéder pour les capacités
 		Global._unitsTeam[Equipe] = {}
@@ -146,7 +154,6 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 		Global._unitsTeam[Equipe][race] = []
 	
 	print(Global._unitsTeam)
-	ressource = newRessource
 	if ressource.capacites["PlacementBased"] != null :	#On check
 		for capa in ressource.capacites["PlacementBased"]:
 			2 +2 
@@ -154,9 +161,11 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 				var capaCible : PackedStringArray = capa.split("-", false)
 				Global.buffEquipe(Equipe, "SpawnBuff", capaCible[1], capaCible[2],ressource.capacites["PlacementBased"][capa])
 	
-	pv_max = pv_max
+	pv_max = ressource.pv_max
 	if ressource.pv_actuels > 0:	#Si les pv restants sont inférieurs ou égaux à 0 alors l'unité va mourir direct
 		pv_actuels = ressource.pv_actuels
+		print("ICI?")
+		
 	else :
 		pv_actuels = pv_max
 	DR = ressource.DR
@@ -242,16 +251,19 @@ func nextTurn() -> void:
 		attaquesRestantes = attaquesMax
 	
 
-func attaque(uniteAttaque : Node2D):
+signal signalFinAttaque()	#Potentiellement rajouter des infos sur si un kill a été fait ou non
+func attaque(uniteAttaque : Node2D) -> Signal:
 	var totalDegats : int = P	#Les dégâts de base sont égaux à P
 	for capa in capacites["AttackBased"]:
 		pass
 	uniteAttaque.estAttaque(self, totalDegats)	#On envoie les infos de dégâts
-	attaquesRestantes -= 1	#On retire une attaque à l'unité 
+	attaquesRestantes = attaquesRestantes - 1	#On retire une attaque à l'unité 
+	return signalFinAttaque
 	
 
 func estAttaque(attaquant : Node2D, degats : int) -> void :
 	print(degats)
+	
 	if(subirDegats(degats, attaquant.typeDegats)) :
 		if(attaquant.get_class() == "unite") :	#Préparation à l'arrivée des bâtiments et sorts
 			attaquant.getKill(self)
@@ -262,10 +274,15 @@ func estAttaque(attaquant : Node2D, degats : int) -> void :
 
 #Fonction servant à faire le décompte des pv, typeDegatsAttaquant indique le type de dégâts de l'attaque avant de renvoyer si l'unité est morte ou non
 func subirDegats(degats : int, typeDegatsAttaquant : String) -> bool :
+	print(pv_actuels)
 	var totalDegats : int = degats
 	if (typeDegatsAttaquant == typeDegats) :
 		totalDegats -= DR / 5
-	pv_actuels = totalDegats
+	
+	pv_actuels = pv_actuels - totalDegats
+	print(pv_actuels)
+	
+	print("PVS")
 	return (pv_actuels <= 0) #On vérifie si l'unité est morte
 
 func getKill(unitTuee : unite) -> void:
@@ -275,7 +292,7 @@ func getKill(unitTuee : unite) -> void:
 
 #Fonction lorsqu'une unité meurt, active les effets de mort de l'unité si elle en a puis fais disparaître l'unité du jeu
 func mort(attaquant : unite) -> void :
-	print(Global._units)
+
 	Global._units.erase(case)	#On supprime l'unité du dictionnaire général des unités
 	Global._unitsTeam[couleurEquipe][race].erase(self)	#On supprime l'unité du dictionnaire trié par équipe/race
 	queue_free()	#Supprime l'unité

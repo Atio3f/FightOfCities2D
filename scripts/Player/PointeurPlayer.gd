@@ -202,9 +202,9 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 					## Check to see if tile is occupied by opposite team or is waiting
 					## the "or _units[coordinates].is_wait" is the line that you will use to calculate 
 					## Actual attack range for display on hover/walk
-					print(is_occupied(coordinatesI))
+					#print(is_occupied(coordinatesI))
 					if is_occupied(coordinatesI):
-						print(curr_unit.couleurEquipe)
+						#print(curr_unit.couleurEquipe)
 						if curr_unit.couleurEquipe != Global._units[coordinatesI].couleurEquipe: #Remove this line if you want to make every unit impassable 
 							distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
 						## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
@@ -286,13 +286,17 @@ func cursorPressed(cell: Vector2) -> void:
 			print(Global._units)
 			
 			Selection.attaque(Global._units[cellI])
+			
+			print("BON")
+			_deselect_active_unit()
+			_clear_active_unit()
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `pointeurSelec.Selection` and draws its walkable cells and interactive move path. 
 func _select_unit(cell: Vector2i) -> void:
 	
 	print("_select_unit")
-	print(cell)
+	#print(cell)
 	print(Global._units)
 	if not Global._units.has(cell):
 		print(cell)

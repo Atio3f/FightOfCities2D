@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://27awq5ull731"]
+
+[ext_resource type="Theme" uid="uid://bw6cwvk05nnqk" path="res://nodes/Unite/interfaceUnite/themeBarreVie.tres" id="1_u3ynh"]
+
+[node name="InterfaceUnite" type="Control"]
+layout_mode = 3
+anchor_right = 0.0277778
+anchor_bottom = 0.0493827
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BarreVie" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03125
+anchor_right = 0.962421
+anchor_bottom = 0.234854
+offset_right = -25.7975
+offset_bottom = 18.4847
+grow_vertical = 2
+scale = Vector2(7.44937, 0.289051)
+theme = ExtResource("1_u3ynh")
+step = 1.0
+metadata/_edit_use_anchors_ = true

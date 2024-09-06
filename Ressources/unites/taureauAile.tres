@@ -11,11 +11,12 @@ pv_actuels = 40
 DR = 22
 image = ExtResource("1_5pe7u")
 P = 22
+typeDegats = "Physique"
 V = 10
 S = 1
 G = 0
 race = "Taureaux"
-range = 0
+range = 1
 couleurEquipe = "Rouge"
 attaquesMax = 1
 attaquesRestantes = 1
@@ -30,6 +31,7 @@ capacites = {
 "DefenseBased": {},
 "ItemBased": {},
 "KillBased": {},
+"LevelUpBased": {},
 "MovementBased": {},
 "PermanentBuff": {},
 "PlacementBased": {},
