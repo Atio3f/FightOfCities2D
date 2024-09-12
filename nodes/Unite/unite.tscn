@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0xoj357iuq7c"]
+[gd_scene load_steps=7 format=3 uid="uid://c0xoj357iuq7c"]
 
 [ext_resource type="Script" path="res://scripts/unites/general/unite.gd" id="1_myi7v"]
 [ext_resource type="Resource" uid="uid://bsk2sk22dc3mh" path="res://Ressources/unites/singe.tres" id="2_paxup"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="3_mt4o2"]
 [ext_resource type="Texture2D" uid="uid://dp67guejh3v25" path="res://assets/interface/contourSelectionUnite1c(32x32).png" id="3_tj7gm"]
+[ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interface_unite.tscn" id="5_6sa0d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeksa"]
 size = Vector2(32, 32)
@@ -18,26 +19,28 @@ grid = ExtResource("3_mt4o2")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
-[node name="PathFollow2D" type="PathFollow2D" parent="."]
+[node name="ElementsUnite" type="PathFollow2D" parent="."]
 rotates = false
 loop = false
 
-[node name="SpriteUnite" type="Sprite2D" parent="PathFollow2D"]
+[node name="SpriteUnite" type="Sprite2D" parent="ElementsUnite"]
 
-[node name="ContourSelection" type="Sprite2D" parent="PathFollow2D"]
+[node name="ContourSelection" type="Sprite2D" parent="ElementsUnite"]
 visible = false
 texture = ExtResource("3_tj7gm")
 
-[node name="ZoneOccupe" type="Area2D" parent="PathFollow2D"]
+[node name="ZoneOccupe" type="Area2D" parent="ElementsUnite"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/ZoneOccupe"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElementsUnite/ZoneOccupe"]
 scale = Vector2(0.92, 0.92)
 shape = SubResource("RectangleShape2D_xeksa")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="PathFollow2D"]
-visible = false
-offset_left = -15.0
-offset_top = -23.0
-offset_right = 25.0
-offset_bottom = -13.0
-scale = Vector2(0.743647, 0.82141)
+[node name="InterfaceUnite" parent="ElementsUnite" instance=ExtResource("5_6sa0d")]
+offset_left = -14.0
+offset_top = -22.0
+offset_right = -14.0
+offset_bottom = -22.0
+
+[node name="NoeudsTemp" type="Node2D" parent="."]
+
+[node name="IndicDegats" type="Node2D" parent="NoeudsTemp"]

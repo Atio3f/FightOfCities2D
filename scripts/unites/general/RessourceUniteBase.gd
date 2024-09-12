@@ -5,7 +5,7 @@ class_name uniteRessource
 @export var nom : String	#Le nom de l'unité
 @export var pv_max : int	#Equivalent de D + 20 qui servait à calculer les pv des unités avant
 @export var pv_actuels : int
-var pvTemporaires : int		#PV bonus qui ne peuvent pas être guéris, souvent obtenus depuis des objets et ne sont pas augmentés lorsque l'unité monte de niveau
+var pv_temporaires : int		#PV bonus qui ne peuvent pas être guéris, souvent obtenus depuis des objets et ne sont pas augmentés lorsque l'unité monte de niveau
 @export var DR : int #Permet de réduire les dégâts subis(1DR = 1dégâts subi en moins par attaque)
 @export var image : Texture		#Sprite de l'unité
 @export var P : int		#Puissance permet de faire plus de dégâts
@@ -42,6 +42,7 @@ const paliersNiveaux = [100, 250]	#L'expérience nécessaire pour monter au nive
 	#Précision pour les clés :
 	#PlacementBased = tout ce qui s'active lorsque l'unité est placée
 	#PermanentBuff = tout les buffs qui durent tant que l'unité est en vie
+	#ActiveCapacitiesBased = stock pratique de toutes les capacités qui nécessitent une activation manuelle lorsqu'on clique sur l'unité en question(servira pour l'interface)
 	#TurnBased = tout ce qui s'active au début où à la fin des tours
 	#ItemBased = tout ce qui s'active lorsque l'on utilise un objet sur l'unité
 	#MovementBased = tout ce qui s'active lorsque l'unité bouge
@@ -50,4 +51,16 @@ const paliersNiveaux = [100, 250]	#L'expérience nécessaire pour monter au nive
 	#DefenseBased = tout ce qui s'active lorsque l'unité prend des dégâts ou se fait attaquer
 	#LevelUpBased = tout ce qui s'active lorsque l'unité monte de niveau
 	#DeathBased = tout ce qui s'active quand l'unité meurt
-@export var capacites : Dictionary = {"PlacementBased" : {},"PermanentBuff" : {}, "TurnBased" : {}, "ItemBased" : {}, "MovementBased" : {}, "AttackBased" : {}, "KillBased" : {},"DefenseBased" : {}, "LevelUpBased" : {}, "DeathBased": {}}
+@export var capacites : Dictionary = {
+"PlacementBased" : {},
+"PermanentBuff" : {}, 
+"ActiveCapacitiesBased" : {},
+"TurnBased" : {}, 
+"ItemBased" : {}, 
+"MovementBased" : {}, 
+"AttackBased" : {}, 
+"KillBased" : {},
+"DefenseBased" : {}, 
+"LevelUpBased" : {}, 
+"DeathBased": {}
+}

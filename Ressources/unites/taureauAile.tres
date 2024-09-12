@@ -26,6 +26,7 @@ experience = 0.0
 typeDeplacementPossible = ["vole"]
 typeDeplacementActuel = "vole"
 capacites = {
+"ActiveCapacitiesBased": {},
 "AttackBased": {},
 "DeathBased": {},
 "DefenseBased": {},

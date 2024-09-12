@@ -282,7 +282,7 @@ func cursorPressed(cell: Vector2) -> void:
 		var cellI : Vector2i = cell
 		if(cell in _walkable_cells.keys()) :	#Si la case du pointeur se trouve dans les cases où peut se déplacer l'unité alors on la déplace
 			_move_active_unit(cell)
-		elif (cell in _attackable_cells and Selection.attaquesRestantes > 0):
+		elif (cell in _attackable_cells and Selection.attaquesRestantes > 0 and Global._units[cellI].couleurEquipe != Selection.couleurEquipe):	#On vérifie qu'il y a une unité sur la case sélec, que l'unité qu'on a a encore des attaques à faire puis on vérifie que leurs couleurs sont différentes
 			print(Global._units)
 			
 			Selection.attaque(Global._units[cellI])

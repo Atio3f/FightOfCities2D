@@ -1,0 +1,1 @@
+This font is made by "repkamon" and all rights reserved to it. (reppixel)

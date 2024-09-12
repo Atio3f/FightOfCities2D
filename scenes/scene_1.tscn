@@ -96,7 +96,7 @@ grid = ExtResource("3_k52dx")
 rendering_quadrant_size = 32
 
 [node name="CaseSelecJ1" type="Sprite2D" parent="Player/Pointeur_Selection"]
-top_level = true
+visibility_layer = 2
 position = Vector2(80, 80)
 rotation = 3.14159
 texture = ExtResource("4_6b53y")
@@ -122,5 +122,7 @@ script = ExtResource("6_st2d6")
 
 [node name="InterfaceFinTour" parent="CanvasInterface" instance=ExtResource("7_15vpu")]
 top_level = true
+
+[node name="NoeudsTemp" type="Node2D" parent="."]
 
 [connection signal="accept_pressed" from="Player/Pointeur_Selection" to="Map" method="_on_pointeur_selection_accept_pressed"]

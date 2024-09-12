@@ -10,7 +10,7 @@ pv_max = 23
 pv_actuels = 23
 DR = 1
 image = ExtResource("1_5vvtb")
-P = 10
+P = 2
 typeDegats = "Physique"
 V = 15
 S = 8
@@ -26,6 +26,7 @@ experience = 0.0
 typeDeplacementPossible = ["marche"]
 typeDeplacementActuel = "marche"
 capacites = {
+"ActiveCapacitiesBased": {},
 "AttackBased": {},
 "DeathBased": {
 "-PM": 1,
