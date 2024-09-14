@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dwpncfm31umny"]
+
+[ext_resource type="FontFile" uid="uid://ditk02flfbxes" path="res://assets/interface/unite/polices/Beef'd.ttf" id="1_nr8p2"]
+
+[resource]
+font = ExtResource("1_nr8p2")
+font_size = 13
+font_color = Color(0.823529, 0.0392157, 0.0392157, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)

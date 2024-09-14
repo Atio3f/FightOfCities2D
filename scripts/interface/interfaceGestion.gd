@@ -29,5 +29,5 @@ func _on_button_fin_tour_pressed():
 	setActionsRest(3)
 	Global.nextTurn()
 	#Réalisation d'une boucle pour parcourir toutes les unités sur le terrain et leur permettre de 
-	for unit in map._units :
-		map._units[unit].nextTurn()
+	for unit in Global._units :
+		Global._units[unit].nextTurn()

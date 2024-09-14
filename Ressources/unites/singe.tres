@@ -5,9 +5,13 @@
 
 [resource]
 script = ExtResource("1_tmmjy")
+nom = "Monkey"
+pv_max = 23
+pv_actuels = 23
+DR = 1
 image = ExtResource("1_5vvtb")
-P = 10
-D = 5
+P = 2
+typeDegats = "Physique"
 V = 15
 S = 8
 G = 0
@@ -17,4 +21,27 @@ couleurEquipe = ""
 attaquesMax = 1
 attaquesRestantes = 0
 vitesseRestante = 15
-capacites = {}
+niveau = 0
+experience = 0.0
+typeDeplacementPossible = ["marche"]
+typeDeplacementActuel = "marche"
+description = "Un singe basique qui encourage les autres singes à donner le meilleur d'eux"
+capacites = {
+"ActiveCapacitiesBased": {},
+"AttackBased": {},
+"DeathBased": {
+"-PM": 1,
+"-VM": 1
+},
+"DefenseBased": {},
+"ItemBased": {},
+"KillBased": {},
+"LevelUpBased": {},
+"MovementBased": {},
+"PermanentBuff": {},
+"PlacementBased": {
+"+-P-Monkey": 1,
+"+-V-Monkey": 1
+},
+"TurnBased": {}
+}
