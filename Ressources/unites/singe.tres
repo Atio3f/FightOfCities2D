@@ -25,6 +25,7 @@ niveau = 0
 experience = 0.0
 typeDeplacementPossible = ["marche"]
 typeDeplacementActuel = "marche"
+description = "Un singe basique qui encourage les autres singes à donner le meilleur d'eux"
 capacites = {
 "ActiveCapacitiesBased": {},
 "AttackBased": {},

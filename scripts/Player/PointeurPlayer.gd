@@ -304,7 +304,7 @@ func _select_unit(cell: Vector2i) -> void:
 		print("NON")
 		return
 	Selection = Global._units[cell]
-	Selection.is_selected = true
+	Selection.selectionneSelf()
 	
 	## Acquire the walkable and attackable cells
 	_walkable_cells = get_walkable_cells(Selection)
@@ -346,7 +346,8 @@ func _move_active_unit(new_cell: Vector2) -> void:
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:
 	print("deselect")
-	Selection.is_selected = false
+	
+	Selection.deselectionneSelf()
 	#pointeurSelec.Selection = null Complètement con de retirer l'unité avant de la faire finalement bouger puisqu'on ne l'a plus en mémoire
 	visuActions.clearNumbers()
 	_unit_path.stop()

@@ -37,7 +37,7 @@ const paliersNiveaux = [100, 250]	#L'expérience nécessaire pour monter au nive
 @export var typeDeplacementActuel : String	#Permet de savoir si l'unité est en train de voler ou non pour calculer les cases qu'il peut atteindre
 											# entre les différents éléments de typeDeplacementPossible
 
-
+@export var description : String	#Description détaillée de l'unité(blague ou truc sérieux à toi de voir !)
 ##Capacités est un dictionnaire avec comme clé le moment où la capacité est utilisée et comme valeur une liste de toutes les capacités de l'unité :
 	#Précision pour les clés :
 	#PlacementBased = tout ce qui s'active lorsque l'unité est placée

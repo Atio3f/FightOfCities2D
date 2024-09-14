@@ -1,8 +1,8 @@
 extends Node2D
-const paliersTaille : Array = [0, 15, 22, 26, 31, 38, 44, 50]	#Paliers qui permettent d'augmenter la taille de la police
-const tailles : Array = [5, 7, 8, 9, 10, 11, 12, 13]
+const paliersTaille : Array = [0, 22, 26, 31, 38, 44, 50]	#Paliers qui permettent d'augmenter la taille de la police
+const tailles : Array = [8, 9, 10, 11, 12, 13, 15]
 
-const police5 : Resource = preload("res://assets/interface/unite/Beef'd.ttf")	#Servira si on veut ajuster la police en fonction de la taille
+const police5 : Resource = preload("res://assets/interface/unite/polices/Beef'd.ttf")	#Servira si on veut ajuster la police en fonction de la taille
 
 
 @onready var labelValeur : Label = $ValeurDegats

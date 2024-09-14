@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://51527uw3luky"
-path="res://.godot/imported/reppixel.ttf-85f31f6e5c3d113c2cfc5f346f5ab02e.fontdata"
+uid="uid://ditk02flfbxes"
+path="res://.godot/imported/Beef'd.ttf-0cd561c63cc6854f67041dc8b0382c11.fontdata"
 
 [deps]
 
-source_file="res://assets/interface/unite/reppixel.ttf"
-dest_files=["res://.godot/imported/reppixel.ttf-85f31f6e5c3d113c2cfc5f346f5ab02e.fontdata"]
+source_file="res://assets/interface/unite/polices/Beef'd.ttf"
+dest_files=["res://.godot/imported/Beef'd.ttf-0cd561c63cc6854f67041dc8b0382c11.fontdata"]
 
 [params]
 

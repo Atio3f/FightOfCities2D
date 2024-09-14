@@ -5,7 +5,7 @@ extends Path2D
 
 @onready var sprite : Sprite2D = $ElementsUnite/SpriteUnite
 @onready var contourSelec : Sprite2D = $ElementsUnite/ContourSelection
-@onready var barreVie : Control = $ElementsUnite/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
+@onready var interfaceUnite : Control = $ElementsUnite/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
 
 var positionUnite : Vector2
 
@@ -14,7 +14,7 @@ var pv_max : int :
 		pv_max = value
 		if(pv_actuels > pv_max) :	#Si les pv restants de l'unité dépassent ses pv max alors on les changent
 			pv_actuels = pv_max
-		barreVie.actualisationPV(self)
+		interfaceUnite.actualisationPV(self)
 
 var pv_actuels : int :
 	set(value):
@@ -28,7 +28,7 @@ var pv_actuels : int :
 		if value <= 0 :		#Indique que l'unité est morte
 			print("L'unité de l'équipe ", couleurEquipe, " à la case", case ," a été tuée")
 		print(pv_actuels)
-		barreVie.actualisationPV(self)
+		interfaceUnite.actualisationPV(self)
 		
 var pv_temporaires : int
 @export var P : int		#Puissance permet de faire plus de dégâts
@@ -307,6 +307,17 @@ func getKill(unitTuee : unite) -> void:
 	for capa in capacites["KillBased"]:
 		pass
 
+#Fonction qui s'active lorsque l'unité est sélectionnée
+func selectionneSelf():
+	interfaceUnite.apercuMenusUnite(self, true)
+	is_selected = true
+	
+	
+#Cache le menu dans l'interface de l'unité lorsque l'unité est déselectionnée
+func deselectionneSelf():
+	interfaceUnite.apercuMenusUnite(self, false)
+	is_selected = false
+
 #Fonction lorsqu'une unité meurt, active les effets de mort de l'unité si elle en a puis fais disparaître l'unité du jeu
 func mort(attaquant : unite) -> void :
 	Global._units.erase(case)	#On supprime l'unité du dictionnaire général des unités
@@ -317,3 +328,10 @@ func mort(attaquant : unite) -> void :
 		await get_tree().create_timer(1.2).timeout
 	
 	queue_free()	#Supprime l'unité
+
+
+
+
+
+func _on_interface_unite_focus_entered():
+	print("KOK")

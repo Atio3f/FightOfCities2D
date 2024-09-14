@@ -30,6 +30,7 @@ visible = false
 texture = ExtResource("3_tj7gm")
 
 [node name="ZoneOccupe" type="Area2D" parent="ElementsUnite"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ElementsUnite/ZoneOccupe"]
 scale = Vector2(0.92, 0.92)
@@ -44,3 +45,5 @@ offset_bottom = -22.0
 [node name="NoeudsTemp" type="Node2D" parent="."]
 
 [node name="IndicDegats" type="Node2D" parent="NoeudsTemp"]
+
+[connection signal="focus_entered" from="ElementsUnite/InterfaceUnite" to="." method="_on_interface_unite_focus_entered"]
