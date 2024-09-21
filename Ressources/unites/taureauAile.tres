@@ -8,12 +8,12 @@ script = ExtResource("1_vymuq")
 nom = "Taureau Ailé"
 pv_max = 40
 pv_actuels = 40
-DR = 22
+DR = 18
 image = ExtResource("1_5pe7u")
-P = 22
+P = 19
 typeDegats = "Physique"
 V = 10
-S = 1
+S = 2
 G = 0
 race = "Taureaux"
 range = 1
@@ -25,6 +25,7 @@ niveau = 0
 experience = 0.0
 typeDeplacementPossible = ["vole"]
 typeDeplacementActuel = "vole"
+description = ""
 capacites = {
 "ActiveCapacitiesBased": {},
 "AttackBased": {},

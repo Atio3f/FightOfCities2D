@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/unites/general/interface/infosUnite.gd" id="1_55q2o"]
 [ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="2_i5pgd"]
-[ext_resource type="PackedScene" uid="uid://rj0b4npheq5" path="res://nodes/Unite/interfaceUnite/capaciteTexte.tscn" id="3_xm14s"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_43pub"]
 
 [node name="PopUpInfosUnite" type="Control"]
 layout_mode = 3
@@ -18,7 +19,6 @@ script = ExtResource("1_55q2o")
 metadata/_edit_use_anchors_ = true
 
 [node name="UI" type="CanvasLayer" parent="."]
-layer = 0
 
 [node name="Panel" type="Panel" parent="UI"]
 editor_description = "Sert à visualiser comment ça rend(parece que y'a des probs avec le popUp"
@@ -36,14 +36,19 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="FlowContainer" type="FlowContainer" parent="UI/Panel"]
-layout_direction = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.9975
+anchor_bottom = 1.0
+offset_left = -442.0
+offset_top = -120.0
+offset_right = -450.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/FlowContainer"]
 layout_mode = 2
@@ -54,7 +59,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ImageUnite" type="TextureRect" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeImage"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 texture = ExtResource("2_i5pgd")
@@ -63,14 +67,12 @@ texture = ExtResource("2_i5pgd")
 layout_mode = 2
 
 [node name="LabelPV" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeVie"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PV = 20/20"
 horizontal_alignment = 1
 
 [node name="LabelDR" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeVie"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 text = "DR = 10"
@@ -79,14 +81,12 @@ text = "DR = 10"
 layout_mode = 2
 
 [node name="LabelPuissance" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeDegats"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "P = 20"
 horizontal_alignment = 1
 
 [node name="LabelDt" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeDegats"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Dt = 2"
@@ -95,14 +95,12 @@ text = "Dt = 2"
 layout_mode = 2
 
 [node name="LabelVitesse" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeVS"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "V = 20"
 horizontal_alignment = 1
 
 [node name="LabelSagesse" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeVS"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 text = "S = 10"
@@ -111,14 +109,12 @@ text = "S = 10"
 layout_mode = 2
 
 [node name="LabelNiveau" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeExperience"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Niveau 1"
 horizontal_alignment = 1
 
 [node name="LabelXP" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeExperience"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 text = "XP = 10(200)"
@@ -127,36 +123,28 @@ text = "XP = 10(200)"
 layout_mode = 2
 
 [node name="RangeeCapacites" type="HBoxContainer" parent="UI/Panel/FlowContainer/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 0
 
 [node name="LabelCapacites" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeCapacites"]
-unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 text = "Capacités :"
 
-[node name="CapaciteTexte" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeCapacites" instance=ExtResource("3_xm14s")]
-visible = false
+[node name="ItemList" type="ItemList" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeCapacites"]
 layout_mode = 2
-
-[node name="ContainerCapa" type="GridContainer" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeCapacites"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="UI/Panel/FlowContainer/VBoxContainer"]
-layout_mode = 2
+allow_reselect = true
+max_text_lines = 2
+item_count = 1
+item_0/text = "test"
+item_0/icon = SubResource("ViewportTexture_43pub")
 
 [node name="RangeeDescription" type="HBoxContainer" parent="UI/Panel/FlowContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LabelDescription" type="RichTextLabel" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeDescription"]
-unique_name_in_owner = true
+[node name="LabelDescription" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeDescription"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Description :"
-fit_content = true
 
 [node name="ItemPopUp" type="PopupPanel" parent="UI"]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cferradf2m4ex"]
+[gd_scene load_steps=18 format=3 uid="uid://cferradf2m4ex"]
 
 [ext_resource type="Texture2D" uid="uid://brm5u5b7y6hoy" path="res://assets/sprites/monkey1.png" id="1_d1in8"]
 [ext_resource type="Script" path="res://scripts/Player/MovementPlayer.gd" id="2_gxil8"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="10_xcf38"]
 [ext_resource type="Texture2D" uid="uid://ccillj6uikedj" path="res://assets/tiles/curseurAttaque(32x32).png" id="11_fd7u8"]
 [ext_resource type="Resource" uid="uid://bqreuysfcd43n" path="res://Ressources/player/joueur1.tres" id="11_kn3cf"]
-[ext_resource type="PackedScene" uid="uid://1k20t4ihh1ko" path="res://scenes/popUps/infosUnite.tscn" id="16_0ad6r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hc24o"]
 texture = ExtResource("4_6q2r1")
@@ -120,13 +119,12 @@ script = ExtResource("2_gxil8")
 script = ExtResource("6_st2d6")
 
 [node name="CanvasInterface" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 0
 
 [node name="InterfaceFinTour" parent="CanvasInterface" instance=ExtResource("7_15vpu")]
 top_level = true
 
 [node name="StockageUnites" type="Node2D" parent="."]
-
-[node name="PopUpInfosUnite" parent="." instance=ExtResource("16_0ad6r")]
 
 [connection signal="accept_pressed" from="Player/Pointeur_Selection" to="Map" method="_on_pointeur_selection_accept_pressed"]

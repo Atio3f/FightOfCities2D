@@ -46,4 +46,6 @@ offset_bottom = -22.0
 
 [node name="IndicDegats" type="Node2D" parent="NoeudsTemp"]
 
+[node name="InterfaceInfosStats" type="CanvasLayer" parent="NoeudsTemp"]
+
 [connection signal="focus_entered" from="ElementsUnite/InterfaceUnite" to="." method="_on_interface_unite_focus_entered"]

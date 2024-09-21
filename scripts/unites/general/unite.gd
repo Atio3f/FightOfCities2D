@@ -8,7 +8,10 @@ extends Path2D
 @onready var interfaceUnite : Control = $ElementsUnite/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
 
 var positionUnite : Vector2
-
+var imageUnit : Texture :
+	set(value):
+		sprite.texture = value
+		imageUnit = value
 var pv_max : int :
 	set(value) :
 		pv_max = value
@@ -61,7 +64,7 @@ var pv_temporaires : int
 			for capa in capacites["LevelUpBased"] :		#Servira lorsqu'il y aura des unités qui se boost à chaque montée de niveau
 				pass
 				
-const paliersNiveaux = [0, 100, 250]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
+const paliersNiveaux = [0, 100, 250, 99999]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
 
 @export var experience : float :#L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque, la moitié de ça lorsqu'elle prend des dégâts et pv unité tuée + 2S lors d'un kill
 	set(value):
@@ -94,6 +97,7 @@ var vitesseRestante : int :
 		else:
 			vitesseRestante = value
 var capacites : Dictionary	#Dictionnaire des capacités de l'unité(voir RessourceUniteBase pour comprendre la structure du dico)
+var description : String	#String contenant la description de l'unité(voir ressourceUnite)
 
 var is_selected : bool = false:
 	set(value):
@@ -138,6 +142,7 @@ var popUpDegats = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.ts
 
 func _ready() -> void:
 	sprite.texture = ressource.image
+	interfaceUnite._entiteeAssociee = self
 	
 	#await get_tree().create_timer(3).timeout #Test temporaire du déplacement(fonctionne)
 	#deplacement(Vector2(200, 80 ))
@@ -155,20 +160,29 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	#print(Equipe)
 	ressource = newRessource
 	race = ressource.race
+	if(ressource.couleurEquipe != ""):
+		couleurEquipe = ressource.couleurEquipe
+	else :
+		couleurEquipe = Equipe	#Equipe des ennemis
+	
 	if !Global._unitsTeam.has(Equipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore. On les ajoute au début pour être certain de pouvoir y accéder pour les capacités
 		Global._unitsTeam[Equipe] = {}
 	#print(Global._unitsTeam[Equipe].has(race))
 	if !Global._unitsTeam[Equipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
 		Global._unitsTeam[Equipe][race] = []
-	
+	capacites = ressource.capacites
 	#print(Global._unitsTeam)
 	if ressource.capacites["PlacementBased"] != null :	#On check
 		for capa in ressource.capacites["PlacementBased"]:
-			2 +2 
-			if capa[0] == "+":	#Check si le premier caractère de la capacité est un +
-				var capaCible : PackedStringArray = capa.split("-", false)
-				Global.buffEquipe(Equipe, "SpawnBuff", capaCible[1], capaCible[2],ressource.capacites["PlacementBased"][capa])
-	
+			var capaCible : PackedStringArray = capa.split("|", false)
+			match(capa[0]):
+				"+":	#Check si le premier caractère de la capacité est un +
+					
+					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],capacites["PlacementBased"][capa])
+				"-":	#Check si le premier caractère de la capacité est un -
+					
+					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],-(capacites["PlacementBased"][capa]))
+
 	pv_max = ressource.pv_max
 	if ressource.pv_actuels > 0:	#Si les pv restants sont inférieurs ou égaux à 0 alors l'unité va mourir direct
 		pv_actuels = ressource.pv_actuels
@@ -177,16 +191,14 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	else :
 		pv_actuels = pv_max
 	pv_temporaires = ressource.pv_temporaires
-	DR = ressource.DR
-	P = ressource.P
-	V = ressource.V
-	S = ressource.S
+	DR = ressource.DR + Global.equipesData[couleurEquipe]["SpawnBuff"][race][1]
+	P = ressource.P + Global.equipesData[couleurEquipe]["SpawnBuff"][race][2]
+	V = ressource.V + Global.equipesData[couleurEquipe]["SpawnBuff"][race][3]
+	S = ressource.S + Global.equipesData[couleurEquipe]["SpawnBuff"][race][4]
 	
 	range = ressource.range
 	attaquesMax = ressource.attaquesMax
 	attaquesRestantes = ressource.attaquesRestantes
-	if(ressource.couleurEquipe != ""):
-		couleurEquipe = ressource.couleurEquipe
 	
 	typeDeplacementPossible = ressource.typeDeplacementPossible
 	typeDeplacementActuel = ressource.typeDeplacementActuel
@@ -196,14 +208,14 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	case = positionCase
 	#print(positionCase)
 	
-	couleurEquipe = Equipe	#Equipe des ennemis
+	
 	Global._units[case]  = self
 	#print(couleurEquipe)
 	
 	Global._unitsTeam[couleurEquipe][race].append(self)
-	sprite.texture = ressource.image
+	imageUnit = ressource.image
 	capacites = ressource.capacites
-	
+	description = ressource.description
 	
 func deplacement(nouvellePosition : Vector2) -> void:
 	position = nouvellePosition
@@ -249,8 +261,19 @@ func walk_along(path: PackedVector2Array) -> void:
 
 
 func boostStat(statUp : String, valeur : int):
-	set(statUp, self.get(statUp) + valeur)
 	
+	
+	match(statUp):
+		"V":
+			if(valeur < 0) :	#Evite que l'on perde un VitesseRestante à cause des limites faites du setter de V
+				set("vitesseRestante", self.get(statUp) + valeur)
+				set(statUp, self.get(statUp) + valeur)
+			else :
+				set(statUp, self.get(statUp) + valeur)
+				set("vitesseRestante", self.get(statUp) + valeur)
+		
+		"_":
+			set(statUp, self.get(statUp) + valeur)
 	
 
 #Reçu depuis InterfaceFinTour, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements
@@ -313,8 +336,9 @@ func selectionneSelf():
 	is_selected = true
 	
 	
-#Cache le menu dans l'interface de l'unité lorsque l'unité est déselectionnée
+#Cache le menu dans l'interface de l'unité et seslorsque l'unité est déselectionnée
 func deselectionneSelf():
+	
 	interfaceUnite.apercuMenusUnite(self, false)
 	is_selected = false
 
@@ -322,6 +346,17 @@ func deselectionneSelf():
 func mort(attaquant : unite) -> void :
 	Global._units.erase(case)	#On supprime l'unité du dictionnaire général des unités
 	Global._unitsTeam[couleurEquipe][race].erase(self)	#On supprime l'unité du dictionnaire trié par équipe/race
+	
+	if capacites["DeathBased"] != null :	#On check
+		for capa in capacites["DeathBased"]:
+			var capaCible : PackedStringArray = capa.split("|", false)
+			match(capa[0]):
+				"+":	#Check si le premier caractère de la capacité est un +
+					
+					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],capacites["DeathBased"][capa])
+				"-":	#Check si le premier caractère de la capacité est un -
+					
+					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],-(capacites["DeathBased"][capa]))
 	
 	if(noeudsTempIndic.get_child_count(false)!=0):	#Si il reste des éléments à afficher dans les indicateurs de dégâts on lance un chrono de 1sec pour attendre
 		_path_follow.visible = false	#On retire tous les éléments de l'unité pour ne laisser que les éléments temporaires de visible

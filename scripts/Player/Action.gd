@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var unite = "res://nodes/Unite/unite.tscn"
+@onready var uniteStandard = "res://nodes/Unite/unite.tscn"
 @onready var scene = $"../.."
 @onready var interfaceFinTour : Control = $"../../CanvasInterface/InterfaceFinTour"
 @onready var pointeurSouris : Node2D = $"../Pointeur_Selection"

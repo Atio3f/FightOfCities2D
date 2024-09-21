@@ -24,7 +24,7 @@ var pv_temporaires : int		#PV bonus qui ne peuvent pas être guéris, souvent ob
 @export var vitesseRestante : int	#Le nombre de V qu'il reste à l'unité pour se déplacer
 
 @export_range(1, 3) var niveau : int	#Le niveau de l'unité. Les niveaux 2 et 3 donnent chacun 50% de pv bonus ainsi que 1 DR
-const paliersNiveaux = [100, 250]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
+const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
 @export var experience : float #L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque et pv unité tuée + 2S lors d'un kill
 
 @export var typeDeplacementPossible : Array	#La liste des moyens de déplacement possible par l'unité.
