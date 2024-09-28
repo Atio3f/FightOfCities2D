@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://butujwidx3ccl"]
+
+[ext_resource type="Script" path="res://scripts/unites/general/interface/boutton_capa.gd" id="1_v0vs4"]
+
+[node name="BouttonCapa" type="Button"]
+anchors_preset = -1
+anchor_right = 0.00694444
+anchor_bottom = 0.0123457
+offset_right = -8.0
+offset_bottom = -8.0
+script = ExtResource("1_v0vs4")
+metadata/_edit_use_anchors_ = true

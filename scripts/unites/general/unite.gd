@@ -1,7 +1,7 @@
 class_name unite
 extends Path2D
 
-@export var ressource : Resource	#On importe en ressource les stats de l'unité
+@export var ressource : uniteRessource	#On importe en ressource les stats de l'unité
 
 @onready var sprite : Sprite2D = $ElementsUnite/SpriteUnite
 @onready var contourSelec : Sprite2D = $ElementsUnite/ContourSelection
@@ -161,6 +161,7 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	ressource = newRessource
 	race = ressource.race
 	if(ressource.couleurEquipe != ""):
+		print("TESY")
 		couleurEquipe = ressource.couleurEquipe
 	else :
 		couleurEquipe = Equipe	#Equipe des ennemis
@@ -191,6 +192,7 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	else :
 		pv_actuels = pv_max
 	pv_temporaires = ressource.pv_temporaires
+
 	DR = ressource.DR + Global.equipesData[couleurEquipe]["SpawnBuff"][race][1]
 	P = ressource.P + Global.equipesData[couleurEquipe]["SpawnBuff"][race][2]
 	V = ressource.V + Global.equipesData[couleurEquipe]["SpawnBuff"][race][3]
@@ -331,15 +333,15 @@ func getKill(unitTuee : unite) -> void:
 		pass
 
 #Fonction qui s'active lorsque l'unité est sélectionnée
-func selectionneSelf():
-	interfaceUnite.apercuMenusUnite(self, true)
+func selectionneSelf(pointeurJoueur : Node2D):
+	interfaceUnite.apercuMenusUnite(self, pointeurJoueur, true)
 	is_selected = true
 	
 	
 #Cache le menu dans l'interface de l'unité et seslorsque l'unité est déselectionnée
-func deselectionneSelf():
+func deselectionneSelf(pointeurJoueur : Node2D):
 	
-	interfaceUnite.apercuMenusUnite(self, false)
+	interfaceUnite.apercuMenusUnite(self, pointeurJoueur, false)
 	is_selected = false
 
 #Fonction lorsqu'une unité meurt, active les effets de mort de l'unité si elle en a puis fais disparaître l'unité du jeu

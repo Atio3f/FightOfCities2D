@@ -12,7 +12,7 @@ func _input(event):
 		queue_free()
 
 
-func apercuInfosUnite(uniteAssociee : unite, visibilite : bool) -> void:
+func apercuInfosUnite(uniteAssociee : unite, pointeurJoueur : Node2D, visibilite : bool) -> void:
 	if(!visibilite):
 		visible = false
 		return
@@ -26,21 +26,21 @@ func apercuInfosUnite(uniteAssociee : unite, visibilite : bool) -> void:
 	%LabelNiveau.text = "Niveau %2d" % [uniteAssociee.niveau]
 	%LabelXP.text = "XP = %3d(%4d)" % [uniteAssociee.experience, uniteAssociee.paliersNiveaux[uniteAssociee.niveau+1]]
 	%LabelCapacites.text = "Capacites : "
-	#Corriger pour créer un CapaciteTexte pour chaque capa
+
 	
 	
 	for catCapacite : String in uniteAssociee.capacites :	#On défile les catégories des capacités
 		var capasCat : Dictionary = uniteAssociee.capacites[catCapacite]
+		if catCapacite != "ActiveCapacitiesBased" :	#Le système est différent pour les capa actives
+			for capacite : String in uniteAssociee.capacites[catCapacite] :
+				var labelCapa : RichTextLabel = capaciteTexte.instantiate()
+				print("YEYE %s" % [capacite])
+				
+				labelCapa.append_text(capacite.replace('|', ''))
+				%ContainerCapa.add_child(labelCapa)
+				labelCapa.placement(capacite, capasCat[capacite])
+			
 		
-		for capacite : String in uniteAssociee.capacites[catCapacite] :
-			var labelCapa : RichTextLabel = capaciteTexte.instantiate()
-			print("YEYE %s" % [capacite])
-			
-			labelCapa.append_text(capacite.replace('|', ''))
-			%ContainerCapa.add_child(labelCapa)
-			labelCapa.placement(capacite, capasCat[capacite])
-			
-		#%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
 	
 	%LabelDescription.text = "Description : %s" % [uniteAssociee.description]
 	

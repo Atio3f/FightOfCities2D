@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://butujwidx3ccl"]
+
+[ext_resource type="Script" path="res://scripts/unites/general/interface/boutton_capa.gd" id="1_v0vs4"]
+
+[node name="BouttonCapa" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+script = ExtResource("1_v0vs4")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

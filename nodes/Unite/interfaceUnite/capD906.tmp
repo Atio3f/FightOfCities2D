@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2antog4h1cbm"]
+
+[ext_resource type="Script" path="res://scripts/unites/general/interface/capaciteActivesUnites.gd" id="1_q64bh"]
+[ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_oqvjw"]
+[ext_resource type="PackedScene" uid="uid://butujwidx3ccl" path="res://nodes/Unite/interfaceUnite/boutton_capa.tscn" id="3_ilx62"]
+
+[node name="CapaciteActivesUnites" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q64bh")
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="FondGrise" parent="UI" instance=ExtResource("2_oqvjw")]
+
+[node name="Panel" type="Panel" parent="UI"]
+editor_description = "Sert à visualiser comment ça rend(parece que y'a des probs avec le popUp"
+visibility_layer = 4
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -200.0
+offset_right = 199.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="UI/Panel"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ListeCapaDispos" type="VBoxContainer" parent="UI/Panel/FlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BouttonCapa" parent="UI/Panel/FlowContainer/ListeCapaDispos" instance=ExtResource("3_ilx62")]
+unique_name_in_owner = true
+layout_mode = 2

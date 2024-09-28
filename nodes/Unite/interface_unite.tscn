@@ -85,6 +85,7 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="MenuCapacitesActives" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -112,8 +113,8 @@ clip_children = 2
 texture_filter = 1
 clip_contents = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_h5dn0")
 
-[connection signal="focus_entered" from="GestionnairePossibilite/ConteneurMenus/Rangee1/MenuCapacitesActives" to="." method="_on_menu_capacites_actives_focus_entered"]
-[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/MenuCapacitesActives" to="." method="_on_menu_capacites_actives_pressed"]
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/MenuStats" to="." method="_on_menu_stats_pressed"]
+[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuCapacitesActives" to="." method="_on_menu_capacites_actives_pressed"]

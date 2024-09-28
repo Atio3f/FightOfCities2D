@@ -5,7 +5,7 @@ var Selection : Node2D		#Contiendra l'unité sélectionné
 var target : Node2D
 
 var positionSouris : Vector2i
-
+var menuOpen : bool		#Permettra de savoir si un menu est ouvert
 @onready var caseSelec = $CaseSelecJ1
 @onready var caseTarget = $CaseTargetJ1
 @onready var position_cam = $"../Movement"
@@ -306,7 +306,7 @@ func _select_unit(cell: Vector2i) -> void:
 		print("NON")
 		return
 	Selection = Global._units[cell]
-	Selection.selectionneSelf()
+	Selection.selectionneSelf(self)
 	
 	## Acquire the walkable and attackable cells
 	_walkable_cells = get_walkable_cells(Selection)
@@ -349,7 +349,7 @@ func _move_active_unit(new_cell: Vector2) -> void:
 func _deselect_active_unit() -> void:
 	print("deselect")
 	
-	Selection.deselectionneSelf()
+	Selection.deselectionneSelf(self)
 	#pointeurSelec.Selection = null Complètement con de retirer l'unité avant de la faire finalement bouger puisqu'on ne l'a plus en mémoire
 	visuActions.clearNumbers()
 	_unit_path.stop()

@@ -12,3 +12,6 @@ func startGame(couleurEquipeMatch : String) -> void:
 	nom = playerRessource.pseudo
 	id = playerRessource.id
 	couleurEquipe = couleurEquipeMatch
+
+
+var activeCapacity	#capacité active actuelle

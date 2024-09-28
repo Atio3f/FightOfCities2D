@@ -64,3 +64,5 @@ const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monte
 "LevelUpBased" : {}, 
 "DeathBased": {}
 }
+
+	#Composition d'une capacité active : clé =  "Operateur|StatsChangees|TypeCiblesOuSelf|LocalisationCibles(Self, Aroundn = autour à n cases, Ln = ligne de n cases, EW = partout, EWn = partout pour un nombre de cibles défini)" -> valeur = [nombreUtilisationsRestantes,durée(-1= infini),valeurs pour chaque stat ] 

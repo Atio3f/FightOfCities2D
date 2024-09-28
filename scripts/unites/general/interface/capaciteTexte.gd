@@ -35,15 +35,13 @@ func placement(capacite : String, valeurCapa : int) -> void:
 						%LabelExplications.text = "Retire +%d %s à tous les ennemis" % [valeurCapa, capaDecom[1], capaDecom[2]]
 					elif(capaDecom[2].ends_with("E")):
 						%LabelExplications.text = "Retire +%d %s à tous les %s ennemis" % [valeurCapa, capaDecom[1], capaDecom[2]]
-					elif(capaDecom[2] == "allE"):
-						%LabelExplications.text = "Retire +%d %s à tous les %s ennemis" % [valeurCapa, capaDecom[1], capaDecom[2]]
 					elif(capaDecom[2] != "all"):
 						%LabelExplications.text = "Retire +%d %s à tous vos %s" % [valeurCapa, capaDecom[1], capaDecom[2]]
 					else :
 						%LabelExplications.text = "Retire +%d %s à toutes vos unités" % [valeurCapa, capaDecom[1]]
 					
 
-			
+
 func _on_mouse_entered() -> void:
 	%LayerExplicationsCapa.offset = Vector2(0, -110)
 	%LabelExplications.position = Vector2(position.x - (size.x/1.9), position.y )
