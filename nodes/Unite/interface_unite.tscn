@@ -70,6 +70,7 @@ offset_right = 32.0
 offset_bottom = 32.0
 
 [node name="ConteneurMenus" type="FlowContainer" parent="GestionnairePossibilite"]
+visible = false
 texture_filter = 1
 layout_mode = 1
 offset_left = -4.0

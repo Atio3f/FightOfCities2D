@@ -333,8 +333,9 @@ func getKill(unitTuee : unite) -> void:
 		pass
 
 #Fonction qui s'active lorsque l'unité est sélectionnée
-func selectionneSelf(pointeurJoueur : Node2D):
-	interfaceUnite.apercuMenusUnite(self, pointeurJoueur, true)
+func selectionneSelf(pointeurJoueur : Node2D, menuOpen : bool):
+	if(menuOpen):	#On n'affiche le menu que lorsque le pointeur du joueur que lorsqu'on fait un click droit
+		interfaceUnite.apercuMenusUnite(self, pointeurJoueur, true)
 	is_selected = true
 	
 	

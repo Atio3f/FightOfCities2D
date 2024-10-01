@@ -7,7 +7,7 @@ var capaciteTexte = preload("res://nodes/Unite/interfaceUnite/capaciteTexte.tscn
 	#%ItemPopUp.popup()
 
 
-func _input(event):
+func _input(event) -> void:
 	if(event.is_action_pressed("ui_cancel")):
 		queue_free()
 

@@ -3,9 +3,9 @@ class_name UnitOverlay
 extends TileMap
 
 
-@onready var map : Node2D = $".."
+
 const number : String = "res://nodes/interface/number.tscn"
-@onready var scene = $"../.."
+@onready var scene = get_tree().root
 
 var listeNombre : Array = []
 
@@ -51,3 +51,9 @@ func clearNumbers() -> void :
 	self.clear()						#1
 	for number in self.get_children():	#2
 		self.remove_child(number)		#2
+
+
+
+func drawZoneAction(cells: Array) -> void:
+	for cell in cells:
+		set_cell(0, cell, 4, Vector2i(0,0))

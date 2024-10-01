@@ -5,24 +5,25 @@ var Selection : Node2D		#Contiendra l'unité sélectionné
 var target : Node2D
 
 var positionSouris : Vector2i
-var menuOpen : bool		#Permettra de savoir si un menu est ouvert
+var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initialisé à false
 @onready var caseSelec = $CaseSelecJ1
 @onready var caseTarget = $CaseTargetJ1
 @onready var position_cam = $"../Movement"
-@onready var terrain = $"../../Map/Terrain32x32"
+@onready var terrain = $"../../../Map/Terrain32x32"
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
-@onready var map = $"../../Map"
+@onready var map = $"../../../Map"
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var test : TileData
-var cellSize : int = 32
+@export var cellSize : int = 32		#Pourra changer plus tard potentiellement
 
-signal accept_pressed
+
 ## Mapping of coordinates of a cell to a reference to the unit it contains.
 #var _units := {}
 #var _active_unit: unite		#_active_unit a été remplacé par pointeurSelec.Selection
 var _walkable_cells := {}
 var _attackable_cells := []
+var actionCells := []	#Liste de toutes les cases accessibles avec une capa active depuis une unité
 var _movement_costs
 @onready var _unit_path: UnitPath = $UnitPathJ1
 @onready var visuActions : UnitOverlay = $visualisationActionsJ1
@@ -31,6 +32,7 @@ var _movement_costs
 const MAX_VALUE: int = 99999
 
 func _ready() -> void:
+	
 	_movement_costs = terrain.get_movement_costs(grid)
 	_reinitialize()
 	
@@ -67,12 +69,15 @@ func _input(event) -> void:
 			#print(test.get_custom_data("vitesseRequise"))
 		pass
 	else:
-		if aSelectionne : 
-			if event.is_action_pressed("leftClick"):
-				cursorPressed(positionSouris)
-		else : 
-			if event.is_action_pressed("leftClick"):
-				cursorPressed(positionSouris)
+		if event.is_action_pressed("rightclick"):
+			cursorPressed(positionSouris, "rightclick")
+		else :
+			if aSelectionne : 
+				if event.is_action_pressed("leftClick"):
+					cursorPressed(positionSouris, "leftClick")
+			else : 
+				if event.is_action_pressed("leftClick"):
+					cursorPressed(positionSouris, "leftClick")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -227,7 +232,7 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 
 
 #Récupère la tuile à l'emplacement rentré en paramètre
-func get_tile_data_at(emplacement : Vector2i):
+func get_tile_data_at(emplacement : Vector2i) -> void:
 	var local_position : Vector2i = terrain.local_to_map(positionSouris)			#On récupère l'information de la tuile où se trouve le pointeur de souris
 	return terrain.get_cell_tile_data(0, local_position)
 
@@ -275,27 +280,31 @@ func _hover_display(cell: Vector2i) -> void:
 	visuActions.draw_walkable_cells(_walkable_cells, curr_unit.couleurEquipe)
 
 ## Selects or moves a unit based on where the cursor is.
-func cursorPressed(cell: Vector2) -> void:
+func cursorPressed(cell: Vector2, typeClick : String) -> void:
 	if not Selection:
-		_select_unit(cell)
+		if(typeClick == "rightclick") :
+			menuOpen = true
+		else :	#Potentiellement inutile !
+			menuOpen = false
+		_select_unit(cell, menuOpen)
 	elif Selection.is_selected:
 		var cellI : Vector2i = cell
-		
-		if(cell in _walkable_cells.keys()) :	#Si la case du pointeur se trouve dans les cases où peut se déplacer l'unité alors on la déplace
-			_move_active_unit(cell)
-		
-		elif (cell in _attackable_cells and Selection.attaquesRestantes > 0 and Global._units.has(cellI) and Global._units[cellI].couleurEquipe != Selection.couleurEquipe):	#On vérifie qu'il y a une unité sur la case sélec, que l'unité qu'on a a encore des attaques à faire puis on vérifie que leurs couleurs sont différentes
-			print(Global._units)
+		if(!menuOpen):
+			if(cell in _walkable_cells.keys()) :	#Si la case du pointeur se trouve dans les cases où peut se déplacer l'unité alors on la déplace
+				_move_active_unit(cell)
 			
-			Selection.attaque(Global._units[cellI])
-			
-			print("BON")
-			_deselect_active_unit()
-			_clear_active_unit()
+			elif (cell in _attackable_cells and Selection.attaquesRestantes > 0 and Global._units.has(cellI) and Global._units[cellI].couleurEquipe != Selection.couleurEquipe):	#On vérifie qu'il y a une unité sur la case sélec, que l'unité qu'on a a encore des attaques à faire puis on vérifie que leurs couleurs sont différentes
+				print(Global._units)
+				
+				Selection.attaque(Global._units[cellI])
+				
+				print("BON")
+				_deselect_active_unit()
+				_clear_active_unit()
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `pointeurSelec.Selection` and draws its walkable cells and interactive move path. 
-func _select_unit(cell: Vector2i) -> void:
+func _select_unit(cell: Vector2i, ouvrirMenu : bool) -> void:
 	
 	print("_select_unit")
 	#print(cell)
@@ -306,7 +315,7 @@ func _select_unit(cell: Vector2i) -> void:
 		print("NON")
 		return
 	Selection = Global._units[cell]
-	Selection.selectionneSelf(self)
+	Selection.selectionneSelf(self, ouvrirMenu)
 	
 	## Acquire the walkable and attackable cells
 	_walkable_cells = get_walkable_cells(Selection)
@@ -359,5 +368,6 @@ func _deselect_active_unit() -> void:
 ## Clears the reference to the pointeurSelec.Selection and the corresponding walkable cells.
 func _clear_active_unit() -> void:
 	print("_clear_active_unit()")
+	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null
 	_walkable_cells.clear()

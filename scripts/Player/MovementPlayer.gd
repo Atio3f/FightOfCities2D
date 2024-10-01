@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var Souris = $"../Pointeur_Selection"
-@onready var scene = $"../.."
+@onready var scene = $"../../.."
 @onready var caseSelec = $"../Pointeur_Selection/CaseSelecJ1"
 
 var x : float = 0

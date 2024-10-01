@@ -20,5 +20,6 @@ mouse_default_cursor_shape = 2
 script = ExtResource("1_v0vs4")
 metadata/_edit_use_anchors_ = true
 
+[connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

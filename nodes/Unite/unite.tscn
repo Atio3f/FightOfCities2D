@@ -37,7 +37,6 @@ scale = Vector2(0.92, 0.92)
 shape = SubResource("RectangleShape2D_xeksa")
 
 [node name="InterfaceUnite" parent="ElementsUnite" instance=ExtResource("5_6sa0d")]
-visible = false
 offset_left = -14.0
 offset_top = -22.0
 offset_right = -14.0

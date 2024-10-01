@@ -1,20 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://cferradf2m4ex"]
+[gd_scene load_steps=13 format=3 uid="uid://cferradf2m4ex"]
 
 [ext_resource type="Texture2D" uid="uid://brm5u5b7y6hoy" path="res://assets/sprites/monkey1.png" id="1_d1in8"]
-[ext_resource type="Script" path="res://scripts/Player/MovementPlayer.gd" id="2_gxil8"]
 [ext_resource type="Script" path="res://scripts/gridmap/mouvements/Map.gd" id="2_mk1gj"]
-[ext_resource type="Script" path="res://scripts/Player/PointeurPlayer.gd" id="3_dk3t8"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="3_k52dx"]
 [ext_resource type="Script" path="res://scripts/gridmap/TerrainNavigation.gd" id="3_upiym"]
 [ext_resource type="Texture2D" uid="uid://dwpnaje14db7x" path="res://assets/tiles/curseurPosition(32x32).png" id="4_6b53y"]
 [ext_resource type="Texture2D" uid="uid://bpx66ktdi18om" path="res://assets/tiles/tilesSet1(32x32).png" id="4_6q2r1"]
 [ext_resource type="PackedScene" uid="uid://be5epi7wi8gaj" path="res://nodes/tilemaps/visualisation_actions.tscn" id="6_myle4"]
-[ext_resource type="Script" path="res://scripts/Player/Action.gd" id="6_st2d6"]
 [ext_resource type="PackedScene" uid="uid://vt2pgrwdeiji" path="res://nodes/interface/interface.tscn" id="7_15vpu"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://nodes/tilemaps/UnitPath.tscn" id="8_1fdpg"]
-[ext_resource type="Script" path="res://scripts/Player/Player.gd" id="10_xcf38"]
-[ext_resource type="Texture2D" uid="uid://ccillj6uikedj" path="res://assets/tiles/curseurAttaque(32x32).png" id="11_fd7u8"]
-[ext_resource type="Resource" uid="uid://bqreuysfcd43n" path="res://Ressources/player/joueur1.tres" id="11_kn3cf"]
+[ext_resource type="PackedScene" uid="uid://rfbkx0b7abxh" path="res://nodes/joueur/player.tscn" id="10_ivms2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hc24o"]
 texture = ExtResource("4_6q2r1")
@@ -55,6 +50,7 @@ position = Vector2(8, 8)
 texture = ExtResource("1_d1in8")
 
 [node name="Map" type="Node2D" parent="."]
+unique_name_in_owner = true
 show_behind_parent = true
 script = ExtResource("2_mk1gj")
 grid = ExtResource("3_k52dx")
@@ -81,43 +77,6 @@ rendering_quadrant_size = 32
 [node name="UnitPath" parent="Map" instance=ExtResource("8_1fdpg")]
 grid = ExtResource("3_k52dx")
 
-[node name="Player" type="Node2D" parent="."]
-script = ExtResource("10_xcf38")
-playerRessource = ExtResource("11_kn3cf")
-
-[node name="Pointeur_Selection" type="Node2D" parent="Player"]
-script = ExtResource("3_dk3t8")
-grid = ExtResource("3_k52dx")
-
-[node name="UnitPathJ1" parent="Player/Pointeur_Selection" instance=ExtResource("8_1fdpg")]
-grid = ExtResource("3_k52dx")
-
-[node name="visualisationActionsJ1" parent="Player/Pointeur_Selection" instance=ExtResource("6_myle4")]
-rendering_quadrant_size = 32
-
-[node name="CaseSelecJ1" type="Sprite2D" parent="Player/Pointeur_Selection"]
-visibility_layer = 2
-position = Vector2(80, 80)
-rotation = 3.14159
-texture = ExtResource("4_6b53y")
-
-[node name="CaseTargetJ1" type="Sprite2D" parent="Player/Pointeur_Selection"]
-visible = false
-top_level = true
-position = Vector2(80, 80)
-rotation = 3.14159
-texture = ExtResource("11_fd7u8")
-
-[node name="Movement" type="Camera2D" parent="Player"]
-position = Vector2(8, 8)
-zoom = Vector2(1.6, 1.6)
-position_smoothing_enabled = true
-position_smoothing_speed = 8.0
-script = ExtResource("2_gxil8")
-
-[node name="Actions" type="Node2D" parent="Player"]
-script = ExtResource("6_st2d6")
-
 [node name="CanvasInterface" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 0
@@ -127,4 +86,8 @@ top_level = true
 
 [node name="StockageUnites" type="Node2D" parent="."]
 
-[connection signal="accept_pressed" from="Player/Pointeur_Selection" to="Map" method="_on_pointeur_selection_accept_pressed"]
+[node name="Joueurs" type="Node" parent="."]
+
+[node name="Player" parent="Joueurs" instance=ExtResource("10_ivms2")]
+
+[editable path="Joueurs/Player"]

@@ -26,7 +26,7 @@ func actualisationPV(entiteeAssociee : Node2D) -> void:
 #lorsqu'un des boutons des menus est actionné(visibilite -> true) ou que l'entité est désélectionnée (visibilite -> true)
  
 func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueur : Node2D, visibilite : bool) -> void:
-	self.visible = visibilite
+	conteneurMenus.visible = visibilite
 	if(!visibilite) :
 		if(pointeursSurInterface.has(pointeurJoueur)):
 			pointeursSurInterface.erase(pointeurJoueur)
@@ -62,6 +62,9 @@ func _on_menu_stats_pressed():
 	if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
 		var infosUnit : Control = infosUnites.instantiate()
-		infosUnit.apercuInfosUnite(_entiteeAssociee, self,pointeursSurInterface[0], true)
+		infosUnit.apercuInfosUnite(_entiteeAssociee, pointeursSurInterface[0], true)
 		noeudsTempInfosStats.add_child(infosUnit)
 	
+
+func recuSelectionCapa(capaciteActivee : Dictionary, pointeurJoueur : Node2D):
+	pass

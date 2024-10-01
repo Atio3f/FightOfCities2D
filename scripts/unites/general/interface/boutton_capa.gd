@@ -1,10 +1,14 @@
+class_name bouttonCapa
 extends Button
 
+var capaciteAssociee : Dictionary
+var menuCapa : Control
+var pointeurJoueur : Node2D		#Indique le joueur qui a actionné la capa de l'unité
 #func _ready():
 	#placement("+|XP&S|Taureau|EW1", [3, -1, 40, 2])
 	#position = Vector2(500, 500)
 
-#A changer
+
 func placement(interface : Control, capacite : String, valeurCapa : Array) -> void:
 	var capaDecom : Array = capacite.split("|", false)
 	var descrip : String = ""
@@ -37,18 +41,24 @@ func placement(interface : Control, capacite : String, valeurCapa : Array) -> vo
 		descrip += capaDecom[2]
 		
 	text = descrip
-					
+	capaciteAssociee = {capacite : valeurCapa}
+	menuCapa = interface
 
 
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
 	var old_size = size  # Taille actuelle avant redimensionnement
 	size = old_size * 1.25
 	# Ajustement de la position pour garder le centre
 	position -= (size - old_size) / 2
 
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
 	var old_size = size  # Taille actuelle avant redimensionnement
 	size = old_size * 0.8  
 	# Ajustement de la position pour garder le centre
 	position -= (size - old_size) / 2
+
+#Permet d'utiliser une capacité
+func _on_button_up() -> void:
+	print("TEST")
+	menuCapa.recuSelectionCapa(capaciteAssociee, pointeurJoueur)

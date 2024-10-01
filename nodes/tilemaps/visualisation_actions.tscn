@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://be5epi7wi8gaj"]
+[gd_scene load_steps=13 format=3 uid="uid://be5epi7wi8gaj"]
 
 [ext_resource type="Texture2D" uid="uid://cqap8lovdtglv" path="res://assets/visualisation/casesMouvements.png" id="1_bhkra"]
 [ext_resource type="Texture2D" uid="uid://c8gts55o7awvk" path="res://assets/visualisation/casesAttaquables.png" id="2_dram1"]
 [ext_resource type="Texture2D" uid="uid://dqydoasqnsvak" path="res://assets/visualisation/casesMouvementsTransparentes.png" id="3_1qj07"]
 [ext_resource type="Script" path="res://scripts/gridmap/mouvements/visualisation_actions.gd" id="3_af0xd"]
 [ext_resource type="Texture2D" uid="uid://ce0p2dnutik8a" path="res://assets/visualisation/casesAttaquablesTransparentes.png" id="4_fiusc"]
+[ext_resource type="Texture2D" uid="uid://bfu1n8nwth3ql" path="res://assets/visualisation/casesZoneAction.png" id="5_5yl2v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vuwbu"]
 texture = ExtResource("1_bhkra")
@@ -26,12 +27,18 @@ texture = ExtResource("4_fiusc")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_clqwp"]
+texture = ExtResource("5_5yl2v")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_arf4s"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_vuwbu")
 sources/1 = SubResource("TileSetAtlasSource_diw5d")
 sources/2 = SubResource("TileSetAtlasSource_wocyj")
 sources/3 = SubResource("TileSetAtlasSource_vvab3")
+sources/4 = SubResource("TileSetAtlasSource_clqwp")
 
 [node name="visualisationActions" type="TileMap"]
 tile_set = SubResource("TileSet_arf4s")

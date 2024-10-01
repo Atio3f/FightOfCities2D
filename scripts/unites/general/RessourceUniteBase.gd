@@ -65,4 +65,4 @@ const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monte
 "DeathBased": {}
 }
 
-	#Composition d'une capacité active : clé =  "Operateur|StatsChangees|TypeCiblesOuSelf|LocalisationCibles(Self, Aroundn = autour à n cases, Ln = ligne de n cases, EW = partout, EWn = partout pour un nombre de cibles défini)" -> valeur = [nombreUtilisationsRestantes,durée(-1= infini),valeurs pour chaque stat ] 
+	#Composition d'une capacité active : clé =  "Operateur|StatsChangees|TypeCiblesOuSelf|LocalisationCibles(Self, Aroundn = autour à n cases, Ln = ligne de n cases, EW = partout, EWn = partout pour un nombre de cibles défini)|formeCiblage(une case C-1, carré de taille n C-n, une ligne de n largeur et m longuer l-n-m etc.. + possibilité de faire des &)" -> valeur = [nombreUtilisationsRestantes,durée(-1= infini),valeurs pour chaque stat ] 
