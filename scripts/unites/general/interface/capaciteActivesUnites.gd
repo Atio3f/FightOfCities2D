@@ -35,7 +35,7 @@ func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJ
 		bouttonCapa.menuCapa = self
 		%ListeCapaDispos.add_child(bouttonCapa)
 		#%ContainerCapa.add_child(labelCapa)
-		bouttonCapa.placement(self, capacite, capasCat[capacite])
+		bouttonCapa.placement(self, pointeurJoueur, capacite, capasCat[capacite])
 		
 		#%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
 	

@@ -67,4 +67,6 @@ func _on_menu_stats_pressed():
 	
 
 func recuSelectionCapa(capaciteActivee : Dictionary, pointeurJoueur : Node2D):
+	print(capaciteActivee)
+	pointeurJoueur.capaActives(capaciteActivee, _entiteeAssociee)
 	pass

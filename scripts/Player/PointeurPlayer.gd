@@ -31,6 +31,8 @@ var _movement_costs
 @export var grid: Resource
 const MAX_VALUE: int = 99999
 
+var capaciteActuelle : Dictionary = {}
+
 func _ready() -> void:
 	
 	_movement_costs = terrain.get_movement_costs(grid)
@@ -249,19 +251,23 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 	#print(new_cell)
 	#print(_units)
 	## Updates the interactive path's drawing if there's an active and selected unit.
-	if Selection and Selection.is_selected:
-		_unit_path.draw(Selection.case, new_cell)
-		if Selection.attaquesRestantes > 0 and Global._units.has(new_cell) and Selection.couleurEquipe != Global._units[new_cell].couleurEquipe :
-			print("TARGET")
-			
-			target = Global._units[new_cell]
-			caseTarget.position = target.position
-			caseTarget.visible = true
-	elif visuActions != null and _walkable_cells != {}:
-		_walkable_cells.clear() # Clearing out the walkable cells
-		visuActions.clearNumbers() # This is what clears all the colored tiles on the grid
-	if Global._units.has(new_cell) and Selection == null:
-		_hover_display(new_cell)
+	if(!menuOpen):
+		if Selection and Selection.is_selected:
+			_unit_path.draw(Selection.case, new_cell)
+			if Selection.attaquesRestantes > 0 and Global._units.has(new_cell) and Selection.couleurEquipe != Global._units[new_cell].couleurEquipe :
+				print("TARGET")
+				
+				target = Global._units[new_cell]
+				caseTarget.position = target.position
+				caseTarget.visible = true
+		elif visuActions != null and _walkable_cells != {}:
+			_walkable_cells.clear() # Clearing out the walkable cells
+			visuActions.clearNumbers() # This is what clears all the colored tiles on the grid
+		if Global._units.has(new_cell) and Selection == null:
+			_hover_display(new_cell)
+	elif(capaciteActuelle != {}):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
+									#Affiche la zone affectée par la capa
+		hoverZoneCapa(new_cell, capaciteActuelle)
 
 ## This function will display walkable_cells, attackable_cells, unit stats,
 ## Unit items, and the unit avatar (like in fire emblem: engage)
@@ -279,11 +285,39 @@ func _hover_display(cell: Vector2i) -> void:
 		visuActions.draw_attackable_cells(_attackable_cells)
 	visuActions.draw_walkable_cells(_walkable_cells, curr_unit.couleurEquipe)
 
+## Fonction pour afficher la zone affectée par la capacité active
+func hoverZoneCapa(cell: Vector2i, capacite : Dictionary) -> void:
+	
+	##On clear les affichages des mouvements précédents avant d'en remettre
+	_walkable_cells.clear() 
+	visuActions.clearNumbers()
+	visuActions.drawZoneAction(actionCells)	#ça nique les performances va falloir trouver une autre siolution
+	## Obtenir les cases affectées selon la forme et la taille ciblée par la capacité
+	var zoneCells : Array = getCellsZoneCapa(cell, capacite)
+	
+	## Draw out the walkable and attackable cells now
+	
+	visuActions.draw_attackable_cells(zoneCells)
+	
+func getCellsZoneCapa(cell : Vector2i, capacite : Dictionary) -> Array :
+	var cells : Array = []
+	var keyCapa : Array = capacite.keys()
+	var capaPortee : Array = (keyCapa[0].split("|", true))[3].split("-", true)
+	
+	##Check de la forme d'effet de la capa
+	match(capaPortee[0]) :
+		"EW" : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
+			cells.append(cell)
+		"C" :
+			pass
+	return []
+
 ## Selects or moves a unit based on where the cursor is.
 func cursorPressed(cell: Vector2, typeClick : String) -> void:
 	if not Selection:
 		if(typeClick == "rightclick") :
 			menuOpen = true
+			visuActions.clearNumbers()
 		else :	#Potentiellement inutile !
 			menuOpen = false
 		_select_unit(cell, menuOpen)
@@ -321,11 +355,12 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool) -> void:
 	_walkable_cells = get_walkable_cells(Selection)
 	_attackable_cells = get_attackable_cells(Selection)
 	## Draw out the walkable and attackable cells now
-	if(Selection.attaquesRestantes > 0) :
-		visuActions.draw_attackable_cells(_attackable_cells)
-	visuActions.draw_walkable_cells(_walkable_cells, Selection.couleurEquipe)
+	if(!menuOpen):
+		if(Selection.attaquesRestantes > 0) :
+			visuActions.draw_attackable_cells(_attackable_cells)
+		visuActions.draw_walkable_cells(_walkable_cells, Selection.couleurEquipe)
 	#var keysWalkableCells = _walkable_cells.keys()
-	_unit_path.initialize(_walkable_cells)
+		_unit_path.initialize(_walkable_cells)
 	
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -370,4 +405,38 @@ func _clear_active_unit() -> void:
 	print("_clear_active_unit()")
 	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null
+	#capaciteActuelle = {}
 	_walkable_cells.clear()
+
+
+
+
+#Attributs : case <=> case de l'unité ; 
+func get_actions_cells(case : Vector2i, capaPortee : Array) -> Array :
+	var distance : int = int(capaPortee[1])		#distance nombre de cases de diamètre <=> unit.range 
+	var action_cells = []
+	
+	var real_actions_cells = _dijkstra(case, distance * 2, false, "vole")	#Distance * 2 avec vole équivaut à un V par case 
+	
+	## iterate through every single cell and find their partners based on attack range(stat range)
+	for curr_cell in real_actions_cells:
+		for curr_range in range(1, distance + 1):
+			action_cells = action_cells + _flood_fill(curr_cell, distance)
+	
+	return action_cells.filter(func(i): return i not in real_actions_cells)
+	
+
+
+func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
+	var keyCapa : Array = capaciteActivee.keys()
+	var capaPortee : Array = (keyCapa[0].split("|", true))[3].split("-", true)
+	if(capaPortee[0] == "EW") : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
+		actionCells = grid.toutesCases()
+	else :
+		actionCells = get_actions_cells(uniteAssociee.case, capaPortee)
+	capaciteActuelle = capaciteActivee
+	visuActions.drawZoneAction(actionCells)
+	
+	pass
+
+

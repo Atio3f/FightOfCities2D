@@ -9,7 +9,7 @@ var pointeurJoueur : Node2D		#Indique le joueur qui a actionné la capa de l'uni
 	#position = Vector2(500, 500)
 
 
-func placement(interface : Control, capacite : String, valeurCapa : Array) -> void:
+func placement(interface : Control, pointeurJ : Node2D, capacite : String, valeurCapa : Array) -> void:
 	var capaDecom : Array = capacite.split("|", false)
 	var descrip : String = ""
 	var i : int = 2
@@ -43,6 +43,8 @@ func placement(interface : Control, capacite : String, valeurCapa : Array) -> vo
 	text = descrip
 	capaciteAssociee = {capacite : valeurCapa}
 	menuCapa = interface
+	pointeurJoueur = pointeurJ
+	
 
 
 func _on_mouse_entered() -> void:

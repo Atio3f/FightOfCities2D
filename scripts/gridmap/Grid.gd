@@ -35,3 +35,16 @@ func grid_clamp(grid_position: Vector2) -> Vector2:
 	out.x = clamp(out.x, 0, size.x - 1.0)
 	out.y = clamp(out.y, 0, size.y - 1.0)
 	return out
+
+
+func toutesCases() -> Array:
+	var x : int = 0
+	var y : int = 0
+	var cases := []
+	while(is_within_bounds(Vector2(x, 0))):
+		while(is_within_bounds(Vector2(x, y))):
+			cases.append(Vector2i(x, y))
+			y += 1
+		x += 1
+		y = 0
+	return cases

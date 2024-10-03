@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_hxb3h")
-nom = ""
+nom = "Taureau Erudit"
 pv_max = 38
 pv_actuels = 38
 DR = 11
@@ -16,7 +16,7 @@ V = 8
 S = 18
 G = 2
 race = "Taureaux"
-range = 0
+range = 1
 couleurEquipe = ""
 attaquesMax = 1
 attaquesRestantes = 1
@@ -28,7 +28,7 @@ typeDeplacementActuel = "marche"
 description = "Un vieux taureau qui a fini par se consacrer à instruire ses congénères."
 capacites = {
 "ActiveCapacitiesBased": {
-"+|XP&S|Taureau|EW1": [3, -1, 40, 2]
+"+|XP&S|Taureau|EW-1": [3, -1, 40, 2]
 },
 "AttackBased": {},
 "DeathBased": {},

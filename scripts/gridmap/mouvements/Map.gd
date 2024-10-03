@@ -20,7 +20,7 @@ var _movement_costs
 @onready var visuActions: UnitOverlay = $visualisationActions
 @onready var _unit_path: UnitPath = $UnitPath
 @onready var terrain: TileMap = $Terrain32x32
-@onready var pointeurSelec : Node2D = $"../Player/Pointeur_Selection"
+#@onready var pointeurSelec : Node2D = $"../Player/Pointeur_Selection"
 
 const MAX_VALUE: int = 99999
 
