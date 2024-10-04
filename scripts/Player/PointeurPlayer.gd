@@ -13,6 +13,8 @@ var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initial
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map = $"../../../Map"
 
+
+
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var test : TileData
 @export var cellSize : int = 32		#Pourra changer plus tard potentiellement
@@ -26,7 +28,8 @@ var _attackable_cells := []
 var actionCells := []	#Liste de toutes les cases accessibles avec une capa active depuis une unité
 var _movement_costs
 @onready var _unit_path: UnitPath = $UnitPathJ1
-@onready var visuActions : UnitOverlay = $visualisationActionsJ1
+@onready var visuActions : UnitOverlay = $visualisationActionsJ
+@onready var visuZoneCapa : UnitOverlay = $visualisationCapas
 ## Resource of type Grid.
 @export var grid: Resource
 const MAX_VALUE: int = 99999
@@ -263,6 +266,7 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 		elif visuActions != null and _walkable_cells != {}:
 			_walkable_cells.clear() # Clearing out the walkable cells
 			visuActions.clearNumbers() # This is what clears all the colored tiles on the grid
+			visuZoneCapa.clearNumbers() # Clear l'affichage de la zone de la capacité
 		if Global._units.has(new_cell) and Selection == null:
 			_hover_display(new_cell)
 	elif(capaciteActuelle != {}):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
@@ -288,10 +292,9 @@ func _hover_display(cell: Vector2i) -> void:
 ## Fonction pour afficher la zone affectée par la capacité active
 func hoverZoneCapa(cell: Vector2i, capacite : Dictionary) -> void:
 	
-	##On clear les affichages des mouvements précédents avant d'en remettre
+	##On clear les affichages des mouvements précédents avant d'en remettre sans toucher à la zone de la capa Active
 	_walkable_cells.clear() 
-	visuActions.clearNumbers()
-	visuActions.drawZoneAction(actionCells)	#ça nique les performances va falloir trouver une autre siolution
+	
 	## Obtenir les cases affectées selon la forme et la taille ciblée par la capacité
 	var zoneCells : Array = getCellsZoneCapa(cell, capacite)
 	
@@ -310,6 +313,7 @@ func getCellsZoneCapa(cell : Vector2i, capacite : Dictionary) -> Array :
 			cells.append(cell)
 		"C" :
 			pass
+			
 	return []
 
 ## Selects or moves a unit based on where the cursor is.
@@ -328,7 +332,7 @@ func cursorPressed(cell: Vector2, typeClick : String) -> void:
 				_move_active_unit(cell)
 			
 			elif (cell in _attackable_cells and Selection.attaquesRestantes > 0 and Global._units.has(cellI) and Global._units[cellI].couleurEquipe != Selection.couleurEquipe):	#On vérifie qu'il y a une unité sur la case sélec, que l'unité qu'on a a encore des attaques à faire puis on vérifie que leurs couleurs sont différentes
-				print(Global._units)
+				#print(Global._units)
 				
 				Selection.attaque(Global._units[cellI])
 				
@@ -342,7 +346,7 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool) -> void:
 	
 	print("_select_unit")
 	#print(cell)
-	print(Global._units)
+	#print(Global._units)
 	if not Global._units.has(cell):
 		print(cell)
 		print(Global._units)
@@ -396,6 +400,7 @@ func _deselect_active_unit() -> void:
 	Selection.deselectionneSelf(self)
 	#pointeurSelec.Selection = null Complètement con de retirer l'unité avant de la faire finalement bouger puisqu'on ne l'a plus en mémoire
 	visuActions.clearNumbers()
+	visuZoneCapa.clearNumbers()
 	_unit_path.stop()
 	caseTarget.visible = false
 
@@ -435,7 +440,7 @@ func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
 	else :
 		actionCells = get_actions_cells(uniteAssociee.case, capaPortee)
 	capaciteActuelle = capaciteActivee
-	visuActions.drawZoneAction(actionCells)
+	visuZoneCapa.drawZoneAction(actionCells)
 	
 	pass
 

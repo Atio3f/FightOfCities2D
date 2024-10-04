@@ -22,7 +22,11 @@ grid = ExtResource("4_13yfm")
 [node name="UnitPathJ1" parent="Pointeur_Selection" instance=ExtResource("5_3ppum")]
 grid = ExtResource("4_13yfm")
 
-[node name="visualisationActionsJ1" parent="Pointeur_Selection" instance=ExtResource("6_oepiw")]
+[node name="visualisationActionsJ" parent="Pointeur_Selection" instance=ExtResource("6_oepiw")]
+rendering_quadrant_size = 32
+
+[node name="visualisationCapas" parent="Pointeur_Selection" instance=ExtResource("6_oepiw")]
+editor_description = "Sert pour afficher la zone d'effet des capacités"
 rendering_quadrant_size = 32
 
 [node name="CaseSelecJ1" type="Sprite2D" parent="Pointeur_Selection"]
