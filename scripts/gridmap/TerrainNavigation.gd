@@ -13,13 +13,14 @@ func _ready():
 	setupGrid()
 
 func setupGrid() -> void:
-	astarGrid.region = Rect2i(0, 0, 79, 39)
-	astarGrid.cell_size = Vector2i(32, 32)		#Taille des cases
-	astarGrid.update()
-	astarGrid.set_point_weight_scale(Vector2i(0, 0), 1)
-	astarGrid.set_point_weight_scale(Vector2i(0, 1), 2)
-	astarGrid.set_point_weight_scale(Vector2i(1, 0), 9)
-	astarGrid.set_point_weight_scale(Vector2i(1, 1), 6)
+	pass
+	#astarGrid.region = Rect2i(0, 0, 80, 80)
+	#astarGrid.cell_size = Vector2i(32, 32)		#Taille des cases
+	#astarGrid.update()
+	#astarGrid.set_point_weight_scale(Vector2i(0, 0), 1)
+	#astarGrid.set_point_weight_scale(Vector2i(0, 1), 2)
+	#astarGrid.set_point_weight_scale(Vector2i(1, 0), 9)
+	#astarGrid.set_point_weight_scale(Vector2i(1, 1), 6)
 
 
 #Depuis un certain point donné(emplacement) montre les chemins disponibles avec la vitesse restante ça va pas renvoyer un void

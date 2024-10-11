@@ -2,7 +2,7 @@ extends Control
 
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes
 @onready var bouttonFinTour : Button = $bouttonFinTour/ButtonFinTour
-@onready var map : Node2D = $"../../Map"
+
 
 var sourisOnInterface : bool = false	#Booléan de la présence ou non de la souris sur l'interface
 var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un endroit global

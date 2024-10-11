@@ -276,6 +276,21 @@ func boostStat(statUp : String, valeur : int):
 		
 		"_":
 			set(statUp, self.get(statUp) + valeur)
+
+func boostStats(statsUp : Array, valeur : int):
+	
+	for statUp in statsUp :
+		match(statUp):
+			"V":
+				if(valeur < 0) :	#Evite que l'on perde un VitesseRestante à cause des limites faites du setter de V
+					set("vitesseRestante", self.get(statUp) + valeur)
+					set(statUp, self.get(statUp) + valeur)
+				else :
+					set(statUp, self.get(statUp) + valeur)
+					set("vitesseRestante", self.get(statUp) + valeur)
+			
+			"_":
+				set(statUp, self.get(statUp) + valeur)
 	
 
 #Reçu depuis InterfaceFinTour, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements

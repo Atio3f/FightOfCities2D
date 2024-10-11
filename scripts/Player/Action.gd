@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var uniteStandard = "res://nodes/Unite/unite.tscn"
 @onready var scene = get_tree().root
-@onready var interfaceFinTour : Control = $"../../../CanvasInterface/InterfaceFinTour"
+@onready var interfaceFinTour : Control = $"../CanvasInterface/InterfaceFinTour"
 @onready var pointeurSouris : Node2D = $"../Pointeur_Selection"
 @onready var map : Node2D = $"../../../Map"
 @onready var joueur : Node2D = $".."

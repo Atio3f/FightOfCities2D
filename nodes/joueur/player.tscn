@@ -1,7 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://rfbkx0b7abxh"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_mqcbx"]
-[ext_resource type="Resource" uid="uid://bqreuysfcd43n" path="res://Ressources/player/joueur1.tres" id="2_tdw8x"]
 [ext_resource type="Script" path="res://scripts/Player/PointeurPlayer.gd" id="3_pmukw"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="4_13yfm"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://nodes/tilemaps/UnitPath.tscn" id="5_3ppum"]
@@ -10,10 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://ccillj6uikedj" path="res://assets/tiles/curseurAttaque(32x32).png" id="8_thf8g"]
 [ext_resource type="Script" path="res://scripts/Player/MovementPlayer.gd" id="9_3cqm2"]
 [ext_resource type="Script" path="res://scripts/Player/Action.gd" id="10_pc0xr"]
+[ext_resource type="PackedScene" uid="uid://vt2pgrwdeiji" path="res://nodes/interface/interface.tscn" id="11_p3gp3"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_mqcbx")
-playerRessource = ExtResource("2_tdw8x")
 
 [node name="Pointeur_Selection" type="Node2D" parent="."]
 script = ExtResource("3_pmukw")
@@ -51,3 +50,20 @@ script = ExtResource("9_3cqm2")
 
 [node name="Actions" type="Node2D" parent="."]
 script = ExtResource("10_pc0xr")
+
+[node name="CanvasInterface" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 0
+
+[node name="InterfaceFinTour" parent="CanvasInterface" instance=ExtResource("11_p3gp3")]
+top_level = true
+
+[node name="FPSMeter" type="Label" parent="CanvasInterface"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -46.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "144"

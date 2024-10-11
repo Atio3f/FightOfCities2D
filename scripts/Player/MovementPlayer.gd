@@ -9,6 +9,7 @@ var y : float = 0
 var emplacement : Vector2 = Vector2.ZERO
 
 
+
 func _ready() -> void:
 	x = 0
 	y = 0
@@ -37,6 +38,7 @@ func _physics_process(_delta) -> void:
 		caseSelec.global_position = Souris.getMiddleMouseCell()
 		Souris.pointeurHasMove(Souris.positionSouris)
 	translate(emplacement)
+	
 	
 
 

@@ -26,19 +26,21 @@ var test : TileData
 var _walkable_cells := {}
 var _attackable_cells := []
 var actionCells := []	#Liste de toutes les cases accessibles avec une capa active depuis une unité
-var _movement_costs
+var _movement_costs : Array
+var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacité active
 @onready var _unit_path: UnitPath = $UnitPathJ1
 @onready var visuActions : UnitOverlay = $visualisationActionsJ
 @onready var visuZoneCapa : UnitOverlay = $visualisationCapas
 ## Resource of type Grid.
-@export var grid: Resource
+@export var grid: Grid
 const MAX_VALUE: int = 99999
 
 var capaciteActuelle : Dictionary = {}
-
+var caseSouris
 func _ready() -> void:
 	
 	_movement_costs = terrain.get_movement_costs(grid)
+	
 	_reinitialize()
 	
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
@@ -202,29 +204,33 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 				if visited[coordinates.y][coordinates.x]:
 					continue
 				else:
-					tile_cost = _movement_costs[coordinates.y][coordinates.x]
+					print("RE")
+					if ( _movement_costs[coordinates.y].size() > coordinates.x ):	#Vérification que la case a une tuile
+						tile_cost = _movement_costs[coordinates.y][coordinates.x]
 					
-					if typeDeplacement == "vole":
-						distance_to_node = current.priority + 2 #le coût de la case est toujours égal à 2 pour une unité volante
+						if typeDeplacement == "vole":
+							distance_to_node = current.priority + 2 #le coût de la case est toujours égal à 2 pour une unité volante
+						else :
+							distance_to_node = current.priority + tile_cost #calculate tile cost normally
+					
+						## Check to see if tile is occupied by opposite team or is waiting
+						## the "or _units[coordinates].is_wait" is the line that you will use to calculate 
+						## Actual attack range for display on hover/walk
+						#print(is_occupied(coordinatesI))
+						if is_occupied(coordinatesI):
+							#print(curr_unit.couleurEquipe)
+							if curr_unit.couleurEquipe != Global._units[coordinatesI].couleurEquipe: #Remove this line if you want to make every unit impassable 
+								distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
+							## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
+							elif Global._units[coordinatesI].is_wait and attackable_check:
+								occupied_cells.append(coordinates)
+						
+						visited[coordinates.y][coordinates.x] = true
+						distances[coordinates.y][coordinates.x] = distance_to_node
 					else :
-						distance_to_node = current.priority + tile_cost #calculate tile cost normally
-					
-					## Check to see if tile is occupied by opposite team or is waiting
-					## the "or _units[coordinates].is_wait" is the line that you will use to calculate 
-					## Actual attack range for display on hover/walk
-					#print(is_occupied(coordinatesI))
-					if is_occupied(coordinatesI):
-						#print(curr_unit.couleurEquipe)
-						if curr_unit.couleurEquipe != Global._units[coordinatesI].couleurEquipe: #Remove this line if you want to make every unit impassable 
-							distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
-						## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
-						elif Global._units[coordinatesI].is_wait and attackable_check:
-							occupied_cells.append(coordinates)
-					
-					visited[coordinates.y][coordinates.x] = true
-					distances[coordinates.y][coordinates.x] = distance_to_node
+						distance_to_node = null
 				
-				if distance_to_node <= max_distance: #check if node is actually reachable by our unit
+				if distance_to_node != null and distance_to_node <= max_distance: #check if node is actually reachable by our unit
 					previous[coordinates.y][coordinates.x] = current.value #mark tile we used to get here
 					#movable_cells.append({coordinates : distance_to_node}) #attach new node we are looking at as reachable
 					movable_cells[coordinates] = distance_to_node
@@ -277,6 +283,7 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 ## Unit items, and the unit avatar (like in fire emblem: engage)
 ## That is the reason we make this a completely seperate function
 func _hover_display(cell: Vector2i) -> void:
+	var time = Time.get_ticks_msec()
 	var curr_unit = Global._units[cell]
 	
 	## Acquire the walkable and attackable cells
@@ -288,16 +295,18 @@ func _hover_display(cell: Vector2i) -> void:
 	if(curr_unit.attaquesRestantes > 0) :
 		visuActions.draw_attackable_cells(_attackable_cells)
 	visuActions.draw_walkable_cells(_walkable_cells, curr_unit.couleurEquipe)
+	print(Time.get_ticks_msec() - time)
 
 ## Fonction pour afficher la zone affectée par la capacité active
 func hoverZoneCapa(cell: Vector2i, capacite : Dictionary) -> void:
 	
+	
 	##On clear les affichages des mouvements précédents avant d'en remettre sans toucher à la zone de la capa Active
 	_walkable_cells.clear() 
+	visuActions.clearNumbers()
 	
 	## Obtenir les cases affectées selon la forme et la taille ciblée par la capacité
-	var zoneCells : Array = getCellsZoneCapa(cell, capacite)
-	
+	zoneCells = getCellsZoneCapa(cell, capacite)
 	## Draw out the walkable and attackable cells now
 	
 	visuActions.draw_attackable_cells(zoneCells)
@@ -312,9 +321,12 @@ func getCellsZoneCapa(cell : Vector2i, capacite : Dictionary) -> Array :
 		"EW" : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
 			cells.append(cell)
 		"C" :
-			pass
+			var i = 0
+			while(i < capaPortee[1]):
+				#cells.append()
+				i += 1
 			
-	return []
+	return cells
 
 ## Selects or moves a unit based on where the cursor is.
 func cursorPressed(cell: Vector2, typeClick : String) -> void:
@@ -339,6 +351,8 @@ func cursorPressed(cell: Vector2, typeClick : String) -> void:
 				print("BON")
 				_deselect_active_unit()
 				_clear_active_unit()
+		elif(capaciteActuelle != {} and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
+			declenchementCapaActive(cellI)
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `pointeurSelec.Selection` and draws its walkable cells and interactive move path. 
@@ -410,7 +424,7 @@ func _clear_active_unit() -> void:
 	print("_clear_active_unit()")
 	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null
-	#capaciteActuelle = {}
+	capaciteActuelle = {}	#On verra plus tard si ça pose pas de problème
 	_walkable_cells.clear()
 
 
@@ -440,8 +454,50 @@ func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
 	else :
 		actionCells = get_actions_cells(uniteAssociee.case, capaPortee)
 	capaciteActuelle = capaciteActivee
-	visuZoneCapa.drawZoneAction(actionCells)
-	
+	visuZoneCapa.drawZoneAction(actionCells)	#Délocaliser dans declenchementCapaActive
+	positionSouris
 	pass
 
+func declenchementCapaActive(case : Vector2i) -> void :
+	var descripCapa : Array = (capaciteActuelle.keys()[0].split("|", true))[3].split("-", true)
+	var contenuCapa : Array = Selection.capacites["ActiveCapacitiesBased"][capaciteActuelle.keys()[0]] #Plus rapide que de le retaper à chaque fois
+	
+	##Partie boucle pour chercher toutes les unités sur les cases affectées
+	
+	#Boucle pour tout ce qui se trouve dans la zone d'effet
+	var typeCible : Array = capaciteActuelle.keys()[0].split("|", true)[2].split("&", true)
+	#Liste de toutes les cases où se trouvent une cible
+	var cibles = filtreCible(zoneCells, typeCible, [Selection.couleurEquipe])		#A CHANGER Selection.couleurEquipe par l'Array de ses équipes alliées
+	
+	#Vérification que le type et l'équipe de l'unité sur la case correspondent
+	for cell in cibles :
+		print("RZER")
+	
+	
+	
+	##Partie réduction du nombre du nombre d'utilisations restantes
+	
+	contenuCapa[0] = contenuCapa[0] -1
+	print(contenuCapa)
+	if(contenuCapa[0] == 0):	#On supprime la capacité de l'unité lorsqu'elle n'a plus d'utilisations restantes
+		Selection.capacites["ActiveCapacitiesBased"].erase(capaciteActuelle.keys()[0])
+	
+	##Reset de l'unité active et de sa sélection
+	_deselect_active_unit()
+	_clear_active_unit()
 
+func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -> Array :
+	##Déclaration liste retournée
+	var cellsFiltrees := []
+	##Vérification des conditions pour chaque cellule
+	for case : Vector2i in zoneCells :
+		var cible = Global._units[case]
+		if(cible != null):
+			for type in typeCible :
+				##Check du bon type d'équipe visée par le ciblage
+				if (type[-1] == 'E' and !equipesAlliees.has(cible.couleurEquipe)):
+					pass
+				elif (type[-1] != 'E' and equipesAlliees.has(cible.couleurEquipe)):
+					if type == cible.race :	#A CHANGER faudra mettre différents critères de ciblage différents 
+						cellsFiltrees.append(cible)
+	return cellsFiltrees
