@@ -36,7 +36,8 @@ var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacit�
 const MAX_VALUE: int = 99999
 
 var capaciteActuelle : Dictionary = {}
-var caseSouris
+var caseAttaque : Vector2
+
 func _ready() -> void:
 	
 	_movement_costs = terrain.get_movement_costs(grid)
@@ -204,7 +205,7 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 				if visited[coordinates.y][coordinates.x]:
 					continue
 				else:
-					print("RE")
+					
 					if ( _movement_costs[coordinates.y].size() > coordinates.x ):	#Vérification que la case a une tuile
 						tile_cost = _movement_costs[coordinates.y][coordinates.x]
 					
@@ -458,20 +459,29 @@ func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
 	positionSouris
 	pass
 
+
 func declenchementCapaActive(case : Vector2i) -> void :
-	var descripCapa : Array = (capaciteActuelle.keys()[0].split("|", true))[3].split("-", true)
+	print("DECLENCHEMENT CAPACITE")
+	var descripCapa : Array = capaciteActuelle.keys()[0].split("|", true)	#Liste de la descrip de la capacité
+	var zone : Array = descripCapa[3].split("-", true)	#Sert à rien A RETIRER
 	var contenuCapa : Array = Selection.capacites["ActiveCapacitiesBased"][capaciteActuelle.keys()[0]] #Plus rapide que de le retaper à chaque fois
 	
 	##Partie boucle pour chercher toutes les unités sur les cases affectées
 	
 	#Boucle pour tout ce qui se trouve dans la zone d'effet
 	var typeCible : Array = capaciteActuelle.keys()[0].split("|", true)[2].split("&", true)
-	#Liste de toutes les cases où se trouvent une cible
+	#Liste de toutes les cases où se trouvent une cible valide
 	var cibles = filtreCible(zoneCells, typeCible, [Selection.couleurEquipe])		#A CHANGER Selection.couleurEquipe par l'Array de ses équipes alliées
 	
-	#Vérification que le type et l'équipe de l'unité sur la case correspondent
-	for cell in cibles :
-		print("RZER")
+	##Activation des effets pour chaque cible valide
+	for cible in cibles :
+		
+		#Filtre du type d'effet de la capacité
+		match(descripCapa[0]):
+			"+" : 
+				
+				cible.boostStats(descripCapa[1].split("&", true),contenuCapa.slice(2))
+				
 	
 	
 	
@@ -486,18 +496,26 @@ func declenchementCapaActive(case : Vector2i) -> void :
 	_deselect_active_unit()
 	_clear_active_unit()
 
+##Renvoie toutes les unités et bâtiments affectés par la capacité
 func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -> Array :
 	##Déclaration liste retournée
 	var cellsFiltrees := []
 	##Vérification des conditions pour chaque cellule
+
 	for case : Vector2i in zoneCells :
 		var cible = Global._units[case]
+		
 		if(cible != null):
+			
 			for type in typeCible :
+				print(type)
 				##Check du bon type d'équipe visée par le ciblage
 				if (type[-1] == 'E' and !equipesAlliees.has(cible.couleurEquipe)):
+					
 					pass
 				elif (type[-1] != 'E' and equipesAlliees.has(cible.couleurEquipe)):
+					
 					if type == cible.race :	#A CHANGER faudra mettre différents critères de ciblage différents 
 						cellsFiltrees.append(cible)
+	
 	return cellsFiltrees

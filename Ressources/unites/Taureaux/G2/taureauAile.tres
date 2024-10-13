@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_vymuq")
+typeCarte = "Unite"
 nom = "Taureau Ailé"
 pv_max = 40
 pv_actuels = 40
@@ -15,14 +16,14 @@ typeDegats = "Physique"
 V = 10
 S = 2
 G = 0
-race = "Taureaux"
+race = "Taureau"
 range = 1
 couleurEquipe = "Rouge"
 attaquesMax = 1
 attaquesRestantes = 1
 vitesseRestante = 10
 niveau = 0
-experience = 0.0
+XP = 0.0
 typeDeplacementPossible = ["vole"]
 typeDeplacementActuel = "vole"
 description = ""

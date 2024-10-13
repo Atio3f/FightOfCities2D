@@ -1,6 +1,8 @@
 extends Resource
 
 class_name uniteRessource
+@export_enum("Unite", "Batiment", "Unknow")var typeCarte : String		#Permet de déterminer si c'est une unité ou un bâtiment
+
 
 @export var nom : String	#Le nom de l'unité
 @export var pv_max : int	#Equivalent de D + 20 qui servait à calculer les pv des unités avant
@@ -15,7 +17,7 @@ var pv_temporaires : int		#PV bonus qui ne peuvent pas être guéris, souvent ob
 @export var V : int		#Vitesse permet de se déplacer plus loin
 @export var S : int		#Sagesse permet d'xp plus vite
 @export_range(1, 4) var G : int		#Grade permet de classer les unités, les unités G1 seront présent en 4exemplaires, les G2 en 3exemplaires
-@export_enum("Monkey", "Penguin","Chauve-Souris","Humain", "Taureaux","Autres") var race : String
+@export_enum("Monkey", "Penguin","Chauve-Souris","Humain", "Taureau","Autres") var race : String
 @export_range(1, 20) var range : int	#Distance d'attaque de l'unité
 @export var couleurEquipe : String 	#Permet d'indiquer l'équipe de l'unité
 
@@ -25,7 +27,7 @@ var pv_temporaires : int		#PV bonus qui ne peuvent pas être guéris, souvent ob
 
 @export_range(1, 3) var niveau : int	#Le niveau de l'unité. Les niveaux 2 et 3 donnent chacun 50% de pv bonus ainsi que 1 DR
 const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
-@export var experience : float #L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque et pv unité tuée + 2S lors d'un kill
+@export var XP : float #L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque et pv unité tuée + 2S lors d'un kill
 
 @export var typeDeplacementPossible : Array	#La liste des moyens de déplacement possible par l'unité.
 											#Les possibilités sont : 

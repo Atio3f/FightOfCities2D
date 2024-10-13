@@ -32,6 +32,7 @@ func _physics_process(_delta) -> void:
 	#On fait l'équivalent d'un smoothyPosition
 	#Centre les coords du curseur au centre d'une case
 	newPositionSouris = Vector2i(newPositionSouris) / 32
+	
 	if(Souris.positionSouris != newPositionSouris) :
 		Souris.positionSouris = Vector2i(scene.get_global_mouse_position()) / 32
 		

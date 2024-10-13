@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_tmmjy")
+typeCarte = "Unite"
 nom = "Monkey"
 pv_max = 23
 pv_actuels = 23
@@ -22,7 +23,7 @@ attaquesMax = 50
 attaquesRestantes = 0
 vitesseRestante = 15
 niveau = 0
-experience = 0.0
+XP = 0.0
 typeDeplacementPossible = ["marche"]
 typeDeplacementActuel = "marche"
 description = "Un singe basique qui encourage les autres singes à donner le meilleur d'eux"

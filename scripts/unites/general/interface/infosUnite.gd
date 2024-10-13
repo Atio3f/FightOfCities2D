@@ -24,7 +24,7 @@ func apercuInfosUnite(uniteAssociee : unite, pointeurJoueur : Node2D, visibilite
 	%LabelVitesse.text = "Vitesse = %3d/%3d" % [uniteAssociee.vitesseRestante, uniteAssociee.V]
 	%LabelSagesse.text = "S = %3d" % [uniteAssociee.S]
 	%LabelNiveau.text = "Niveau %2d" % [uniteAssociee.niveau]
-	%LabelXP.text = "XP = %3d(%4d)" % [uniteAssociee.experience, uniteAssociee.paliersNiveaux[uniteAssociee.niveau+1]]
+	%LabelXP.text = "XP = %3d(%4d)" % [uniteAssociee.XP, uniteAssociee.paliersNiveaux[uniteAssociee.niveau+1]]
 	%LabelCapacites.text = "Capacites : "
 
 	

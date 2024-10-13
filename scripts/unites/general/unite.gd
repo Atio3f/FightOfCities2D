@@ -1,11 +1,14 @@
-class_name unite
+
 extends Path2D
+class_name unite
 
 @export var ressource : uniteRessource	#On importe en ressource les stats de l'unité
 
 @onready var sprite : Sprite2D = $ElementsUnite/SpriteUnite
 @onready var contourSelec : Sprite2D = $ElementsUnite/ContourSelection
 @onready var interfaceUnite : Control = $ElementsUnite/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
+
+@export_enum("Unite", "Batiment", "Unknow")var typeCarte : String = "Unknow"
 
 var positionUnite : Vector2
 var imageUnit : Texture :
@@ -66,7 +69,7 @@ var pv_temporaires : int
 				
 const paliersNiveaux = [0, 100, 250, 99999]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
 
-@export var experience : float :#L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque, la moitié de ça lorsqu'elle prend des dégâts et pv unité tuée + 2S lors d'un kill
+@export var XP : float :#L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque, la moitié de ça lorsqu'elle prend des dégâts et pv unité tuée + 2S lors d'un kill
 	set(value):
 		if(race == "taureaux"):
 			print("EXPE")
@@ -75,7 +78,7 @@ const paliersNiveaux = [0, 100, 250, 99999]	#L'expérience nécessaire pour mont
 		while (value > paliersNiveaux[niveau + 1]):	#Tant que l'unité peut monter de niveau avec l'experience obtenue on continue
 		
 			niveau += 1
-		experience = value
+		XP = value
 
 
 @export_enum("Monkey", "Penguin","Chauve-Souris", "Autres") var race : String
@@ -98,6 +101,7 @@ var vitesseRestante : int :
 			vitesseRestante = value
 var capacites : Dictionary	#Dictionnaire des capacités de l'unité(voir RessourceUniteBase pour comprendre la structure du dico)
 var description : String	#String contenant la description de l'unité(voir ressourceUnite)
+
 
 var is_selected : bool = false:
 	set(value):
@@ -141,6 +145,7 @@ var popUpDegats = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.ts
  
 
 func _ready() -> void:
+	print(self.name)
 	sprite.texture = ressource.image
 	interfaceUnite._entiteeAssociee = self
 	
@@ -159,6 +164,7 @@ func _ready() -> void:
 func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, newRessource : Resource) -> void:
 	#print(Equipe)
 	ressource = newRessource
+	typeCarte = ressource.typeCarte
 	race = ressource.race
 	if(ressource.couleurEquipe != ""):
 		print("TESY")
@@ -277,20 +283,24 @@ func boostStat(statUp : String, valeur : int):
 		"_":
 			set(statUp, self.get(statUp) + valeur)
 
-func boostStats(statsUp : Array, valeur : int):
-	
+func boostStats(statsUp : Array, valeurs : Array):
+	var i : int = 0		#Compteur num élément pour obtenir sa valeur
 	for statUp in statsUp :
 		match(statUp):
 			"V":
-				if(valeur < 0) :	#Evite que l'on perde un VitesseRestante à cause des limites faites du setter de V
-					set("vitesseRestante", self.get(statUp) + valeur)
-					set(statUp, self.get(statUp) + valeur)
+				
+				if(valeurs[i] < 0) :	#Evite que l'on perde un VitesseRestante à cause des limites faites du setter de V
+					set("vitesseRestante", self.get(statUp) + valeurs[i])
+					set(statUp, self.get(statUp) + valeurs[i])
 				else :
-					set(statUp, self.get(statUp) + valeur)
-					set("vitesseRestante", self.get(statUp) + valeur)
+					set(statUp, self.get(statUp) + valeurs[i])
+					set("vitesseRestante", self.get(statUp) + valeurs[i])
 			
-			"_":
-				set(statUp, self.get(statUp) + valeur)
+			_:
+				print(valeurs[i])
+				print(self.get(statUp))
+				set(statUp, self.get(statUp) + valeurs[i])
+		i += 1
 	
 
 #Reçu depuis InterfaceFinTour, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements
@@ -301,29 +311,42 @@ func nextTurn() -> void:
 	
 
 signal signalFinAttaque()	#Potentiellement rajouter des infos sur si un kill a été fait ou non
+
+
 func attaque(uniteAttaque : Node2D) -> Signal:
 	var totalDegats : int = P	#Les dégâts de base sont égaux à P
 	for capa in capacites["AttackBased"]:
 		pass
+	
 	uniteAttaque.estAttaque(self, totalDegats)	#On envoie les infos de dégâts
 	attaquesRestantes = attaquesRestantes - 1	#On retire une attaque à l'unité 
+	
+	
 	return signalFinAttaque
 	
 
 func estAttaque(attaquant : Node2D, degats : int) -> void :
-	print(degats)
 	
-	if(subirDegats(degats, attaquant.typeDegats)) :
-		if(attaquant.get_class() == "unite") :	#Préparation à l'arrivée des bâtiments et sorts
+	## + Stocke des dégâts subis au final pour les ajouter à l'attaquant
+	var totalDegats = subirDegats(degats, attaquant.typeDegats)
+	##Gain d'xp pour l'attaquant 
+	attaquant.XP = attaquant.XP + (totalDegats * 0.75 + attaquant.S)
+	
+	##Vérification de la mort ou non de l'unité
+	
+	
+	if(pv_actuels <= 0) :
+		if(attaquant.typeCarte == "Unite") :	#Préparation à l'arrivée des bâtiments et sorts
+			
 			attaquant.getKill(self)
 		
 		mort(attaquant)
 	else :	#Si l'unité n'est pas morte avec cette attaque alors elle gagne de l'expérience
-		experience = experience + ((degats + S) /2)
+		XP = XP + ((degats + S) /2)
 
-#Fonction servant à faire le décompte des pv, typeDegatsAttaquant indique le type de dégâts de l'attaque avant de renvoyer si l'unité est morte ou non
-func subirDegats(degats : int, typeDegatsAttaquant : String) -> bool :
-	print(pv_actuels)
+#Fonction servant à faire le décompte des pv, typeDegatsAttaquant indique le type de dégâts de l'attaque avant de renvoyer les dégâts après réductions
+func subirDegats(degats : int, typeDegatsAttaquant : String) -> int :
+	
 	var totalDegats : int = degats
 	if (typeDegatsAttaquant == typeDegats) :
 		totalDegats -= DR / 5
@@ -333,17 +356,17 @@ func subirDegats(degats : int, typeDegatsAttaquant : String) -> bool :
 		pv_actuels = pv_actuels - totalDegats
 	else :
 		pv_temporaires -= totalDegats
-	print(pv_actuels)
+	
 	var indicDegats : Node2D = popUpDegats.instantiate()	
 	noeudsTempIndic.add_child(indicDegats)		#Place l'indicateur de dégâts sur la scène
 	indicDegats.newPopUp(totalDegats)
 	
-	print("PVS")
-	print(indicDegats)
-	return (pv_actuels <= 0) #On vérifie si l'unité est morte
+	
+	
+	return totalDegats #On renvoie les vrais dégâts pour le calcul de l'xp gagné par l'attaquant
 
 func getKill(unitTuee : unite) -> void:
-	experience = experience + unitTuee.pv_max + (2 * S)
+	XP = XP + unitTuee.pv_max + (2 * S)
 	for capa in capacites["KillBased"]:
 		pass
 
