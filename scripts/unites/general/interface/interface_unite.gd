@@ -70,3 +70,12 @@ func recuSelectionCapa(capaciteActivee : Dictionary, pointeurJoueur : Node2D):
 	print(capaciteActivee)
 	pointeurJoueur.capaActives(capaciteActivee, _entiteeAssociee)
 	pass
+
+
+##Signal envoyé par le menu des Consommables
+func _on_menu_consommables_pressed():
+	if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
+												#compliqué à gérer je ferai plus tard
+		var infosUnit : Control = infosUnites.instantiate()
+		infosUnit.apercuInfosUnite(_entiteeAssociee, pointeursSurInterface[0], true)
+		noeudsTempInfosStats.add_child(infosUnit)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://27awq5ull731"]
+[gd_scene load_steps=12 format=3 uid="uid://27awq5ull731"]
 
 [ext_resource type="Script" path="res://scripts/unites/general/interface/interface_unite.gd" id="1_dk80o"]
 [ext_resource type="Texture2D" uid="uid://1yk0b7e4f34" path="res://assets/interface/unite/BarreVieContour.png" id="2_0xg00"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="7_tbqdh"]
 [ext_resource type="Texture2D" uid="uid://dxfvdw43glf72" path="res://assets/interface/unite/UIuniteCapacites(32x32).png" id="8_h5dn0"]
 [ext_resource type="Texture2D" uid="uid://bamlwjbuq3frf" path="res://assets/interface/unite/UIuniteInfosStats(32x32).png" id="9_xut11"]
+[ext_resource type="Texture2D" uid="uid://dojvcdy7h42np" path="res://assets/interface/unite/UIuniteConsommables(32x32).png" id="10_tdct1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gopln"]
 font = ExtResource("6_c2bh5")
@@ -104,10 +105,11 @@ layout_mode = 2
 size_flags_horizontal = 10
 alignment = 2
 
-[node name="MenuStats" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
+[node name="MenuConsommables" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
 texture_filter = 1
 layout_mode = 2
-texture_normal = ExtResource("9_xut11")
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("10_tdct1")
 
 [node name="MenuCapacitesActives" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
 clip_children = 2
@@ -118,4 +120,5 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_h5dn0")
 
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/MenuStats" to="." method="_on_menu_stats_pressed"]
+[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuConsommables" to="." method="_on_menu_consommables_pressed"]
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuCapacitesActives" to="." method="_on_menu_capacites_actives_pressed"]
