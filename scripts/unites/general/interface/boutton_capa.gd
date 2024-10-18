@@ -13,33 +13,34 @@ func placement(interface : Control, pointeurJ : Node2D, capacite : String, valeu
 	var capaDecom : Array = capacite.split("|", false)
 	var descrip : String = ""
 	var i : int = 2
-	position = Vector2(position.x - (size.x/1.9), position.y - 21)
-	
-	match(capaDecom[0]):
-		_:	#Tous les changements de stats normaux
-			var statsChanged : Array = capaDecom[1].split("&", false)
-			print(statsChanged)
-			
-			for stat : String in statsChanged :
-				descrip += capaDecom[0] + str(valeurCapa[i]) + stat + " "
-				i += 1
-			
-	match(capaDecom[3]):
-		_:	#Cas pour EW
-			if (capaDecom[3].begins_with("EW") ):
-				if (len(capaDecom[3])>2 ):
-					descrip += ": " + (capaDecom[3]).substr(2, capaDecom[3].length() - 2)
-				else :
-					descrip += ": 1"
-	if(capaDecom[2] == "allE"):
-		descrip += "Ennemis"
-	elif(capaDecom[2].ends_with("E")):
-		descrip += capaDecom[2].left(-1) + " ennemis"
-	elif(capaDecom[2] != "all"):
-		descrip += " Tous"
-	else :
-		descrip += capaDecom[2]
-		
+	descrip = valeurCapa[2]
+	#position = Vector2(position.x - (size.x/1.9), position.y - 21)
+	#
+	#match(capaDecom[0]):
+		#_:	#Tous les changements de stats normaux
+			#var statsChanged : Array = capaDecom[1].split("&", false)
+			#print(statsChanged)
+			#
+			#for stat : String in statsChanged :
+				#descrip += capaDecom[0] + str(valeurCapa[i]) + stat + " "
+				#i += 1
+			#
+	#match(capaDecom[3]):
+		#_:	#Cas pour EW
+			#if (capaDecom[3].begins_with("EW") ):
+				#if (len(capaDecom[3])>2 ):
+					#descrip += ": " + (capaDecom[3]).substr(2, capaDecom[3].length() - 2)
+				#else :
+					#descrip += ": 1"
+	#if(capaDecom[2] == "allE"):
+		#descrip += "Ennemis"
+	#elif(capaDecom[2].ends_with("E")):
+		#descrip += capaDecom[2].left(-1) + " ennemis"
+	#elif(capaDecom[2] != "all"):
+		#descrip += " Tous"
+	#else :
+		#descrip += capaDecom[2]
+		#
 	text = descrip
 	capaciteAssociee = {capacite : valeurCapa}
 	menuCapa = interface

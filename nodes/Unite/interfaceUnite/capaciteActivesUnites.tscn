@@ -52,6 +52,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BouttonCapa" parent="UI/Panel/FlowContainer/ListeCapaDispos" instance=ExtResource("3_ilx62")]
-unique_name_in_owner = true
 visible = false
 layout_mode = 2

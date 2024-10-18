@@ -8,6 +8,7 @@ extends Control
 
 @onready var infosUnites = preload("res://scenes/popUps/infosUnite.tscn")
 @onready var capaActives = preload("res://nodes/Unite/interfaceUnite/capaciteActivesUnites.tscn")
+@onready var menuConsommables = preload("res://nodes/Unite/interfaceUnite/interfaceConsommables.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
 var _entiteeAssociee : Node2D
@@ -76,6 +77,6 @@ func recuSelectionCapa(capaciteActivee : Dictionary, pointeurJoueur : Node2D):
 func _on_menu_consommables_pressed():
 	if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
-		var infosUnit : Control = infosUnites.instantiate()
-		infosUnit.apercuInfosUnite(_entiteeAssociee, pointeursSurInterface[0], true)
-		noeudsTempInfosStats.add_child(infosUnit)
+		var menuConso : Control = menuConsommables.instantiate()
+		menuConso.apercuConsommables(_entiteeAssociee, pointeursSurInterface[0], true)
+		noeudsTempInfosStats.add_child(menuConso)

@@ -53,6 +53,7 @@ const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monte
 	#DefenseBased = tout ce qui s'active lorsque l'unité prend des dégâts ou se fait attaquer
 	#LevelUpBased = tout ce qui s'active lorsque l'unité monte de niveau
 	#DeathBased = tout ce qui s'active quand l'unité meurt
+	
 @export var capacites : Dictionary = {
 "PlacementBased" : {},
 "PermanentBuff" : {}, 
@@ -67,4 +68,7 @@ const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monte
 "DeathBased": {}
 }
 
-	#Composition d'une capacité active : clé =  "Operateur|StatsChangees|TypeCiblesOuSelf|LocalisationCibles(Around-1 = self, Around-n = autour à n cases, L-n = ligne de n cases, EW-1 = partout, EW-n = partout pour un nombre de cibles défini)|formeCiblage(une case C-1, carré de taille n C-n, une ligne de n largeur et m longuer l-n-m etc.. + possibilité de faire des &)" -> valeur = [nombreUtilisationsRestantes,durée(-1= infini),valeurs pour chaque stat ] 
+	#Composition d'une capacité active : clé =  "Operateur|StatsChangees|TypeCiblesOuSelf|LocalisationCibles(Around-1 = self, Around-n = autour à n cases, L-n = ligne de n cases, EW-1 = partout, EW-n = partout pour un nombre de cibles défini)|formeCiblage(une case C-1, carré de taille n C-n, une ligne de n largeur et m longuer l-n-m etc.. + possibilité de faire des &)" -> valeur = [nombreUtilisationsRestantes,durée(-1= infini), DescriptionCapa->s'ajoute à la liste de descript des capacités, valeurs pour chaque stat ] 
+
+##Liste contenant les descriptions de toutes les capacités d'une unité
+@export var descriptionsCapa : Array 

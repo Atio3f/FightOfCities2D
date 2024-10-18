@@ -24,18 +24,18 @@ func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJ
 	var capasCat : Dictionary = uniteAssociee.capacites["ActiveCapacitiesBased"]
 	
 	for capacite : String in capasCat :
-		var bouttonCapa : Button = bouttonCapaBase.instantiate()
+		var boutonCapa : Button = bouttonCapaBase.instantiate()
 		var descrip : Array = capacite.split("|", false)
 		for bout in descrip :
 			print(bout)
-			bouttonCapa.text += bout
+			boutonCapa.text += bout
 		#print("YEYE %s" % [capacite])
 		
-		bouttonCapa.text = capacite.replace("|", "") + " /" + str(capasCat[capacite][0])
-		bouttonCapa.menuCapa = self
-		%ListeCapaDispos.add_child(bouttonCapa)
+		boutonCapa.text += capacite.replace("|", "") + " /" + str(capasCat[capacite][0])
+		boutonCapa.menuCapa = self
+		%ListeCapaDispos.add_child(boutonCapa)
 		#%ContainerCapa.add_child(labelCapa)
-		bouttonCapa.placement(self, pointeurJoueur, capacite, capasCat[capacite])
+		boutonCapa.placement(self, pointeurJoueur, capacite, capasCat[capacite])
 		
 		#%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
 	

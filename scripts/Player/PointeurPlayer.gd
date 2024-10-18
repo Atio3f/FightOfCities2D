@@ -456,7 +456,7 @@ func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
 		actionCells = get_actions_cells(uniteAssociee.case, capaPortee)
 	capaciteActuelle = capaciteActivee
 	visuZoneCapa.drawZoneAction(actionCells)	#Délocaliser dans declenchementCapaActive
-	positionSouris
+	
 	pass
 
 
@@ -480,7 +480,7 @@ func declenchementCapaActive(case : Vector2i) -> void :
 		match(descripCapa[0]):
 			"+" : 
 				
-				cible.boostStats(descripCapa[1].split("&", true),contenuCapa.slice(2))
+				cible.boostStats(descripCapa[1].split("&", true),contenuCapa.slice(3))
 				
 	
 	
