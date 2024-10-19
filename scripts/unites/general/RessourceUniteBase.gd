@@ -40,6 +40,10 @@ const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monte
 											# entre les différents éléments de typeDeplacementPossible
 
 @export var description : String	#Description détaillée de l'unité(blague ou truc sérieux à toi de voir !)
+
+
+@export var listeCapacites : Array	#Contient toutes les capacités brutes de l'unité avant d'être calculer pour être transmises dans le dictionnaire capacité
+
 ##Capacités est un dictionnaire avec comme clé le moment où la capacité est utilisée et comme valeur une liste de toutes les capacités de l'unité :
 	#Précision pour les clés :
 	#PlacementBased = tout ce qui s'active lorsque l'unité est placée
@@ -53,7 +57,7 @@ const paliersNiveaux = [0, 100, 250, 9999]	#L'expérience nécessaire pour monte
 	#DefenseBased = tout ce qui s'active lorsque l'unité prend des dégâts ou se fait attaquer
 	#LevelUpBased = tout ce qui s'active lorsque l'unité monte de niveau
 	#DeathBased = tout ce qui s'active quand l'unité meurt
-	
+
 @export var capacites : Dictionary = {
 "PlacementBased" : {},
 "PermanentBuff" : {}, 

@@ -3,6 +3,7 @@ extends Path2D
 class_name unite
 
 @export var ressource : uniteRessource	#On importe en ressource les stats de l'unité
+#@onready var capacites : gestionnaireCapacites = $GestionCapacites
 
 @onready var sprite : Sprite2D = $ElementsUnite/SpriteUnite
 @onready var contourSelec : Sprite2D = $ElementsUnite/ContourSelection
