@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="uniteRessource" load_steps=3 format=3 uid="uid://bsk2sk22dc3mh"]
+[gd_resource type="Resource" script_class="uniteRessource" load_steps=4 format=3 uid="uid://bsk2sk22dc3mh"]
 
 [ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="1_5vvtb"]
 [ext_resource type="Script" path="res://scripts/unites/general/RessourceUniteBase.gd" id="1_tmmjy"]
+[ext_resource type="Resource" uid="uid://bfd0uyip0uht1" path="res://Ressources/capacites/permaBuffCapacites/monkey/Monkey/monkeyPermaBuffCapacite.tres" id="2_d3pla"]
 
 [resource]
 script = ExtResource("1_tmmjy")
@@ -27,23 +28,18 @@ XP = 0.0
 typeDeplacementPossible = ["marche"]
 typeDeplacementActuel = "marche"
 description = "Un singe basique qui encourage les autres singes à donner le meilleur d'eux"
+listeCapacites = [ExtResource("2_d3pla")]
 capacites = {
 "ActiveCapacitiesBased": {},
 "AttackBased": {},
-"DeathBased": {
-"-|P|Monkey": 1,
-"-|V|Monkey": 1
-},
+"DeathBased": {},
 "DefenseBased": {},
 "ItemBased": {},
 "KillBased": {},
 "LevelUpBased": {},
 "MovementBased": {},
 "PermanentBuff": {},
-"PlacementBased": {
-"+|P|Monkey": 1,
-"+|V|Monkey": 1
-},
+"PlacementBased": {},
 "TurnBased": {}
 }
 descriptionsCapa = []

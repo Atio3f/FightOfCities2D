@@ -29,16 +29,16 @@ func apercuInfosUnite(uniteAssociee : unite, pointeurJoueur : Node2D, visibilite
 
 	
 	
-	for catCapacite : String in uniteAssociee.capacites :	#On défile les catégories des capacités
-		var capasCat : Dictionary = uniteAssociee.capacites[catCapacite]
-		if catCapacite != "ActiveCapacitiesBased" :	#Le système est différent pour les capa actives
-			for capacite : String in uniteAssociee.capacites[catCapacite] :
-				var labelCapa : RichTextLabel = capaciteTexte.instantiate()
-				print("YEYE %s" % [capacite])
-				
-				labelCapa.append_text(capacite.replace('|', ''))
-				%ContainerCapa.add_child(labelCapa)
-				labelCapa.placement(capacite, capasCat[capacite])
+	for capaciteI : capacite in uniteAssociee.capacites.getCapasDescription() :	#On défile les catégories des capacités
+		
+		
+		
+		var labelCapa : capaciteTexte = capaciteTexte.instantiate()
+		print("YEYE %s" % [capacite])
+		
+		labelCapa.append_text(capaciteI.nom)
+		%ContainerCapa.add_child(labelCapa)
+		labelCapa.placement(capaciteI)
 			
 		
 	

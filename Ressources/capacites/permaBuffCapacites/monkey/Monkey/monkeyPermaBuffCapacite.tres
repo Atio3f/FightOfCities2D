@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="permaBuffCapacite" load_steps=4 format=3 uid="uid://bfd0uyip0uht1"]
+
+[ext_resource type="Resource" uid="uid://8yxmpaguybpn" path="res://Ressources/capacites/permaBuffCapacites/monkey/Monkey/monkeyPermaBuffCapacite--Placement.tres" id="1_qcf8b"]
+[ext_resource type="Resource" uid="uid://duhf0rbbuhhcd" path="res://Ressources/capacites/permaBuffCapacites/monkey/Monkey/monkeyPermaBuffCapacite--Mort.tres" id="2_4a1v5"]
+[ext_resource type="Script" path="res://scripts/unites/general/capacitesClasses/permaBuffCapacite.gd" id="3_jrlln"]
+
+[resource]
+script = ExtResource("3_jrlln")
+capaciteesAssociees = [ExtResource("1_qcf8b"), ExtResource("2_4a1v5")]
+nom = "Boost P et V Monkey"
+descriptionCapa = "Donne +1P et +1V à tous les Monkey"
+operateur = "+"
+statsAffectees = {
+"P": 1,
+"V": 1
+}
+typeCible = ["Monkey"]
+typeCapacite = "PermanentBuff"

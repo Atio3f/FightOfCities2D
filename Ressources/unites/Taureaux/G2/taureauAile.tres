@@ -27,6 +27,7 @@ XP = 0.0
 typeDeplacementPossible = ["vole"]
 typeDeplacementActuel = "vole"
 description = ""
+listeCapacites = []
 capacites = {
 "ActiveCapacitiesBased": {},
 "AttackBased": {},
@@ -40,3 +41,4 @@ capacites = {
 "PlacementBased": {},
 "TurnBased": {}
 }
+descriptionsCapa = []

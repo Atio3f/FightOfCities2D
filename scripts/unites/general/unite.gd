@@ -3,7 +3,7 @@ extends Path2D
 class_name unite
 
 @export var ressource : uniteRessource	#On importe en ressource les stats de l'unité
-#@onready var capacites : gestionnaireCapacites = $GestionCapacites
+@onready var capacites : gestionnaireCapacites = $GestionCapacites
 
 @onready var sprite : Sprite2D = $ElementsUnite/SpriteUnite
 @onready var contourSelec : Sprite2D = $ElementsUnite/ContourSelection
@@ -58,14 +58,14 @@ var pv_temporaires : int
 		elif niveau - value == 1 :	#On retire les gains d'un niveau lorsqu'on le perd
 			DR -= niveau
 			pv_max = pv_max / 1.5
-			for capa in capacites["LevelUpBased"] :	#Servira lorsqu'il y aura des unités qui se boost à chaque montée de niveau pour leur retirer en cas de perte de niveau
+			for capa in capacites.getCapasFrom("LevelUpBased")  :	#Servira lorsqu'il y aura des unités qui se boost à chaque montée de niveau pour leur retirer en cas de perte de niveau
 				pass
 			niveau = value
 		else :				#On rajoute les gains d'un niveau lorsqu'on en gagne un
 			niveau = value
 			pv_max = pv_max * 1.5
 			DR += niveau
-			for capa in capacites["LevelUpBased"] :		#Servira lorsqu'il y aura des unités qui se boost à chaque montée de niveau
+			for capa in capacites.getCapasFrom("LevelUpBased") :		#Servira lorsqu'il y aura des unités qui se boost à chaque montée de niveau
 				pass
 				
 const paliersNiveaux = [0, 100, 250, 99999]	#L'expérience nécessaire pour monter au niveau 2(100) puis pour monter au niveau 3(250)
@@ -100,7 +100,7 @@ var vitesseRestante : int :
 			vitesseRestante = V
 		else:
 			vitesseRestante = value
-var capacites : Dictionary	#Dictionnaire des capacités de l'unité(voir RessourceUniteBase pour comprendre la structure du dico)
+#var capacites : Dictionary	#Dictionnaire des capacités de l'unité(voir RessourceUniteBase pour comprendre la structure du dico) OBSOLETE
 var description : String	#String contenant la description de l'unité(voir ressourceUnite)
 
 
@@ -162,7 +162,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 	
-func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, newRessource : Resource) -> void:
+func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, newRessource : uniteRessource) -> void:
 	#print(Equipe)
 	ressource = newRessource
 	typeCarte = ressource.typeCarte
@@ -178,18 +178,19 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	#print(Global._unitsTeam[Equipe].has(race))
 	if !Global._unitsTeam[Equipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
 		Global._unitsTeam[Equipe][race] = []
-	capacites = ressource.capacites
+		
+	capacites.initialisationCapas(ressource.listeCapacites)
 	#print(Global._unitsTeam)
-	if ressource.capacites["PlacementBased"] != null :	#On check
-		for capa in ressource.capacites["PlacementBased"]:
-			var capaCible : PackedStringArray = capa.split("|", false)
-			match(capa[0]):
-				"+":	#Check si le premier caractère de la capacité est un +
-					
-					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],capacites["PlacementBased"][capa])
-				"-":	#Check si le premier caractère de la capacité est un -
-					
-					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],-(capacites["PlacementBased"][capa]))
+	print(capacites.capacites)
+	for capa : capacite in capacites.getCapasFrom("PlacementBased"):
+		
+		match(capa.operateur):
+			"+":	#Check si le premier caractère de la capacité est un +
+				
+				Global.buffEquipe(couleurEquipe, "SpawnBuff", capa.statsAffectees, capa.typeCible, 1)
+			"-":	#Check si le premier caractère de la capacité est un -
+				
+				Global.buffEquipe(couleurEquipe, "SpawnBuff", capa.statsAffectees, capa.typeCible, -1)
 
 	pv_max = ressource.pv_max
 	if ressource.pv_actuels > 0:	#Si les pv restants sont inférieurs ou égaux à 0 alors l'unité va mourir direct
@@ -223,7 +224,6 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	
 	Global._unitsTeam[couleurEquipe][race].append(self)
 	imageUnit = ressource.image
-	capacites = ressource.capacites
 	description = ressource.description
 	
 func deplacement(nouvellePosition : Vector2) -> void:
@@ -270,7 +270,12 @@ func walk_along(path: PackedVector2Array) -> void:
 
 
 func boostStat(statUp : String, valeur : int):
-	
+	if(statUp == "P") :
+		print("BOOST STAT")
+		print(valeur)
+		print(P)
+		print(self.get(statUp) + valeur)
+		print("A CORRIGER")
 	
 	match(statUp):
 		"V":
@@ -282,7 +287,7 @@ func boostStat(statUp : String, valeur : int):
 				set("vitesseRestante", self.get(statUp) + valeur)
 		
 		"_":
-			set(statUp, self.get(statUp) + valeur)
+			set(StringName(statUp), self.get(statUp) + valeur)
 
 func boostStats(statsUp : Array, valeurs : Array):
 	var i : int = 0		#Compteur num élément pour obtenir sa valeur
@@ -316,7 +321,7 @@ signal signalFinAttaque()	#Potentiellement rajouter des infos sur si un kill a �
 
 func attaque(uniteAttaque : Node2D) -> Signal:
 	var totalDegats : int = P	#Les dégâts de base sont égaux à P
-	for capa in capacites["AttackBased"]:
+	for capa in capacites.getCapasFrom("AttackBased"):
 		pass
 	
 	uniteAttaque.estAttaque(self, totalDegats)	#On envoie les infos de dégâts
@@ -368,7 +373,7 @@ func subirDegats(degats : int, typeDegatsAttaquant : String) -> int :
 
 func getKill(unitTuee : unite) -> void:
 	XP = XP + unitTuee.pv_max + (2 * S)
-	for capa in capacites["KillBased"]:
+	for capa in capacites.getCapasFrom("KillBased"):
 		pass
 
 #Fonction qui s'active lorsque l'unité est sélectionnée
@@ -389,17 +394,17 @@ func mort(attaquant : unite) -> void :
 	Global._units.erase(case)	#On supprime l'unité du dictionnaire général des unités
 	Global._unitsTeam[couleurEquipe][race].erase(self)	#On supprime l'unité du dictionnaire trié par équipe/race
 	
-	if capacites["DeathBased"] != null :	#On check
-		for capa in capacites["DeathBased"]:
-			var capaCible : PackedStringArray = capa.split("|", false)
-			match(capa[0]):
-				"+":	#Check si le premier caractère de la capacité est un +
-					
-					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],capacites["DeathBased"][capa])
-				"-":	#Check si le premier caractère de la capacité est un -
-					
-					Global.buffEquipe(couleurEquipe, "SpawnBuff", capaCible[1], capaCible[2],-(capacites["DeathBased"][capa]))
 	
+	for capa : capacite in capacites.getCapasFrom("DeathBased"):
+		
+		match(capa.operateur):
+			"+":	#Check si le premier caractère de la capacité est un +
+				
+				Global.buffEquipe(couleurEquipe, "SpawnBuff", capa.statsAffectees, capa.typeCible, 1)
+			"-":	#Check si le premier caractère de la capacité est un -
+				
+				Global.buffEquipe(couleurEquipe, "SpawnBuff", capa.statsAffectees, capa.typeCible, -1)
+
 	if(noeudsTempIndic.get_child_count(false)!=0):	#Si il reste des éléments à afficher dans les indicateurs de dégâts on lance un chrono de 1sec pour attendre
 		_path_follow.visible = false	#On retire tous les éléments de l'unité pour ne laisser que les éléments temporaires de visible
 		await get_tree().create_timer(1.2).timeout

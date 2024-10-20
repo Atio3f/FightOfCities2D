@@ -10,34 +10,35 @@ func _input(event) -> void:
 		queue_free()
 
 
-func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJoueur : Node2D, visibilite : bool) -> void:
-	if(!visibilite):
-		visible = false
-		joueur = null
-		return
-	
-	joueur = pointeurJoueur
-	interface = interfaceUnite
-	
-	
-	#On ne défile que la catégorie des capacités actives
-	var capasCat : Dictionary = uniteAssociee.capacites["ActiveCapacitiesBased"]
-	
-	for capacite : String in capasCat :
-		var boutonCapa : Button = bouttonCapaBase.instantiate()
-		var descrip : Array = capacite.split("|", false)
-		for bout in descrip :
-			print(bout)
-			boutonCapa.text += bout
-		#print("YEYE %s" % [capacite])
-		
-		boutonCapa.text += capacite.replace("|", "") + " /" + str(capasCat[capacite][0])
-		boutonCapa.menuCapa = self
-		%ListeCapaDispos.add_child(boutonCapa)
-		#%ContainerCapa.add_child(labelCapa)
-		boutonCapa.placement(self, pointeurJoueur, capacite, capasCat[capacite])
-		
-		#%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
+#A REFAIRE
+#func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJoueur : Node2D, visibilite : bool) -> void:
+	#if(!visibilite):
+		#visible = false
+		#joueur = null
+		#return
+	#
+	#joueur = pointeurJoueur
+	#interface = interfaceUnite
+	#
+	#
+	##On ne défile que la catégorie des capacités actives
+	#var capasCat : Array = uniteAssociee.capacites.getCapasFrom("ActiveCapacitiesBased")
+	#
+	#for capacite : String in capasCat :
+		#var boutonCapa : Button = bouttonCapaBase.instantiate()
+		#var descrip : Array = capacite.split("|", false)
+		#for bout in descrip :
+			#print(bout)
+			#boutonCapa.text += bout
+		##print("YEYE %s" % [capacite])
+		#
+		#boutonCapa.text += capacite.replace("|", "") + " /" + str(capasCat[capacite][0])
+		#boutonCapa.menuCapa = self
+		#%ListeCapaDispos.add_child(boutonCapa)
+		##%ContainerCapa.add_child(labelCapa)
+		#boutonCapa.placement(self, pointeurJoueur, capacite, capasCat[capacite])
+		#
+		##%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
 	
 
 #Fonction appelée par bouttonCapa qui donne la capacité qui a été choisie pour être utilisée et de quel pointeurJoueur il vient

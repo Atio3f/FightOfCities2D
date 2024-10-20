@@ -23,6 +23,31 @@ Global="*res://scripts/config/global.gd"
 
 enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Ressources/capacites/": "blue",
+"res://Ressources/player/": "blue",
+"res://Ressources/terrain/": "blue",
+"res://Ressources/unites/": "blue",
+"res://assets/interface/": "blue",
+"res://assets/sprites/": "blue",
+"res://assets/tiles/": "blue",
+"res://assets/visualisation/": "blue",
+"res://nodes/Unite/": "blue",
+"res://nodes/interface/": "blue",
+"res://nodes/joueur/": "blue",
+"res://nodes/tilemaps/": "blue",
+"res://scenes/inventaire/": "blue",
+"res://scenes/popUps/": "blue",
+"res://scripts/Player/": "blue",
+"res://scripts/config/": "blue",
+"res://scripts/gridmap/": "blue",
+"res://scripts/interface/": "blue",
+"res://scripts/unites/": "blue",
+"res://scripts/unites/general/capacitesClasses/": "orange"
+}
+
 [input]
 
 left={

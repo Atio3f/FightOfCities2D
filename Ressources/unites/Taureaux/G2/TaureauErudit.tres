@@ -27,10 +27,9 @@ XP = 0.0
 typeDeplacementPossible = ["marche"]
 typeDeplacementActuel = "marche"
 description = "Un vieux taureau qui a fini par se consacrer à instruire ses congénères."
+listeCapacites = []
 capacites = {
-"ActiveCapacitiesBased": {
-"+|XP&S|Taureau|EW-1": [3, -1, "Donne 2S et de l'expérience à l'un de vos taureaux", 40, 2]
-},
+"ActiveCapacitiesBased": {},
 "AttackBased": {},
 "DeathBased": {},
 "DefenseBased": {},

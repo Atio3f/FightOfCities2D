@@ -446,7 +446,7 @@ func get_actions_cells(case : Vector2i, capaPortee : Array) -> Array :
 	return action_cells.filter(func(i): return i not in real_actions_cells)
 	
 
-
+#PAS FINI A RESTRUCTURER !!!
 func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
 	var keyCapa : Array = capaciteActivee.keys()
 	var capaPortee : Array = (keyCapa[0].split("|", true))[3].split("-", true)
@@ -459,7 +459,7 @@ func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
 	
 	pass
 
-
+#PAS FINI A RESTRUCTURER !!!
 func declenchementCapaActive(case : Vector2i) -> void :
 	print("DECLENCHEMENT CAPACITE")
 	var descripCapa : Array = capaciteActuelle.keys()[0].split("|", true)	#Liste de la descrip de la capacité
@@ -496,6 +496,8 @@ func declenchementCapaActive(case : Vector2i) -> void :
 	_deselect_active_unit()
 	_clear_active_unit()
 
+
+#PAS FINI A RESTRUCTURER !!!
 ##Renvoie toutes les unités et bâtiments affectés par la capacité
 func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -> Array :
 	##Déclaration liste retournée

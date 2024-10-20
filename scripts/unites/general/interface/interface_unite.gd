@@ -67,7 +67,7 @@ func _on_menu_stats_pressed():
 		noeudsTempInfosStats.add_child(infosUnit)
 	
 
-func recuSelectionCapa(capaciteActivee : Dictionary, pointeurJoueur : Node2D):
+func recuSelectionCapa(capaciteActivee : Array, pointeurJoueur : Node2D):
 	print(capaciteActivee)
 	pointeurJoueur.capaActives(capaciteActivee, _entiteeAssociee)
 	pass

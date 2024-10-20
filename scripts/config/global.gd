@@ -68,22 +68,28 @@ func nextTurn() -> void:
 	if couleurTour >= ordreCouleur.size():
 		couleurTour = 0
 
-
-func buffEquipe(couleurEquipe : String, categorie : String, statUp : String , cible : String, valeur : int) -> void :		#cible->Monkey, Humain, All..., valeur
-	var indiceStatUp : int
-	indiceStatUp = ordreBuffs.find(statUp)
-	print(indiceStatUp)
+#Opérateur vaut -1 pour faire du négatif ou 1 pour faire du positif
+func buffEquipe(couleurEquipe : String, categorie : String, statsUp : Dictionary , cible : Array, operateur : int) -> void :		#cible->Monkey, Humain, All..., valeur
+	var valeur : int
 	
-	equipesData[couleurEquipe][categorie][cible][indiceStatUp] += valeur
-	if cible != "All" :
-		
-		for unité in _unitsTeam[couleurEquipe][cible] :
-			
-			unité.boostStat(statUp, valeur)
-	else :
-		for i in _unitsTeam[couleurEquipe] :
-			
-			
-			for unité in _unitsTeam[couleurEquipe][i] :
+	for stat : String in statsUp :
+		valeur = statsUp[stat] * operateur
+		print("---------")
+		print(stat)
+		if cible == [] :		#Correspond aux == "All" d'avant
+			equipesData[couleurEquipe][categorie]["All"][ordreBuffs.find(stat)] += valeur
+			for unité in _unitsTeam[couleurEquipe] :
 				
-				unité.boostStat(statUp, valeur)
+				unité.boostStat(stat, valeur)
+		
+		
+		else :
+			for race : String in cible :	#Parcourt les races ciblées par la capacité
+				equipesData[couleurEquipe][categorie][race][ordreBuffs.find(stat)] += valeur	#On ajoute le bonus pour chaque race ciblée
+				for uniteAff : unite in _unitsTeam[couleurEquipe][race] :
+					print("------****--")
+					print(uniteAff.P)
+					
+					print(valeur)
+					uniteAff.boostStat(stat, valeur)
+					print(uniteAff.P)
