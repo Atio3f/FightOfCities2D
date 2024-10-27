@@ -35,7 +35,7 @@ var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacit�
 @export var grid: Grid
 const MAX_VALUE: int = 99999
 
-var capaciteActuelle : Dictionary = {}
+var capaciteActuelle : activeCapacite = null
 var caseAttaque : Vector2
 
 func _ready() -> void:
@@ -276,7 +276,7 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 			visuZoneCapa.clearNumbers() # Clear l'affichage de la zone de la capacité
 		if Global._units.has(new_cell) and Selection == null:
 			_hover_display(new_cell)
-	elif(capaciteActuelle != {}):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
+	elif(capaciteActuelle != null):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
 									#Affiche la zone affectée par la capa
 		hoverZoneCapa(new_cell, capaciteActuelle)
 
@@ -299,7 +299,7 @@ func _hover_display(cell: Vector2i) -> void:
 	print(Time.get_ticks_msec() - time)
 
 ## Fonction pour afficher la zone affectée par la capacité active
-func hoverZoneCapa(cell: Vector2i, capacite : Dictionary) -> void:
+func hoverZoneCapa(cell: Vector2i, capaciteI : activeCapacite) -> void:
 	
 	
 	##On clear les affichages des mouvements précédents avant d'en remettre sans toucher à la zone de la capa Active
@@ -307,23 +307,23 @@ func hoverZoneCapa(cell: Vector2i, capacite : Dictionary) -> void:
 	visuActions.clearNumbers()
 	
 	## Obtenir les cases affectées selon la forme et la taille ciblée par la capacité
-	zoneCells = getCellsZoneCapa(cell, capacite)
+	zoneCells = getCellsZoneCapa(cell, capaciteI)
 	## Draw out the walkable and attackable cells now
 	
 	visuActions.draw_attackable_cells(zoneCells)
 	
-func getCellsZoneCapa(cell : Vector2i, capacite : Dictionary) -> Array :
+func getCellsZoneCapa(cell : Vector2i, capaciteI : activeCapacite) -> Array :
 	var cells : Array = []
-	var keyCapa : Array = capacite.keys()
-	var capaPortee : Array = (keyCapa[0].split("|", true))[3].split("-", true)
+	
+	
 	
 	##Check de la forme d'effet de la capa
-	match(capaPortee[0]) :
+	match(capaciteI.typeZone) :
 		"EW" : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
 			cells.append(cell)
 		"C" :
 			var i = 0
-			while(i < capaPortee[1]):
+			while(i < capaciteI.zoneEffet):
 				#cells.append()
 				i += 1
 			
@@ -352,7 +352,7 @@ func cursorPressed(cell: Vector2, typeClick : String) -> void:
 				print("BON")
 				_deselect_active_unit()
 				_clear_active_unit()
-		elif(capaciteActuelle != {} and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
+		elif(capaciteActuelle != null and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
 			declenchementCapaActive(cellI)
 
 ## Selects the unit in the `cell` if there's one there.
@@ -425,15 +425,15 @@ func _clear_active_unit() -> void:
 	print("_clear_active_unit()")
 	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null
-	capaciteActuelle = {}	#On verra plus tard si ça pose pas de problème
+	capaciteActuelle = null	#On verra plus tard si ça pose pas de problème
 	_walkable_cells.clear()
 
 
 
 
 #Attributs : case <=> case de l'unité ; 
-func get_actions_cells(case : Vector2i, capaPortee : Array) -> Array :
-	var distance : int = int(capaPortee[1])		#distance nombre de cases de diamètre <=> unit.range 
+func get_actions_cells(case : Vector2i, capaPortee : int) -> Array :
+	var distance : int = capaPortee		#distance nombre de cases de diamètre <=> unit.range 
 	var action_cells = []
 	
 	var real_actions_cells = _dijkstra(case, distance * 2, false, "vole")	#Distance * 2 avec vole équivaut à un V par case 
@@ -447,13 +447,13 @@ func get_actions_cells(case : Vector2i, capaPortee : Array) -> Array :
 	
 
 #PAS FINI A RESTRUCTURER !!!
-func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
-	var keyCapa : Array = capaciteActivee.keys()
-	var capaPortee : Array = (keyCapa[0].split("|", true))[3].split("-", true)
-	if(capaPortee[0] == "EW") : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
+func capaActives(capaciteActivee : activeCapacite, uniteAssociee : Node2D) -> void:
+	#var keyCapa : Array = capaciteActivee.keys()
+	var capaPortee : String = capaciteActivee.typeZone
+	if(capaciteActivee.typeZone == "EW") : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
 		actionCells = grid.toutesCases()
 	else :
-		actionCells = get_actions_cells(uniteAssociee.case, capaPortee)
+		actionCells = get_actions_cells(uniteAssociee.case, capaciteActivee.zoneEffet)
 	capaciteActuelle = capaciteActivee
 	visuZoneCapa.drawZoneAction(actionCells)	#Délocaliser dans declenchementCapaActive
 	

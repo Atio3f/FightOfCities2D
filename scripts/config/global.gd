@@ -74,8 +74,8 @@ func buffEquipe(couleurEquipe : String, categorie : String, statsUp : Dictionary
 	
 	for stat : String in statsUp :
 		valeur = statsUp[stat] * operateur
-		print("---------")
-		print(stat)
+		#print("---------")
+		#print(stat)
 		if cible == [] :		#Correspond aux == "All" d'avant
 			equipesData[couleurEquipe][categorie]["All"][ordreBuffs.find(stat)] += valeur
 			for unité in _unitsTeam[couleurEquipe] :
@@ -87,9 +87,6 @@ func buffEquipe(couleurEquipe : String, categorie : String, statsUp : Dictionary
 			for race : String in cible :	#Parcourt les races ciblées par la capacité
 				equipesData[couleurEquipe][categorie][race][ordreBuffs.find(stat)] += valeur	#On ajoute le bonus pour chaque race ciblée
 				for uniteAff : unite in _unitsTeam[couleurEquipe][race] :
-					print("------****--")
-					print(uniteAff.P)
 					
-					print(valeur)
 					uniteAff.boostStat(stat, valeur)
-					print(uniteAff.P)
+	

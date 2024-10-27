@@ -10,12 +10,6 @@ class_name activeCapacite
 @export var nombreUtilisationsMax : int
 @export var nombreUtilisationsRestantes : int #Ne pas entrer + que dans nombreUtilisationsMax
 
-func _init(newNom : String, newDescription : String, newOperateur : String, newStatsAffectees : Dictionary, newTypeCible : Array, newTypeZone : String, newZoneEffet : int, newNombreUtilisationsMax : int, newNombreUtilisationsRestantes : int):
-	typeZone = newTypeZone
-	zoneEffet = newZoneEffet
-	nombreUtilisationsMax = newNombreUtilisationsMax
-	nombreUtilisationsRestantes = newNombreUtilisationsRestantes
-	super._init(newNom, newDescription, newOperateur, newStatsAffectees, newTypeCible, "ActiveCapacitiesBased")
 
 func setNombreUtilisationsRestantes(valeur : int):
 	nombreUtilisationsRestantes = min(nombreUtilisationsMax, valeur)

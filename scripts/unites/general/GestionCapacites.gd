@@ -21,13 +21,13 @@ var capacites : Dictionary = {
 
 
 func initialisationCapas(newListeCapa : Array) -> void:
-	
 	for capa : capacite in newListeCapa :
 		print("TEST")
 		print(capa.typeCapacite)
 		if capa.typeCapacite == "PermanentBuff":
 			addCapas(capa.capaciteesAssociees)
 		listeCapas.append(capa)
+		capacites[capa.typeCapacite].append(capa)
 
 func addCapas(newCapacites : Array) -> void:
 	
@@ -36,6 +36,7 @@ func addCapas(newCapacites : Array) -> void:
 
 ##Renvoie les capacités de la catégorie mise en entrée
 func getCapasFrom(categorie : String) -> Array:
+	print(capacites)
 	return capacites[categorie]
 
 ##Renvoie la liste des capacités décrites

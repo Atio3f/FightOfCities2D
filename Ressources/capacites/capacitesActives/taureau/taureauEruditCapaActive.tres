@@ -6,11 +6,14 @@
 script = ExtResource("1_lgxbu")
 typeZone = "EW"
 zoneEffet = -1
-nombreUtilisationsMax = 5
-nombreUtilisationsRestantes = 0
-nom = ""
-descriptionCapa = ""
-operateur = ""
-statsAffectees = {}
-typeCible = []
+nombreUtilisationsMax = 3
+nombreUtilisationsRestantes = 3
+nom = "Partage du savoir"
+descriptionCapa = "Donne +2S et +40XP à un taureau allié"
+operateur = "+"
+statsAffectees = {
+"S": 2,
+"XP": 40
+}
+typeCible = ["Taureau"]
 typeCapacite = "ActiveCapacitiesBased"

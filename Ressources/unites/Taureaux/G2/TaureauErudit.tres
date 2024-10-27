@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="uniteRessource" load_steps=3 format=3 uid="uid://c6aqhm5thhdnr"]
+[gd_resource type="Resource" script_class="uniteRessource" load_steps=4 format=3 uid="uid://c6aqhm5thhdnr"]
 
 [ext_resource type="Texture2D" uid="uid://dd4ngbqcaw7up" path="res://assets/sprites/taureaux/taureauRandom(32x32).png" id="1_2hdts"]
 [ext_resource type="Script" path="res://scripts/unites/general/RessourceUniteBase.gd" id="1_hxb3h"]
+[ext_resource type="Resource" uid="uid://by6jc2c6kbjfw" path="res://Ressources/capacites/capacitesActives/taureau/taureauEruditCapaActive.tres" id="2_x7h2j"]
 
 [resource]
 script = ExtResource("1_hxb3h")
@@ -27,7 +28,7 @@ XP = 0.0
 typeDeplacementPossible = ["marche"]
 typeDeplacementActuel = "marche"
 description = "Un vieux taureau qui a fini par se consacrer à instruire ses congénères."
-listeCapacites = []
+listeCapacites = [ExtResource("2_x7h2j")]
 capacites = {
 "ActiveCapacitiesBased": {},
 "AttackBased": {},

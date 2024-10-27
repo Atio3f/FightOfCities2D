@@ -34,7 +34,7 @@ func apercuInfosUnite(uniteAssociee : unite, pointeurJoueur : Node2D, visibilite
 		
 		
 		var labelCapa : capaciteTexte = capaciteTexte.instantiate()
-		print("YEYE %s" % [capacite])
+		#print("YEYE %s" % [capacite])
 		
 		labelCapa.append_text(capaciteI.nom)
 		%ContainerCapa.add_child(labelCapa)

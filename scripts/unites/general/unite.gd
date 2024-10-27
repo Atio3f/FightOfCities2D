@@ -72,9 +72,6 @@ const paliersNiveaux = [0, 100, 250, 99999]	#L'expérience nécessaire pour mont
 
 @export var XP : float :#L'expérience obtenue par l'unité (Le calcul est : dégâts infligés + S lors d'une attaque, la moitié de ça lorsqu'elle prend des dégâts et pv unité tuée + 2S lors d'un kill
 	set(value):
-		if(race == "taureaux"):
-			print("EXPE")
-			print(value)
 		
 		while (value > paliersNiveaux[niveau + 1]):	#Tant que l'unité peut monter de niveau avec l'experience obtenue on continue
 		
@@ -178,10 +175,10 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	#print(Global._unitsTeam[Equipe].has(race))
 	if !Global._unitsTeam[Equipe].has(race) : #On crée une catégorie pour la race de l'unité dans l'équipe si jamais elle n'existe pas
 		Global._unitsTeam[Equipe][race] = []
-		
+	
 	capacites.initialisationCapas(ressource.listeCapacites)
 	#print(Global._unitsTeam)
-	print(capacites.capacites)
+	
 	for capa : capacite in capacites.getCapasFrom("PlacementBased"):
 		
 		match(capa.operateur):
@@ -270,13 +267,7 @@ func walk_along(path: PackedVector2Array) -> void:
 
 
 func boostStat(statUp : String, valeur : int):
-	if(statUp == "P") :
-		print("BOOST STAT")
-		print(valeur)
-		print(P)
-		print(self.get(statUp) + valeur)
-		print("A CORRIGER")
-	
+
 	match(statUp):
 		"V":
 			if(valeur < 0) :	#Evite que l'on perde un VitesseRestante à cause des limites faites du setter de V
@@ -286,7 +277,7 @@ func boostStat(statUp : String, valeur : int):
 				set(statUp, self.get(statUp) + valeur)
 				set("vitesseRestante", self.get(statUp) + valeur)
 		
-		"_":
+		_:
 			set(StringName(statUp), self.get(statUp) + valeur)
 
 func boostStats(statsUp : Array, valeurs : Array):

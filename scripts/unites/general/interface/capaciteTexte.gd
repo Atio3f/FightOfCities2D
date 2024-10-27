@@ -14,6 +14,8 @@ func placement(capaciteI : capacite) -> void:
 	
 	text = capaciteI.nom
 	%LabelExplications.text = capaciteI.descriptionCapa
+	if capaciteI.typeCapacite == "ActiveCapacitiesBased":
+		%LabelExplications.text += " %d/%d" % [capaciteI.nombreUtilisationsRestantes, capaciteI.nombreUtilisationsMax]
 	%LabelExplications.position = Vector2(position.x - (size.x/1.9), position.y - 21)
 
 
