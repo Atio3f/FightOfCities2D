@@ -1,7 +1,7 @@
 extends Node2D
 
 var aSelectionne : bool = false 
-var Selection : Node2D		#Contiendra l'unité sélectionné
+var Selection : cartePlacable		#Contiendra l'unité sélectionné
 var target : Node2D
 
 var positionSouris : Vector2i
@@ -37,6 +37,8 @@ const MAX_VALUE: int = 99999
 
 var capaciteActuelle : activeCapacite = null
 var caseAttaque : Vector2
+var attaqueEnAttente : bool = false
+
 
 func _ready() -> void:
 	
@@ -346,12 +348,20 @@ func cursorPressed(cell: Vector2, typeClick : String) -> void:
 			
 			elif (cell in _attackable_cells and Selection.attaquesRestantes > 0 and Global._units.has(cellI) and Global._units[cellI].couleurEquipe != Selection.couleurEquipe):	#On vérifie qu'il y a une unité sur la case sélec, que l'unité qu'on a a encore des attaques à faire puis on vérifie que leurs couleurs sont différentes
 				#print(Global._units)
+				var casesAutourTarget : Array = _flood_fill(cell, Selection.range)
+				print(casesAutourTarget)
+				print(Selection.case)
+				if casesAutourTarget.has(Vector2(Selection.case)) :
+					Selection.attaque(Global._units[cellI])
+					print("BON")
+					_deselect_active_unit()
+					_clear_active_unit()
+				else :
+					print("YRYREY")
+					attaqueEnAttente = true
+					visuActions.draw_attackable_cells([cellI])	#La seule case rouge affichée est celle de l'unité(à changer quand y'aura des attaques de zone)
+					getTilesMouvementForAttaque(casesAutourTarget)
 				
-				Selection.attaque(Global._units[cellI])
-				
-				print("BON")
-				_deselect_active_unit()
-				_clear_active_unit()
 		elif(capaciteActuelle != null and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
 			declenchementCapaActive(cellI)
 
@@ -459,17 +469,17 @@ func capaActives(capaciteActivee : activeCapacite, uniteAssociee : Node2D) -> vo
 	
 	pass
 
-#PAS FINI A RESTRUCTURER !!!
+
 func declenchementCapaActive(case : Vector2i) -> void :
 	print("DECLENCHEMENT CAPACITE")
-	var descripCapa : Array = capaciteActuelle.keys()[0].split("|", true)	#Liste de la descrip de la capacité
-	var zone : Array = descripCapa[3].split("-", true)	#Sert à rien A RETIRER
-	var contenuCapa : Array = Selection.capacites["ActiveCapacitiesBased"][capaciteActuelle.keys()[0]] #Plus rapide que de le retaper à chaque fois
+	
+	
+	#var contenuCapa : Array = Selection.capacites["ActiveCapacitiesBased"][capaciteActuelle.keys()[0]] #Plus rapide que de le retaper à chaque fois
 	
 	##Partie boucle pour chercher toutes les unités sur les cases affectées
 	
 	#Boucle pour tout ce qui se trouve dans la zone d'effet
-	var typeCible : Array = capaciteActuelle.keys()[0].split("|", true)[2].split("&", true)
+	var typeCible : Array = capaciteActuelle.typeCible
 	#Liste de toutes les cases où se trouvent une cible valide
 	var cibles = filtreCible(zoneCells, typeCible, [Selection.couleurEquipe])		#A CHANGER Selection.couleurEquipe par l'Array de ses équipes alliées
 	
@@ -477,27 +487,27 @@ func declenchementCapaActive(case : Vector2i) -> void :
 	for cible in cibles :
 		
 		#Filtre du type d'effet de la capacité
-		match(descripCapa[0]):
+		match(capaciteActuelle.operateur):
 			"+" : 
 				
-				cible.boostStats(descripCapa[1].split("&", true),contenuCapa.slice(3))
+				cible.boostStats(capaciteActuelle.statsAffectees)
 				
 	
 	
 	
 	##Partie réduction du nombre du nombre d'utilisations restantes
 	
-	contenuCapa[0] = contenuCapa[0] -1
-	print(contenuCapa)
-	if(contenuCapa[0] == 0):	#On supprime la capacité de l'unité lorsqu'elle n'a plus d'utilisations restantes
-		Selection.capacites["ActiveCapacitiesBased"].erase(capaciteActuelle.keys()[0])
+	capaciteActuelle.nombreUtilisationsRestantes = capaciteActuelle.nombreUtilisationsRestantes - 1
+	
+	if(capaciteActuelle.nombreUtilisationsRestantes == 0):	#On supprime la capacité de l'unité lorsqu'elle n'a plus d'utilisations restantes
+		Selection.capacites["ActiveCapacitiesBased"].erase(capaciteActuelle)
 	
 	##Reset de l'unité active et de sa sélection
 	_deselect_active_unit()
 	_clear_active_unit()
 
 
-#PAS FINI A RESTRUCTURER !!!
+
 ##Renvoie toutes les unités et bâtiments affectés par la capacité
 func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -> Array :
 	##Déclaration liste retournée
@@ -521,3 +531,15 @@ func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -
 						cellsFiltrees.append(cible)
 	
 	return cellsFiltrees
+
+##Permet d'obtenir les cases où l'unité doit se déplacer pour pouvoir attaquer
+func getTilesMouvementForAttaque(casesAutourTarget : Array) -> void:
+	var casesPossibles : Dictionary = {}
+	var set_dict = {}
+	for vec in casesAutourTarget:
+		set_dict[vec] = true
+	var tilesMouvementForAtt = []
+	for vec in _walkable_cells:
+		if vec in set_dict:
+			casesPossibles[vec] = _walkable_cells[vec]
+	visuActions.draw_walkable_cells(casesPossibles, "")

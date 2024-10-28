@@ -1,0 +1,2 @@
+extends cartePlacableRessource
+class_name batimentRessource

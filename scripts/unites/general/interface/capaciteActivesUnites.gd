@@ -31,7 +31,7 @@ func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJ
 		#print("YEYE %s" % [capacite])
 		
 		boutonCapa.text += capaciteI.nom
-		boutonCapa.menuCapa = self
+		boutonCapa.menuCapaI = self
 		%ListeCapaDispos.add_child(boutonCapa)
 		#%ContainerCapa.add_child(labelCapa)
 		boutonCapa.placement(self, pointeurJoueur, capaciteI)

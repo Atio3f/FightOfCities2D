@@ -1,5 +1,6 @@
-class_name bouttonCapa
 extends Button
+class_name bouttonCapa
+
 
 var capaciteAssociee : activeCapacite
 var menuCapaI : menuCapa
