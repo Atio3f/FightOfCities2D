@@ -27,9 +27,14 @@ enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
 
 folder_colors={
 "res://Ressources/capacites/": "blue",
+"res://Ressources/cartes/": "pink",
+"res://Ressources/cartes/batiments/Autres/": "blue",
+"res://Ressources/cartes/batiments/Humains/": "blue",
+"res://Ressources/cartes/batiments/Taureaux/": "blue",
+"res://Ressources/cartes/batiments/pieges/Monkeys/": "blue",
+"res://Ressources/cartes/unites/": "pink",
 "res://Ressources/player/": "blue",
 "res://Ressources/terrain/": "blue",
-"res://Ressources/unites/": "blue",
 "res://assets/interface/": "blue",
 "res://assets/sprites/": "blue",
 "res://assets/tiles/": "blue",

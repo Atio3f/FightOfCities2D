@@ -10,7 +10,7 @@ var pv_temporaires : int		#PV bonus qui ne peuvent pas être guéris, souvent ob
 @export_enum("Physique", "Magique") var typeDegats : String	#Indique le type de dégâts qu'inflige l'unité avec ses attaques, permet de connaitre son type de défense
 @export var V : int		#Vitesse permet de se déplacer plus loin
 
-@export_range(1, 20) var range : int	#Distance d'attaque de l'unité
+@export_range(0, 20) var range : int	#Distance d'attaque de l'unité
 @export var attaquesMax : int	#Le nombre d'attaques maximales réalisables par l'unité
 @export var attaquesRestantes : int 	#Le nombre d'attaques qu'il reste à l'unité ce tour
 @export var vitesseRestante : int	#Le nombre de V qu'il reste à l'unité pour se déplacer

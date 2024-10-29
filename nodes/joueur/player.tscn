@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://rfbkx0b7abxh"]
+[gd_scene load_steps=12 format=3 uid="uid://rfbkx0b7abxh"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_mqcbx"]
 [ext_resource type="Script" path="res://scripts/Player/PointeurPlayer.gd" id="3_pmukw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/Player/MovementPlayer.gd" id="9_3cqm2"]
 [ext_resource type="Script" path="res://scripts/Player/Action.gd" id="10_pc0xr"]
 [ext_resource type="PackedScene" uid="uid://vt2pgrwdeiji" path="res://nodes/interface/interface.tscn" id="11_p3gp3"]
+[ext_resource type="PackedScene" uid="uid://dn3hygwohims3" path="res://nodes/joueur/interface/interfaceJoueur.tscn" id="11_xhxfb"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_mqcbx")
@@ -67,3 +68,5 @@ offset_left = -46.0
 offset_bottom = 23.0
 grow_horizontal = 0
 text = "144"
+
+[node name="interfaceJoueur" parent="CanvasInterface" instance=ExtResource("11_xhxfb")]

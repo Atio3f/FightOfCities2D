@@ -1,7 +1,7 @@
 extends Resource
 class_name carteRessource
 
-@export_enum("Unite", "Batiment", "Objet", "Sort","Unknow")var typeCarte : String		#Permet de déterminer si c'est une unité ou un bâtiment
+@export_enum("Unite", "Batiment", "Piege", "Objet", "Sort","Unknow")var typeCarte : String		#Permet de déterminer si c'est une unité ou un bâtiment
 
 
 @export var nom : String	#Le nom de l'unité

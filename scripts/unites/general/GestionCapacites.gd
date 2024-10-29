@@ -42,3 +42,7 @@ func getCapasFrom(categorie : String) -> Array:
 ##Renvoie la liste des capacités décrites
 func getCapasDescription() -> Array :
 	return listeCapas
+
+
+func supprCapa(capaciteASuppr : capacite) -> void :
+	capacites[capaciteASuppr.typeCapacite].erase(capaciteASuppr)

@@ -6,6 +6,7 @@ var couleurEquipe : String
 var id : String	#Identifiant unique en 10caractères
 
 var main : mainJoueur
+var actionsRestantes : int
 
 func _ready() -> void:
 	startGame("Bleu")	#Changer comment accéder à startGame lorsqu'on mettra le multi + comment mettre la couleur de l'équipe

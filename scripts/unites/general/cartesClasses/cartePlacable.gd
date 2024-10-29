@@ -50,7 +50,7 @@ var pv_temporaires : int
 
 
 @export var V : int		#Vitesse permet de se déplacer plus loin
-@export var couleurEquipe : String
+
 
 var case : Vector2i = Vector2i.ZERO : #Case où se trouve l'unité sur le gridmap 
 	set(value):

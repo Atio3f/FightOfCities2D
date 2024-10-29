@@ -195,6 +195,7 @@ func deplacement(nouvellePosition : Vector2) -> void:
 	
 
 func _process(delta: float) -> void:
+	
 	_path_follow.progress += 1000 * delta
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false

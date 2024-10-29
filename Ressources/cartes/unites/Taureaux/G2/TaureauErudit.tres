@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dd4ngbqcaw7up" path="res://assets/sprites/taureaux/taureauRandom(32x32).png" id="1_2hdts"]
 [ext_resource type="Script" path="res://scripts/unites/general/ressourcesClasses/RessourceUniteBase.gd" id="1_hxb3h"]
-[ext_resource type="Resource" uid="uid://by6jc2c6kbjfw" path="res://Ressources/capacites/capacitesActives/taureau/taureauEruditCapaActive.tres" id="2_x7h2j"]
+[ext_resource type="Resource" uid="uid://by6jc2c6kbjfw" path="res://Ressources/capacites/capacitesActives/unites/taureau/taureauEruditCapaActive.tres" id="2_x7h2j"]
 
 [resource]
 script = ExtResource("1_hxb3h")
@@ -18,12 +18,12 @@ image = ExtResource("1_2hdts")
 P = 12
 typeDegats = "Physique"
 V = 7
-range = 0
+range = 1
 attaquesMax = 1
 attaquesRestantes = 1
 vitesseRestante = 7
 typeDeplacementPossible = [""]
-typeDeplacementActuel = ""
+typeDeplacementActuel = "marche"
 listeCapacites = [ExtResource("2_x7h2j")]
 capacites = {
 "ActiveCapacitiesBased": {},

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="uniteRessource" load_steps=4 format=3 uid="uid://bsk2sk22dc3mh"]
 
-[ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="1_5vvtb"]
-[ext_resource type="Script" path="res://scripts/unites/general/ressourcesClasses/RessourceUniteBase.gd" id="1_tmmjy"]
-[ext_resource type="Resource" uid="uid://bfd0uyip0uht1" path="res://Ressources/capacites/permaBuffCapacites/monkey/Monkey/monkeyPermaBuffCapacite.tres" id="2_d3pla"]
+[ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="1_o0rvs"]
+[ext_resource type="Resource" uid="uid://bfd0uyip0uht1" path="res://Ressources/capacites/permaBuffCapacites/unites/monkey/Monkey/monkeyPermaBuffCapacite.tres" id="2_tr8c8"]
+[ext_resource type="Script" path="res://scripts/unites/general/ressourcesClasses/RessourceUniteBase.gd" id="3_tyej6"]
 
 [resource]
-script = ExtResource("1_tmmjy")
+script = ExtResource("3_tyej6")
 S = 8
 G = 0
 race = "Monkey"
@@ -14,17 +14,17 @@ XP = 0.0
 pv_max = 23
 pv_actuels = 23
 DR = 1
-image = ExtResource("1_5vvtb")
+image = ExtResource("1_o0rvs")
 P = 2
 typeDegats = "Physique"
 V = 9
-range = 0
+range = 1
 attaquesMax = 1
 attaquesRestantes = 1
 vitesseRestante = 9
 typeDeplacementPossible = ["marche"]
 typeDeplacementActuel = "marche"
-listeCapacites = [ExtResource("2_d3pla")]
+listeCapacites = [ExtResource("2_tr8c8")]
 capacites = {
 "ActiveCapacitiesBased": {},
 "AttackBased": {},

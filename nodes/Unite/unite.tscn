@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0xoj357iuq7c"]
 
 [ext_resource type="Script" path="res://scripts/unites/general/cartesClasses/unite.gd" id="1_8x2i5"]
-[ext_resource type="Resource" uid="uid://bsk2sk22dc3mh" path="res://Ressources/unites/Monkeys/singe.tres" id="2_56mas"]
+[ext_resource type="Resource" uid="uid://bsk2sk22dc3mh" path="res://Ressources/cartes/unites/Monkeys/G1/singe.tres" id="2_h1ild"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="3_mt4o2"]
 [ext_resource type="Texture2D" uid="uid://dp67guejh3v25" path="res://assets/interface/contourSelectionUnite1c(32x32).png" id="3_tj7gm"]
 [ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interface_unite.tscn" id="5_6sa0d"]
@@ -13,7 +13,7 @@ size = Vector2(32, 32)
 [node name="Unite" type="Path2D"]
 position = Vector2(60, 60)
 script = ExtResource("1_8x2i5")
-ressource = ExtResource("2_56mas")
+ressource = ExtResource("2_h1ild")
 race = "Monkey"
 grid = ExtResource("3_mt4o2")
 
