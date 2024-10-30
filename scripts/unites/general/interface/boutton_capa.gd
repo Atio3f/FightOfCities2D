@@ -4,7 +4,7 @@ class_name bouttonCapa
 
 var capaciteAssociee : activeCapacite
 var menuCapaI : menuCapa
-var pointeurJoueur : Node2D		#Indique le joueur qui a actionné la capa de l'unité
+var pointeurJoueurI : pointeurJoueur		#Indique le joueur qui a actionné la capa de l'unité
 #func _ready():
 	#placement("+|XP&S|Taureau|EW1", [3, -1, 40, 2])
 	#position = Vector2(500, 500)
@@ -44,7 +44,7 @@ func placement(interface : Control, pointeurJ : Node2D, capaciteI : capacite) ->
 	text = "%s %d/%d" % [capaciteI.nom, capaciteI.nombreUtilisationsRestantes, capaciteI.nombreUtilisationsMax ]
 	capaciteAssociee = capaciteI
 	menuCapaI = interface
-	pointeurJoueur = pointeurJ
+	pointeurJoueurI = pointeurJ
 	
 
 
@@ -64,4 +64,4 @@ func _on_mouse_exited() -> void:
 #Permet d'utiliser une capacité
 func _on_button_up() -> void:
 	print("TEST")
-	menuCapaI.recuSelectionCapa(capaciteAssociee, pointeurJoueur)
+	menuCapaI.recuSelectionCapa(capaciteAssociee, pointeurJoueurI)

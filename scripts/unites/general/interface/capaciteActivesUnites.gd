@@ -12,13 +12,13 @@ func _input(event) -> void:
 
 
 #A REFAIRE
-func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJoueur : Node2D, visibilite : bool) -> void:
+func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
 	if(!visibilite):
 		visible = false
 		joueur = null
 		return
 	
-	joueur = pointeurJoueur
+	joueur = pointeurJoueurI
 	interface = interfaceUnite
 	
 	
@@ -34,13 +34,13 @@ func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJ
 		boutonCapa.menuCapaI = self
 		%ListeCapaDispos.add_child(boutonCapa)
 		#%ContainerCapa.add_child(labelCapa)
-		boutonCapa.placement(self, pointeurJoueur, capaciteI)
+		boutonCapa.placement(self, pointeurJoueurI, capaciteI)
 		
 		#%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
 	
 
 #Fonction appelée par bouttonCapa qui donne la capacité qui a été choisie pour être utilisée et de quel pointeurJoueur il vient
-func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueur : Node2D) -> void:
-	interface.recuSelectionCapa(capaciteActivee, pointeurJoueur)
-	pointeurJoueur	#Manque un truc
+func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : pointeurJoueur) -> void:
+	interface.recuSelectionCapa(capaciteActivee, pointeurJoueurI)
+	pointeurJoueurI	#Manque un truc
 	queue_free()

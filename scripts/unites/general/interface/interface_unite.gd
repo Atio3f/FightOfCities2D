@@ -26,17 +26,17 @@ func actualisationPV(entiteeAssociee : Node2D) -> void:
 #S'active lorsque le joueur effectue un clic droit sur une unité/bâtiment(visibilite = true), 
 #lorsqu'un des boutons des menus est actionné(visibilite -> true) ou que l'entité est désélectionnée (visibilite -> true)
  
-func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueur : Node2D, visibilite : bool) -> void:
+func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
 	conteneurMenus.visible = visibilite
 	if(!visibilite) :
-		if(pointeursSurInterface.has(pointeurJoueur)):
-			pointeursSurInterface.erase(pointeurJoueur)
+		if(pointeursSurInterface.has(pointeurJoueurI)):
+			pointeursSurInterface.erase(pointeurJoueurI)
 			for child : Node in noeudsTempInfosStats.get_children() :
 				
 				child.queue_free()
 	else :
-		if(!pointeursSurInterface.has(pointeurJoueur)):
-			pointeursSurInterface.append(pointeurJoueur) 
+		if(!pointeursSurInterface.has(pointeurJoueurI)):
+			pointeursSurInterface.append(pointeurJoueurI) 
 	conteneurMenus.visible = visibilite
 	_entiteeAssociee = entiteAssociee
 	
@@ -67,9 +67,9 @@ func _on_menu_stats_pressed():
 		noeudsTempInfosStats.add_child(infosUnit)
 	
 
-func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueur : Node2D):
+func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : pointeurJoueur):
 	print(capaciteActivee)
-	pointeurJoueur.capaActives(capaciteActivee, _entiteeAssociee)
+	pointeurJoueurI.capaActives(capaciteActivee, _entiteeAssociee)
 	pass
 
 

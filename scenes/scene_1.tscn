@@ -84,4 +84,7 @@ grid = ExtResource("3_k52dx")
 [node name="Player" parent="Joueurs" instance=ExtResource("10_ivms2")]
 ressourceJoueur = ExtResource("10_5lq80")
 
+[node name="Pointeur_Selection" parent="Joueurs/Player" index="0"]
+cellSize = 32
+
 [editable path="Joueurs/Player"]

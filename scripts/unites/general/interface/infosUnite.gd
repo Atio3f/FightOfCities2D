@@ -12,7 +12,7 @@ func _input(event) -> void:
 		queue_free()
 
 
-func apercuInfosUnite(uniteAssociee : unite, pointeurJoueur : Node2D, visibilite : bool) -> void:
+func apercuInfosUnite(uniteAssociee : unite, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
 	if(!visibilite):
 		visible = false
 		return

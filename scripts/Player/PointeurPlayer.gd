@@ -1,4 +1,5 @@
 extends Node2D
+class_name pointeurJoueur
 
 var aSelectionne : bool = false 
 var Selection : cartePlacable		#Contiendra l'unité sélectionné
@@ -12,7 +13,7 @@ var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initial
 @onready var terrain = $"../../../Map/Terrain32x32"
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map = $"../../../Map"
-
+@onready var interfaceJoueurI = $"../CanvasInterface/interfaceJoueur"
 
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
@@ -386,20 +387,21 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 		#print("NON")
 		if typeClick == "rightclick":		#Ouvre l'interface du joueur si il n'y a pas d'unité à cette case
 			print("A DEVELOPPER LIGNE 388")
-		return
-	Selection = Global._units[cell]
-	Selection.selectionneSelf(self, ouvrirMenu)
-	
-	## Acquire the walkable and attackable cells
-	_walkable_cells = get_walkable_cells(Selection)
-	_attackable_cells = get_attackable_cells(Selection)
-	## Draw out the walkable and attackable cells now
-	if(!menuOpen):
-		if(Selection.attaquesRestantes > 0) :
-			visuActions.draw_attackable_cells(_attackable_cells)
-		visuActions.draw_walkable_cells(_walkable_cells, Selection.couleurEquipe)
-	#var keysWalkableCells = _walkable_cells.keys()
-		_unit_path.initialize(_walkable_cells)
+			interfaceJoueurI.apercuMenusJoueur(self, true)
+	else :
+		Selection = Global._units[cell]
+		Selection.selectionneSelf(self, ouvrirMenu)
+		
+		## Acquire the walkable and attackable cells
+		_walkable_cells = get_walkable_cells(Selection)
+		_attackable_cells = get_attackable_cells(Selection)
+		## Draw out the walkable and attackable cells now
+		if(!menuOpen):
+			if(Selection.attaquesRestantes > 0) :
+				visuActions.draw_attackable_cells(_attackable_cells)
+			visuActions.draw_walkable_cells(_walkable_cells, Selection.couleurEquipe)
+		#var keysWalkableCells = _walkable_cells.keys()
+			_unit_path.initialize(_walkable_cells)
 	
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -448,10 +450,12 @@ func _deselect_active_unit() -> void:
 	visuZoneCapa.clearNumbers()
 	_unit_path.stop()
 	caseTarget.visible = false
+	
 
 
 ## Clears the reference to the pointeurSelec.Selection and the corresponding walkable cells.
 func _clear_active_unit() -> void:
+	interfaceJoueurI.apercuMenusJoueur(self, false)	#On efface l'aperçu du menu du joueur
 	print("_clear_active_unit()")
 	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null

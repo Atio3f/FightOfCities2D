@@ -304,16 +304,16 @@ func getKill(unitTuee : unite) -> void:
 		pass
 
 #Fonction qui s'active lorsque l'unité est sélectionnée
-func selectionneSelf(pointeurJoueur : Node2D, menuOpen : bool):
+func selectionneSelf(pointeurJoueurI : pointeurJoueur, menuOpen : bool):
 	if(menuOpen):	#On n'affiche le menu que lorsque le pointeur du joueur que lorsqu'on fait un click droit
-		interfaceUnite.apercuMenusUnite(self, pointeurJoueur, true)
+		interfaceUnite.apercuMenusUnite(self, pointeurJoueurI, true)
 	is_selected = true
 	
 	
 #Cache le menu dans l'interface de l'unité et seslorsque l'unité est déselectionnée
-func deselectionneSelf(pointeurJoueur : Node2D):
+func deselectionneSelf(pointeurJoueurI : pointeurJoueur):
 	
-	interfaceUnite.apercuMenusUnite(self, pointeurJoueur, false)
+	interfaceUnite.apercuMenusUnite(self, pointeurJoueurI, false)
 	is_selected = false
 
 #Fonction lorsqu'une unité meurt, active les effets de mort de l'unité si elle en a puis fais disparaître l'unité du jeu
