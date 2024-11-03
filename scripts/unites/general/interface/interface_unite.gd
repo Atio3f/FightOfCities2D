@@ -6,9 +6,9 @@ extends Control
 @onready var affichageVie = $BarreVie/BarreVieTemporaire/AffichageVie
 @onready var conteneurMenus = $GestionnairePossibilite/ConteneurMenus
 
-@onready var infosUnites = preload("res://scenes/popUps/infosUnite.tscn")
-@onready var capaActives = preload("res://nodes/Unite/interfaceUnite/capaciteActivesUnites.tscn")
-@onready var menuConsommables = preload("res://nodes/Unite/interfaceUnite/interfaceConsommables.tscn")
+@onready var infosUnites = preload("res://scenes/popUps/unite/interfaceInfosUnite.tscn")
+@onready var capaActives = preload("res://scenes/popUps/unite/interfaceCapaActivesUnites.tscn")
+@onready var menuConsommables = preload("res://scenes/popUps/unite/interfaceConsommables.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
 var _entiteeAssociee : Node2D

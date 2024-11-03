@@ -13,7 +13,7 @@ font_size = 28
 outline_size = 1
 outline_color = Color(0.28485, 0.28485, 0.28485, 1)
 
-[node name="Interface" type="Control"]
+[node name="interfaceUtilisateur" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

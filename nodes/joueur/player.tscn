@@ -52,15 +52,15 @@ script = ExtResource("9_3cqm2")
 [node name="Actions" type="Node2D" parent="."]
 script = ExtResource("10_pc0xr")
 
-[node name="CanvasInterface" type="CanvasLayer" parent="."]
+[node name="CanvasInterfaceFixe" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 0
 
-[node name="InterfaceFinTour" parent="CanvasInterface" instance=ExtResource("11_p3gp3")]
-top_level = true
+[node name="interfaceFinTour" parent="CanvasInterfaceFixe" instance=ExtResource("11_p3gp3")]
 
-[node name="FPSMeter" type="Label" parent="CanvasInterface"]
+[node name="FPSMeter" type="Label" parent="CanvasInterfaceFixe"]
 unique_name_in_owner = true
+visibility_layer = 16
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -69,4 +69,8 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "144"
 
-[node name="interfaceJoueur" parent="CanvasInterface" instance=ExtResource("11_xhxfb")]
+[node name="CanvasInterfaceViewport" type="CanvasLayer" parent="."]
+editor_description = "Contient les interfaces nécessitant un mouvement différent de celui de la caméra du joueur"
+follow_viewport_enabled = true
+
+[node name="interfaceJoueur" parent="CanvasInterfaceViewport" instance=ExtResource("11_xhxfb")]

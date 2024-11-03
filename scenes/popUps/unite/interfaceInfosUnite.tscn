@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://1k20t4ihh1ko"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/infosUnite.gd" id="1_55q2o"]
-[ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_boeks"]
-[ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="2_i5pgd"]
+[ext_resource type="Script" path="res://scripts/unites/general/interface/interfaceInfosUnite.gd" id="1_sdq13"]
+[ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_qh0k2"]
+[ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="3_28p4x"]
 
 [node name="PopUpInfosUnite" type="Control"]
 layout_mode = 3
@@ -14,12 +14,12 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
-script = ExtResource("1_55q2o")
+script = ExtResource("1_sdq13")
 metadata/_edit_use_anchors_ = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="FondGrise" parent="UI" instance=ExtResource("2_boeks")]
+[node name="FondGrise" parent="UI" instance=ExtResource("2_qh0k2")]
 
 [node name="Panel" type="Panel" parent="UI"]
 editor_description = "Sert à visualiser comment ça rend(parece que y'a des probs avec le popUp"
@@ -58,7 +58,7 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-texture = ExtResource("2_i5pgd")
+texture = ExtResource("3_28p4x")
 
 [node name="RangeeVie" type="HSplitContainer" parent="UI/Panel/FlowContainer/VBoxContainer"]
 layout_mode = 2

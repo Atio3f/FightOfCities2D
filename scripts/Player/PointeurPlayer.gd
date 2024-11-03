@@ -7,13 +7,13 @@ var target : cartePlacable
 
 var positionSouris : Vector2i
 var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initialisé à false
-@onready var caseSelec = $CaseSelecJ1
-@onready var caseTarget = $CaseTargetJ1
-@onready var position_cam = $"../Movement"
+@onready var caseSelec : Sprite2D = $CaseSelecJ1
+@onready var caseTarget : Sprite2D = $CaseTargetJ1
+@onready var position_cam : Camera2D = $"../Movement"
 @onready var terrain = $"../../../Map/Terrain32x32"
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map = $"../../../Map"
-@onready var interfaceJoueurI = $"../CanvasInterface/interfaceJoueur"
+@onready var interfaceJoueurI = $"../CanvasInterfaceViewport/interfaceJoueur"
 
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
@@ -41,6 +41,8 @@ var capaciteActuelle : activeCapacite = null
 var caseAttaque : Vector2
 var attaqueEnAttente : bool = false
 
+#func _process(delta):
+	#print(menuOpen)
 
 func _ready() -> void:
 	
@@ -93,9 +95,11 @@ func _input(event) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Selection and event.is_action_pressed("ui_cancel"):
-		_deselect_active_unit()
-		_clear_active_unit()
+	if event.is_action_pressed("ui_cancel"):
+		if Selection :	#On ne déselectionne l'unité uniquement si il y en a une de sélectionner pour éviter des problèmes
+			_deselect_active_unit()
+		_clear_active_unit()	#N'est pas inclus dans le if pour permettre la fermeture de l'interface d'utilisateur également
+	
 
 #Permet de centrer les coords du curseur au centre d'une case NE SERVIRA PROBABLEMENT PLUS
 func smoothyPosition() -> void:	
@@ -337,13 +341,16 @@ func getCellsZoneCapa(cell : Vector2i, capaciteI : activeCapacite) -> Array :
 
 ## Selects or moves a unit based on where the cursor is.
 func cursorPressed(cell: Vector2, typeClick : String) -> void:
+	print(typeClick)
 	if not Selection:
 		if(typeClick == "rightclick") :
 			menuOpen = true
 			visuActions.clearNumbers()
+			
 		#else :	#Potentiellement inutile !
 			#menuOpen = false
 		_select_unit(cell, menuOpen, typeClick)
+		
 	elif Selection.is_selected:
 		var cellI : Vector2i = cell
 		if(!menuOpen):
@@ -373,6 +380,7 @@ func cursorPressed(cell: Vector2, typeClick : String) -> void:
 				
 		elif(capaciteActuelle != null and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
 			declenchementCapaActive(cellI)
+	
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `pointeurSelec.Selection` and draws its walkable cells and interactive move path. 
@@ -386,15 +394,18 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 		#print(Global._units)
 		#print("NON")
 		if typeClick == "rightclick":		#Ouvre l'interface du joueur si il n'y a pas d'unité à cette case
-			print("A DEVELOPPER LIGNE 388")
+			print("A DEVELOPPER LIGNE 389")
 			interfaceJoueurI.apercuMenusJoueur(self, true)
+			
 	else :
+		
 		Selection = Global._units[cell]
 		Selection.selectionneSelf(self, ouvrirMenu)
-		
+		interfaceJoueurI.apercuMenusJoueur(self, false)
 		## Acquire the walkable and attackable cells
 		_walkable_cells = get_walkable_cells(Selection)
 		_attackable_cells = get_attackable_cells(Selection)
+		
 		## Draw out the walkable and attackable cells now
 		if(!menuOpen):
 			if(Selection.attaquesRestantes > 0) :
@@ -402,6 +413,7 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 			visuActions.draw_walkable_cells(_walkable_cells, Selection.couleurEquipe)
 		#var keysWalkableCells = _walkable_cells.keys()
 			_unit_path.initialize(_walkable_cells)
+		
 	
 
 ## Returns `true` if the cell is occupied by a unit.

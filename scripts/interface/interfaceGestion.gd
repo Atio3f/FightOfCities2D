@@ -1,3 +1,4 @@
+class_name interfaceFinTour
 extends Control
 
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn3hygwohims3"]
+[gd_scene load_steps=8 format=3 uid="uid://dn3hygwohims3"]
 
 [ext_resource type="Script" path="res://scripts/Player/interface/interfaceJoueur.gd" id="1_f81gc"]
+[ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="2_f3ilc"]
 [ext_resource type="Script" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="2_n46yd"]
 [ext_resource type="Texture2D" uid="uid://dxfvdw43glf72" path="res://assets/interface/unite/UIuniteCapacites(32x32).png" id="3_s4n70"]
 [ext_resource type="Texture2D" uid="uid://bamlwjbuq3frf" path="res://assets/interface/unite/UIuniteInfosStats(32x32).png" id="4_cj022"]
@@ -13,6 +14,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_f81gc")
+grid = ExtResource("2_f3ilc")
 
 [node name="GestionnairePossibilite" type="Control" parent="."]
 layout_mode = 3
@@ -22,6 +24,7 @@ offset_bottom = 32.0
 
 [node name="ConteneurMenus" type="FlowContainer" parent="GestionnairePossibilite"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 layout_mode = 1
 offset_left = -4.0
