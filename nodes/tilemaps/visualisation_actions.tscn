@@ -43,4 +43,5 @@ sources/4 = SubResource("TileSetAtlasSource_clqwp")
 [node name="visualisationActions" type="TileMap"]
 tile_set = SubResource("TileSet_arf4s")
 format = 2
+layer_0/modulate = Color(1, 1, 1, 0.627451)
 script = ExtResource("3_af0xd")

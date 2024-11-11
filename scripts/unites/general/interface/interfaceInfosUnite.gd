@@ -39,7 +39,7 @@ func apercuInfosUnite(uniteAssociee : unite, pointeurJoueurI : pointeurJoueur, v
 		labelCapa.append_text(capaciteI.nom)
 		%ContainerCapa.add_child(labelCapa)
 		labelCapa.placement(capaciteI)
-			
+		
 		
 	
 	%LabelDescription.text = "Description : %s" % [uniteAssociee.description]

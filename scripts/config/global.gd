@@ -53,12 +53,14 @@ var equipesData : Dictionary = {"Bleu" :
 	}
 }
 
+var joueurPrincipal : joueur	#Contient le joueur dont on affiche l'écran, permet de régler certaines couleurs pour lui
 
 #Les paramètres dans le ready seront à changer lorsqu'il y aura un système de sauvegarde
 func _ready() -> void:
 	ordreCouleur = ["Bleu", "Rouge"]
 	couleurTour = 0
 	_units = {}
+	
 
 
 
@@ -90,3 +92,14 @@ func buffEquipe(couleurEquipe : String, categorie : String, statsUp : Dictionary
 					
 					uniteAff.boostStat(stat, valeur)
 	
+
+
+func colorSelector(couleurEq : String) -> Color :
+	if couleurEq == "Rouge":
+		return Color.hex(0xde2d0da0)
+	elif couleurEq == "Vert":
+		return Color.hex(0x71d61e80)
+	elif couleurEq == "Bleu":
+		return Color.hex(0x89ff5e80)
+	else:
+		return Color.hex(0xf7f7f740)  # Blanc par défaut

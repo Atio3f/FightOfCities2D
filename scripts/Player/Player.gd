@@ -1,4 +1,5 @@
 extends Node2D
+class_name joueur
 
 @export var ressourceJoueur : playerRessource
 var nom : String

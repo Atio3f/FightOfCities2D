@@ -21,9 +21,14 @@ func placement(capaciteI : capacite) -> void:
 
 
 func _on_mouse_entered() -> void:
-	%LayerExplicationsCapa.offset = Vector2(0, -110)
-	%LabelExplications.position = Vector2(position.x - (size.x/1.9), position.y )
+	#%LayerExplicationsCapa.offset = Vector2(0, -110)
+	#%LabelExplications.position = Vector2(position.x - (size.x/1.9), position.y )
+	%LayerExplicationsCapa.offset = get_global_mouse_position() - get_global_position()	#A CORRIGER
 	%LayerExplicationsCapa.visible = true
+	print(%LabelExplications.position)
+	print(get_global_mouse_position())
+	print(get_viewport().get_mouse_position())
+	print("IIIIIIIIIII")	
 
 
 func _on_mouse_exited() -> void:

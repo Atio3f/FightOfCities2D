@@ -110,6 +110,7 @@ func _ready() -> void:
 	case = grid.calculate_grid_coordinates(position)
 	position = grid.calculate_map_position(case)
 	
+	%CouleurEquipe.color = Global.colorSelector(couleurEquipe)
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 	
@@ -121,8 +122,10 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	if(ressource.couleurEquipe != ""):
 		print("TESY")
 		couleurEquipe = ressource.couleurEquipe
+		
 	else :
 		couleurEquipe = Equipe	#Equipe des ennemis
+	%CouleurEquipe.color = Global.colorSelector(couleurEquipe)
 	
 	if !Global._unitsTeam.has(Equipe):	#On crée une catégorie pour l'équipe si jamais elle n'existe pas encore. On les ajoute au début pour être certain de pouvoir y accéder pour les capacités
 		Global._unitsTeam[Equipe] = {}
@@ -176,6 +179,7 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	Global._unitsTeam[couleurEquipe][race].append(self)
 	imageUnit = ressource.image
 	description = ressource.description
+	
 
 func deplacement(nouvellePosition : Vector2) -> void:
 	position = nouvellePosition

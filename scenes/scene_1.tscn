@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bpx66ktdi18om" path="res://assets/tiles/tilesSet1(32x32).png" id="4_6q2r1"]
 [ext_resource type="PackedScene" uid="uid://be5epi7wi8gaj" path="res://nodes/tilemaps/visualisation_actions.tscn" id="6_myle4"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://nodes/tilemaps/UnitPath.tscn" id="8_1fdpg"]
-[ext_resource type="Resource" uid="uid://bqreuysfcd43n" path="res://Ressources/player/joueur1.tres" id="10_5lq80"]
+[ext_resource type="Resource" uid="uid://bqreuysfcd43n" path="res://Ressources/player/joueur1/joueur1.tres" id="10_5lq80"]
 [ext_resource type="PackedScene" uid="uid://rfbkx0b7abxh" path="res://nodes/joueur/player.tscn" id="10_ivms2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hc24o"]
@@ -56,6 +56,7 @@ script = ExtResource("2_mk1gj")
 grid = ExtResource("3_k52dx")
 
 [node name="Terrain32x32" type="TileMap" parent="Map"]
+show_behind_parent = true
 visibility_layer = 4
 tile_set = SubResource("TileSet_f0wfi")
 rendering_quadrant_size = 32

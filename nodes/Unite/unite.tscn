@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0xoj357iuq7c"]
+[gd_scene load_steps=9 format=3 uid="uid://c0xoj357iuq7c"]
 
 [ext_resource type="Script" path="res://scripts/unites/general/cartesClasses/unite.gd" id="1_8x2i5"]
 [ext_resource type="Resource" uid="uid://bsk2sk22dc3mh" path="res://Ressources/cartes/unites/Monkeys/G1/singe.tres" id="2_h1ild"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="3_mt4o2"]
 [ext_resource type="Texture2D" uid="uid://dp67guejh3v25" path="res://assets/interface/contourSelectionUnite1c(32x32).png" id="3_tj7gm"]
+[ext_resource type="Texture2D" uid="uid://c54kwxav5d7gk" path="res://assets/sprites/monkey1(32x32).png" id="5_384qu"]
 [ext_resource type="Script" path="res://scripts/unites/general/GestionCapacites.gd" id="6_figlw"]
 [ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interfaceUnite.tscn" id="6_ujj46"]
 
@@ -28,6 +29,21 @@ rotates = false
 loop = false
 
 [node name="SpriteUnite" type="Sprite2D" parent="ElementsUnite"]
+texture = ExtResource("5_384qu")
+
+[node name="CouleurEquipe" type="ColorRect" parent="ElementsUnite/SpriteUnite"]
+unique_name_in_owner = true
+show_behind_parent = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0473758, 0.632694, 0.0388796, 1)
 
 [node name="ContourSelection" type="Sprite2D" parent="ElementsUnite"]
 visible = false
