@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_hxiwo")
 modeDaltonien = false
-vitesseCamera = [1.0, 1.0]
+vitesseCamera = [5.3, 5.3]
 volumeGeneral = 6
 volumeMusique = 6
 volumeEffets = 6

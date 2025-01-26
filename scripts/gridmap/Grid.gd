@@ -7,7 +7,7 @@ extends Resource
 ## The grid's rows and columns.
 @export var size := Vector2(80, 80)
 ## The size of a cell in pixels.
-@export var cell_size := Vector2(32, 32)
+@export var cell_size := Vector2(512, 512)
 
 ## Half of ``cell_size``
 var _half_cell_size = cell_size / 2

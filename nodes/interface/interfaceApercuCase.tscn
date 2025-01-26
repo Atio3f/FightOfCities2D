@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b3oug5hds2b5g"]
+
+[node name="InterfaceApercuCase" type="Control"]
+editor_description = "Affiche les infos sur la case correspondante ainsi que sur l'unité/bâtiment qui s'y trouve. Sera en haut à droite de l'écran"
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

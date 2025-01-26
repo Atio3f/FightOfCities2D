@@ -28,7 +28,7 @@ func _on_mouse_entered() -> void:
 	print(%LabelExplications.position)
 	print(get_global_mouse_position())
 	print(get_viewport().get_mouse_position())
-	print("IIIIIIIIIII")	
+	print("IIIIIIIIIII")
 
 
 func _on_mouse_exited() -> void:

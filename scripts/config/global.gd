@@ -3,6 +3,9 @@ extends Node
 var unitOn : Node2D
 var unitSelec : Node2D
 
+
+var cellSize : int = 512
+
 ## Mapping of coordinates of a cell to a reference to the unit it contains.
 var _units := {}
 

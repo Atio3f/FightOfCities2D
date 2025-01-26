@@ -1,19 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://27awq5ull731"]
+[gd_scene load_steps=11 format=3 uid="uid://27awq5ull731"]
 
 [ext_resource type="Script" path="res://scripts/unites/general/interface/interface_unite.gd" id="1_dk80o"]
-[ext_resource type="Texture2D" uid="uid://1yk0b7e4f34" path="res://assets/interface/unite/BarreVieContour.png" id="2_0xg00"]
-[ext_resource type="Texture2D" uid="uid://crr8oy0f0al5r" path="res://assets/interface/unite/BarreVieZoneVieVide.png" id="2_lqekt"]
-[ext_resource type="Texture2D" uid="uid://dr7ydbahgrhl3" path="res://assets/interface/unite/BarreVieZoneViePleine.png" id="4_kn2qu"]
-[ext_resource type="Texture2D" uid="uid://c83dntdjar4kq" path="res://assets/interface/unite/BarreVieZoneVieAbsorption.png" id="4_n62vs"]
+[ext_resource type="Texture2D" uid="uid://ccfqynwh8c63w" path="res://assets/interface/unite/BarreVieZoneVieVide(512x512).png" id="2_76stb"]
+[ext_resource type="Texture2D" uid="uid://r52h2fd2nn60" path="res://assets/interface/unite/BarreVieZoneViePleine(512x512).png" id="3_5kmur"]
+[ext_resource type="Texture2D" uid="uid://ddayhll8pd60y" path="res://assets/interface/unite/BarreVieZoneVieAbsorption(512x512).png" id="4_diped"]
+[ext_resource type="Texture2D" uid="uid://docixpvaub0a7" path="res://assets/interface/unite/UIuniteCapacites(512x512).png" id="4_kwkcr"]
+[ext_resource type="Texture2D" uid="uid://b4cgkquia40u" path="res://assets/interface/unite/UIuniteInfosStats(512x512).png" id="5_6wd5v"]
 [ext_resource type="FontFile" uid="uid://51527uw3luky" path="res://assets/interface/unite/polices/reppixel.ttf" id="6_c2bh5"]
+[ext_resource type="Texture2D" uid="uid://c08rq4ph7vx68" path="res://assets/interface/unite/UIuniteConsommables(512x512).png" id="6_v7muh"]
 [ext_resource type="Script" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="7_tbqdh"]
-[ext_resource type="Texture2D" uid="uid://dxfvdw43glf72" path="res://assets/interface/unite/UIuniteCapacites(32x32).png" id="8_h5dn0"]
-[ext_resource type="Texture2D" uid="uid://bamlwjbuq3frf" path="res://assets/interface/unite/UIuniteInfosStats(32x32).png" id="9_xut11"]
-[ext_resource type="Texture2D" uid="uid://dojvcdy7h42np" path="res://assets/interface/unite/UIuniteConsommables(32x32).png" id="10_tdct1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gopln"]
 font = ExtResource("6_c2bh5")
-font_size = 5
+font_size = 70
 font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
@@ -22,20 +21,25 @@ shadow_size = 0
 layout_mode = 3
 anchor_right = 0.0277778
 anchor_bottom = 0.0493827
+offset_right = 480.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dk80o")
 
 [node name="BarreVie" type="TextureProgressBar" parent="."]
 texture_filter = 1
-layout_mode = 0
-offset_right = 28.0
-offset_bottom = 16.0
-value = 50.0
-texture_under = ExtResource("2_lqekt")
-texture_over = ExtResource("2_0xg00")
-texture_progress = ExtResource("4_kn2qu")
-texture_progress_offset = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.0
+offset_right = 208.0
+offset_bottom = 224.0
+grow_horizontal = 2
+value = 25.0
+texture_under = ExtResource("2_76stb")
+texture_progress = ExtResource("3_5kmur")
 
 [node name="BarreVieTemporaire" type="TextureProgressBar" parent="BarreVie"]
 layout_mode = 1
@@ -44,40 +48,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-value = 100.0
-texture_progress = ExtResource("4_n62vs")
+texture_progress = ExtResource("4_diped")
 texture_progress_offset = Vector2(1, 1)
 
 [node name="AffichageVie" type="Label" parent="BarreVie/BarreVieTemporaire"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1875
-anchor_right = 1.0
-anchor_bottom = 0.6875
-offset_top = 2.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 367.0
+offset_bottom = 102.0
 text = "05 | 05"
 label_settings = SubResource("LabelSettings_gopln")
 horizontal_alignment = 2
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="GestionnairePossibilite" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 512.0
+offset_bottom = 512.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ConteneurMenus" type="FlowContainer" parent="GestionnairePossibilite"]
-visible = false
 texture_filter = 1
 layout_mode = 1
-offset_left = -4.0
-offset_top = -27.0
-offset_right = 34.0
-offset_bottom = 5.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -440.0
+offset_bottom = -440.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 script = ExtResource("7_tbqdh")
 
@@ -92,13 +91,13 @@ texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("8_h5dn0")
+texture_normal = ExtResource("4_kwkcr")
 
 [node name="MenuStats" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
 texture_filter = 1
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("9_xut11")
+texture_normal = ExtResource("5_6wd5v")
 
 [node name="Rangee 2" type="VBoxContainer" parent="GestionnairePossibilite/ConteneurMenus"]
 layout_mode = 2
@@ -109,7 +108,7 @@ alignment = 2
 texture_filter = 1
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("10_tdct1")
+texture_normal = ExtResource("6_v7muh")
 
 [node name="MenuCapacitesActives" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
 clip_children = 2
@@ -117,7 +116,7 @@ texture_filter = 1
 clip_contents = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("8_h5dn0")
+texture_normal = ExtResource("4_kwkcr")
 
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/MenuStats" to="." method="_on_menu_stats_pressed"]
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuConsommables" to="." method="_on_menu_consommables_pressed"]

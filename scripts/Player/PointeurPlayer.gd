@@ -10,7 +10,7 @@ var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initial
 @onready var caseSelec : Sprite2D = $CaseSelecJ1
 @onready var caseTarget : Sprite2D = $CaseTargetJ1
 @onready var position_cam : Camera2D = $"../Movement"
-@onready var terrain = $"../../../Map/Terrain32x32"
+@onready var terrain = $"../../../Map/Terrain512x512"
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map = $"../../../Map"
 @onready var interfaceJoueurI = $"../CanvasInterfaceViewport/interfaceJoueur"
@@ -18,7 +18,7 @@ var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initial
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var test : TileData
-@export var cellSize : int = 32		#Pourra changer plus tard potentiellement
+#@export var cellSize : int = 512		#Pourra changer plus tard potentiellement, on utilise celui de Global plutôt je pense
 
 
 ## Mapping of coordinates of a cell to a reference to the unit it contains.
@@ -103,11 +103,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #Permet de centrer les coords du curseur au centre d'une case NE SERVIRA PROBABLEMENT PLUS
 func smoothyPosition() -> void:	
-	positionSouris = Vector2i(positionSouris) / 32 * 32			#On met les coords de la souris dans un nouveau vecteur2i qui prend que
-																	# des entiers(int) puis on divise par 32  avant de remultiplier par 32
+	positionSouris = Vector2i(positionSouris) / 512 * 512			#On met les coords de la souris dans un nouveau vecteur2i qui prend que
+																	# des entiers(int) puis on divise par 512  avant de remultiplier par 512
 																	# pour retirer le reste pour se retrouver en bas à gauche de la case 
 																	#correspondante
-	positionSouris = Vector2i(positionSouris.x + 16, positionSouris.y + 16)#On ajoute 16 à x et y pour se retrouver au centre de la case(ou 8 si on était sur du 16x16)
+	positionSouris = Vector2i(positionSouris.x + 256, positionSouris.y + 256)#On ajoute 256 à x et y pour se retrouver au centre de la case(ou 8 si on était sur du 16x16)
 
 
 
@@ -257,7 +257,7 @@ func get_tile_data_at(emplacement : Vector2i) -> void:
 	return terrain.get_cell_tile_data(0, local_position)
 
 func getMiddleMouseCell() -> Vector2:
-	var middleMouse : Vector2 = Vector2(positionSouris.x * 32 + 16, positionSouris.y * 32 + 16)
+	var middleMouse : Vector2 = Vector2(positionSouris.x * 512 + 256, positionSouris.y * 512 + 256)
 	return middleMouse
 
 
