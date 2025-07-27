@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dydd1ruiv57uy"
-path="res://.godot/imported/tilesSet1.png-49c0fe1a60e85c5852a868844dadfc0d.ctex"
+uid="uid://bdjwd4ib4xshi"
+path="res://.godot/imported/BarreVieZoneSimple(512x512).png-927df327a8b14ad5c3bd7e4da69401ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://corbeille/tilesSet1.png"
-dest_files=["res://.godot/imported/tilesSet1.png-49c0fe1a60e85c5852a868844dadfc0d.ctex"]
+source_file="res://assets/interface/unite/BarreVieZoneSimple(512x512).png"
+dest_files=["res://.godot/imported/BarreVieZoneSimple(512x512).png-927df327a8b14ad5c3bd7e4da69401ee.ctex"]
 
 [params]
 

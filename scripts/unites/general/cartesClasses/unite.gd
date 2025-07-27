@@ -167,7 +167,6 @@ func placement(Equipe : String, newPosition : Vector2, positionCase : Vector2i, 
 	typeDeplacementPossible = ressource.typeDeplacementPossible
 	typeDeplacementActuel = ressource.typeDeplacementActuel
 	
-	
 	position = newPosition	#Gestion de la position de l'unité
 	case = positionCase
 	#print(positionCase)

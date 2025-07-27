@@ -52,6 +52,7 @@ texture_progress = ExtResource("4_diped")
 texture_progress_offset = Vector2(1, 1)
 
 [node name="AffichageVie" type="Label" parent="BarreVie/BarreVieTemporaire"]
+visible = false
 texture_filter = 1
 layout_mode = 1
 offset_right = 367.0
