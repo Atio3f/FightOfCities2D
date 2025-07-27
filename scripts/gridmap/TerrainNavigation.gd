@@ -1,11 +1,11 @@
 extends TileMap
 
-var astarGrid = AStarGrid2D.new()
+#var astarGrid = AStarGrid2D.new()
 const main_layer = 0
 const main_source = 0	#id tuiles comptées
 
 var movement_data	#Dictionnaire contenant les coûts de déplacements des tuiles
-@onready var terrain = $"../Terrain32x32"
+@onready var terrain = $"../Terrain512x512"
 
 func _ready():
 	## Reference variable to any particular movement cost of any particular tile
@@ -15,7 +15,7 @@ func _ready():
 func setupGrid() -> void:
 	pass
 	#astarGrid.region = Rect2i(0, 0, 80, 80)
-	#astarGrid.cell_size = Vector2i(32, 32)		#Taille des cases
+	#astarGrid.cell_size = Vector2i(Global.cellSize, Global.cellSize)		#Taille des cases
 	#astarGrid.update()
 	#astarGrid.set_point_weight_scale(Vector2i(0, 0), 1)
 	#astarGrid.set_point_weight_scale(Vector2i(0, 1), 2)

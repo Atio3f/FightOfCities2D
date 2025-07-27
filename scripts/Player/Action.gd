@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var uniteStandard = "res://nodes/Unite/unite.tscn"
 @onready var scene = get_tree().root
-@onready var interfaceFinTour : Control = $"../CanvasInterface/InterfaceFinTour"
+@onready var interfaceFinTour : interfaceFinTour = $"../CanvasInterfaceFixe/interfaceFinTour"
 @onready var pointeurSouris : Node2D = $"../Pointeur_Selection"
 @onready var map : Node2D = $"../../../Map"
 @onready var joueur : Node2D = $".."
@@ -18,7 +18,7 @@ func _input(_event) -> void:
 			#nvlUnite.case = pointeurSouris.positionSouris
 			
 			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
-			nvlUnite.placement(joueur.couleurEquipe, pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/unites/Monkeys/singe.tres"))	#La fonction placement a comme paramètres : 
+			nvlUnite.placement(joueur.couleurEquipe, pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Monkeys/G1/singe.tres"))	#La fonction placement a comme paramètres : 
 																									#couleurEquipe, position(Vector2), case(Vector2i) et la ressource de l'unité correspondante
 			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps. Normalement sa vitesseRestante doit être de 0 avec les règles de base
 			
@@ -31,7 +31,7 @@ func _input(_event) -> void:
 			var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	
 			
 			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
-			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/unites/Taureaux/G2/TaureauErudit.tres"))
+			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Taureaux/G2/TaureauErudit.tres"))
 			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
 			
 			
@@ -39,7 +39,7 @@ func _input(_event) -> void:
 			var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	
 			
 			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
-			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/unites/Taureaux/G2/taureauAile.tres"))
+			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Taureaux/G2/taureauAile.tres"))
 			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
 			print(nvlUnite.couleurEquipe)
 			

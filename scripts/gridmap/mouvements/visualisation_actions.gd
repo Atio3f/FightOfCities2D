@@ -9,7 +9,8 @@ const number : String = "res://nodes/interface/number.tscn"
 
 var listeNombre : Array = []
 
-
+func _ready():
+	set_cell(0, Vector2i(5, 5), 3)
 ## NOTE:
 ## set_cell(x,y,z,i): z indicates the ID number in unit_overlay_tileset for which tile to draw in the overlay
 ## to edit this ID or to add more cells, double click the unit_overlay_tileset.tres file in the explorer

@@ -1,0 +1,2 @@
+extends carteRessource
+class_name objetRessource

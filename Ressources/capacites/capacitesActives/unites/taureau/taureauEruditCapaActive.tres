@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="activeCapacite" load_steps=2 format=3 uid="uid://by6jc2c6kbjfw"]
+
+[ext_resource type="Script" path="res://scripts/unites/general/capacitesClasses/activeCapacite.gd" id="1_lgxbu"]
+
+[resource]
+script = ExtResource("1_lgxbu")
+typeZone = "EW"
+zoneEffet = -1
+nombreUtilisationsMax = 3
+nombreUtilisationsRestantes = 3
+nom = "Partage du savoir"
+descriptionCapa = "Donne +2S et +40XP à un taureau allié"
+operateur = "+"
+statsAffectees = {
+"S": 2,
+"XP": 40
+}
+typeCible = ["Taureau"]
+typeCapacite = "ActiveCapacitiesBased"

@@ -6,9 +6,9 @@ extends Control
 @onready var affichageVie = $BarreVie/BarreVieTemporaire/AffichageVie
 @onready var conteneurMenus = $GestionnairePossibilite/ConteneurMenus
 
-@onready var infosUnites = preload("res://scenes/popUps/infosUnite.tscn")
-@onready var capaActives = preload("res://nodes/Unite/interfaceUnite/capaciteActivesUnites.tscn")
-@onready var menuConsommables = preload("res://nodes/Unite/interfaceUnite/interfaceConsommables.tscn")
+@onready var infosUnites = preload("res://scenes/popUps/unite/interfaceInfosUnite.tscn")
+@onready var capaActives = preload("res://scenes/popUps/unite/interfaceCapaActivesUnites.tscn")
+@onready var menuConsommables = preload("res://scenes/popUps/unite/interfaceConsommables.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
 var _entiteeAssociee : Node2D
@@ -26,17 +26,17 @@ func actualisationPV(entiteeAssociee : Node2D) -> void:
 #S'active lorsque le joueur effectue un clic droit sur une unité/bâtiment(visibilite = true), 
 #lorsqu'un des boutons des menus est actionné(visibilite -> true) ou que l'entité est désélectionnée (visibilite -> true)
  
-func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueur : Node2D, visibilite : bool) -> void:
+func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
 	conteneurMenus.visible = visibilite
 	if(!visibilite) :
-		if(pointeursSurInterface.has(pointeurJoueur)):
-			pointeursSurInterface.erase(pointeurJoueur)
+		if(pointeursSurInterface.has(pointeurJoueurI)):
+			pointeursSurInterface.erase(pointeurJoueurI)
 			for child : Node in noeudsTempInfosStats.get_children() :
 				
 				child.queue_free()
 	else :
-		if(!pointeursSurInterface.has(pointeurJoueur)):
-			pointeursSurInterface.append(pointeurJoueur) 
+		if(!pointeursSurInterface.has(pointeurJoueurI)):
+			pointeursSurInterface.append(pointeurJoueurI) 
 	conteneurMenus.visible = visibilite
 	_entiteeAssociee = entiteAssociee
 	
@@ -67,9 +67,9 @@ func _on_menu_stats_pressed():
 		noeudsTempInfosStats.add_child(infosUnit)
 	
 
-func recuSelectionCapa(capaciteActivee : Dictionary, pointeurJoueur : Node2D):
+func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : pointeurJoueur):
 	print(capaciteActivee)
-	pointeurJoueur.capaActives(capaciteActivee, _entiteeAssociee)
+	pointeurJoueurI.capaActives(capaciteActivee, _entiteeAssociee)
 	pass
 
 

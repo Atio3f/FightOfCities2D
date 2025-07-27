@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://rj0b4npheq5"]
+
+[ext_resource type="Script" path="res://scripts/unites/general/interface/capaciteTexte.gd" id="1_jedah"]
+
+[node name="CapaciteTexte" type="RichTextLabel"]
+anchors_preset = -1
+anchor_right = 0.0520833
+anchor_bottom = 0.123457
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+fit_content = true
+autowrap_mode = 0
+tab_size = 1
+shortcut_keys_enabled = false
+script = ExtResource("1_jedah")
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelExplications" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00607639
+anchor_top = -0.0324074
+anchor_right = 0.0737847
+anchor_bottom = 0.00308674
+offset_left = -6.63542
+offset_top = -18.4074
+offset_right = 24.5729
+offset_bottom = 1.7531
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, -20)
+size_flags_horizontal = 3
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LayerExplicationsCapa" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+follow_viewport_enabled = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="LabelExplications" to="." method="_on_label_explications_mouse_entered"]
+[connection signal="mouse_exited" from="LabelExplications" to="." method="_on_label_explications_mouse_exited"]

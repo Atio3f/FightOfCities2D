@@ -1,0 +1,2 @@
+extends cartePlacable
+class_name batiment

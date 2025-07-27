@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vt2pgrwdeiji"]
 
+[ext_resource type="Script" path="res://scripts/interface/interfaceGestion.gd" id="1_bss64"]
 [ext_resource type="Texture2D" uid="uid://c1p2hm7yoduhf" path="res://assets/interface/interfaceArrierePlan.tres" id="1_btko8"]
-[ext_resource type="Script" path="res://scripts/interface/interfaceGestion.gd" id="1_wm6fy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d73ns"]
 font_size = 18
@@ -13,24 +13,65 @@ font_size = 28
 outline_size = 1
 outline_color = Color(0.28485, 0.28485, 0.28485, 1)
 
-[node name="Interface" type="Control"]
+[node name="interfaceUtilisateur" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wm6fy")
+script = ExtResource("1_bss64")
+
+[node name="ApercuUnite" type="VSplitContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.694444
+anchor_right = 1.0
+anchor_bottom = 0.308642
+metadata/_edit_use_anchors_ = true
+
+[node name="FondApercuUnite" type="TextureRect" parent="ApercuUnite"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_btko8")
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelCouleurTour" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.891493
+anchor_top = 0.462963
+anchor_right = 1.0
+anchor_bottom = 0.503087
+grow_vertical = 2
+text = "Tour Magenta"
+label_settings = SubResource("LabelSettings_d73ns")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FondCouleurTour" type="TextureRect" parent="LabelCouleurTour"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_btko8")
+expand_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="FondActionsRestantes" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.882813
 anchor_top = 0.83642
-anchor_right = 0.993924
+anchor_right = 1.0
 anchor_bottom = 0.884259
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 texture = ExtResource("1_btko8")
 expand_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -52,10 +93,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.828125
 anchor_top = 0.882716
-anchor_right = 0.997396
+anchor_right = 1.0
 anchor_bottom = 0.942901
 grow_horizontal = 0
-grow_vertical = 0
 texture = ExtResource("1_btko8")
 expand_mode = 5
 metadata/_edit_use_anchors_ = true

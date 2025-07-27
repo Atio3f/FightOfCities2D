@@ -1,23 +1,24 @@
 extends Node2D
+class_name pointeurJoueur
 
 var aSelectionne : bool = false 
-var Selection : Node2D		#Contiendra l'unité sélectionné
-var target : Node2D
+var Selection : cartePlacable		#Contiendra l'unité sélectionné
+var target : cartePlacable
 
 var positionSouris : Vector2i
 var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initialisé à false
-@onready var caseSelec = $CaseSelecJ1
-@onready var caseTarget = $CaseTargetJ1
-@onready var position_cam = $"../Movement"
-@onready var terrain = $"../../../Map/Terrain32x32"
+@onready var caseSelec : Sprite2D = $CaseSelecJ1
+@onready var caseTarget : Sprite2D = $CaseTargetJ1
+@onready var position_cam : Camera2D = $"../Movement"
+@onready var terrain = $"../../../Map/Terrain512x512"
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map = $"../../../Map"
-
+@onready var interfaceJoueurI = $"../CanvasInterfaceViewport/interfaceJoueur"
 
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var test : TileData
-@export var cellSize : int = 32		#Pourra changer plus tard potentiellement
+#@export var cellSize : int = 512		#Pourra changer plus tard potentiellement, on utilise celui de Global plutôt je pense
 
 
 ## Mapping of coordinates of a cell to a reference to the unit it contains.
@@ -26,6 +27,7 @@ var test : TileData
 var _walkable_cells := {}
 var _attackable_cells := []
 var actionCells := []	#Liste de toutes les cases accessibles avec une capa active depuis une unité
+var attaqueEnAttenteCells := {}#Liste des cases où peut se déplacer l'unité pour accomplir l'attaque sélectionnée
 var _movement_costs : Array
 var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacité active
 @onready var _unit_path: UnitPath = $UnitPathJ1
@@ -35,8 +37,12 @@ var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacit�
 @export var grid: Grid
 const MAX_VALUE: int = 99999
 
-var capaciteActuelle : Dictionary = {}
+var capaciteActuelle : activeCapacite = null
 var caseAttaque : Vector2
+var attaqueEnAttente : bool = false
+
+#func _process(delta):
+	#print(menuOpen)
 
 func _ready() -> void:
 	
@@ -89,17 +95,19 @@ func _input(event) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Selection and event.is_action_pressed("ui_cancel"):
-		_deselect_active_unit()
-		_clear_active_unit()
+	if event.is_action_pressed("ui_cancel"):
+		if Selection :	#On ne déselectionne l'unité uniquement si il y en a une de sélectionner pour éviter des problèmes
+			_deselect_active_unit()
+		_clear_active_unit()	#N'est pas inclus dans le if pour permettre la fermeture de l'interface d'utilisateur également
+	
 
 #Permet de centrer les coords du curseur au centre d'une case NE SERVIRA PROBABLEMENT PLUS
 func smoothyPosition() -> void:	
-	positionSouris = Vector2i(positionSouris) / 32 * 32			#On met les coords de la souris dans un nouveau vecteur2i qui prend que
-																	# des entiers(int) puis on divise par 32  avant de remultiplier par 32
+	positionSouris = Vector2i(positionSouris) / 512 * 512			#On met les coords de la souris dans un nouveau vecteur2i qui prend que
+																	# des entiers(int) puis on divise par 512  avant de remultiplier par 512
 																	# pour retirer le reste pour se retrouver en bas à gauche de la case 
 																	#correspondante
-	positionSouris = Vector2i(positionSouris.x + 16, positionSouris.y + 16)#On ajoute 16 à x et y pour se retrouver au centre de la case(ou 8 si on était sur du 16x16)
+	positionSouris = Vector2i(positionSouris.x + 256, positionSouris.y + 256)#On ajoute 256 à x et y pour se retrouver au centre de la case(ou 8 si on était sur du 16x16)
 
 
 
@@ -249,7 +257,7 @@ func get_tile_data_at(emplacement : Vector2i) -> void:
 	return terrain.get_cell_tile_data(0, local_position)
 
 func getMiddleMouseCell() -> Vector2:
-	var middleMouse : Vector2 = Vector2(positionSouris.x * 32 + 16, positionSouris.y * 32 + 16)
+	var middleMouse : Vector2 = Vector2(positionSouris.x * 512 + 256, positionSouris.y * 512 + 256)
 	return middleMouse
 
 
@@ -270,20 +278,22 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 				target = Global._units[new_cell]
 				caseTarget.position = target.position
 				caseTarget.visible = true
+			else :					#On cache l'indicateur de ciblage si il n'y a aucune cible sur la case actuelle
+				caseTarget.visible = false
 		elif visuActions != null and _walkable_cells != {}:
 			_walkable_cells.clear() # Clearing out the walkable cells
 			visuActions.clearNumbers() # This is what clears all the colored tiles on the grid
 			visuZoneCapa.clearNumbers() # Clear l'affichage de la zone de la capacité
 		if Global._units.has(new_cell) and Selection == null:
 			_hover_display(new_cell)
-	elif(capaciteActuelle != {}):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
+	elif(capaciteActuelle != null):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
 									#Affiche la zone affectée par la capa
 		hoverZoneCapa(new_cell, capaciteActuelle)
 
 ## This function will display walkable_cells, attackable_cells, unit stats,
 ## Unit items, and the unit avatar (like in fire emblem: engage)
 ## That is the reason we make this a completely seperate function
-func _hover_display(cell: Vector2i) -> void:
+func _hover_display(cell: Vector2i) -> void :
 	var time = Time.get_ticks_msec()
 	var curr_unit = Global._units[cell]
 	
@@ -299,7 +309,7 @@ func _hover_display(cell: Vector2i) -> void:
 	print(Time.get_ticks_msec() - time)
 
 ## Fonction pour afficher la zone affectée par la capacité active
-func hoverZoneCapa(cell: Vector2i, capacite : Dictionary) -> void:
+func hoverZoneCapa(cell: Vector2i, capaciteI : activeCapacite) -> void:
 	
 	
 	##On clear les affichages des mouvements précédents avant d'en remettre sans toucher à la zone de la capa Active
@@ -307,23 +317,23 @@ func hoverZoneCapa(cell: Vector2i, capacite : Dictionary) -> void:
 	visuActions.clearNumbers()
 	
 	## Obtenir les cases affectées selon la forme et la taille ciblée par la capacité
-	zoneCells = getCellsZoneCapa(cell, capacite)
+	zoneCells = getCellsZoneCapa(cell, capaciteI)
 	## Draw out the walkable and attackable cells now
 	
 	visuActions.draw_attackable_cells(zoneCells)
 	
-func getCellsZoneCapa(cell : Vector2i, capacite : Dictionary) -> Array :
+func getCellsZoneCapa(cell : Vector2i, capaciteI : activeCapacite) -> Array :
 	var cells : Array = []
-	var keyCapa : Array = capacite.keys()
-	var capaPortee : Array = (keyCapa[0].split("|", true))[3].split("-", true)
+	
+	
 	
 	##Check de la forme d'effet de la capa
-	match(capaPortee[0]) :
+	match(capaciteI.typeZone) :
 		"EW" : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
 			cells.append(cell)
 		"C" :
 			var i = 0
-			while(i < capaPortee[1]):
+			while(i < capaciteI.zoneEffet):
 				#cells.append()
 				i += 1
 			
@@ -331,55 +341,79 @@ func getCellsZoneCapa(cell : Vector2i, capacite : Dictionary) -> Array :
 
 ## Selects or moves a unit based on where the cursor is.
 func cursorPressed(cell: Vector2, typeClick : String) -> void:
+	print(typeClick)
 	if not Selection:
 		if(typeClick == "rightclick") :
 			menuOpen = true
 			visuActions.clearNumbers()
-		else :	#Potentiellement inutile !
-			menuOpen = false
-		_select_unit(cell, menuOpen)
+			
+		#else :	#Potentiellement inutile !
+			#menuOpen = false
+		_select_unit(cell, menuOpen, typeClick)
+		
 	elif Selection.is_selected:
 		var cellI : Vector2i = cell
 		if(!menuOpen):
+			print(cell)
+			print(_attackable_cells)
+			print(cell in _attackable_cells)
 			if(cell in _walkable_cells.keys()) :	#Si la case du pointeur se trouve dans les cases où peut se déplacer l'unité alors on la déplace
+				print("MOUVEMENT")
 				_move_active_unit(cell)
 			
 			elif (cell in _attackable_cells and Selection.attaquesRestantes > 0 and Global._units.has(cellI) and Global._units[cellI].couleurEquipe != Selection.couleurEquipe):	#On vérifie qu'il y a une unité sur la case sélec, que l'unité qu'on a a encore des attaques à faire puis on vérifie que leurs couleurs sont différentes
 				#print(Global._units)
+				var casesAutourTarget : Array = _flood_fill(cell, Selection.range)
 				
-				Selection.attaque(Global._units[cellI])
+				if casesAutourTarget.has(Vector2(Selection.case)) :
+					Selection.attaque(Global._units[cellI])
+					print("BON")
+					_deselect_active_unit()
+					_clear_active_unit()
+				else :
+					
+					attaqueEnAttente = true
+					visuActions.clearNumbers()
+					visuActions.draw_attackable_cells([cellI])	#La seule case rouge affichée est celle de l'unité(à changer quand y'aura des attaques de zone)
+					attaqueEnAttenteCells = getTilesMouvementForAttaque(casesAutourTarget)
+					visuActions.draw_walkable_cells(attaqueEnAttenteCells, "")
 				
-				print("BON")
-				_deselect_active_unit()
-				_clear_active_unit()
-		elif(capaciteActuelle != {} and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
+		elif(capaciteActuelle != null and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
 			declenchementCapaActive(cellI)
+	
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `pointeurSelec.Selection` and draws its walkable cells and interactive move path. 
-func _select_unit(cell: Vector2i, ouvrirMenu : bool) -> void:
+func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void:
 	
 	print("_select_unit")
 	#print(cell)
 	#print(Global._units)
 	if not Global._units.has(cell):
-		print(cell)
-		print(Global._units)
-		print("NON")
-		return
-	Selection = Global._units[cell]
-	Selection.selectionneSelf(self, ouvrirMenu)
-	
-	## Acquire the walkable and attackable cells
-	_walkable_cells = get_walkable_cells(Selection)
-	_attackable_cells = get_attackable_cells(Selection)
-	## Draw out the walkable and attackable cells now
-	if(!menuOpen):
-		if(Selection.attaquesRestantes > 0) :
-			visuActions.draw_attackable_cells(_attackable_cells)
-		visuActions.draw_walkable_cells(_walkable_cells, Selection.couleurEquipe)
-	#var keysWalkableCells = _walkable_cells.keys()
-		_unit_path.initialize(_walkable_cells)
+		#print(cell)
+		#print(Global._units)
+		#print("NON")
+		if typeClick == "rightclick":		#Ouvre l'interface du joueur si il n'y a pas d'unité à cette case
+			print("A DEVELOPPER LIGNE 389")
+			interfaceJoueurI.apercuMenusJoueur(self, true)
+			
+	else :
+		
+		Selection = Global._units[cell]
+		Selection.selectionneSelf(self, ouvrirMenu)
+		interfaceJoueurI.apercuMenusJoueur(self, false)
+		## Acquire the walkable and attackable cells
+		_walkable_cells = get_walkable_cells(Selection)
+		_attackable_cells = get_attackable_cells(Selection)
+		
+		## Draw out the walkable and attackable cells now
+		if(!menuOpen):
+			if(Selection.attaquesRestantes > 0) :
+				visuActions.draw_attackable_cells(_attackable_cells)
+			visuActions.draw_walkable_cells(_walkable_cells, Selection.couleurEquipe)
+		#var keysWalkableCells = _walkable_cells.keys()
+			_unit_path.initialize(_walkable_cells)
+		
 	
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -390,7 +424,8 @@ func is_occupied(cell: Vector2i) -> bool:
 func _move_active_unit(new_cell: Vector2) -> void:
 	
 	var keysWalkableCells = _walkable_cells.keys()
-	if is_occupied(new_cell) or not new_cell in keysWalkableCells:	#Check si le mouvement ne doit pas se dérouler
+	var keyAttaqueEnAttenteCells = attaqueEnAttenteCells.keys()
+	if is_occupied(new_cell) or (not new_cell in keysWalkableCells and !attaqueEnAttente) or (not new_cell in keyAttaqueEnAttenteCells and attaqueEnAttente):	#Check si le mouvement ne doit pas se dérouler
 		return
 	# warning-ignore:return_value_discarded
 	Global._units.erase(Selection.case)
@@ -398,14 +433,23 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	#On crée 
 	var newCelli : Vector2i = new_cell
 	Global._units[newCelli] = Selection
-	_deselect_active_unit()
+	
 	#On réduit la vitesse restante pour le tour pour l'unité qui se déplace
 	Selection.vitesseRestante -= _walkable_cells[new_cell]
 	Selection.walk_along(_unit_path.current_path)
 	await Selection.signalFinMouvement
 	print("finTT")
-	
-	_clear_active_unit()
+	if attaqueEnAttente :
+		visuActions.clearNumbers()
+		visuZoneCapa.clearNumbers()
+		_attackable_cells = [Vector2(target.case)]
+		visuActions.draw_attackable_cells(_attackable_cells)
+		visuActions.draw_walkable_cells(attaqueEnAttenteCells, Selection.couleurEquipe)
+		attaqueEnAttente = false
+		attaqueEnAttenteCells = {}
+	else :
+		_deselect_active_unit()
+		_clear_active_unit()
 	
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
@@ -418,22 +462,26 @@ func _deselect_active_unit() -> void:
 	visuZoneCapa.clearNumbers()
 	_unit_path.stop()
 	caseTarget.visible = false
+	
 
 
 ## Clears the reference to the pointeurSelec.Selection and the corresponding walkable cells.
 func _clear_active_unit() -> void:
+	interfaceJoueurI.apercuMenusJoueur(self, false)	#On efface l'aperçu du menu du joueur
 	print("_clear_active_unit()")
 	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null
-	capaciteActuelle = {}	#On verra plus tard si ça pose pas de problème
+	capaciteActuelle = null	#On verra plus tard si ça pose pas de problème
+	attaqueEnAttente = false
+	attaqueEnAttenteCells = {}
 	_walkable_cells.clear()
 
 
 
 
 #Attributs : case <=> case de l'unité ; 
-func get_actions_cells(case : Vector2i, capaPortee : Array) -> Array :
-	var distance : int = int(capaPortee[1])		#distance nombre de cases de diamètre <=> unit.range 
+func get_actions_cells(case : Vector2i, capaPortee : int) -> Array :
+	var distance : int = capaPortee		#distance nombre de cases de diamètre <=> unit.range 
 	var action_cells = []
 	
 	var real_actions_cells = _dijkstra(case, distance * 2, false, "vole")	#Distance * 2 avec vole équivaut à un V par case 
@@ -446,14 +494,14 @@ func get_actions_cells(case : Vector2i, capaPortee : Array) -> Array :
 	return action_cells.filter(func(i): return i not in real_actions_cells)
 	
 
-
-func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
-	var keyCapa : Array = capaciteActivee.keys()
-	var capaPortee : Array = (keyCapa[0].split("|", true))[3].split("-", true)
-	if(capaPortee[0] == "EW") : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
+#PAS FINI A RESTRUCTURER !!!
+func capaActives(capaciteActivee : activeCapacite, uniteAssociee : Node2D) -> void:
+	#var keyCapa : Array = capaciteActivee.keys()
+	var capaPortee : String = capaciteActivee.typeZone
+	if(capaciteActivee.typeZone == "EW") : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
 		actionCells = grid.toutesCases()
 	else :
-		actionCells = get_actions_cells(uniteAssociee.case, capaPortee)
+		actionCells = get_actions_cells(uniteAssociee.case, capaciteActivee.zoneEffet)
 	capaciteActuelle = capaciteActivee
 	visuZoneCapa.drawZoneAction(actionCells)	#Délocaliser dans declenchementCapaActive
 	
@@ -462,14 +510,14 @@ func capaActives(capaciteActivee : Dictionary, uniteAssociee : Node2D) -> void:
 
 func declenchementCapaActive(case : Vector2i) -> void :
 	print("DECLENCHEMENT CAPACITE")
-	var descripCapa : Array = capaciteActuelle.keys()[0].split("|", true)	#Liste de la descrip de la capacité
-	var zone : Array = descripCapa[3].split("-", true)	#Sert à rien A RETIRER
-	var contenuCapa : Array = Selection.capacites["ActiveCapacitiesBased"][capaciteActuelle.keys()[0]] #Plus rapide que de le retaper à chaque fois
+	
+	
+	#var contenuCapa : Array = Selection.capacites["ActiveCapacitiesBased"][capaciteActuelle.keys()[0]] #Plus rapide que de le retaper à chaque fois
 	
 	##Partie boucle pour chercher toutes les unités sur les cases affectées
 	
 	#Boucle pour tout ce qui se trouve dans la zone d'effet
-	var typeCible : Array = capaciteActuelle.keys()[0].split("|", true)[2].split("&", true)
+	var typeCible : Array = capaciteActuelle.typeCible
 	#Liste de toutes les cases où se trouvent une cible valide
 	var cibles = filtreCible(zoneCells, typeCible, [Selection.couleurEquipe])		#A CHANGER Selection.couleurEquipe par l'Array de ses équipes alliées
 	
@@ -477,24 +525,26 @@ func declenchementCapaActive(case : Vector2i) -> void :
 	for cible in cibles :
 		
 		#Filtre du type d'effet de la capacité
-		match(descripCapa[0]):
+		match(capaciteActuelle.operateur):
 			"+" : 
 				
-				cible.boostStats(descripCapa[1].split("&", true),contenuCapa.slice(3))
+				cible.boostStats(capaciteActuelle.statsAffectees)
 				
 	
 	
 	
 	##Partie réduction du nombre du nombre d'utilisations restantes
 	
-	contenuCapa[0] = contenuCapa[0] -1
-	print(contenuCapa)
-	if(contenuCapa[0] == 0):	#On supprime la capacité de l'unité lorsqu'elle n'a plus d'utilisations restantes
-		Selection.capacites["ActiveCapacitiesBased"].erase(capaciteActuelle.keys()[0])
+	capaciteActuelle.nombreUtilisationsRestantes = capaciteActuelle.nombreUtilisationsRestantes - 1
+	
+	if(capaciteActuelle.nombreUtilisationsRestantes == 0):	#On supprime la capacité de l'unité lorsqu'elle n'a plus d'utilisations restantes
+		Selection.capacites.supprCapa(capaciteActuelle)
 	
 	##Reset de l'unité active et de sa sélection
 	_deselect_active_unit()
 	_clear_active_unit()
+
+
 
 ##Renvoie toutes les unités et bâtiments affectés par la capacité
 func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -> Array :
@@ -519,3 +569,14 @@ func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -
 						cellsFiltrees.append(cible)
 	
 	return cellsFiltrees
+
+##Permet d'obtenir les cases où l'unité doit se déplacer pour pouvoir attaquer
+func getTilesMouvementForAttaque(casesAutourTarget : Array) -> Dictionary:
+	var casesPossibles : Dictionary = {}
+	var set_dict = {}
+	for vec in casesAutourTarget:
+		set_dict[vec] = true
+	for vec in _walkable_cells:
+		if vec in set_dict:
+			casesPossibles[vec] = _walkable_cells[vec]
+	return casesPossibles

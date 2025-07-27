@@ -1,19 +1,19 @@
-class_name bouttonCapa
 extends Button
+class_name bouttonCapa
 
-var capaciteAssociee : Dictionary
-var menuCapa : Control
-var pointeurJoueur : Node2D		#Indique le joueur qui a actionné la capa de l'unité
+
+var capaciteAssociee : activeCapacite
+var menuCapaI : menuCapa
+var pointeurJoueurI : pointeurJoueur		#Indique le joueur qui a actionné la capa de l'unité
 #func _ready():
 	#placement("+|XP&S|Taureau|EW1", [3, -1, 40, 2])
 	#position = Vector2(500, 500)
 
 
-func placement(interface : Control, pointeurJ : Node2D, capacite : String, valeurCapa : Array) -> void:
-	var capaDecom : Array = capacite.split("|", false)
-	var descrip : String = ""
-	var i : int = 2
-	descrip = valeurCapa[2]
+func placement(interface : Control, pointeurJ : Node2D, capaciteI : capacite) -> void:
+	var capaNom : String = capaciteI.nom
+	
+	
 	#position = Vector2(position.x - (size.x/1.9), position.y - 21)
 	#
 	#match(capaDecom[0]):
@@ -41,10 +41,10 @@ func placement(interface : Control, pointeurJ : Node2D, capacite : String, valeu
 	#else :
 		#descrip += capaDecom[2]
 		#
-	text = descrip
-	capaciteAssociee = {capacite : valeurCapa}
-	menuCapa = interface
-	pointeurJoueur = pointeurJ
+	text = "%s %d/%d" % [capaciteI.nom, capaciteI.nombreUtilisationsRestantes, capaciteI.nombreUtilisationsMax ]
+	capaciteAssociee = capaciteI
+	menuCapaI = interface
+	pointeurJoueurI = pointeurJ
 	
 
 
@@ -64,4 +64,4 @@ func _on_mouse_exited() -> void:
 #Permet d'utiliser une capacité
 func _on_button_up() -> void:
 	print("TEST")
-	menuCapa.recuSelectionCapa(capaciteAssociee, pointeurJoueur)
+	menuCapaI.recuSelectionCapa(capaciteAssociee, pointeurJoueurI)

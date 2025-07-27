@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="FOC2D"
+config/name="Fight Of Cities 2D"
+config/description="Fight Of Cities est un jeu de stratégie tour par tour multijoueur dans lequel vous contrôler une armée d'unités variées allant des singes aux chauves-souris. Il vous faudra vous développer, prendre le contrôle de la carte pour avancer puis exploiter des objets et des sorts pour venir à bout de votre adversaire que ce soit en 1vs1 ou bien 2vs2(pas encore implémenté)."
 run/main_scene="res://scenes/scene_1.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/sprites/monkey1(32x32).png"
 
 [autoload]
 
@@ -22,6 +23,36 @@ Global="*res://scripts/config/global.gd"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Ressources/capacites/": "blue",
+"res://Ressources/cartes/": "pink",
+"res://Ressources/cartes/batiments/Autres/": "blue",
+"res://Ressources/cartes/batiments/Humains/": "blue",
+"res://Ressources/cartes/batiments/Taureaux/": "blue",
+"res://Ressources/cartes/batiments/pieges/Monkeys/": "blue",
+"res://Ressources/cartes/unites/": "pink",
+"res://Ressources/player/": "blue",
+"res://Ressources/terrain/": "blue",
+"res://assets/interface/": "blue",
+"res://assets/sprites/": "blue",
+"res://assets/tiles/": "blue",
+"res://assets/visualisation/": "blue",
+"res://nodes/Unite/": "blue",
+"res://nodes/interface/": "blue",
+"res://nodes/joueur/": "blue",
+"res://nodes/tilemaps/": "blue",
+"res://scenes/inventaire/": "blue",
+"res://scenes/popUps/": "blue",
+"res://scripts/Player/": "blue",
+"res://scripts/config/": "blue",
+"res://scripts/gridmap/": "blue",
+"res://scripts/interface/": "blue",
+"res://scripts/unites/": "blue",
+"res://scripts/unites/general/capacitesClasses/": "orange"
+}
 
 [input]
 

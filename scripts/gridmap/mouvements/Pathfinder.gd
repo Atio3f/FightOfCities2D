@@ -28,4 +28,4 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 func calculate_point_path(start: Vector2, end: Vector2) -> PackedVector2Array:
 	# With an AStarGrid2D, we only need to call get_id_path to return
 	#	the expected array
-	return _astar.get_id_path(start, end)
+	return _astar.get_id_path(start, end) 
