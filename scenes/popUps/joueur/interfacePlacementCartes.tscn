@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4jog7md0dw4v"]
 
-[ext_resource type="Script" path="res://scripts/Player/interface/interfacePlacementCartes.gd" id="1_tub21"]
+[ext_resource type="Script" uid="uid://fixepqmw5i4x" path="res://scripts/Player/interface/interfacePlacementCartes.gd" id="1_tub21"]
 [ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_g4gfd"]
 
 [node name="interfacePlacementCartes" type="Control"]

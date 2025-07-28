@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://1k20t4ihh1ko"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/interfaceInfosUnite.gd" id="1_sdq13"]
+[ext_resource type="Script" uid="uid://dpp3d4d82yg8n" path="res://scripts/unites/general/interface/interfaceInfosUnite.gd" id="1_sdq13"]
 [ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_qh0k2"]
 
 [node name="PopUpInfosUnite" type="Control"]

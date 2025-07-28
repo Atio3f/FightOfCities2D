@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://blt4iqmkhhnuy"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/interfaceConsommables.gd" id="1_kup02"]
+[ext_resource type="Script" uid="uid://bgmdu6po7l4ed" path="res://scripts/unites/general/interface/interfaceConsommables.gd" id="1_kup02"]
 [ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_ht1u6"]
 
 [node name="interfaceConsommables" type="Control"]

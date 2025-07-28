@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="playerRessource" load_steps=3 format=3 uid="uid://bqreuysfcd43n"]
+
+[ext_resource type="Script" uid="uid://bssb4s8d84e6k" path="res://scripts/Player/classes/RessourcePlayer.gd" id="1_54r5g"]
+[ext_resource type="Resource" uid="uid://cn6o3jfhmndhe" path="res://Ressources/old/player/joueur1/paramJoueur1.tres" id="1_qy7cl"]
+
+[resource]
+script = ExtResource("1_54r5g")
+pseudo = "Atio"
+id = "88182005bb"
+parametres = ExtResource("1_qy7cl")

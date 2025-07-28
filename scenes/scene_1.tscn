@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://cferradf2m4ex"]
 
-[ext_resource type="Script" path="res://scripts/gridmap/mouvements/Map.gd" id="2_mk1gj"]
+[ext_resource type="Script" uid="uid://d12eqh5icr7hl" path="res://scripts/gridmap/mouvements/Map.gd" id="2_mk1gj"]
 [ext_resource type="PackedScene" uid="uid://c2ujfy5yojwyh" path="res://nodes/tilemaps/terrain512x512.tscn" id="3_34k3y"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="3_k52dx"]
 [ext_resource type="Texture2D" uid="uid://d2yn3tn6n6kop" path="res://assets/tiles/curseurPosition(512x512).png" id="6_eiyuw"]
 [ext_resource type="Texture2D" uid="uid://cn5umltddbepu" path="res://assets/tiles/curseurTarget(512x512).png" id="7_110or"]
-[ext_resource type="Resource" uid="uid://bqreuysfcd43n" path="res://Ressources/player/joueur1/joueur1.tres" id="10_5lq80"]
+[ext_resource type="Resource" uid="uid://bqreuysfcd43n" path="res://Ressources/old/player/joueur1/joueur1.tres" id="10_5lq80"]
 [ext_resource type="PackedScene" uid="uid://rfbkx0b7abxh" path="res://nodes/joueur/player.tscn" id="10_ivms2"]
 
 [node name="scene1" type="Node2D"]

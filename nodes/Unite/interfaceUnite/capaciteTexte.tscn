@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rj0b4npheq5"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/capaciteTexte.gd" id="1_jedah"]
+[ext_resource type="Script" uid="uid://dtxokvr103epc" path="res://scripts/unites/general/interface/capaciteTexte.gd" id="1_jedah"]
 
 [node name="CapaciteTexte" type="RichTextLabel"]
 anchors_preset = -1

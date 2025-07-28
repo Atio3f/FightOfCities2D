@@ -1,5 +1,5 @@
 extends Control
-
+class_name interfaceInfosUnite
 
 var capaciteTexte = preload("res://nodes/Unite/interfaceUnite/capaciteTexte.tscn")
 
@@ -45,7 +45,3 @@ func apercuInfosUnite(uniteAssociee : unite, pointeurJoueurI : pointeurJoueur, v
 	%LabelDescription.text = "Description : %s" % [uniteAssociee.description]
 	
 	
-
-
-
-

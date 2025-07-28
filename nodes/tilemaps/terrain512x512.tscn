@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2ujfy5yojwyh"]
 
 [ext_resource type="Texture2D" uid="uid://ddboryik1v4o5" path="res://assets/tiles/tilesSet1(512x512).png" id="1_rvq4q"]
-[ext_resource type="Script" path="res://scripts/gridmap/TerrainNavigation.gd" id="2_eevt3"]
+[ext_resource type="Script" uid="uid://iqgbo468m3t4" path="res://scripts/gridmap/TerrainNavigation.gd" id="2_eevt3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwrqn"]
 texture = ExtResource("1_rvq4q")
@@ -12,13 +12,13 @@ use_texture_padding = false
 0:0/0/custom_data_1 = "plain"
 1:0/0 = 0
 1:0/0/custom_data_0 = 2
-1:0/0/custom_data_1 = "muddyTerrain"
+1:0/0/custom_data_1 = "swamp"
 2:0/0 = 0
 2:0/0/custom_data_0 = 2
 2:0/0/custom_data_1 = "snowPlain"
 0:1/0 = 0
 0:1/0/custom_data_0 = 6
-0:1/0/custom_data_1 = "water"
+0:1/0/custom_data_1 = "lake"
 1:1/0 = 0
 1:1/0/custom_data_0 = 9
 1:1/0/custom_data_1 = "moutain"
@@ -26,9 +26,13 @@ use_texture_padding = false
 2:1/0/custom_data_0 = 3
 2:1/0/custom_data_1 = "forest"
 3:0/0 = 0
+3:0/0/custom_data_0 = 1
 4:0/0 = 0
-4:1/0 = 0
+4:0/0/custom_data_0 = 999
 3:1/0 = 0
+3:1/0/custom_data_0 = 2
+4:1/0 = 0
+4:1/0/custom_data_0 = 5
 
 [sub_resource type="TileSet" id="TileSet_f0wfi"]
 tile_size = Vector2i(512, 512)
@@ -38,11 +42,9 @@ custom_data_layer_1/name = "typeTerrain"
 custom_data_layer_1/type = 4
 sources/1 = SubResource("TileSetAtlasSource_cwrqn")
 
-[node name="Terrain512x512" type="TileMap"]
+[node name="Terrain512x512" type="TileMapLayer"]
 show_behind_parent = true
 visibility_layer = 4
 tile_set = SubResource("TileSet_f0wfi")
 rendering_quadrant_size = 32
-format = 2
-layer_0/name = "tuiles"
 script = ExtResource("2_eevt3")

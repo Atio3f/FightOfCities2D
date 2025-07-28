@@ -1,5 +1,5 @@
-class_name interfaceFinTour
 extends Control
+class_name interfaceFinTour
 
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes
 @onready var bouttonFinTour : Button = $bouttonFinTour/ButtonFinTour

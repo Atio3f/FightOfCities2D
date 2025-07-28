@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="uniteRessource" load_steps=3 format=3 uid="uid://b1w3mnkj1y45v"]
+
+[ext_resource type="Script" uid="uid://c7f50m5phan5x" path="res://scripts/unites/general/ressourcesClasses/RessourceUniteBase.gd" id="1_vymuq"]
+
+[sub_resource type="Resource" id="Resource_rdxjx"]
+metadata/__load_path__ = "res://assets/sprites/taureaux/taureauRandom(32x32).png"
+
+[resource]
+script = ExtResource("1_vymuq")
+S = 2
+G = 0
+race = "Taureau"
+niveau = 0
+XP = 0.0
+pv_max = 40
+pv_actuels = 40
+DR = 18
+image = SubResource("Resource_rdxjx")
+P = 19
+typeDegats = "Physique"
+V = 10
+range = 1
+attaquesMax = 1
+attaquesRestantes = 1
+vitesseRestante = 10
+typeDeplacementPossible = ["vole"]
+typeDeplacementActuel = "vole"
+listeCapacites = []
+capacites = {
+"ActiveCapacitiesBased": {},
+"AttackBased": {},
+"DeathBased": {},
+"DefenseBased": {},
+"ItemBased": {},
+"KillBased": {},
+"LevelUpBased": {},
+"MovementBased": {},
+"PermanentBuff": {},
+"PlacementBased": {},
+"TurnBased": {}
+}
+typeCarte = "Unite"
+nom = "Taureau Ailé"
+description = ""
+couleurEquipe = "Rouge"

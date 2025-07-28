@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://27awq5ull731"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/interface_unite.gd" id="1_dk80o"]
+[ext_resource type="Script" uid="uid://b6lwpjipqps2u" path="res://scripts/unites/general/interface/interface_unite.gd" id="1_dk80o"]
 [ext_resource type="Texture2D" uid="uid://ccfqynwh8c63w" path="res://assets/interface/unite/BarreVieZoneVieVide(512x512).png" id="2_76stb"]
 [ext_resource type="Texture2D" uid="uid://r52h2fd2nn60" path="res://assets/interface/unite/BarreVieZoneViePleine(512x512).png" id="3_5kmur"]
 [ext_resource type="Texture2D" uid="uid://ddayhll8pd60y" path="res://assets/interface/unite/BarreVieZoneVieAbsorption(512x512).png" id="4_diped"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4cgkquia40u" path="res://assets/interface/unite/UIuniteInfosStats(512x512).png" id="5_6wd5v"]
 [ext_resource type="FontFile" uid="uid://51527uw3luky" path="res://assets/interface/unite/polices/reppixel.ttf" id="6_c2bh5"]
 [ext_resource type="Texture2D" uid="uid://c08rq4ph7vx68" path="res://assets/interface/unite/UIuniteConsommables(512x512).png" id="6_v7muh"]
-[ext_resource type="Script" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="7_tbqdh"]
+[ext_resource type="Script" uid="uid://bchpfc7lkilwi" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="7_tbqdh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gopln"]
 font = ExtResource("6_c2bh5")

@@ -1,0 +1,36 @@
+{
+	"fr": {
+		"test:GodMonkey" : {
+			"NAME": "Dieu Monkey"
+		},
+		"test:KnightMonkey" : {
+			"NAME": "Chevalier Monkey"
+		},
+		"test:AbominationMonkey" : {
+			"NAME": "Aberration Monkey"
+		},
+		"test:Monkey" : {
+			"NAME": "Monkey"
+		},
+		"test:TemporalSnail" : {
+			"NAME": "Escargot Temporel"
+		},
+	},
+	"en": {
+		"test:GodMonkey" : {
+			"NAME": "God Monkey"
+		},
+		"test:KnightMonkey" : {
+			"NAME": "Knight Monkey"
+		},
+		"test:AbominationMonkey" : {
+			"NAME": "Abomination Monkey"
+		},
+		"test:Monkey" : {
+			"NAME": "Monkey"
+		},
+		"test:TemporalSnail" : {
+			"NAME": "Temporal Snail"
+		},
+	}
+}

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Grid" load_steps=2 format=3 uid="uid://wr2rrjw510by"]
 
-[ext_resource type="Script" path="res://scripts/gridmap/Grid.gd" id="1_r1pse"]
+[ext_resource type="Script" uid="uid://dngvdr7dj1756" path="res://scripts/gridmap/Grid.gd" id="1_r1pse"]
 
 [resource]
 script = ExtResource("1_r1pse")

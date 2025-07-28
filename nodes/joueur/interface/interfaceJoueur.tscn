@@ -1,12 +1,20 @@
 [gd_scene load_steps=8 format=3 uid="uid://dn3hygwohims3"]
 
-[ext_resource type="Script" path="res://scripts/Player/interface/interfaceJoueur.gd" id="1_f81gc"]
+[ext_resource type="Script" uid="uid://bamyroceklnb" path="res://scripts/Player/interface/interfaceJoueur.gd" id="1_f81gc"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="2_f3ilc"]
-[ext_resource type="Script" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="2_n46yd"]
-[ext_resource type="Texture2D" uid="uid://dxfvdw43glf72" path="res://assets/interface/unite/UIuniteCapacites(32x32).png" id="3_s4n70"]
-[ext_resource type="Texture2D" uid="uid://bamlwjbuq3frf" path="res://assets/interface/unite/UIuniteInfosStats(32x32).png" id="4_cj022"]
-[ext_resource type="Texture2D" uid="uid://gqffnhlssg4d" path="res://assets/interface/joueur/UIjoueurSorts(32x32).png" id="5_3wucd"]
-[ext_resource type="Texture2D" uid="uid://b3xbtdxmkn0vp" path="res://assets/interface/joueur/UIjoueurPlacementCarte(32x32).png" id="6_ssktv"]
+[ext_resource type="Script" uid="uid://bchpfc7lkilwi" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="2_n46yd"]
+
+[sub_resource type="Resource" id="Resource_3cga5"]
+metadata/__load_path__ = "res://assets/interface/unite/UIuniteCapacites(32x32).png"
+
+[sub_resource type="Resource" id="Resource_xiegb"]
+metadata/__load_path__ = "res://assets/interface/unite/UIuniteInfosStats(32x32).png"
+
+[sub_resource type="Resource" id="Resource_68fsq"]
+metadata/__load_path__ = "res://assets/interface/joueur/UIjoueurSorts(32x32).png"
+
+[sub_resource type="Resource" id="Resource_cokr4"]
+metadata/__load_path__ = "res://assets/interface/joueur/UIjoueurPlacementCarte(32x32).png"
 
 [node name="interfaceJoueur" type="Control"]
 layout_mode = 3
@@ -45,14 +53,14 @@ texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("3_s4n70")
+texture_normal = SubResource("Resource_3cga5")
 
 [node name="Menu2" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
 visible = false
 texture_filter = 1
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("4_cj022")
+texture_normal = SubResource("Resource_xiegb")
 
 [node name="Rangee 2" type="VBoxContainer" parent="GestionnairePossibilite/ConteneurMenus"]
 layout_mode = 2
@@ -63,7 +71,7 @@ alignment = 2
 texture_filter = 1
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("5_3wucd")
+texture_normal = SubResource("Resource_68fsq")
 
 [node name="MenuPlacementCarte" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
 clip_children = 2
@@ -71,7 +79,7 @@ texture_filter = 1
 clip_contents = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_ssktv")
+texture_normal = SubResource("Resource_cokr4")
 
 [node name="noeudsTemp" type="Control" parent="."]
 unique_name_in_owner = true

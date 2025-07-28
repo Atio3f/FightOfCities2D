@@ -1,0 +1,50 @@
+{
+	"fr": {
+		"test:GodMonkeySpeedEffect" : {
+			"NAME": "Dieu Monkey",
+			"DESCRIPTION": ""
+		},
+		"test:KnightMonkeyEffect" : {
+			"NAME": "Chevalier Monkey",
+			"DESCRIPTION": ""
+		},
+		"test:AbominationMonkeyEffect" : {
+			"NAME": "Attack: -P and -V",
+			"DESCRIPTION": ""
+		},
+		"test:MonkeyEffect" : {
+			"NAME": "Soutien Monkey",
+			"DESCRIPTION": "Donne !VA! P et !VB! V à tous vos Monkeys."
+		},
+		"test:TemporalSnailKillEffect" : {
+			"NAME": "Kill: Orb+",
+			"DESCRIPTION": "Gain d'orbe à chaque ennemi tué."
+		},
+		"test:TemporalSnailRessurectEffect" : {
+			"NAME": "Death: Ressurect Orb",
+			"DESCRIPTION": "Peut ressusciter pour !C! orbe à sa mort. Le coût augmente de 1 à chaque utilisation."
+		},
+	},
+	"en": {
+		"test:GodMonkey" : {
+			"NAME": "God Monkey",
+			"DESCRIPTION": ""
+		},
+		"test:KnightMonkey" : {
+			"NAME": "Knight Monkey",
+			"DESCRIPTION": ""
+		},
+		"test:AbominationMonkey" : {
+			"NAME": "Abomination Monkey",
+			"DESCRIPTION": ""
+		},
+		"test:Monkey" : {
+			"NAME": "Monkey",
+			"DESCRIPTION": ""
+		},
+		"test:TemporalSnail" : {
+			"NAME": "Temporal Snail",
+			"DESCRIPTION": ""
+		},
+	}
+}
