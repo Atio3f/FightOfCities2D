@@ -78,10 +78,10 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 			unitAttacked.onKill(unitAttacking)
 			unitAttacking.onDeath(unitAttacked)
 	#Manage experience gained
-	if(unitAttacking.hpActual > 0):
-		unitAttacking.gainXp(ActionTypes.actionTypes.ATTACK, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
-	if(unitAttacked.hpActual > 0):
-		unitAttacked.gainXp(ActionTypes.actionTypes.ATTACKED, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
+	#if(unitAttacking.hpActual > 0):
+		#unitAttacking.gainXp(ActionTypes.actionTypes.ATTACK, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
+	#if(unitAttacked.hpActual > 0):
+		#unitAttacked.gainXp(ActionTypes.actionTypes.ATTACKED, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
 
 static func generateMap(length: int, width: int) -> void :
 

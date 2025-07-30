@@ -1,6 +1,6 @@
 extends Node
 
 const ITEMS = {
-	"test:VitalLink" : preload("res://elements/items/magicalBeasts/VitalLink.gd"),
-	"test:BrambleGauntlet": preload("res://elements/items/magicalBeasts/BrambleGauntlet.gd")
+	"test:VitalLink" : preload("res://Ressources/items/magicalBeasts/VitalLink.gd"),
+	"test:BrambleGauntlet": preload("res://Ressources/items/magicalBeasts/BrambleGauntlet.gd")
 }

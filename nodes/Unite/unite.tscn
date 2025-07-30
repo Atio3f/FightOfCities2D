@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0xoj357iuq7c"]
+[gd_scene load_steps=6 format=3 uid="uid://c0xoj357iuq7c"]
 
-[ext_resource type="Script" uid="uid://nxtxp84ep3n7" path="res://scripts/unites/general/cartesClasses/unite.gd" id="1_8x2i5"]
-[ext_resource type="Resource" uid="uid://bsk2sk22dc3mh" path="res://Ressources/old/cards/units/Monkeys/G1/singe.tres" id="2_h1ild"]
-[ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="3_mt4o2"]
+[ext_resource type="Script" uid="uid://oixsn6bpuivb" path="res://scripts/gameLogic/classes/AbstractUnit.gd" id="1_ion6h"]
 [ext_resource type="Texture2D" uid="uid://bm3sj7qiucgcq" path="res://assets/sprites/units/Monkey.png" id="5_jkama"]
 [ext_resource type="Script" uid="uid://c0mjucwye5ul6" path="res://scripts/unites/general/GestionCapacites.gd" id="6_figlw"]
 [ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interfaceUnite.tscn" id="6_ujj46"]
@@ -12,10 +10,7 @@ size = Vector2(32, 32)
 
 [node name="Unite" type="Path2D"]
 position = Vector2(60, 60)
-script = ExtResource("1_8x2i5")
-ressource = ExtResource("2_h1ild")
-race = "Monkey"
-grid = ExtResource("3_mt4o2")
+script = ExtResource("1_ion6h")
 
 [node name="GestionCapacites" type="Node2D" parent="."]
 script = ExtResource("6_figlw")

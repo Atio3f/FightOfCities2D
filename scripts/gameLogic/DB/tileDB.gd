@@ -2,16 +2,16 @@ extends Node
 
 
 const TILES = {
-	"test:ForestTile" : preload("res://elements/tiles/ForestTile.gd"),
-	"test:SakuraForestTile" : preload("res://elements/tiles/SakuraForestTile.gd"),
-	"test:SwampTile" : preload("res://elements/tiles/SwampTile.gd"),
-	"test:MountainTile" : preload("res://elements/tiles/MountainTile.gd"),
-	"test:PlainTile" : preload("res://elements/tiles/PlainTile.gd"),
-	"test:SnowPlainTile" : preload("res://elements/tiles/SnowPlainTile.gd"),
-	"test:LakeTile" : preload("res://elements/tiles/LakeTile.gd"),
-	"test:DesertTile" : preload("res://elements/tiles/DesertTile.gd"),
-	"test:DeepWaterTile" : preload("res://elements/tiles/DeepWaterTile.gd"),
-	"test:TropicalForestTile" : preload("res://elements/tiles/TropicalForestTile.gd"),
+	"test:ForestTile" : preload("res://Ressources/tiles/ForestTile.gd"),
+	"test:SakuraForestTile" : preload("res://Ressources/tiles/SakuraForestTile.gd"),
+	"test:SwampTile" : preload("res://Ressources/tiles/SwampTile.gd"),
+	"test:MountainTile" : preload("res://Ressources/tiles/MountainTile.gd"),
+	"test:PlainTile" : preload("res://Ressources/tiles/PlainTile.gd"),
+	"test:SnowPlainTile" : preload("res://Ressources/tiles/SnowPlainTile.gd"),
+	"test:LakeTile" : preload("res://Ressources/tiles/LakeTile.gd"),
+	"test:DesertTile" : preload("res://Ressources/tiles/DesertTile.gd"),
+	"test:DeepWaterTile" : preload("res://Ressources/tiles/DeepWaterTile.gd"),
+	"test:TropicalForestTile" : preload("res://Ressources/tiles/TropicalForestTile.gd"),
 }
 
 #Pour récup du tileset

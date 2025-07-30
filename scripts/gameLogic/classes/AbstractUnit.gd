@@ -1,4 +1,4 @@
-extends Node
+extends Path2D
 class_name AbstractUnit
 #Represent a unit
 static var _uid_counter := 0
@@ -40,6 +40,30 @@ var tags: Array[Tags.tags] = []
 var tile: AbstractTile	#Keep the tile where is the unit
 var isDead: bool	#Allow us to keep track of units killed
 
+@onready var contourSelec : Sprite2D = $ElementsUnite/ContourSelection
+var is_selected : bool = false:
+	set(value):
+		if(value == true):
+			contourSelec.visible = true
+		else:
+			contourSelec.visible = false
+		is_selected = value
+var _is_walking := false:
+	set(value):
+		_is_walking = value
+		set_process(_is_walking)
+		
+signal signalFinMouvement
+## Designate the current unit in a "wait" state
+@export var is_wait := false
+
+#CHECK SI ILS SERVENT
+@onready var _path_follow: PathFollow2D = $ElementsUnite
+@onready var sprite : Sprite2D = $ElementsUnite/SpriteUnite
+@onready var interfaceUnite : Control = $ElementsUnite/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
+@onready var noeudsTempIndic : Node2D = $NoeudsTemp/IndicDegats	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
+var popUpDegats = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.tscn")	#L'indicateur de dégâts lors d'une attaque(utilisé dans subirDegats)
+ 
 var movementTypes : Array[MovementTypes.movementTypes] = []
 var actualMovementTypes : MovementTypes.movementTypes = MovementTypes.movementTypes.NONE
 
@@ -88,6 +112,34 @@ func initStats(uid: String, hpMax: int, hpActual: int, hpTemp: int, power: int, 
 	self.mr = mr
 	self.wisdom = wisdom
 
+### MOVEMENT PART OF THE SPRITE
+func _process(delta: float) -> void:
+	
+	_path_follow.progress += 10 * MapManager.length * delta
+	if _path_follow.progress_ratio >= 1.0:
+		_is_walking = false
+		# Setting this value to 0.0 causes a Zero Length Interval error
+		_path_follow.progress = 0.00001
+		position = MapManager.calculate_map_position(tile.getCoords())
+		curve.clear_points()
+		emit_signal("signalFinMouvement")
+
+func deplacement(newTile: AbstractTile) -> void:
+	self.onMovement(newTile)
+	position = MapManager.calculate_map_position(newTile.getCoords())
+
+## Starts walking along the `path`.
+## `path` is an array of grid coordinates that the function converts to map coordinates.
+func walk_along(path: PackedVector2Array) -> void:
+	if path.is_empty():
+		return
+	curve.add_point(Vector2.ZERO)
+	for point in path:
+		curve.add_point(MapManager.calculate_map_position(point) - position)
+	
+	#case = path[-1] #J'ARRIVE PAS A COMPRENDRE A QUOI ça SERT DE NOTER LA NOUVELLE CASE
+	_is_walking = true
+	
 
 func getPlayer() -> AbstractPlayer:
 	return player
@@ -213,7 +265,7 @@ func healHp(healValue: int):
 		hpActual += healValue
 
 func onKill(unitKilled: AbstractUnit) -> void :
-	gainXp(ActionTypes.actionTypes.KILL, {"maxHp":unitKilled.hpMax})
+	#gainXp(ActionTypes.actionTypes.KILL, {"maxHp":unitKilled.hpMax})
 	for effect: AbstractEffect in effects:
 		effect.onKill(unitKilled)
 
@@ -222,10 +274,10 @@ func onDeath(unit: AbstractUnit = null) -> void:
 		effect.onDeath(unit)
 	isDead = true	#You're not supposed to be able to survive once you're in this function
 
-func onLevelUp() -> void :
-	for effect: AbstractEffect in effects:
-		effect.onLevelUp(level)
-	calculateLevel()#Allow to gain multiple levels if you got enough xp
+#func onLevelUp() -> void :
+	#for effect: AbstractEffect in effects:
+		#effect.onLevelUp(level)
+	#calculateLevel()#Allow to gain multiple levels if you got enough xp
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if(turnColor == player.team):
@@ -237,63 +289,63 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 		effect.onStartOfTurn(turnNumber, turnColor)
 
 #Manage all cases where an unit gain xp
-func gainXp(action: ActionTypes.actionTypes, infos: Dictionary = {})-> void:
-	match action:
-		ActionTypes.actionTypes.ATTACK:
-			xp = xp + (infos.damage * 0.75 + wisdom)
-		ActionTypes.actionTypes.ATTACKED:
-			xp = xp + ((infos.damage + wisdom) /2)
-		ActionTypes.actionTypes.KILL:
-			xp = xp + infos.maxHp + (2 * wisdom)
-		_:
-			1
-	calculateLevel()
+#func gainXp(action: ActionTypes.actionTypes, infos: Dictionary = {})-> void:
+	#match action:
+		#ActionTypes.actionTypes.ATTACK:
+			#xp = xp + (infos.damage * 0.75 + wisdom)
+		#ActionTypes.actionTypes.ATTACKED:
+			#xp = xp + ((infos.damage + wisdom) /2)
+		#ActionTypes.actionTypes.KILL:
+			#xp = xp + infos.maxHp + (2 * wisdom)
+		#_:
+			#1
+	#calculateLevel()
 
-func calculateLevel() -> void :
-	if level == potential : return	#Already level max
-	if xpPerLevel[level] < xp :
-		level += 1	#Set the new level
-		#Reajust the stats depending of the new level reached
-		match level:
-			2:
-				hpMax += hpBase / 2
-				hpActual += hpBase / 2
-				power += 3
-				dr += 1
-				mr += 1
-				speed += 2
-				wisdom += 1
-			3:
-				hpMax += hpBase / 2
-				hpActual += hpBase / 2
-				power += powerBase / 2 + 1
-				dr += 3
-				mr += 3
-				speed += 2
-				wisdom += 2
-			4:
-				hpMax += hpBase / 2
-				hpActual += hpBase / 2
-				atkPerTurn += 1
-				atkRemaining += 1
-				power += powerBase / 2
-				dr += 4
-				mr += 4
-				speed += 3
-				speedRemaining += 3
-				wisdom += 3
-			5:
-				hpMax += hpBase
-				hpActual += hpBase
-				power += powerBase + 1
-				dr += drBase + 5
-				mr += mrBase + 5
-				speed += 3
-				speedRemaining += 3
-				wisdom += 5
-		onLevelUp()
-	else:
-		return
+#func calculateLevel() -> void :
+	#if level == potential : return	#Already level max
+	#if xpPerLevel[level] < xp :
+		#level += 1	#Set the new level
+		##Reajust the stats depending of the new level reached
+		#match level:
+			#2:
+				#hpMax += hpBase / 2
+				#hpActual += hpBase / 2
+				#power += 3
+				#dr += 1
+				#mr += 1
+				#speed += 2
+				#wisdom += 1
+			#3:
+				#hpMax += hpBase / 2
+				#hpActual += hpBase / 2
+				#power += powerBase / 2 + 1
+				#dr += 3
+				#mr += 3
+				#speed += 2
+				#wisdom += 2
+			#4:
+				#hpMax += hpBase / 2
+				#hpActual += hpBase / 2
+				#atkPerTurn += 1
+				#atkRemaining += 1
+				#power += powerBase / 2
+				#dr += 4
+				#mr += 4
+				#speed += 3
+				#speedRemaining += 3
+				#wisdom += 3
+			#5:
+				#hpMax += hpBase
+				#hpActual += hpBase
+				#power += powerBase + 1
+				#dr += drBase + 5
+				#mr += mrBase + 5
+				#speed += 3
+				#speedRemaining += 3
+				#wisdom += 5
+		#onLevelUp()
+	#else:
+		#return
 
 #We can't override get_class method from Node sadly
 func getClass() -> String :

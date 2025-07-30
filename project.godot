@@ -19,6 +19,17 @@ config/icon="res://assets/sprites/monkey1(32x32).png"
 [autoload]
 
 Global="*res://scripts/config/global.gd"
+EffectDb="*res://scripts/gameLogic/DB/effectDB.gd"
+ItemDb="*res://scripts/gameLogic/DB/itemDB.gd"
+TileDb="*res://scripts/gameLogic/DB/tileDB.gd"
+UnitDb="*res://scripts/gameLogic/DB/unitDB.gd"
+ActionTypes="*res://scripts/gameLogic/enums/actionTypes.gd"
+DamageTypes="*res://scripts/gameLogic/enums/damageTypes.gd"
+MovementTypes="*res://scripts/gameLogic/enums/movementTypes.gd"
+Tags="*res://scripts/gameLogic/enums/tags.gd"
+TeamsColor="*res://scripts/gameLogic/enums/TeamsColor.gd"
+EffectsStrings="*res://Ressources/effects/EffectsStrings.json"
+UnitsStrings="*res://Ressources/units/UnitsStrings.json"
 
 [editor_plugins]
 

@@ -30,3 +30,6 @@ func onStartOfTurn(unit: AbstractUnit) -> void:
 #Quand unité quitte case
 func onUnitOut(unit: AbstractUnit) -> void :
 	return
+
+func getCoords() -> Vector2i :
+	return Vector2i(x, y)

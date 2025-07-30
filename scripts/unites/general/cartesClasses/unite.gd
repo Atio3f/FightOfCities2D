@@ -60,8 +60,6 @@ var vitesseRestante : int :
 			vitesseRestante = V
 		else:
 			vitesseRestante = value
-#var capacites : Dictionary	#Dictionnaire des capacités de l'unité(voir RessourceUniteBase pour comprendre la structure du dico) OBSOLETE
-
 
 var is_selected : bool = false:
 	set(value):
@@ -70,12 +68,6 @@ var is_selected : bool = false:
 		else:
 			contourSelec.visible = false
 		is_selected = value
-
-
-
-		
-
-
 
 var _is_walking := false:
 	set(value):
