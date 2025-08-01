@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cferradf2m4ex"]
+[gd_scene load_steps=7 format=3 uid="uid://cferradf2m4ex"]
 
-[ext_resource type="Script" uid="uid://d0hn5no4xyu4j" path="res://scripts/gameLogic/classes/GameManager.gd" id="1_d7a6c"]
 [ext_resource type="Script" uid="uid://cchu78ucpgyp1" path="res://scripts/gameLogic/classes/MapManager.gd" id="1_t6bmd"]
+[ext_resource type="PackedScene" uid="uid://c2ujfy5yojwyh" path="res://nodes/tilemaps/terrain512x512.tscn" id="3_34k3y"]
+[ext_resource type="Script" uid="uid://crobcf7g1ay5d" path="res://scripts/gameLogic/classes/AbstractPlayer.gd" id="4_t6bmd"]
 [ext_resource type="Texture2D" uid="uid://d2yn3tn6n6kop" path="res://assets/tiles/curseurPosition(512x512).png" id="6_eiyuw"]
 [ext_resource type="Texture2D" uid="uid://cn5umltddbepu" path="res://assets/tiles/curseurTarget(512x512).png" id="7_110or"]
 [ext_resource type="PackedScene" uid="uid://rfbkx0b7abxh" path="res://nodes/joueur/player.tscn" id="10_ivms2"]
@@ -17,7 +18,8 @@ position = Vector2(8, 8)
 unique_name_in_owner = true
 show_behind_parent = true
 script = ExtResource("1_t6bmd")
-metadata/_custom_type_script = "uid://cchu78ucpgyp1"
+
+[node name="Terrain512x512" parent="Map" instance=ExtResource("3_34k3y")]
 
 [node name="CaseSelec" type="Sprite2D" parent="Map"]
 visible = false
@@ -27,21 +29,18 @@ rotation = 3.14159
 
 [node name="StockageUnites" type="Node2D" parent="."]
 
-[node name="Players" type="Node" parent="."]
-unique_name_in_owner = true
+[node name="Joueurs" type="Node" parent="."]
 
-[node name="Player" parent="Players" instance=ExtResource("10_ivms2")]
+[node name="Player" parent="Joueurs" instance=ExtResource("10_ivms2")]
+script = ExtResource("4_t6bmd")
 
-[node name="CaseSelecJ1" parent="Players/Player/Pointeur_Selection" index="3"]
+[node name="CaseSelecJ1" parent="Joueurs/Player/Pointeur_Selection" index="3"]
 texture = ExtResource("6_eiyuw")
 
-[node name="CaseTargetJ1" parent="Players/Player/Pointeur_Selection" index="4"]
+[node name="CaseTargetJ1" parent="Joueurs/Player/Pointeur_Selection" index="4"]
 texture = ExtResource("7_110or")
 
-[node name="Movement" parent="Players/Player" index="1"]
+[node name="Movement" parent="Joueurs/Player" index="1"]
 zoom = Vector2(0.1, 0.1)
 
-[node name="GameManager" type="Node2D" parent="."]
-script = ExtResource("1_d7a6c")
-
-[editable path="Players/Player"]
+[editable path="Joueurs/Player"]

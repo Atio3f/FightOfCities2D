@@ -18,7 +18,7 @@ config/icon="res://assets/sprites/monkey1(32x32).png"
 
 [autoload]
 
-Global="*res://scripts/config/global.gd"
+Global="*res://scripts/gameLogic/classes/Global.gd"
 EffectDb="*res://scripts/gameLogic/DB/effectDB.gd"
 ItemDb="*res://scripts/gameLogic/DB/itemDB.gd"
 TileDb="*res://scripts/gameLogic/DB/tileDB.gd"

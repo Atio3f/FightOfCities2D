@@ -20,7 +20,7 @@ func getNode() -> TileMapLayer:
 func setupGrid() -> void:
 	pass
 	#astarGrid.region = Rect2i(0, 0, 80, 80)
-	#astarGrid.cell_size = Vector2i(Global.cellSize, Global.cellSize)		#Taille des cases
+	#astarGrid.cellSize = Vector2i(Global.cellSize, Global.cellSize)		#Taille des cases
 	#astarGrid.update()
 	#astarGrid.set_point_weight_scale(Vector2i(0, 0), 1)
 	#astarGrid.set_point_weight_scale(Vector2i(0, 1), 2)
@@ -44,9 +44,9 @@ func deplacement_possible(emplacement : Vector2i, vitesseR : int) -> void:
 func get_movement_costs(grid : Grid):
 	
 	var movement_costs = []
-	for y in range(grid.size.y):
+	for y in range(MapManager.width):
 		movement_costs.append([])
-		for x in range(grid.size.x):
+		for x in range(MapManager.length):
 			## This requires that all tiles with a movement cost MUST be on layer 0 of the tilemap
 			#var tile = get_cell_source_id(0, Vector2i(x,y))
 			var tile = terrain.get_cell_tile_data(Vector2i(x,y))

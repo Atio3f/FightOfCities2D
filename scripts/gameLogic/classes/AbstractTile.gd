@@ -8,7 +8,7 @@ var speedRequired: Dictionary = {}	#Contains all speed costs for differents type
 var x: int	#Coord x
 var y: int	#Coord y
 var priority: int	#indicate the order of the tile on its coordinates
-
+var unitOn: AbstractUnit = null
 
 func _init(id: String, walkSpeed: int, flySpeed: int, swimSpeed: int):
 	self.id = id
@@ -21,6 +21,7 @@ func _init(id: String, walkSpeed: int, flySpeed: int, swimSpeed: int):
 
 #Quand l'unité est sur la case
 func onUnitIn(unit: AbstractUnit) -> void :
+	unitOn = unit
 	return
 
 #Quand unité est sur la case au début du tour
@@ -29,7 +30,11 @@ func onStartOfTurn(unit: AbstractUnit) -> void:
 
 #Quand unité quitte case
 func onUnitOut(unit: AbstractUnit) -> void :
+	unitOn = null
 	return
 
 func getCoords() -> Vector2i :
 	return Vector2i(x, y)
+
+func hasUnitOn() -> bool:
+	return unitOn != null

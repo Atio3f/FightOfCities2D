@@ -9,18 +9,17 @@ var _astar := AStarGrid2D.new()
 
 
 ## Initializes the AstarGrid2D object upon creation.
-func _init(grid: Grid, walkable_cells: Array) -> void:
-	_grid = grid
-	_astar.size = _grid.size
-	_astar.cell_size = _grid.cell_size
+func _init(walkable_cells: Array) -> void:
+	_astar.size = Vector2i(MapManager.length, MapManager.width)
+	_astar.cellSize = MapManager.cellSize
 	_astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.update()
 	# Iterate over all points on the grid and disable any which are
 	#	not in the given array of walkable cells
-	for y in _grid.size.y:
-		for x in _grid.size.x:
+	for y in _astar.size.y:
+		for x in _astar.size.x:
 			if not walkable_cells.has(Vector2(x,y)):
 				_astar.set_point_solid(Vector2(x,y))
 

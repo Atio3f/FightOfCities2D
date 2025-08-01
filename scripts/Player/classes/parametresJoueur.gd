@@ -1,5 +1,5 @@
 extends Resource
-class_name parametresJoueur
+class_name ParamPlayer
 
 
 @export var modeDaltonien : bool

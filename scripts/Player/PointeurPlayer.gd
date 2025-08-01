@@ -52,13 +52,14 @@ func _ready() -> void:
 	
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
-	Global._units.clear()
-
-	for child in get_children():
-		var unit := child as unite
-		if not unit:
-			continue
-		Global._units[unit.case] = unit
+	1
+	##A RETIRER
+	#Global._units.clear()
+	#for child in get_children():
+		#var unit := child as unite
+		#if not unit:
+			#continue
+		#Global._units[unit.case] = unit
 
 func _get_configuration_warning() -> String:
 	var warning := ""
@@ -181,11 +182,11 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 	## the previous array can be used to recontruct the path alogrithm found to the previous node you were at
 	
 	## iterate over width and height of the grid
-	for y in range(grid.size.y):
+	for y in range(MapManager.width):
 		visited.append([])
 		distances.append([])
 		previous.append([])
-		for x in range(grid.size.x):
+		for x in range(MapManager.length):
 			visited[y].append(false)
 			distances[y].append(MAX_VALUE)
 			previous[y].append(null)
@@ -284,8 +285,10 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 			_walkable_cells.clear() # Clearing out the walkable cells
 			visuActions.clearNumbers() # This is what clears all the colored tiles on the grid
 			visuZoneCapa.clearNumbers() # Clear l'affichage de la zone de la capacité
-		if Global._units.has(new_cell) and Selection == null:
+		### A SUPPRIMER if Global._units.has(new_cell) and Selection == null:
+		if MapManager.getTileAt(new_cell) != null && MapManager.getTileAt(new_cell).hasUnitOn() and Selection == null:
 			_hover_display(new_cell)
+			
 	elif(capaciteActuelle != null):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
 									#Affiche la zone affectée par la capa
 		hoverZoneCapa(new_cell, capaciteActuelle)
@@ -389,7 +392,7 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 	print("_select_unit")
 	#print(cell)
 	#print(Global._units)
-	if not Global._units.has(cell):
+	if MapManager.getTileAt(cell) != null && !MapManager.getTileAt(cell).hasUnitOn() :
 		#print(cell)
 		#print(Global._units)
 		#print("NON")

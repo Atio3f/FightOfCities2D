@@ -191,7 +191,7 @@ func deplacement(nouvellePosition : Vector2) -> void:
 
 func _process(delta: float) -> void:
 	
-	_path_follow.progress += 10 * grid.cell_size.x * delta
+	_path_follow.progress += 10 * grid.cellSize.x * delta
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
 		# Setting this value to 0.0 causes a Zero Length Interval error

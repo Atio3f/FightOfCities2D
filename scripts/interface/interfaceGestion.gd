@@ -11,7 +11,7 @@ var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un end
 
 func _ready() -> void :
 	setActionsRest(3)
-	%LabelCouleurTour.text = "Tour %s" % [Global.ordreCouleur[Global.couleurTour]]
+	%LabelCouleurTour.text = "Tour %s" % [TurnManager.actualTurn()]
 
 func setActionsRest(actions : int) -> void:
 	labelActionsRest.text = "Actions " + str(actions) + "/3"

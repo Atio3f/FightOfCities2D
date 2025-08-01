@@ -2,12 +2,27 @@ extends Node
 class_name GameManager
 
 static var players: Array[AbstractPlayer] = []
-var turnManager: TurnManager
+static var scenePlayer: PackedScene = preload("res://nodes/joueur/player.tscn")
+
+var mapManager: MapManager
+#var turnManager: TurnManager
+
+##JSP SI IL FAUT VRAIMENT QUE JE LE PLACE GAMEMANAGER ni que je dois init mapManager ici
+func _ready():
+	loadGame()
 
 #Return value is to wait the load of all elements and check if we got an error during the loading
-static func loadGame() -> bool : 
+func loadGame() -> bool : 
 	#Load all units from all player into players and place them on the map(and setup their effects?)
 	
+	
+	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
+	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.CYAN, "Player1")
+	player1.isGamePlayer = true
+	
+	createPlayer(TeamsColor.TeamsColor.RED, "Ennemi")
+	mapManager = %Map
+	generateMap(30, 50)
 	return true
 
 
@@ -32,19 +47,28 @@ static func getPlayer(team: TeamsColor.TeamsColor) -> AbstractPlayer :
 			return player
 	return null
 
-static func createPlayer(team: TeamsColor.TeamsColor, name: String) -> AbstractPlayer :
-	var player: AbstractPlayer = AbstractPlayer.new(team, name)
+func createPlayer(team: TeamsColor.TeamsColor, name: String) -> AbstractPlayer :
+	var p = scenePlayer.instantiate()
+	print(p.get_script())
+	players.append(p)
+	var player = p as AbstractPlayer
+	%Players.add_child(p)
+	print(player)
+	player._init(team, name)	#We initialize AbstractPlayer infos here
+		#Add to the scene
+
+	#player.$Actions.player = self
 	if !TurnManager.teams.has(team) : TurnManager.addTeam(team)
 	return player
 
 
-static func placeUnit(id: String, player: AbstractPlayer, tileCoord: Vector2i) -> AbstractUnit:
+static func placeUnitForTest(id: String, player: AbstractPlayer, tileCoord: Vector2i) -> AbstractUnit:
 	var unit: AbstractUnit = UnitDb.UNITS[id].new(player)#We only keep the second id part to get the class corresponding
 	unit.onPlacement(MapManager.getTileAt(tileCoord))
 	return unit
 
 #Pour les tests on a besoin d'être sûr du type de case
-static func placeUnitForTest(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
+static func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
 	var unit: AbstractUnit = UnitDb.UNITS[id].new(player)#We only keep the second id part to get the class corresponding
 	unit.onPlacement(tile)
 	return unit

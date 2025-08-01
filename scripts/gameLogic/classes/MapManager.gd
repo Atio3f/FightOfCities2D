@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name MapManager
 
 
@@ -11,16 +11,19 @@ const genMapDefault = {"test:ForestTile": 100, "test:PlainTile": 83, "test:Swamp
 #J'ai pas encore fait les autres cases
 const genMapTEST = {"test:ForestTile": 100, "test:LakeTile": 25}
 static var sceneTerrain: PackedScene = preload("res://nodes/tilemaps/terrain512x512.tscn")
-static var instanceTerrain = sceneTerrain.instantiate()
-static var terrain : Terrain = instanceTerrain as Terrain	#We get the script
+static var instanceTerrain
+static var terrain : Terrain	#We get the script
 
 func _ready():
 	print("CREATION TERRAIN")
 	createTerrain()
 
 func createTerrain() -> void :
-	%Map.add_child(terrain.getNode())	#Import the tilemap on scene
-	initMap(10, 10)
+	#We instantiate here to avoid null values
+	instanceTerrain = sceneTerrain.instantiate()
+	terrain = instanceTerrain as Terrain
+	self.add_child(terrain.getNode())	#Import the tilemap on scene
+	#initMap(10, 10)
 	print("ezarz")
 #pê rajouter un param mapType dans le futur pour avoir différentes générations de
 #map pour le moment j'en met une par défaut ici 
@@ -62,21 +65,23 @@ static func pickTile(totalWeight: int, i: int, j: int, genMap: Dictionary) -> Ab
 static func getTileAt(coords: Vector2i) -> AbstractTile :
 	return activeTiles.get(coords)
 
-## The size of a cell in pixels.
-static var cell_size := Vector2(512, 512)
 
-## Half of ``cell_size``
-static var _half_cell_size = cell_size / 2
+## The size of a cell in pixels.
+static var cellSize := 512
+static var vectCellSize := Vector2(cellSize, cellSize)
+
+## Half of ``cellSize``
+static var _half_cell_size = cellSize / 2
 
 
 ## Returns the position of a cell's center in pixels.
 static func calculate_map_position(grid_position: Vector2) -> Vector2:
-	return grid_position * cell_size + _half_cell_size
+	return grid_position * cellSize + _half_cell_size
 
 
 ## Returns the coordinates of the cell on the grid given a position on the map.
 static func calculate_grid_coordinates(map_position: Vector2) -> Vector2:
-	return (map_position / cell_size).floor()
+	return (map_position / cellSize).floor()
 
 
 ## Returns true if the `cell_coordinates` are within the grid.
@@ -92,6 +97,8 @@ static func grid_clamp(grid_position: Vector2) -> Vector2:
 	pos.y = clamp(pos.y, 0, width - 1.0)
 	return pos
 
+static func getTileAtCoords(coords: Vector2) -> AbstractTile:
+	return getTileAt(calculate_grid_coordinates(coords))
 
 static func registerMap() -> Dictionary:
 	var turnData := {
