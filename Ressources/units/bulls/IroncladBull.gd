@@ -8,10 +8,10 @@ const img = ""
 const DR_VALUE = 3
 
 
-func _init(playerAssociated: AbstractPlayer):
-	super._init(idUnit, img, playerAssociated, GRADE, 48, 21, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 3, 8, 0, POTENTIAL, 1)
-	var effect1: AbstractEffect = IroncladBullEffect.new(self, -1, DR_VALUE)
-	effects.append(effect1)
-	tags.append(Tags.tags.BULL)
-	self.movementTypes = [MovementTypes.movementTypes.WALK]
-	self.actualMovementTypes = MovementTypes.movementTypes.WALK
+static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
+	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 48, 21, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 3, 8, 0, POTENTIAL, 1)
+	var effect1: AbstractEffect = IroncladBullEffect.new(unit, -1, DR_VALUE)
+	unit.effects.append(effect1)
+	unit.tags.append(Tags.tags.BULL)
+	unit.movementTypes = [MovementTypes.movementTypes.WALK]
+	unit.actualMovementTypes = MovementTypes.movementTypes.WALK

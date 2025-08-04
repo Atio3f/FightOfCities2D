@@ -26,6 +26,6 @@ var activeCapacity	#capacité active actuelle
 func _process(delta):
 	var fps : int = Engine.get_frames_per_second()
 	%FPSMeter.text = "FPS: %03d" % [fps]
-	if(fps < 30):	#Check lorsqu'on fera beaucoup de conneries
-		print(fps)
-		print("PROBLEME DE PERFORMANCES")
+	#if(fps < 30):	#Check lorsqu'on fera beaucoup de conneries
+		#print(fps)
+		#print("PROBLEME DE PERFORMANCES")

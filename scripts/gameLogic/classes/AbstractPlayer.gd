@@ -18,12 +18,13 @@ var hand: PlayerHand
 var activeCapacity	#capacité active actuelle
 var isGamePlayer: bool = false	#Serve to know if the player is the one you control the game
 
-func _init(team: TeamsColor.TeamsColor, name: String):
+func initialize(team: TeamsColor.TeamsColor, name: String):
 	self.playerName = name
 	self.team = team
 	GameManager.players.append(self)
 	hand = PlayerHand.new(self)
 	$Actions.player = self
+	weight = 0
 
 func getUnits() -> Array[AbstractUnit]:
 	return units
@@ -96,13 +97,13 @@ func registerPlayer() -> Dictionary :
 		playerData["units"].append(unit.registerUnit())
 	return playerData
 
-
-static func recoverPlayer(data: Dictionary) -> AbstractPlayer :
-	var player = AbstractPlayer.new(data.team, data.playerName)
-	player.orbs = data.orbs
-	player.maxOrbs = data.maxOrbs
-	player.weight = data.weight
-	player.maxWeight = data.maxWeight
-	for unitData in data.units:
-		player.units.append(AbstractUnit.recoverUnit(unitData, player))
-	return player
+###Y'a un monde où il faudra le faire en dehors d'AbstractPlayer mtn
+#static func recoverPlayer(data: Dictionary) -> AbstractPlayer :
+	#var player = AbstractPlayer.new(data.team, data.playerName)
+	#player.orbs = data.orbs
+	#player.maxOrbs = data.maxOrbs
+	#player.weight = data.weight
+	#player.maxWeight = data.maxWeight
+	#for unitData in data.units:
+		#player.units.append(AbstractUnit.recoverUnit(unitData, player))
+	#return player

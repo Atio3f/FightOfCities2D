@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cferradf2m4ex"]
+[gd_scene load_steps=3 format=3 uid="uid://cferradf2m4ex"]
 
 [ext_resource type="Script" uid="uid://d0hn5no4xyu4j" path="res://scripts/gameLogic/classes/GameManager.gd" id="1_d7a6c"]
 [ext_resource type="Script" uid="uid://cchu78ucpgyp1" path="res://scripts/gameLogic/classes/MapManager.gd" id="1_t6bmd"]
-[ext_resource type="Texture2D" uid="uid://d2yn3tn6n6kop" path="res://assets/tiles/curseurPosition(512x512).png" id="6_eiyuw"]
-[ext_resource type="Texture2D" uid="uid://cn5umltddbepu" path="res://assets/tiles/curseurTarget(512x512).png" id="7_110or"]
-[ext_resource type="PackedScene" uid="uid://rfbkx0b7abxh" path="res://nodes/joueur/player.tscn" id="10_ivms2"]
 
 [node name="scene1" type="Node2D"]
 
@@ -25,23 +22,12 @@ top_level = true
 position = Vector2(80, 80)
 rotation = 3.14159
 
-[node name="StockageUnites" type="Node2D" parent="."]
+[node name="UnitsStorage" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Players" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="Player" parent="Players" instance=ExtResource("10_ivms2")]
-
-[node name="CaseSelecJ1" parent="Players/Player/Pointeur_Selection" index="3"]
-texture = ExtResource("6_eiyuw")
-
-[node name="CaseTargetJ1" parent="Players/Player/Pointeur_Selection" index="4"]
-texture = ExtResource("7_110or")
-
-[node name="Movement" parent="Players/Player" index="1"]
-zoom = Vector2(0.1, 0.1)
-
 [node name="GameManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_d7a6c")
-
-[editable path="Players/Player"]

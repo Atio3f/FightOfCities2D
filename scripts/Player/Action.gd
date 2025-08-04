@@ -8,8 +8,11 @@ extends Node2D
 @onready var player : AbstractPlayer
 
 func _input(_event) -> void:
-	
-	if interfaceFinTour.sourisOnInterface && player != null && player.isGamePlayer: 
+	if player != null && !player.isGamePlayer : return
+	print("r")
+	print(interfaceFinTour.sourisOnInterface)
+	if !interfaceFinTour.sourisOnInterface && player != null && player.isGamePlayer: 
+		print("rzr")
 		#Permet de poser un nouveau monkey
 		#if Input.is_action_just_pressed("action") and Global._units.has(pointeurSouris.positionSouris) == false and interfaceFinTour.actionsRest > 0:
 			#print("CREATION SINGE BLEU")
@@ -28,7 +31,7 @@ func _input(_event) -> void:
 			##print(interfaceFinTour.actionsRest)
 		var actualTile: AbstractTile = MapManager.getTileAtCoords(pointeurSouris.positionSouris)
 		if Input.is_action_just_pressed("action") and !actualTile.hasUnitOn() and player.maxWeight >= player.weight + 1:
-			GameManager.placeUnit("test:Monkey", player.get_script(), actualTile)
+			%GameManager.placeUnit("test:Monkey", player, actualTile)
 		
 		#Permet de créer un ennemi(sert à faire des tests ne coûte aucune action
 		if Input.is_action_just_pressed("action2") and Global._units.has(pointeurSouris.positionSouris) == false:
@@ -46,6 +49,6 @@ func _input(_event) -> void:
 			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Taureaux/G2/taureauAile.tres"))
 			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
 			print(nvlUnite.couleurEquipe)
-			
+		
 			
 		

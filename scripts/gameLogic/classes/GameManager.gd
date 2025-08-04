@@ -3,7 +3,7 @@ class_name GameManager
 
 static var players: Array[AbstractPlayer] = []
 static var scenePlayer: PackedScene = preload("res://nodes/joueur/player.tscn")
-
+static var sceneUnit: PackedScene = preload("res://nodes/Unite/unite.tscn")
 var mapManager: MapManager
 #var turnManager: TurnManager
 
@@ -54,7 +54,7 @@ func createPlayer(team: TeamsColor.TeamsColor, name: String) -> AbstractPlayer :
 	var player = p as AbstractPlayer
 	%Players.add_child(p)
 	print(player)
-	player._init(team, name)	#We initialize AbstractPlayer infos here
+	player.initialize(team, name)	#We initialize AbstractPlayer infos here
 		#Add to the scene
 
 	#player.$Actions.player = self
@@ -68,8 +68,13 @@ static func placeUnitForTest(id: String, player: AbstractPlayer, tileCoord: Vect
 	return unit
 
 #Pour les tests on a besoin d'être sûr du type de case
-static func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
-	var unit: AbstractUnit = UnitDb.UNITS[id].new(player)#We only keep the second id part to get the class corresponding
+func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
+	var u = sceneUnit.instantiate()
+	player.units.append(u)
+	var unit = u as AbstractUnit
+	%UnitsStorage.add_child(unit)
+	print(unit)
+	UnitDb.UNITS[id].initializeStats(unit, player.team, name)
 	unit.onPlacement(tile)
 	return unit
 
@@ -203,11 +208,11 @@ static func getSave(save: int) -> Dictionary:
 	var data = json.get_data()
 	return data
 
-static func loadSave(save: int) -> void :
-	var data = getSave(save)
-	players = []
-	for player: Dictionary in data.players:
-		players.append(AbstractPlayer.recoverPlayer(player))
+#static func loadSave(save: int) -> void :
+	#var data = getSave(save)
+	#players = []
+	#for player: Dictionary in data.players:
+		#players.append(AbstractPlayer.recoverPlayer(player))
 
 #Allow to delete all saves during test because I can't find the user://saves repo
 static func deleteAllSaves() -> void :

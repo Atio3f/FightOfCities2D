@@ -67,7 +67,7 @@ var popUpDegats = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.ts
 var movementTypes : Array[MovementTypes.movementTypes] = []
 var actualMovementTypes : MovementTypes.movementTypes = MovementTypes.movementTypes.NONE
 
-func _init(id: String, imgPath: String, playerAssociated: AbstractPlayer, grade: int, hpBase: int, powerBase:int, damageType: DamageTypes.DamageTypes, atkPerTurnBase: int, range: int, speedBase: int, drBase: int, mrBase: int, potential: int, wisdomBase: int, idDead: bool = false):
+func initializeStats(id: String, imgPath: String, playerAssociated: AbstractPlayer, grade: int, hpBase: int, powerBase:int, damageType: DamageTypes.DamageTypes, atkPerTurnBase: int, range: int, speedBase: int, drBase: int, mrBase: int, potential: int, wisdomBase: int, idDead: bool = false):
 	self.id = id
 	_uid_counter += 1
 	self.uid = str(randi() % 100000).pad_zeros(6) + str(Time.get_unix_time_from_system()) + str(_uid_counter)
@@ -399,26 +399,27 @@ func registerUnit() -> Dictionary :
 		unitData["effects"].append(effect.registerEffect())
 	return unitData
 	
-static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> AbstractUnit :
-	#Create a unit with all elements associated, need to add some things !!! like playerAssociated
-	if UnitDb.UNITS.has(data.className):
-		#Pas faisable car pas même nbr de param + inutile
-		#var unit = UnitDb.UNITS[data.className].new(data.id, player, data.hpBase, data.powerBase, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
-		var unit = AbstractUnit.new(data.id, data.imgPath, player, data.grade, data.hpBase, data.powerBase, data.damageType, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
-		unit.initStats(data.uid, data.hpMax, data.hpActual, data.hpTemp, data.power, data.speed, data.speedRemaining, data.atkPerTurn, data.atkRemaining, data.dr, data.mr, data.wisdom, data.level, data.xp)
-		unit.tile = data.tile
-		for tag: int in data.tags:
-			unit.tags.append(tag)
-		
-		for movementType: int in data.movementTypes:
-			unit.movementTypes.append(data.movementTypes)
-		unit.actualMovementTypes = data.actualMovementTypes
-		unit.isDead = data.isDead
-		for effectData in data.effects:
-			unit.effects.append(AbstractEffect.recoverEffect(effectData, unit))
-		return unit
-	else :
-		push_error("UNIT CLASS NOT FIND")
-		return null#Maybe create a unit via ?
+##Pareil que dans AbstractPlayer il faudra sûrement changer l'emplacement de cette fonction
+#static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> AbstractUnit :
+	##Create a unit with all elements associated, need to add some things !!! like playerAssociated
+	#if UnitDb.UNITS.has(data.className):
+		##Pas faisable car pas même nbr de param + inutile
+		##var unit = UnitDb.UNITS[data.className].new(data.id, player, data.hpBase, data.powerBase, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
+		#var unit = AbstractUnit.new(data.id, data.imgPath, player, data.grade, data.hpBase, data.powerBase, data.damageType, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
+		#unit.initStats(data.uid, data.hpMax, data.hpActual, data.hpTemp, data.power, data.speed, data.speedRemaining, data.atkPerTurn, data.atkRemaining, data.dr, data.mr, data.wisdom, data.level, data.xp)
+		#unit.tile = data.tile
+		#for tag: int in data.tags:
+			#unit.tags.append(tag)
+		#
+		#for movementType: int in data.movementTypes:
+			#unit.movementTypes.append(data.movementTypes)
+		#unit.actualMovementTypes = data.actualMovementTypes
+		#unit.isDead = data.isDead
+		#for effectData in data.effects:
+			#unit.effects.append(AbstractEffect.recoverEffect(effectData, unit))
+		#return unit
+	#else :
+		#push_error("UNIT CLASS NOT FIND")
+		#return null#Maybe create a unit via ?
 	
 	

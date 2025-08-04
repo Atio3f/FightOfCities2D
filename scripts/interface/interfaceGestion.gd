@@ -31,8 +31,10 @@ func _on_mouse_exited() -> void:
 
 func _on_button_fin_tour_pressed() -> void:
 	setActionsRest(3)
-	Global.nextTurn()
+	TurnManager.nextTurn()
+	var units: Array[AbstractUnit] = GameManager.getAllUnits()
+	var turnColor: TeamsColor.TeamsColor = TurnManager.actualTurn()
 	#Réalisation d'une boucle pour parcourir toutes les unités sur le terrain et leur permettre de 
-	for unit in Global._units :
-		Global._units[unit].nextTurn()
-	%LabelCouleurTour.text = "Tour %s" % [Global.ordreCouleur[Global.couleurTour]]
+	for unit in units :
+		units[unit].onStartOfTurn(TurnManager.turn, turnColor)
+	%LabelCouleurTour.text = "Tour %s" % [turnColor]

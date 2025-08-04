@@ -2,8 +2,8 @@ extends Node2D
 class_name pointeurJoueur
 
 var aSelectionne : bool = false 
-var Selection : cartePlacable		#Contiendra l'unité sélectionné
-var target : cartePlacable
+var Selection : AbstractUnit		#Contiendra l'unité sélectionné
+var target : AbstractUnit
 
 var positionSouris : Vector2i
 var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initialisé à false
@@ -113,14 +113,14 @@ func smoothyPosition() -> void:
 
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
-func get_walkable_cells(unit: unite) -> Dictionary:
-	return _dijkstra(unit.case, unit.vitesseRestante, false, unit.typeDeplacementActuel)
+func get_walkable_cells(unit: AbstractUnit) -> Dictionary:
+	return _dijkstra(unit.tile.getCoords(), unit.vitesseRestante, false, unit.typeDeplacementActuel)
 
 ## Return an array of cells a given unit can attack using dijkstra's and flood fill algorithm
-func get_attackable_cells(unit: unite) -> Array:
+func get_attackable_cells(unit: AbstractUnit) -> Array:
 	
 	var attackable_cells = []
-	var real_walkable_cells = _dijkstra(unit.case, unit.vitesseRestante, true, unit.typeDeplacementActuel)
+	var real_walkable_cells = _dijkstra(unit.tile.getCoords(), unit.vitesseRestante, true, unit.typeDeplacementActuel)
 	
 	## iterate through every single cell and find their partners based on attack range(stat range)
 	for curr_cell in real_walkable_cells:
@@ -392,7 +392,8 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 	print("_select_unit")
 	#print(cell)
 	#print(Global._units)
-	if MapManager.getTileAt(cell) != null && !MapManager.getTileAt(cell).hasUnitOn() :
+	var tileOn: AbstractTile = MapManager.getTileAt(cell)
+	if tileOn != null && !tileOn.hasUnitOn() :
 		#print(cell)
 		#print(Global._units)
 		#print("NON")
@@ -401,13 +402,13 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 			interfaceJoueurI.apercuMenusJoueur(self, true)
 			
 	else :
-		
-		Selection = Global._units[cell]
-		Selection.selectionneSelf(self, ouvrirMenu)
-		interfaceJoueurI.apercuMenusJoueur(self, false)
-		## Acquire the walkable and attackable cells
-		_walkable_cells = get_walkable_cells(Selection)
-		_attackable_cells = get_attackable_cells(Selection)
+		if tileOn != null :
+			Selection = tileOn.unitOn
+			Selection.selectionneSelf(self, ouvrirMenu)
+			interfaceJoueurI.apercuMenusJoueur(self, false)
+			## Acquire the walkable and attackable cells
+			_walkable_cells = get_walkable_cells(Selection)
+			_attackable_cells = get_attackable_cells(Selection)
 		
 		## Draw out the walkable and attackable cells now
 		if(!menuOpen):

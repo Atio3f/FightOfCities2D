@@ -6,12 +6,12 @@ const GRADE = 4
 const POTENTIAL = 4
 const img = ""
 
-func _init(playerAssociated: AbstractPlayer):
-	super._init(idUnit, img, playerAssociated, GRADE, 45, 23, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 11, 6, 6, POTENTIAL, 24)
-	var effect1: AbstractEffect = GodMonkeySpeedEffect.new(self, -1, 1)
-	var effect2: AbstractEffect = GodMonkeyHealEffect.new(self, -1, 8)
-	effects.append(effect1)
-	effects.append(effect2)
-	tags.append(Tags.tags.MONKEY)
-	self.movementTypes = [MovementTypes.movementTypes.WALK]
-	self.actualMovementTypes = MovementTypes.movementTypes.WALK
+static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
+	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 45, 23, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 11, 6, 6, POTENTIAL, 24)
+	var effect1: AbstractEffect = GodMonkeySpeedEffect.new(unit, -1, 1)
+	var effect2: AbstractEffect = GodMonkeyHealEffect.new(unit, -1, 8)
+	unit.effects.append(effect1)
+	unit.effects.append(effect2)
+	unit.tags.append(Tags.tags.MONKEY)
+	unit.movementTypes = [MovementTypes.movementTypes.WALK]
+	unit.actualMovementTypes = MovementTypes.movementTypes.WALK
