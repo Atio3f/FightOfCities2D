@@ -41,7 +41,7 @@ func deplacement_possible(emplacement : Vector2i, vitesseR : int) -> void:
 	pass
 
 #Permet de connaître le coût de déplacement de toutes les cases du terrain
-func get_movement_costs(grid : Grid):
+func get_movement_costs(movementType: MovementTypes.movementTypes):
 	
 	var movement_costs = []
 	for y in range(MapManager.width):

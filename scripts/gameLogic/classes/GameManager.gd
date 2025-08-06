@@ -13,6 +13,8 @@ func _ready():
 
 #Return value is to wait the load of all elements and check if we got an error during the loading
 func loadGame() -> bool : 
+	#On ajoute le GameManager dans Global pour être accessible partout
+	Global.gameManager = self
 	#Load all units from all player into players and place them on the map(and setup their effects?)
 	
 	

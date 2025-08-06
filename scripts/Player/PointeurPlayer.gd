@@ -10,7 +10,7 @@ var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initial
 @onready var caseSelec : Sprite2D = $CaseSelecJ1
 @onready var caseTarget : Sprite2D = $CaseTargetJ1
 @onready var position_cam : Camera2D = $"../Movement"
-@onready var terrain = $"../../../Map/Terrain512x512"
+@onready var terrain: Terrain = $"../../../Map/Terrain512x512"
 @onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map = $"../../../Map"
 @onready var interfaceJoueurI = $"../CanvasInterfaceViewport/interfaceJoueur"
@@ -33,8 +33,6 @@ var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacit�
 @onready var _unit_path: UnitPath = $UnitPathJ1
 @onready var visuActions : UnitOverlay = $visualisationActionsJ
 @onready var visuZoneCapa : UnitOverlay = $visualisationCapas
-## Resource of type Grid.
-@export var grid: Grid
 const MAX_VALUE: int = 99999
 
 var capaciteActuelle : activeCapacite = null
@@ -46,10 +44,15 @@ var attaqueEnAttente : bool = false
 
 func _ready() -> void:
 	
-	_movement_costs = terrain.get_movement_costs(grid)
+	refreshMap()
 	
 	_reinitialize()
-	
+
+#Use to refresh the cost of each tile
+func refreshMap(movementType: MovementTypes.movementTypes = MovementTypes.movementTypes.WALK) -> void :
+	_movement_costs = terrain.get_movement_costs(movementType)
+
+
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
 	1
@@ -61,11 +64,12 @@ func _reinitialize() -> void:
 			#continue
 		#Global._units[unit.case] = unit
 
-func _get_configuration_warning() -> String:
-	var warning := ""
-	if not grid:
-		warning = "You need a Grid resource for this node to work."
-	return warning
+	##A RETIRER on utilise plus de grid
+#func _get_configuration_warning() -> String:
+	#var warning := ""
+	#if not grid:
+		#warning = "You need a Grid resource for this node to work."
+	#return warning
 
 
 func _input(event) -> void:
@@ -114,13 +118,13 @@ func smoothyPosition() -> void:
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: AbstractUnit) -> Dictionary:
-	return _dijkstra(unit.tile.getCoords(), unit.vitesseRestante, false, unit.typeDeplacementActuel)
+	return _dijkstra(unit.tile.getCoords(), unit.speedRemaining, false, unit.actualMovementTypes)
 
 ## Return an array of cells a given unit can attack using dijkstra's and flood fill algorithm
 func get_attackable_cells(unit: AbstractUnit) -> Array:
 	
 	var attackable_cells = []
-	var real_walkable_cells = _dijkstra(unit.tile.getCoords(), unit.vitesseRestante, true, unit.typeDeplacementActuel)
+	var real_walkable_cells = _dijkstra(unit.tile.getCoords(), unit.speedRemaining, true, unit.actualMovementTypes)
 	
 	## iterate through every single cell and find their partners based on attack range(stat range)
 	for curr_cell in real_walkable_cells:
@@ -171,16 +175,16 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	return full_array.filter(func(i): return i not in wall_array)
 
 ## Generates a list of walkable cells based on unit movement value and tile movement cost
-func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDeplacement : String) -> Dictionary:	#typeDeplacement servira à influer sur les déplacements possibles(ex: vole change le coût de toutes les tuiles à 2)
+func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, movementType : MovementTypes.movementTypes, unit: AbstractUnit = null) -> Dictionary:	#movementType servira à influer sur les déplacements possibles(ex: vole change le coût de toutes les tuiles à 2)
 	print("DIJKSTRA")
-	var curr_unit = Global._units[cell]
+	var curr_unit = unit
 	#moveable_cells est maintenant un dictionnaire avec comme clé les coords d'une case et en valeur le coût de déplacement vers cette case
 	var movable_cells = {cell : 0} #Cellule où se trouve l'unité a un coût de 0 du coup
 	var visited = [] # 2d array that keeps track of which cells we've already looked at while running the algorithm
 	var distances = [] # shows distance to each cell, might be useful. can omit if you want to
 	var previous = [] #2d array that shows you which cell you have to take to get there to get the shortest path. can omit if you want to
 	## the previous array can be used to recontruct the path alogrithm found to the previous node you were at
-	
+	refreshMap()
 	## iterate over width and height of the grid
 	for y in range(MapManager.width):
 		visited.append([])
@@ -210,7 +214,7 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 		for direction in  DIRECTIONS:
 			var coordinates = current.value + direction #Go through all four neighbors of current node
 			var coordinatesI : Vector2i = coordinates	#On crée une copie de coordinates mais en Vector2i pour parcourir le dictionnaire _units plus tard
-			if grid.is_within_bounds(coordinates):
+			if terrain.is_within_bounds(coordinates):
 				if visited[coordinates.y][coordinates.x]:
 					continue
 				else:
@@ -218,7 +222,7 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 					if ( _movement_costs[coordinates.y].size() > coordinates.x ):	#Vérification que la case a une tuile
 						tile_cost = _movement_costs[coordinates.y][coordinates.x]
 					
-						if typeDeplacement == "vole":
+						if movementType == MovementTypes.movementTypes.FLYING:
 							distance_to_node = current.priority + 2 #le coût de la case est toujours égal à 2 pour une unité volante
 						else :
 							distance_to_node = current.priority + tile_cost #calculate tile cost normally
@@ -229,7 +233,8 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 						#print(is_occupied(coordinatesI))
 						if is_occupied(coordinatesI):
 							#print(curr_unit.couleurEquipe)
-							if curr_unit.couleurEquipe != Global._units[coordinatesI].couleurEquipe: #Remove this line if you want to make every unit impassable 
+							var unitI: AbstractUnit = MapManager.getTileAt(coordinatesI).unitOn
+							if curr_unit.team != unitI.team: #Remove this line if you want to make every unit impassable 
 								distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
 							## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
 							elif Global._units[coordinatesI].is_wait and attackable_check:
@@ -255,7 +260,7 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, typeDe
 #Récupère la tuile à l'emplacement rentré en paramètre
 func get_tile_data_at(emplacement : Vector2i) -> void:
 	var local_position : Vector2i = terrain.local_to_map(positionSouris)			#On récupère l'information de la tuile où se trouve le pointeur de souris
-	return terrain.get_cell_tile_data(0, local_position)
+	return terrain.get_cell_tile_data(local_position)
 
 func getMiddleMouseCell() -> Vector2:
 	var middleMouse : Vector2 = Vector2(positionSouris.x * 512 + 256, positionSouris.y * 512 + 256)
@@ -297,9 +302,10 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 ## Unit items, and the unit avatar (like in fire emblem: engage)
 ## That is the reason we make this a completely seperate function
 func _hover_display(cell: Vector2i) -> void :
-	var time = Time.get_ticks_msec()
-	var curr_unit = Global._units[cell]
-	
+	var time : int = Time.get_ticks_msec()
+	var currTile: AbstractTile = MapManager.getTileAt(cell)
+	var curr_unit = currTile.unitOn
+	if curr_unit == null : return
 	## Acquire the walkable and attackable cells
 	_walkable_cells = get_walkable_cells(curr_unit)
 	
@@ -422,7 +428,7 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 
 ## Returns `true` if the cell is occupied by a unit.
 func is_occupied(cell: Vector2i) -> bool:
-	return Global._units.has(cell)
+	return MapManager.getTileAt(cell) != null && MapManager.getTileAt(cell).hasUnitOn()
 
 ## Updates the _units dictionary with the target position for the unit and asks the _active_unit to walk to it.
 func _move_active_unit(new_cell: Vector2) -> void:
@@ -485,15 +491,14 @@ func _clear_active_unit() -> void:
 
 #Attributs : case <=> case de l'unité ; 
 func get_actions_cells(case : Vector2i, capaPortee : int) -> Array :
-	var distance : int = capaPortee		#distance nombre de cases de diamètre <=> unit.range 
 	var action_cells = []
 	
-	var real_actions_cells = _dijkstra(case, distance * 2, false, "vole")	#Distance * 2 avec vole équivaut à un V par case 
+	var real_actions_cells = _dijkstra(case, capaPortee, false, MovementTypes.movementTypes.ATTACK) 
 	
 	## iterate through every single cell and find their partners based on attack range(stat range)
 	for curr_cell in real_actions_cells:
-		for curr_range in range(1, distance + 1):
-			action_cells = action_cells + _flood_fill(curr_cell, distance)
+		for curr_range in range(1, capaPortee + 1):
+			action_cells = action_cells + _flood_fill(curr_cell, capaPortee)
 	
 	return action_cells.filter(func(i): return i not in real_actions_cells)
 	

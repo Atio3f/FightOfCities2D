@@ -7,6 +7,7 @@ var unitsStrings := {}
 var parameters: ParamPlayer = preload("res://Ressources/old/player/joueur1/paramJoueur1.tres")
 var unitOn : Node2D
 var unitSelec : Node2D
+var gameManager: GameManager
 
 func _ready():
 	effectsStrings = loadStrings("res://Ressources/effects/EffectsStrings.json")

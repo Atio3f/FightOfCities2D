@@ -31,7 +31,7 @@ func _input(_event) -> void:
 			##print(interfaceFinTour.actionsRest)
 		var actualTile: AbstractTile = MapManager.getTileAtCoords(pointeurSouris.positionSouris)
 		if Input.is_action_just_pressed("action") and !actualTile.hasUnitOn() and player.maxWeight >= player.weight + 1:
-			%GameManager.placeUnit("test:Monkey", player, actualTile)
+			Global.gameManager.placeUnit("test:Monkey", player, actualTile)
 		
 		#Permet de créer un ennemi(sert à faire des tests ne coûte aucune action
 		if Input.is_action_just_pressed("action2") and Global._units.has(pointeurSouris.positionSouris) == false:
