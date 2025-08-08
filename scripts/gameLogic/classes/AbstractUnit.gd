@@ -98,7 +98,7 @@ func initializeStats(id: String, imgPath: String, playerAssociated: AbstractPlay
 	self.isDead = isDead
 	playerAssociated.units.append(self)
 
-func initStats(uid: String, hpMax: int, hpActual: int, hpTemp: int, power: int, speed: int, speedRemaining: int, atkPerTurn: int, atkRemaining: int, dr: int, mr: int, wisdom: int, level: int, xp: int):
+func initStats(uid: String, hpMax: int, hpActual: int, hpTemp: int, power: int, speed: int, speedRemaining: int, atkPerTurn: int, atkRemaining: int, dr: int, mr: int, wisdom: int, level: int):
 	self.uid = uid
 	self.hpMax = hpMax
 	self.hpActual = hpActual
@@ -111,11 +111,11 @@ func initStats(uid: String, hpMax: int, hpActual: int, hpTemp: int, power: int, 
 	self.dr = dr
 	self.mr = mr
 	self.wisdom = wisdom
+	self.level = level
 
 ### MOVEMENT PART OF THE SPRITE
 func _process(delta: float) -> void:
-	
-	_path_follow.progress += 10 * MapManager.length * delta
+	_path_follow.progress += 10 * MapManager.cellSize * delta
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
 		# Setting this value to 0.0 causes a Zero Length Interval error
@@ -140,7 +140,18 @@ func walk_along(path: PackedVector2Array) -> void:
 	#case = path[-1] #J'ARRIVE PAS A COMPRENDRE A QUOI ça SERT DE NOTER LA NOUVELLE CASE
 	_is_walking = true
 	
-
+#Fonction qui s'active lorsque l'unité est sélectionnée
+func selectionneSelf(pointeurJoueurI : pointeurJoueur, menuOpen : bool):
+	if(menuOpen):	#On n'affiche le menu que lorsque le pointeur du joueur que lorsqu'on fait un click droit
+		interfaceUnite.apercuMenusUnite(self, pointeurJoueurI, true)
+	is_selected = true
+	
+	
+#Cache le menu dans l'interface de l'unité et seslorsque l'unité est déselectionnée
+func deselectionneSelf(pointeurJoueurI : pointeurJoueur):
+	
+	interfaceUnite.apercuMenusUnite(self, pointeurJoueurI, false)
+	is_selected = false
 func getPlayer() -> AbstractPlayer:
 	return player
 
@@ -176,6 +187,8 @@ func addEffect(effect: AbstractEffect) -> void:
 #Maybe we will change the type of tile and register it
 func onPlacement(tile: AbstractTile) -> void:
 	self.tile = tile
+	self.position = MapManager.calculate_map_position(tile.getCoords())
+	print("onPlacement : "+ str(tile.getCoords()) + " COORDS FINALES:" + str(tile.getCoords() * MapManager.cellSize + Vector2i(MapManager._half_cell_size, MapManager._half_cell_size)))
 	GameManager.whenUnitPlace(self)
 	for effect: AbstractEffect in effects:
 		effect.onPlacement(tile)
@@ -280,7 +293,8 @@ func onDeath(unit: AbstractUnit = null) -> void:
 	#calculateLevel()#Allow to gain multiple levels if you got enough xp
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
-	if(turnColor == player.team):
+	if(turnColor == self.team):
+		print("OUR TURN")
 		speedRemaining = speed
 		atkRemaining = atkPerTurn
 		tile.onStartOfTurn(self)

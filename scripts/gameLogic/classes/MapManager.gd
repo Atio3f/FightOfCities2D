@@ -14,6 +14,9 @@ static var sceneTerrain: PackedScene = preload("res://nodes/tilemaps/terrain512x
 static var instanceTerrain
 static var terrain : Terrain	#We get the script
 
+@onready var visuActions: UnitOverlay = $visualisationActions
+@onready var _unit_path: UnitPath = $UnitPath
+
 func _ready():
 	print("CREATION TERRAIN")
 	createTerrain()
@@ -76,7 +79,7 @@ static var _half_cell_size = cellSize / 2
 
 ## Returns the position of a cell's center in pixels.
 static func calculate_map_position(grid_position: Vector2) -> Vector2:
-	return grid_position * cellSize + _half_cell_size
+	return grid_position * cellSize + Vector2(_half_cell_size, _half_cell_size)
 
 
 ## Returns the coordinates of the cell on the grid given a position on the map.
@@ -99,6 +102,29 @@ static func grid_clamp(grid_position: Vector2) -> Vector2:
 
 static func getTileAtCoords(coords: Vector2) -> AbstractTile:
 	return getTileAt(calculate_grid_coordinates(coords))
+
+
+#Permet de connaître le coût de déplacement de toutes les cases du terrain
+#Was on terrain before. Now use the dictionary activeTiles instead of TileMap tiles
+static func get_movement_costs(movementType: MovementTypes.movementTypes):
+	
+	var movement_costs = []
+	var movement_cost: int
+	var coords: Vector2i
+	for y in range(MapManager.width):
+		movement_costs.append([])
+		for x in range(MapManager.length):
+			coords = Vector2i(x,y)
+			## This requires that all tiles with a movement cost MUST be on layer 0 of the tilemap
+			#var tile = get_cell_source_id(0, Vector2i(x,y))
+			var tile: AbstractTile = activeTiles[coords]
+			if tile != null :		#Un peu une solution bouchon pour empêcher d'avoir une erreur quand il n'y a aucune tuile posée sur une case des dimensions de la grille qu'on a mis
+				movement_cost = tile.speedRequired[movementType]
+				if movement_cost == null : movement_cost = 999 #In case there is no speed indicateed for this movement type
+			#var movement_cost = movement_data.get(tile)	#Le système pour récupérer le coût de déplacement sur la case dans le tuto
+				movement_costs[y].append(movement_cost)
+	return movement_costs
+	
 
 static func registerMap() -> Dictionary:
 	var turnData := {

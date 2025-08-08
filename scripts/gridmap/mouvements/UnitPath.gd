@@ -1,6 +1,6 @@
 ## Draws the unit's movement path using an autotile.
 class_name UnitPath
-extends TileMap
+extends TileMapLayer
 
 #@export var grid: Resource
 
@@ -17,7 +17,7 @@ func initialize(walkable_cells: Dictionary) -> void:
 ## Finds and draws the path between `cell_start` and `cell_end`
 func draw(cell_start: Vector2, cell_end: Vector2) -> void:
 	current_path = pathfinder.calculate_point_path(cell_start, cell_end)
-	set_cells_terrain_connect(0, current_path, 0, 0)
+	set_cells_terrain_connect(current_path, 0, 0)
 
 
 ## Stops drawing, clearing the drawn path and the `_pathfinder`.

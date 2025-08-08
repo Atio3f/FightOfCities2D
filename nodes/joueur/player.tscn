@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://rfbkx0b7abxh"]
+[gd_scene load_steps=9 format=3 uid="uid://rfbkx0b7abxh"]
 
 [ext_resource type="Script" uid="uid://crobcf7g1ay5d" path="res://scripts/gameLogic/classes/AbstractPlayer.gd" id="1_hu2d8"]
 [ext_resource type="Script" uid="uid://bpbcwy6rq5fjr" path="res://scripts/Player/PointeurPlayer.gd" id="3_pmukw"]
-[ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="4_13yfm"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://nodes/tilemaps/UnitPath.tscn" id="5_3ppum"]
 [ext_resource type="PackedScene" uid="uid://be5epi7wi8gaj" path="res://nodes/tilemaps/visualisation_actions.tscn" id="6_oepiw"]
 [ext_resource type="Script" uid="uid://bo3emjykgd13r" path="res://scripts/Player/MovementPlayer.gd" id="9_3cqm2"]
@@ -16,7 +15,6 @@ metadata/_custom_type_script = "uid://crobcf7g1ay5d"
 
 [node name="Pointeur_Selection" type="Node2D" parent="."]
 script = ExtResource("3_pmukw")
-grid = ExtResource("4_13yfm")
 
 [node name="UnitPathJ1" parent="Pointeur_Selection" instance=ExtResource("5_3ppum")]
 

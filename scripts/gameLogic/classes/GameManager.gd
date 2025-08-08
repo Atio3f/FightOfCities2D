@@ -19,7 +19,7 @@ func loadGame() -> bool :
 	
 	
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
-	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.CYAN, "Player1")
+	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1")
 	player1.isGamePlayer = true
 	
 	createPlayer(TeamsColor.TeamsColor.RED, "Ennemi")
@@ -51,7 +51,6 @@ static func getPlayer(team: TeamsColor.TeamsColor) -> AbstractPlayer :
 
 func createPlayer(team: TeamsColor.TeamsColor, name: String) -> AbstractPlayer :
 	var p = scenePlayer.instantiate()
-	print(p.get_script())
 	players.append(p)
 	var player = p as AbstractPlayer
 	%Players.add_child(p)
@@ -64,11 +63,6 @@ func createPlayer(team: TeamsColor.TeamsColor, name: String) -> AbstractPlayer :
 	return player
 
 
-static func placeUnitForTest(id: String, player: AbstractPlayer, tileCoord: Vector2i) -> AbstractUnit:
-	var unit: AbstractUnit = UnitDb.UNITS[id].new(player)#We only keep the second id part to get the class corresponding
-	unit.onPlacement(MapManager.getTileAt(tileCoord))
-	return unit
-
 #Pour les tests on a besoin d'être sûr du type de case
 func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
 	var u = sceneUnit.instantiate()
@@ -76,7 +70,8 @@ func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> Abstra
 	var unit = u as AbstractUnit
 	%UnitsStorage.add_child(unit)
 	print(unit)
-	UnitDb.UNITS[id].initializeStats(unit, player.team, name)
+	print(UnitDb.UNITS[id])
+	UnitDb.UNITS[id].initialize(unit, player)
 	unit.onPlacement(tile)
 	return unit
 

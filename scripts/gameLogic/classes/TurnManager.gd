@@ -21,6 +21,7 @@ static func nextTurn() -> void:
 		unit.onStartOfTurn(turn, nextTurn)
 	#Animation du bouton et actualisation de l'interface
 
+#Return the actual color of team this turn
 static func actualTurn() -> TeamsColor.TeamsColor :
 	if teams.size() == 0 : return TeamsColor.TeamsColor.PURPLE
 	return teams[turn % teams.size()]

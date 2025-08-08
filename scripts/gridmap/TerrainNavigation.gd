@@ -40,21 +40,7 @@ func setTile(x: int, y: int, idTile: Vector2i) -> void :
 func deplacement_possible(emplacement : Vector2i, vitesseR : int) -> void:
 	pass
 
-#Permet de connaître le coût de déplacement de toutes les cases du terrain
-func get_movement_costs(movementType: MovementTypes.movementTypes):
-	
-	var movement_costs = []
-	for y in range(MapManager.width):
-		movement_costs.append([])
-		for x in range(MapManager.length):
-			## This requires that all tiles with a movement cost MUST be on layer 0 of the tilemap
-			#var tile = get_cell_source_id(0, Vector2i(x,y))
-			var tile = terrain.get_cell_tile_data(Vector2i(x,y))
-			if tile != null :		#Un peu une solution bouchon pour empêcher d'avoir une erreur quand il n'y a aucune tuile posée sur une case des dimensions de la grille qu'on a mis
-				var movement_cost = tile.get_custom_data("vitesseRequise")
-			#var movement_cost = movement_data.get(tile)	#Le système pour récupérer le coût de déplacement sur la case dans le tuto
-				movement_costs[y].append(movement_cost)
-	return movement_costs
+
 
 
 #Récupère la tuile à l'emplacement rentré en paramètre

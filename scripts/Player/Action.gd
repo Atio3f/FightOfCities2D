@@ -9,10 +9,8 @@ extends Node2D
 
 func _input(_event) -> void:
 	if player != null && !player.isGamePlayer : return
-	print("r")
-	print(interfaceFinTour.sourisOnInterface)
+	#print(interfaceFinTour.sourisOnInterface)
 	if !interfaceFinTour.sourisOnInterface && player != null && player.isGamePlayer: 
-		print("rzr")
 		#Permet de poser un nouveau monkey
 		#if Input.is_action_just_pressed("action") and Global._units.has(pointeurSouris.positionSouris) == false and interfaceFinTour.actionsRest > 0:
 			#print("CREATION SINGE BLEU")
@@ -29,26 +27,27 @@ func _input(_event) -> void:
 			##print(pointeurSouris.get_tile_data_at(pointeurSouris.positionSouris))
 			#interfaceFinTour.setActionsRest(interfaceFinTour.actionsRest - 1)
 			##print(interfaceFinTour.actionsRest)
-		var actualTile: AbstractTile = MapManager.getTileAtCoords(pointeurSouris.positionSouris)
-		if Input.is_action_just_pressed("action") and !actualTile.hasUnitOn() and player.maxWeight >= player.weight + 1:
+		#print("POINTEUR COORDS" + str(pointeurSouris.positionSouris) + " RESULT : "+ str(MapManager.getTileAt(pointeurSouris.positionSouris)))
+		var actualTile: AbstractTile = MapManager.getTileAt(pointeurSouris.positionSouris)
+		if Input.is_action_just_pressed("action") and actualTile != null and !actualTile.hasUnitOn() and player.maxWeight >= player.weight + 1:
 			Global.gameManager.placeUnit("test:Monkey", player, actualTile)
 		
 		#Permet de créer un ennemi(sert à faire des tests ne coûte aucune action
-		if Input.is_action_just_pressed("action2") and Global._units.has(pointeurSouris.positionSouris) == false:
-			var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	
-			
-			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
-			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Taureaux/G2/TaureauErudit.tres"))
-			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
-			
-			
-		if Input.is_action_just_pressed("action3") and Global._units.has(pointeurSouris.positionSouris) == false:
-			var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	
-			
-			scene.add_child(nvlUnite)		#Place l'unité sur le terrain
-			nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Taureaux/G2/taureauAile.tres"))
-			nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
-			print(nvlUnite.couleurEquipe)
-		
+		#if Input.is_action_just_pressed("action2") and Global._units.has(pointeurSouris.positionSouris) == false:
+			#var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	
+			#
+			#scene.add_child(nvlUnite)		#Place l'unité sur le terrain
+			#nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Taureaux/G2/TaureauErudit.tres"))
+			#nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
+			#
+			#
+		#if Input.is_action_just_pressed("action3") and Global._units.has(pointeurSouris.positionSouris) == false:
+			#var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	
+			#
+			#scene.add_child(nvlUnite)		#Place l'unité sur le terrain
+			#nvlUnite.placement("Rouge", pointeurSouris.getMiddleMouseCell(), pointeurSouris.positionSouris, load("res://Ressources/cartes/unites/Taureaux/G2/taureauAile.tres"))
+			#nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps
+			#print(nvlUnite.team)
+		#
 			
 		

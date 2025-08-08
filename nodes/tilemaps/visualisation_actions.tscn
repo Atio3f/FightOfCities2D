@@ -805,8 +805,6 @@ sources/2 = SubResource("TileSetAtlasSource_7evth")
 sources/3 = SubResource("TileSetAtlasSource_dadgp")
 sources/4 = SubResource("TileSetAtlasSource_ta7x8")
 
-[node name="visualisationActions" type="TileMap"]
+[node name="visualisationActions" type="TileMapLayer"]
 tile_set = SubResource("TileSet_arf4s")
-format = 2
-layer_0/modulate = Color(1, 1, 1, 0.627451)
 script = ExtResource("3_af0xd")
