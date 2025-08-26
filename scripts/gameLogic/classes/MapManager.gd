@@ -27,7 +27,7 @@ func createTerrain() -> void :
 	terrain = instanceTerrain as Terrain
 	self.add_child(terrain.getNode())	#Import the tilemap on scene
 	#initMap(10, 10)
-	print("ezarz")
+
 #pê rajouter un param mapType dans le futur pour avoir différentes générations de
 #map pour le moment j'en met une par défaut ici 
 static func initMap(_length: int, _width: int) -> void :

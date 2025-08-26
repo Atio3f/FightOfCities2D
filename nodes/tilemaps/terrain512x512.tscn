@@ -45,6 +45,7 @@ sources/1 = SubResource("TileSetAtlasSource_cwrqn")
 [node name="Terrain512x512" type="TileMapLayer"]
 show_behind_parent = true
 visibility_layer = 4
+z_index = -50
 tile_set = SubResource("TileSet_f0wfi")
 rendering_quadrant_size = 32
 script = ExtResource("2_eevt3")

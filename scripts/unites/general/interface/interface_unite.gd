@@ -51,7 +51,8 @@ func _on_menu_capacites_actives_focus_entered() -> void:
 
 #Affichage des capacités actives de l'unité
 func _on_menu_capacites_actives_pressed() -> void:
-	if (pointeursSurInterface.size() == 1) :
+	if (true):
+	#if (pointeursSurInterface.size() == 1) :
 		var capaAct : menuCapa = capaActives.instantiate()
 		
 		
@@ -60,7 +61,8 @@ func _on_menu_capacites_actives_pressed() -> void:
 
 #Affichage des infos de l'unité
 func _on_menu_stats_pressed():
-	if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
+	if (true):
+	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
 		var infosUnit : interfaceInfosUnite = infosUnites.instantiate()
 		infosUnit.apercuInfosUnite(_entiteeAssociee, pointeursSurInterface[0], true)
@@ -75,8 +77,8 @@ func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : point
 
 ##Signal envoyé par le menu des Consommables
 func _on_menu_consommables_pressed():
-	if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
+	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
-		var menuConso : interfaceConsommables = menuConsommables.instantiate()
-		menuConso.apercuConsommables(_entiteeAssociee, pointeursSurInterface[0], true)
-		noeudsTempInfosStats.add_child(menuConso)
+	var menuConso : interfaceConsommables = menuConsommables.instantiate()
+	menuConso.apercuConsommables(_entiteeAssociee, pointeursSurInterface[0], true)
+	noeudsTempInfosStats.add_child(menuConso)

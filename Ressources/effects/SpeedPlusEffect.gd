@@ -11,6 +11,7 @@ func onEffectApplied(firstTime: bool, oldEffect:AbstractEffect = null) -> void:
 	print("Boost speed pour "+unitAssociated.uid)
 	#Value C = duration
 	unitAssociated.speed += value_A if firstTime else oldEffect.value_A
+	unitAssociated.speedRemaining += value_A if firstTime else oldEffect.value_A
 	print(unitAssociated.speed)
 
 

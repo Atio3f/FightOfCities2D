@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0xoj357iuq7c"]
+[gd_scene load_steps=7 format=3 uid="uid://c0xoj357iuq7c"]
 
 [ext_resource type="Script" uid="uid://oixsn6bpuivb" path="res://scripts/gameLogic/classes/AbstractUnit.gd" id="1_ion6h"]
+[ext_resource type="Texture2D" uid="uid://dt0lsyyf44bb6" path="res://assets/sprites/contourSelectionUnite(512x512).png" id="4_nrxwr"]
 [ext_resource type="Texture2D" uid="uid://bm3sj7qiucgcq" path="res://assets/sprites/units/Monkey.png" id="5_jkama"]
 [ext_resource type="Script" uid="uid://c0mjucwye5ul6" path="res://scripts/unites/general/GestionCapacites.gd" id="6_figlw"]
 [ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interfaceUnite.tscn" id="6_ujj46"]
@@ -18,16 +19,31 @@ script = ExtResource("6_figlw")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
-[node name="ElementsUnite" type="PathFollow2D" parent="."]
+[node name="UnitElements" type="PathFollow2D" parent="."]
 rotates = false
 loop = false
 
-[node name="SpriteUnite" type="Sprite2D" parent="ElementsUnite"]
+[node name="InterfaceUnite" parent="UnitElements" instance=ExtResource("6_ujj46")]
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -292.0
+offset_right = 240.0
+offset_bottom = 220.0
+mouse_default_cursor_shape = 2
+
+[node name="UnitSprite" type="Sprite2D" parent="UnitElements"]
+z_index = -1
 position = Vector2(-16, -16)
 texture = ExtResource("5_jkama")
 
-[node name="CouleurEquipe" type="ColorRect" parent="ElementsUnite/SpriteUnite"]
+[node name="CouleurEquipe" type="ColorRect" parent="UnitElements/UnitSprite"]
 unique_name_in_owner = true
+visible = false
 show_behind_parent = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,26 +57,18 @@ grow_vertical = 2
 size_flags_horizontal = 4
 color = Color(0.0473758, 0.632694, 0.0388796, 1)
 
-[node name="ContourSelection" type="Sprite2D" parent="ElementsUnite"]
+[node name="ContourSelection" type="Sprite2D" parent="UnitElements"]
 visible = false
+z_index = -1
+texture = ExtResource("4_nrxwr")
 
-[node name="ZoneOccupe" type="Area2D" parent="ElementsUnite"]
+[node name="ZoneOccupe" type="Area2D" parent="UnitElements"]
 visible = false
+z_index = -1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ElementsUnite/ZoneOccupe"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnitElements/ZoneOccupe"]
 scale = Vector2(0.92, 0.92)
 shape = SubResource("RectangleShape2D_xeksa")
-
-[node name="InterfaceUnite" parent="ElementsUnite" instance=ExtResource("6_ujj46")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -272.0
-offset_top = -292.0
-offset_right = 240.0
-offset_bottom = 220.0
 
 [node name="NoeudsTemp" type="Node2D" parent="."]
 
@@ -68,4 +76,4 @@ offset_bottom = 220.0
 
 [node name="InterfaceInfosStats" type="CanvasLayer" parent="NoeudsTemp"]
 
-[connection signal="focus_entered" from="ElementsUnite/InterfaceUnite" to="." method="_on_interface_unite_focus_entered"]
+[connection signal="focus_entered" from="UnitElements/InterfaceUnite" to="." method="_on_interface_unite_focus_entered"]

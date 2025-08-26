@@ -15,7 +15,8 @@ func initialize(walkable_cells: Dictionary) -> void:
 
 
 ## Finds and draws the path between `cell_start` and `cell_end`
-func draw(cell_start: Vector2, cell_end: Vector2) -> void:
+#cell_start and cell_end are coords Vector2i from the tilemap
+func draw(cell_start: Vector2i, cell_end: Vector2i) -> void:
 	current_path = pathfinder.calculate_point_path(cell_start, cell_end)
 	set_cells_terrain_connect(current_path, 0, 0)
 

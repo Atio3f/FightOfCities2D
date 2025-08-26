@@ -17,14 +17,20 @@ func loadGame() -> bool :
 	Global.gameManager = self
 	#Load all units from all player into players and place them on the map(and setup their effects?)
 	
+	mapManager = %Map
+	generateMap(30, 50)
+	
 	
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
 	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1")
 	player1.isGamePlayer = true
 	
-	createPlayer(TeamsColor.TeamsColor.RED, "Ennemi")
-	mapManager = %Map
-	generateMap(30, 50)
+	var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi")
+	placeUnit("test:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
+
+	
+	
+	
 	return true
 
 
@@ -70,9 +76,9 @@ func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> Abstra
 	var unit = u as AbstractUnit
 	%UnitsStorage.add_child(unit)
 	print(unit)
-	print(UnitDb.UNITS[id])
 	UnitDb.UNITS[id].initialize(unit, player)
 	unit.onPlacement(tile)
+	player.weight += unit.grade	#POTENTIELLEMENT A CHANGER DE PLACE SI ON NE DOIT PAS TJRS CHANGER LE POIDS
 	return unit
 
 static func whenUnitPlace(unit: AbstractUnit) -> void :

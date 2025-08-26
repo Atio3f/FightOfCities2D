@@ -28,8 +28,8 @@ func onUnitIn(unit: AbstractUnit) -> void :
 func onStartOfTurn(unit: AbstractUnit) -> void:
 	return
 
-#Quand unité quitte case
-func onUnitOut(unit: AbstractUnit) -> void :
+#Quand unité quitte case, y'avait unit: AbstractUnit comme param mais en vrai c'est stupide
+func onUnitOut() -> void :
 	unitOn = null
 	return
 

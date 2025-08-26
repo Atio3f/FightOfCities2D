@@ -19,7 +19,7 @@ func _ready():
 ## Fills the tilemap with the cells, giving a visual representation of the cells a unit can walk.
 func draw_walkable_cells(cells: Dictionary, equipeUnite : TeamsColor.TeamsColor) -> void:
 	#clear()
-	print(cells)
+	#print(cells)
 	print("--------------")
 	var keyCell : Vector2i
 	var tile: AbstractTile

@@ -40,7 +40,7 @@ var tags: Array[Tags.tags] = []
 var tile: AbstractTile	#Keep the tile where is the unit
 var isDead: bool	#Allow us to keep track of units killed
 
-@onready var contourSelec : Sprite2D = $ElementsUnite/ContourSelection
+@onready var contourSelec : Sprite2D = $UnitElements/ContourSelection
 var is_selected : bool = false:
 	set(value):
 		if(value == true):
@@ -58,19 +58,32 @@ signal signalFinMouvement
 @export var is_wait := false
 
 #CHECK SI ILS SERVENT
-@onready var _path_follow: PathFollow2D = $ElementsUnite
-@onready var sprite : Sprite2D = $ElementsUnite/SpriteUnite
-@onready var interfaceUnite : Control = $ElementsUnite/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
+@onready var _path_follow: PathFollow2D = $UnitElements
+@onready var sprite : Sprite2D = $UnitElements/UnitSprite
+@onready var interfaceUnite : interfaceUnite = $UnitElements/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
 @onready var noeudsTempIndic : Node2D = $NoeudsTemp/IndicDegats	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
-var popUpDegats = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.tscn")	#L'indicateur de dégâts lors d'une attaque(utilisé dans subirDegats)
+var popUpDegats: PackedScene = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.tscn")	#L'indicateur de dégâts lors d'une attaque(utilisé dans subirDegats)
  
 var movementTypes : Array[MovementTypes.movementTypes] = []
 var actualMovementTypes : MovementTypes.movementTypes = MovementTypes.movementTypes.NONE
+
+
+var case : Vector2i = Vector2i.ZERO	#TEST A CHAGER SI CA MARCHE TJRS PAS LE MOUVEMENT UNITE
+
+func _ready():
+	set_process(true)
+	_path_follow.rotates = false
+	position = Vector2.ZERO
+	if not Engine.is_editor_hint():
+		curve = Curve2D.new()
 
 func initializeStats(id: String, imgPath: String, playerAssociated: AbstractPlayer, grade: int, hpBase: int, powerBase:int, damageType: DamageTypes.DamageTypes, atkPerTurnBase: int, range: int, speedBase: int, drBase: int, mrBase: int, potential: int, wisdomBase: int, idDead: bool = false):
 	self.id = id
 	_uid_counter += 1
 	self.uid = str(randi() % 100000).pad_zeros(6) + str(Time.get_unix_time_from_system()) + str(_uid_counter)
+	#Add img and refresh the sprite
+	self.imgPath = imgPath
+	refreshSprite()
 	self.player = playerAssociated
 	self.team = playerAssociated.team
 	self.grade = grade
@@ -126,7 +139,7 @@ func _process(delta: float) -> void:
 
 func deplacement(newTile: AbstractTile) -> void:
 	self.onMovement(newTile)
-	position = MapManager.calculate_map_position(newTile.getCoords())
+	#position = MapManager.calculate_map_position(newTile.getCoords())#Work but looks like tp sadly
 
 ## Starts walking along the `path`.
 ## `path` is an array of grid coordinates that the function converts to map coordinates.
@@ -152,6 +165,8 @@ func deselectionneSelf(pointeurJoueurI : pointeurJoueur):
 	
 	interfaceUnite.apercuMenusUnite(self, pointeurJoueurI, false)
 	is_selected = false
+	
+
 func getPlayer() -> AbstractPlayer:
 	return player
 
@@ -204,8 +219,10 @@ func onUnitPlace(unit: AbstractUnit) -> void:
 
 #Tile is the actual tile after the movement
 func onMovement(tile: AbstractTile) -> void:
-	self.tile.onUnitOut(self)
+	#Remove the unit from the tile he was
+	self.tile.onUnitOut()
 	self.tile = tile
+	#Place the unit on its new tile
 	tile.onUnitIn(self)
 	for effect: AbstractEffect in effects:
 		effect.onMovement()
@@ -370,7 +387,10 @@ func getName() -> String :
 	#return Global.getUnitsStrings()
 
 func getImagePath() -> String :
-	return "res://assets/units/"+imgPath
+	return "res://assets/sprites/units/"+imgPath
+
+func refreshSprite() -> void :
+	sprite.texture = load(getImagePath()+".png")
 
 func registerUnit() -> Dictionary :
 	var unitData := {

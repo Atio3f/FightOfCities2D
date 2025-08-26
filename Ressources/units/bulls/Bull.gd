@@ -4,7 +4,7 @@ class_name Bull
 const idUnit = "test:Bull"
 const GRADE = 1
 const POTENTIAL = 1
-const img = ""
+const img = "Bull"
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 43, 19, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 8, 5, 0, POTENTIAL, 1)
