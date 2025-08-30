@@ -17,6 +17,8 @@ var value_B: int
 var value_C: int 
 var counter: int #Can be used to increment a value 
 
+var avgPrice: int #Price on shops, items can be sell from 40% of this value
+
 #_init sera rarement appelé car généralement on va directement appliquer l'effet de l'objet dans les enfants de cette classe
 #func _init(id: String, imgPath: String, playerAssociated: AbstractPlayer, orbsCost: int, equipable: bool, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):
 	#self.id = id

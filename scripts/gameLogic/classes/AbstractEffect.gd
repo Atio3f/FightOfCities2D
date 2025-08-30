@@ -82,8 +82,9 @@ func onHealed(unitHealing: AbstractUnit, healValue: int) -> int :
 
 func onKill(unitKilled: AbstractUnit) -> void :
 	1
+
 func onDeath(unit: AbstractUnit) -> void:
-	1
+	pass
 
 func onLevelUp(level: int) -> void :
 	1

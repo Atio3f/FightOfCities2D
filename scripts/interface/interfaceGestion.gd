@@ -20,12 +20,16 @@ func setActionsRest(actions : int) -> void:
 
 
 #On crée 2 signaux pour éviter de pouvoir effectuer des actions en ayant le curseur de la souris sur l'interface
+#Me demandait pas pourquoi lorsque la souris rentre dans l'interface on met false et inversement, c'est parce que
+# si il détecte un élément de l'interface il va considérer qu'on sort de l'interface, pareil quand on sort de la fenêtre de jeu
 func _on_mouse_entered() -> void:
-	sourisOnInterface = true
+	sourisOnInterface = false
+	print("mouseEntered")
 
 
 func _on_mouse_exited() -> void:
-	sourisOnInterface = false
+	sourisOnInterface = true
+	print("mouseExited")
 
 #Fonction pour réaliser la fin du tour
 

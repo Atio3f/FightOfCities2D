@@ -68,6 +68,23 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "144"
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasInterfaceFixe"]
+anchors_preset = -1
+anchor_top = 0.942901
+anchor_right = 0.0329861
+anchor_bottom = 1.0
+grow_vertical = 0
+size_flags_horizontal = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Trinkets" type="HBoxContainer" parent="CanvasInterfaceFixe/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
 [node name="CanvasInterfaceViewport" type="CanvasLayer" parent="."]
 editor_description = "Contient les interfaces nécessitant un mouvement différent de celui de la caméra du joueur"
 follow_viewport_enabled = true

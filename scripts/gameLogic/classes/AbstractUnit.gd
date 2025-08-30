@@ -35,7 +35,9 @@ var xp: int		#Current xp
 
 var player: AbstractPlayer
 var team: TeamsColor.TeamsColor #Team Color, get from player you control him
-var effects: Array[AbstractEffect] = []	#AbstractEffect pas trouvé comment le mettre dans le type
+var effects: Array[AbstractEffect] = []
+var equipments: Array[AbstractEquipment] = []
+var equipmentLimit: int = 3	#Global limit on the number of equipments that an unit can have, some units will have a worse or better limit
 var tags: Array[Tags.tags] = []
 var tile: AbstractTile	#Keep the tile where is the unit
 var isDead: bool	#Allow us to keep track of units killed
@@ -62,7 +64,7 @@ signal signalFinMouvement
 @onready var sprite : Sprite2D = $UnitElements/UnitSprite
 @onready var interfaceUnite : interfaceUnite = $UnitElements/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
 @onready var noeudsTempIndic : Node2D = $NoeudsTemp/IndicDegats	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
-var popUpDegats: PackedScene = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.tscn")	#L'indicateur de dégâts lors d'une attaque(utilisé dans subirDegats)
+
  
 var movementTypes : Array[MovementTypes.movementTypes] = []
 var actualMovementTypes : MovementTypes.movementTypes = MovementTypes.movementTypes.NONE
@@ -249,6 +251,11 @@ func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.Dama
 	#If it's not a true attack we just return value
 	if(!visualisation):
 		hpLoses = loseHp(damage)
+		##Damage Indicator
+		var indicDegats : damageIndicator = Global.popUpDegats.instantiate()	
+		noeudsTempIndic.add_child(indicDegats)		#Place l'indicateur de dégâts sur la scène
+		indicDegats.newPopUp(damage)
+		
 	else :
 		hpLoses = getLoseHp(damage)
 	return hpLoses
@@ -303,6 +310,10 @@ func onDeath(unit: AbstractUnit = null) -> void:
 	for effect: AbstractEffect in effects:
 		effect.onDeath(unit)
 	isDead = true	#You're not supposed to be able to survive once you're in this function
+	##Remove the unit from active units and its tile and hide it
+	player.removeUnit(self)
+	tile.unitOn = null	#Free the tile
+	queue_free()
 
 #func onLevelUp() -> void :
 	#for effect: AbstractEffect in effects:
@@ -377,6 +388,19 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 		#onLevelUp()
 	#else:
 		#return
+
+##Check if an equipment can be equip on this unit
+func canEquipEquipment(equipment: AbstractEquipment) -> bool :
+	if equipmentLimit == equipments.size() : return false
+	if equipment.equipmentType >= 10 : return true	#EquipmentType >= 10 are others which can have multiple equiped at the same time
+	for _equipment : AbstractEquipment in equipments:
+		if _equipment.equipmentType == equipment.equipmentType :
+			return false
+	return true	#If no equipment on unit have the same type and unit still have place, we can equip it
+
+## Use to equip an equipment, need to use the method from AbstractPlayer which check if we can equip it (canEquipEquipment())
+func equipEquipment(equipment: AbstractEquipment) -> void :
+	equipments.append(equipment)
 
 #We can't override get_class method from Node sadly
 func getClass() -> String :

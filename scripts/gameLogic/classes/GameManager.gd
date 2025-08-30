@@ -2,7 +2,9 @@ extends Node
 class_name GameManager
 
 static var players: Array[AbstractPlayer] = []
+static var mainPlayer: AbstractPlayer
 static var scenePlayer: PackedScene = preload("res://nodes/joueur/player.tscn")
+static var sceneOtherPlayer: PackedScene = preload("res://nodes/joueur/otherPlayer.tscn")
 static var sceneUnit: PackedScene = preload("res://nodes/Unite/unite.tscn")
 var mapManager: MapManager
 #var turnManager: TurnManager
@@ -22,13 +24,16 @@ func loadGame() -> bool :
 	
 	
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
-	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1")
-	player1.isGamePlayer = true
+	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1", true)
 	
-	var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi")
+	var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
 	placeUnit("test:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
-
 	
+	print(mainPlayer.orbs)
+	#Ajout d'un trinket test
+	obtainTrinket(mainPlayer, "set1:OrbCrate")
+	obtainTrinket(mainPlayer, "set1:ArtOfWar")
+	print(mainPlayer.orbs)
 	
 	
 	return true
@@ -49,21 +54,28 @@ static func getUnits(team: TeamsColor.TeamsColor) -> Array[AbstractUnit] :
 static func getPlayers() -> Array[AbstractPlayer]:
 	return players
 
+static func getMainPlayer() -> AbstractPlayer:
+	return mainPlayer
+
 static func getPlayer(team: TeamsColor.TeamsColor) -> AbstractPlayer :
 	for player: AbstractPlayer in players: 
 		if(player.team == team):
 			return player
 	return null
 
-func createPlayer(team: TeamsColor.TeamsColor, name: String) -> AbstractPlayer :
-	var p = scenePlayer.instantiate()
+func createPlayer(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool) -> AbstractPlayer :
+	var p : Node 
+	if isGamePlayer :
+		p = scenePlayer.instantiate()
+	else :
+		p = sceneOtherPlayer.instantiate()
 	players.append(p)
 	var player = p as AbstractPlayer
 	%Players.add_child(p)
 	print(player)
-	player.initialize(team, name)	#We initialize AbstractPlayer infos here
+	player.initialize(team, name, isGamePlayer)	#We initialize AbstractPlayer infos here
 		#Add to the scene
-
+	if isGamePlayer : mainPlayer = player
 	#player.$Actions.player = self
 	if !TurnManager.teams.has(team) : TurnManager.addTeam(team)
 	return player
@@ -78,7 +90,7 @@ func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> Abstra
 	print(unit)
 	UnitDb.UNITS[id].initialize(unit, player)
 	unit.onPlacement(tile)
-	player.weight += unit.grade	#POTENTIELLEMENT A CHANGER DE PLACE SI ON NE DOIT PAS TJRS CHANGER LE POIDS
+	player.addWeight(unit.grade)	#POTENTIELLEMENT A CHANGER DE PLACE SI ON NE DOIT PAS TJRS CHANGER LE POIDS
 	return unit
 
 static func whenUnitPlace(unit: AbstractUnit) -> void :
@@ -94,6 +106,7 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 	var damageBase: int = unitAttacking.onDamageDealed(unitAttacked, damageType, false)
 	var infoDamagesTaked  = unitAttacked.onDamageTaken(unitAttacking, damageBase, damageType, false)
 	print("DAMAGE TAKED: "+ str(infoDamagesTaked["damage"]))
+	
 	unitAttacking.atkRemaining -= 1
 	#We resolve cases when the attacker died while attacking
 	if(unitAttacking.hpActual <= 0):
@@ -119,6 +132,25 @@ static func generateMap(length: int, width: int) -> void :
 
 	MapManager.initMap(length, width)
 	return
+
+##Like addTrinket function but activate the obtain effet of the trinket
+static func obtainTrinket(player: AbstractPlayer, idTrinket: String) -> void:
+	var trinket : AbstractTrinket = TrinketDb.TRINKETS[idTrinket].new(player)
+	if trinket == null :
+		print("ERROR TRINKET NOT FOUND ON DB!")
+		return
+	else: 
+		player.setTrinket(trinket)#Place the trinket on screen
+	trinket.onGain()
+
+##Add a trinket to a player, used during save load and doesn't activate obtain effect
+static func addTrinket(player: AbstractPlayer, idTrinket: String) -> void:
+	var trinket : AbstractTrinket = TrinketDb.TRINKETS[idTrinket].new(player)
+	if trinket == null :
+		print("ERROR TRINKET NOT FOUND ON DB!")
+		return
+	else: 
+		player.setTrinket(trinket)#Place the trinket on screen
 
 static func savingGame() -> void :
 	

@@ -35,7 +35,7 @@ func _input(_event) -> void:
 		if player.isGamePlayer :
 			if Input.is_action_just_pressed("action") and actualTile != null and !actualTile.hasUnitOn() and player.maxWeight >= player.weight + 1:
 				Global.gameManager.placeUnit("test:Monkey", player, actualTile)
-				
+			
 		else :
 			#Permet de créer un ennemi(sert à faire des tests ne coûte aucune action
 			if Input.is_action_just_pressed("action2") and actualTile != null and !actualTile.hasUnitOn():

@@ -65,6 +65,7 @@ static func pickTile(totalWeight: int, i: int, j: int, genMap: Dictionary) -> Ab
 			break
 	return tile
 
+##Get tile at coordinates entered(Vector2i)
 static func getTileAt(coords: Vector2i) -> AbstractTile :
 	return activeTiles.get(coords)
 

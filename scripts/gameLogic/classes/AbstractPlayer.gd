@@ -10,6 +10,9 @@ var maxOrbs: int = MAX_ORBS_BASE
 const ORBS_BASE: int = 2
 const MAX_ORBS_BASE: int = 5
 
+var trinkets: Array[AbstractTrinket] = []
+
+
 #Weight is the max place that your troups can take
 const WEIGHT_BASE: int = 6
 var weight: int
@@ -18,13 +21,19 @@ var hand: PlayerHand
 var activeCapacity	#capacité active actuelle
 var isGamePlayer: bool = false	#Serve to know if the player is the one you control the game
 
-func initialize(team: TeamsColor.TeamsColor, name: String):
+
+func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 	self.playerName = name
 	self.team = team
+	self.isGamePlayer = isGamePlayer
 	GameManager.players.append(self)
 	hand = PlayerHand.new(self)
-	$Actions.player = self
+	if isGamePlayer : 
+		$Actions.player = self
+	else : 
+		pass#$Actions.player = self#Will contains the AI
 	weight = 0
+
 
 func getUnits() -> Array[AbstractUnit]:
 	return units
@@ -32,6 +41,10 @@ func getUnits() -> Array[AbstractUnit]:
 func getUnitsByTag(tag: Tags.tags) -> Array[AbstractUnit]:
 	var _units : Array[AbstractUnit] = []
 	for unit in units:
+		#If the unit have been deleted, we remove it from the list
+		if unit == null : 
+			units.erase(unit)
+			continue
 		if(unit.tags.has(tag) && !unit.isDead):
 			_units.append(unit)
 	return _units
@@ -60,6 +73,23 @@ func targetsAvailable(idCard: String) -> Array :
 			targets.append(player)
 	return targets
 
+func removeUnit(unit: AbstractUnit) -> void:
+	weight -= unit.grade
+	units.erase(unit)
+
+##Add max weight to the player
+func addMaxWeight(amt: int) -> void:
+	maxWeight += amt
+
+##Add weight to the player, usually when an unit dies or is spawned
+func addWeight(amt: int) -> void:
+	if amt > 0 :
+		if amt + weight > maxWeight : weight = maxWeight
+		else : weight += amt
+	else :
+		if amt + weight < 0 : weight = 0
+		else : weight += amt 
+
 func cardPlayable(idCard: String) -> Array :
 	if !hand.getHand().has(idCard) :
 		return []
@@ -78,6 +108,29 @@ func useCard(idCard: String, targets: Array) -> void :
 #Pour ajouter une carte à la main du joueur
 func addCard(idCard: String) -> void:
 	hand.addCard(idCard)
+
+##Use when gaining or losing orbs
+func gainOrbs(amt: int) -> void:
+	if amt > 0 :
+		if amt + orbs > maxOrbs : orbs = maxOrbs
+		else : orbs += amt
+	else :
+		if amt + orbs < 0 : orbs = 0
+		else : orbs += amt
+
+##To add an equipment to an unit
+func addEquipment(idEquipment: String) -> void:
+	if hand.cards.has(idEquipment) :
+		#Check if the equipment can be equipped
+		#Add equipment to unit
+		pass
+
+###Add the trinket to the interface
+func setTrinket(trinket: AbstractTrinket) -> void :
+	if isGamePlayer :
+		var trinketIface: trinketInterface = Global.trinketInterface.instantiate() as trinketInterface
+		%Trinkets.add_child(trinketIface)
+		trinketIface.setTrinket(trinket)
 
 #We can't override get_class method from Node sadly
 func getClass() -> String :

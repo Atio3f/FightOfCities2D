@@ -1,0 +1,36 @@
+{
+	"fr": {
+		"set1:OrbCrate" : {
+			"NAME": "Caisse d'orbes",
+			"DESCRIPTION": "A l'obtention, gagnez !VA! orbes.",
+			"PREVIEW": "Obtention : +!VA! orbes."
+		},
+		"set1:BananaRecipes" : {
+			"NAME": "Recettes de bananes",
+			"DESCRIPTION": "A l'obtention, gagnez !VA! Bananes. Bananes soignent pour !VB! pv de plus.",
+			"PREVIEW": "Obtention : +!VA! Bananes. Soin Bananes : +!VB! pv."
+		},
+		"set1:ArtOfWar" : {
+			"NAME": "L'Art de la Guerre",
+			"DESCRIPTION": "A l'obtention, gagnez !VA! Poids bonus.",
+			"PREVIEW": "Obtention : +!VA! Poids."
+		}
+	},
+	"en": {
+		"set1:OrbCrate" : {
+			"NAME": "Orb Crate",
+			"DESCRIPTION": "On Obtain, gain !VA! orbs.",
+			"PREVIEW": "Obtain : +!VA! orbs."
+		},
+		"set1:BananaRecipes" : {
+			"NAME": "Banana Recipes",
+			"DESCRIPTION": "On Obtain, gain !VA! Bananas. Bananas heal for !VB! hp.",
+			"PREVIEW": "Obtain : +!VA! Bananas. Bananas heal : +!VB! hp."
+		},
+		"set1:ArtOfWar" : {
+			"NAME": "The Art Of War",
+			"DESCRIPTION": "On Obtain, gain !VA! Weight.",
+			"PREVIEW": "Obtain : +!VA! Weight."
+		}
+	}
+}

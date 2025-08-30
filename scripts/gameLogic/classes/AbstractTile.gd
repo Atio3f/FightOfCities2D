@@ -36,5 +36,6 @@ func onUnitOut() -> void :
 func getCoords() -> Vector2i :
 	return Vector2i(x, y)
 
+##Return if there is an unit on this tile
 func hasUnitOn() -> bool:
 	return unitOn != null

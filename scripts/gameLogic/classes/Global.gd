@@ -3,6 +3,7 @@ extends Node
 
 var effectsStrings := {}
 var unitsStrings := {}
+var trinketsStrings := {}
 
 var parameters: ParamPlayer = preload("res://Ressources/old/player/joueur1/paramJoueur1.tres")
 var unitOn : Node2D
@@ -12,6 +13,7 @@ var gameManager: GameManager
 func _ready():
 	effectsStrings = loadStrings("res://Ressources/effects/EffectsStrings.json")
 	unitsStrings = loadStrings("res://Ressources/units/UnitsStrings.json")
+	trinketsStrings = loadStrings("res://Ressources/trinkets/TrinketsStrings.json")
 
 #Load strings from a json
 func loadStrings(filePath: String) -> Dictionary:
@@ -44,3 +46,10 @@ func colorSelector(couleurEq : String) -> Color :
 		return Color.hex(0x89ff5e80)
 	else:
 		return Color.hex(0xf7f7f740)  # Blanc par défaut
+
+
+### All scenes to preload here
+#Interface of an trinket on the trinket list
+var trinketInterface: PackedScene = preload("res://nodes/interface/trinketInterface.tscn")
+#Damage indicator when an unit taked damage
+var popUpDegats : PackedScene = preload("res://nodes/Unite/interfaceUnite/indicateur_degats.tscn")

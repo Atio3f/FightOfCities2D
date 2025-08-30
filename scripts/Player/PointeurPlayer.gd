@@ -121,14 +121,16 @@ func get_walkable_cells(unit: AbstractUnit) -> Dictionary:
 	var tileOnCoords: Vector2i = unit.tile.getCoords()
 	##Add adjacents tiles if the unit can't move and have full speed because its max speed is inferior to adjacent tiles 
 	if unit.speed == unit.speedRemaining :
-		var cells: Dictionary = _dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes)
+		var cells: Dictionary = _dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes, unit)
+		print(cells)
 		for direction in DIRECTIONS:
 			var coords: Vector2i = tileOnCoords + direction
-			if !cells.has(coords) :
+			if !cells.has(coords) && MapManager.getTileAt(coords) != null && !(MapManager.getTileAt(coords).hasUnitOn()):
 				cells[coords] = unit.speed
+		
 		return cells
 	else :
-		return _dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes)
+		return _dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes, unit)
 
 ## Return an array of cells a given unit can attack using dijkstra's and flood fill algorithm
 func get_attackable_cells(unit: AbstractUnit) -> Array[Vector2i]:
@@ -243,9 +245,9 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, moveme
 						## Actual attack range for display on hover/walk
 						#print(is_occupied(coordinatesI)) b
 						if is_occupied(coordinatesI):
-							#print(curr_unit.couleurEquipe)
 							var unitI: AbstractUnit = MapManager.getTileAt(coordinatesI).unitOn
-							if curr_unit != null && curr_unit.team != unitI.team: #Remove this line if you want to make every unit impassable 
+							print(curr_unit != null)
+							if curr_unit != null && curr_unit.team != unitI.team: #Remove this line if you want to make possible to travel also ennemies 
 								distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
 							## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
 							elif unitI.is_wait and attackable_check:
@@ -255,14 +257,11 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, moveme
 						distances[coordinates.y][coordinates.x] = distance_to_node
 					else :
 						distance_to_node = null
-				if distance_to_node != null and distance_to_node <= max_distance: #check if node is actually reachable by our unit
+				if distance_to_node != null and distance_to_node <= max_distance and !occupied_cells.has(coordinatesI): #check if node is actually reachable by our unit and not occuped
 					previous[coordinates.y][coordinates.x] = current.value #mark tile we used to get here
-					#movable_cells.append({coordinates : distance_to_node}) #attach new node we are looking at as reachable
-					movable_cells[coordinates] = distance_to_node
+					movable_cells[coordinates] = distance_to_node #attach new node we are looking at as reachable
 					queue.push(coordinates, distance_to_node) #use distance as priority
 	
-	##On trie les localisations avant le return pour trier les clés à retirer avant 
-	movable_cells.keys().filter(func(i): return i not in occupied_cells)
 	return movable_cells
 
 
@@ -320,7 +319,6 @@ func _hover_display(cell: Vector2i) -> void :
 	_walkable_cells = get_walkable_cells(curr_unit)
 	
 	_attackable_cells = get_attackable_cells(curr_unit)
-	
 	## Draw out the walkable and attackable cells now
 	if(curr_unit.atkRemaining > 0) :
 		visuActions.draw_attackable_cells(_attackable_cells)
@@ -388,13 +386,10 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 			elif (cell in _attackable_cells and Selection.atkRemaining > 0 and unitOnTile != null and unitOnTile.team != Selection.team):	#On vérifie qu'il y a une unité sur la case sélec, que l'unité qu'on a a encore des attaques à faire puis on vérifie que leurs couleurs sont différentes
 				#print(Global._units)
 				var casesAutourTarget : Array = _flood_fill(cell, Selection.range)
-				print("try fix tilesMouvementForAttaque call")
-				print(casesAutourTarget)
-				if casesAutourTarget.has(Vector2(Selection.tile.getCoords())) :
+				#print(casesAutourTarget)
+				if casesAutourTarget.has(Selection.tile.getCoords()) :
 					#Selection.attaque(Global._units[cellI])
 					GameManager.fight(Selection, unitOnTile)
-					print("FONCTION FIGHT A RAJOUTER")
-					print("BON")
 					_deselect_active_unit()
 					_clear_active_unit()
 				else :
@@ -446,7 +441,7 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 
 ## Returns `true` if the cell is occupied by a unit.
 func is_occupied(cell: Vector2i) -> bool:
-	return MapManager.getTileAt(cell) != null && MapManager.getTileAt(cell).hasUnitOn()
+	return MapManager.getTileAt(cell) != null and MapManager.getTileAt(cell).hasUnitOn()
 
 ## Updates the _units dictionary with the target position for the unit and asks the _active_unit to walk to it.
 func _move_active_unit(new_cell: Vector2i) -> void:
@@ -467,22 +462,22 @@ func _move_active_unit(new_cell: Vector2i) -> void:
 		visuActions.clearNumbers()
 		visuZoneCapa.clearNumbers()
 		_attackable_cells = [target.tile.getCoords()]
+		attaqueEnAttenteCells = {}	#We don't need to keep them visibles after moving
 		visuActions.draw_attackable_cells(_attackable_cells)
 		visuActions.draw_walkable_cells(attaqueEnAttenteCells, Selection.team)
 		attaqueEnAttente = false
-		attaqueEnAttenteCells = {}
+
 	else :
 		_deselect_active_unit()
 		await Selection.signalFinMouvement
 		_clear_active_unit()
 	
 
-## Deselects the active unit, clearing the cells overlay and interactive path drawing.
+## Deselects the active unit, clearing the cells overlay and interactive path drawing. But keep the active unit to get infos if needed before _clear_active_unit
 func _deselect_active_unit() -> void:
 	print("deselect")
 	
 	Selection.deselectionneSelf(self)
-	#pointeurSelec.Selection = null Complètement con de retirer l'unité avant de la faire finalement bouger puisqu'on ne l'a plus en mémoire
 	visuActions.clearNumbers()
 	visuZoneCapa.clearNumbers()
 	_unit_path.stop()
@@ -500,6 +495,7 @@ func _clear_active_unit() -> void:
 	attaqueEnAttente = false
 	attaqueEnAttenteCells = {}
 	_walkable_cells.clear()
+	_attackable_cells.clear()
 
 
 
