@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="placementCapacite" load_steps=2 format=3 uid="uid://8yxmpaguybpn"]
+
+[ext_resource type="Script" uid="uid://f1tiavu0gsvm" path="res://scripts/unites/general/capacitesClasses/placementCapacite.gd" id="1_k63l2"]
+
+[resource]
+script = ExtResource("1_k63l2")
+nom = "ActivationPermaBuffMonkey"
+descriptionCapa = "Activation de la capacité de buff du Monkey"
+operateur = "+"
+statsAffectees = {
+"P": 1,
+"V": 1
+}
+typeCible = ["Monkey"]
+typeCapacite = "PlacementBased"

@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4jog7md0dw4v"]
+[gd_scene load_steps=4 format=3 uid="uid://d4jog7md0dw4v"]
 
-[ext_resource type="Script" path="res://scripts/Player/interface/interfacePlacementCartes.gd" id="1_tub21"]
+[ext_resource type="Script" uid="uid://fixepqmw5i4x" path="res://scripts/Player/interface/interfacePlacementCartes.gd" id="1_tub21"]
 [ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_g4gfd"]
+[ext_resource type="PackedScene" uid="uid://x0m84l0esr6r" path="res://nodes/interface/unitPlacementInterface.tscn" id="3_4kbar"]
 
 [node name="interfacePlacementCartes" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,6 +24,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="UI"]
 editor_description = "Sert à visualiser comment ça rend(parece que y'a des probs avec le popUp"
+clip_contents = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -35,16 +38,43 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="FlowContainer" type="FlowContainer" parent="UI/Panel"]
-layout_direction = 1
-layout_mode = 0
+[node name="MarginContainer" type="MarginContainer" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.395
 anchor_right = 1.0
-anchor_bottom = 0.9975
+anchor_bottom = 0.605
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_right = 35
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/FlowContainer"]
+[node name="UnitsToPlace" type="FlowContainer" parent="UI/Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 65
+theme_override_constants/v_separation = 60
+alignment = 1
+last_wrap_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="UnitPlacementPreview4" parent="UI/Panel/MarginContainer/UnitsToPlace" instance=ExtResource("3_4kbar")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="UnitPlacementPreview" parent="UI/Panel/MarginContainer/UnitsToPlace" instance=ExtResource("3_4kbar")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="UnitPlacementPreview3" parent="UI/Panel/MarginContainer/UnitsToPlace" instance=ExtResource("3_4kbar")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="UnitPlacementPreview2" parent="UI/Panel/MarginContainer/UnitsToPlace" instance=ExtResource("3_4kbar")]
+layout_mode = 2
+size_flags_horizontal = 0

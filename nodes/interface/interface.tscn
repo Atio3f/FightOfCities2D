@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://vt2pgrwdeiji"]
 
-[ext_resource type="Script" path="res://scripts/interface/interfaceGestion.gd" id="1_bss64"]
+[ext_resource type="Script" uid="uid://c7i1c8lhhkhp1" path="res://scripts/interface/interfaceGestion.gd" id="1_bss64"]
 [ext_resource type="Texture2D" uid="uid://c1p2hm7yoduhf" path="res://assets/interface/interfaceArrierePlan.tres" id="1_btko8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d73ns"]
@@ -20,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_bss64")
 
 [node name="ApercuUnite" type="VSplitContainer" parent="."]
@@ -96,6 +97,7 @@ anchor_top = 0.882716
 anchor_right = 1.0
 anchor_bottom = 0.942901
 grow_horizontal = 0
+mouse_filter = 0
 texture = ExtResource("1_btko8")
 expand_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -110,7 +112,8 @@ grow_vertical = 2
 toggle_mode = true
 action_mode = 0
 
-[node name="Label" type="Label" parent="bouttonFinTour/ButtonFinTour"]
+[node name="LabelEndTurn" type="Label" parent="bouttonFinTour/ButtonFinTour"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

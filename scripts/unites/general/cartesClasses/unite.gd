@@ -60,8 +60,6 @@ var vitesseRestante : int :
 			vitesseRestante = V
 		else:
 			vitesseRestante = value
-#var capacites : Dictionary	#Dictionnaire des capacités de l'unité(voir RessourceUniteBase pour comprendre la structure du dico) OBSOLETE
-
 
 var is_selected : bool = false:
 	set(value):
@@ -70,12 +68,6 @@ var is_selected : bool = false:
 		else:
 			contourSelec.visible = false
 		is_selected = value
-
-
-
-		
-
-
 
 var _is_walking := false:
 	set(value):
@@ -199,7 +191,7 @@ func deplacement(nouvellePosition : Vector2) -> void:
 
 func _process(delta: float) -> void:
 	
-	_path_follow.progress += 10 * grid.cell_size.x * delta
+	_path_follow.progress += 10 * grid.cellSize.x * delta
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
 		# Setting this value to 0.0 causes a Zero Length Interval error

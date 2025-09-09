@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://27awq5ull731"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/interface_unite.gd" id="1_dk80o"]
+[ext_resource type="Script" uid="uid://b6lwpjipqps2u" path="res://scripts/unites/general/interface/interface_unite.gd" id="1_dk80o"]
 [ext_resource type="Texture2D" uid="uid://ccfqynwh8c63w" path="res://assets/interface/unite/BarreVieZoneVieVide(512x512).png" id="2_76stb"]
 [ext_resource type="Texture2D" uid="uid://r52h2fd2nn60" path="res://assets/interface/unite/BarreVieZoneViePleine(512x512).png" id="3_5kmur"]
 [ext_resource type="Texture2D" uid="uid://ddayhll8pd60y" path="res://assets/interface/unite/BarreVieZoneVieAbsorption(512x512).png" id="4_diped"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4cgkquia40u" path="res://assets/interface/unite/UIuniteInfosStats(512x512).png" id="5_6wd5v"]
 [ext_resource type="FontFile" uid="uid://51527uw3luky" path="res://assets/interface/unite/polices/reppixel.ttf" id="6_c2bh5"]
 [ext_resource type="Texture2D" uid="uid://c08rq4ph7vx68" path="res://assets/interface/unite/UIuniteConsommables(512x512).png" id="6_v7muh"]
-[ext_resource type="Script" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="7_tbqdh"]
+[ext_resource type="Script" uid="uid://bchpfc7lkilwi" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="7_tbqdh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gopln"]
 font = ExtResource("6_c2bh5")
@@ -18,6 +18,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
 [node name="InterfaceUnite" type="Control"]
+clip_children = 2
 layout_mode = 3
 anchor_right = 0.0277778
 anchor_bottom = 0.0493827
@@ -63,12 +64,16 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="GestionnairePossibilite" type="Control" parent="."]
-anchors_preset = 0
+layout_mode = 1
+anchor_left = -0.00195313
+anchor_right = -0.00195313
 offset_right = 512.0
 offset_bottom = 512.0
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ConteneurMenus" type="FlowContainer" parent="GestionnairePossibilite"]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -112,6 +117,7 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_v7muh")
 
 [node name="MenuCapacitesActives" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
+visible = false
 clip_children = 2
 texture_filter = 1
 clip_contents = true

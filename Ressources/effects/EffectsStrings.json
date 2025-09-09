@@ -1,0 +1,62 @@
+{
+	"fr": {
+		"set1:GodMonkeySpeedEffect" : {
+			"NAME": "Dieu Monkey",
+			"DESCRIPTION": ""
+		},
+		"set1:KnightMonkeyEffect" : {
+			"NAME": "Chevalier Monkey",
+			"DESCRIPTION": ""
+		},
+		"set1:AbominationMonkeyEffect" : {
+			"NAME": "Attack: -P and -V",
+			"DESCRIPTION": ""
+		},
+		"set1:MonkeyEffect" : {
+			"NAME": "Soutien Monkey",
+			"DESCRIPTION": "Donne !VA! P et !VB! V à tous vos Monkeys."
+		},
+		"set1:TemporalSnailKillEffect" : {
+			"NAME": "Kill: Orb+",
+			"DESCRIPTION": "Gain d'orbe à chaque ennemi tué."
+		},
+		"set1:TemporalSnailRessurectEffect" : {
+			"NAME": "Death: Ressurect Orb",
+			"DESCRIPTION": "Peut ressusciter pour !C! orbe à sa mort. Le coût augmente de 1 à chaque utilisation."
+		},
+	},
+	"en": {
+		"set1:GodMonkeySpeedEffect" : {
+			"NAME": "God Monkey",
+			"DESCRIPTION": ""
+		},
+		"set1:KnightMonkeyEffect" : {
+			"NAME": "Knight Monkey",
+			"DESCRIPTION": ""
+		},
+		"set1:AbominationMonkeyEffect" : {
+			"NAME": "Abomination Monkey",
+			"DESCRIPTION": ""
+		},
+		"set1:MonkeyEffect" : {
+			"NAME": "Support Monkeys",
+			"DESCRIPTION": "All Monkeys gain !VA! P et !VB! V."
+		},
+		"set1:TemporalSnailResurrectEffect" : {
+			"NAME": "Infinity Loop",
+			"DESCRIPTION": "Resurrect for !C! orbs. Increases the amount of orbs needed by 1 each time."
+		},
+		"set1:TemporalSnailKillEffect" : {
+			"NAME": "Kill: Orb+",
+			"DESCRIPTION": "Gain !VA! orb each kill."
+		},
+		"set1:PenetrationPhysicalEffect" : {
+			"NAME": "Physical Penetration",
+			"DESCRIPTION": "Physical attacks ignore !VA! DR."
+		},
+		"set1:PenetrationMagicalEffect" : {
+			"NAME": "Magical Penetration",
+			"DESCRIPTION": "Magical attacks ignore !VA! MR."
+		},
+	}
+}

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="uniteRessource" load_steps=4 format=3 uid="uid://bsk2sk22dc3mh"]
+
+[ext_resource type="Texture2D" uid="uid://bm3sj7qiucgcq" path="res://assets/sprites/units/Monkey.png" id="1_g4uyb"]
+[ext_resource type="Resource" uid="uid://bfd0uyip0uht1" path="res://Ressources/old/capacites/permaBuffCapacites/unites/monkey/Monkey/monkeyPermaBuffCapacite.tres" id="2_n0bxf"]
+[ext_resource type="Script" uid="uid://c7f50m5phan5x" path="res://scripts/unites/general/ressourcesClasses/RessourceUniteBase.gd" id="3_d0anp"]
+
+[resource]
+script = ExtResource("3_d0anp")
+S = 8
+G = 0
+race = "Monkey"
+niveau = 0
+XP = 0.0
+pv_max = 23
+pv_actuels = 23
+DR = 1
+image = ExtResource("1_g4uyb")
+P = 2
+typeDegats = "Physique"
+V = 9
+range = 1
+attaquesMax = 1
+attaquesRestantes = 1
+vitesseRestante = 9
+typeDeplacementPossible = ["marche"]
+typeDeplacementActuel = "marche"
+listeCapacites = [ExtResource("2_n0bxf")]
+capacites = {
+"ActiveCapacitiesBased": {},
+"AttackBased": {},
+"DeathBased": {},
+"DefenseBased": {},
+"ItemBased": {},
+"KillBased": {},
+"LevelUpBased": {},
+"MovementBased": {},
+"PermanentBuff": {},
+"PlacementBased": {},
+"TurnBased": {}
+}
+typeCarte = "Unite"
+nom = "Monkey"
+description = "Un singe basique qui encourage les autres singes à donner le meilleur d'eux"
+couleurEquipe = ""

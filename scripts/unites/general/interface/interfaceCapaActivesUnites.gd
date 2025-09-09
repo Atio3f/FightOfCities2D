@@ -12,14 +12,14 @@ func _input(event) -> void:
 
 
 #A REFAIRE
-func capaActivesUnite(uniteAssociee : unite, interfaceUnite : Control, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
+func capaActivesUnite(uniteAssociee : AbstractUnit, interfaceUnit : interfaceUnite, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
 	if(!visibilite):
 		visible = false
 		joueur = null
 		return
 	
 	joueur = pointeurJoueurI
-	interface = interfaceUnite
+	interface = interfaceUnit
 	
 	
 	#On ne défile que la catégorie des capacités actives

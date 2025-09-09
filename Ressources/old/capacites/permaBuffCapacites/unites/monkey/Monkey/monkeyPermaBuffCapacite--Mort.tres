@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="mortCapacite" load_steps=2 format=3 uid="uid://duhf0rbbuhhcd"]
+
+[ext_resource type="Script" uid="uid://dgcfk51i3ey33" path="res://scripts/unites/general/capacitesClasses/mortCapacite.gd" id="1_vl6mh"]
+
+[resource]
+script = ExtResource("1_vl6mh")
+nom = "AnnulationPermaBuffMonkey"
+descriptionCapa = "Annulation de la capacité de buff du Monkey"
+operateur = "-"
+statsAffectees = {
+"P": 1,
+"V": 1
+}
+typeCible = ["Monkey"]
+typeCapacite = "DeathBased"

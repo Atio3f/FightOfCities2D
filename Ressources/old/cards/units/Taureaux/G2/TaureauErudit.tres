@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="uniteRessource" load_steps=4 format=3 uid="uid://c6aqhm5thhdnr"]
+
+[ext_resource type="Script" uid="uid://c7f50m5phan5x" path="res://scripts/unites/general/ressourcesClasses/RessourceUniteBase.gd" id="1_hxb3h"]
+[ext_resource type="Resource" uid="uid://by6jc2c6kbjfw" path="res://Ressources/old/capacites/capacitesActives/unites/taureau/taureauEruditCapaActive.tres" id="2_x7h2j"]
+
+[sub_resource type="Resource" id="Resource_5oofx"]
+metadata/__load_path__ = "res://assets/sprites/taureaux/taureauRandom(32x32).png"
+
+[resource]
+script = ExtResource("1_hxb3h")
+S = 18
+G = 2
+race = "Taureau"
+niveau = 0
+XP = 0.0
+pv_max = 38
+pv_actuels = 38
+DR = 11
+image = SubResource("Resource_5oofx")
+P = 12
+typeDegats = "Physique"
+V = 7
+range = 1
+attaquesMax = 1
+attaquesRestantes = 1
+vitesseRestante = 7
+typeDeplacementPossible = [""]
+typeDeplacementActuel = "marche"
+listeCapacites = [ExtResource("2_x7h2j")]
+capacites = {
+"ActiveCapacitiesBased": {},
+"AttackBased": {},
+"DeathBased": {},
+"DefenseBased": {},
+"ItemBased": {},
+"KillBased": {},
+"LevelUpBased": {},
+"MovementBased": {},
+"PermanentBuff": {},
+"PlacementBased": {},
+"TurnBased": {}
+}
+typeCarte = "Unite"
+nom = "Taureau érudit"
+description = "Un vieux taureau qui a fini par se consacrer à instruire ses congénères."
+couleurEquipe = ""

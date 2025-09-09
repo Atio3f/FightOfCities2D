@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5tqtoc4fw6yq"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/indicateur_degats.gd" id="1_van8p"]
+[ext_resource type="Script" uid="uid://c7tckk7gri721" path="res://scripts/unites/general/interface/indicateur_degats.gd" id="1_van8p"]
 [ext_resource type="LabelSettings" uid="uid://dwpncfm31umny" path="res://assets/interface/unite/indicateurDegats.tres" id="2_4cn6u"]
 
 [node name="IndicateurDegats" type="Node2D"]

@@ -3,7 +3,8 @@ extends Control
 
 @export var grid : Grid
 var pointeurInterface : pointeurJoueur
-@onready var placementCartes = preload("res://scenes/popUps/joueur/interfacePlacementCartes.tscn")
+@onready var placementCartes := preload("res://scenes/popUps/joueur/interfacePlacementCartes.tscn")
+var coords: Vector2i
 
 #Il y a sûrement des trucs à ajuster, genre il faudrait que le pointeurInterface soit affecté avant pour ne pas avoir à changer la variable à chaque fois
 func apercuMenusJoueur(pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
@@ -12,9 +13,7 @@ func apercuMenusJoueur(pointeurJoueurI : pointeurJoueur, visibilite : bool) -> v
 	
 	if(!visibilite) :
 		pointeurInterface = null
-		for child : Node in %noeudsTemp.get_children() :
-		
-			child.queue_free()
+		clearInterface()
 	else :
 		pointeurInterface = pointeurJoueurI
 		positionnement()
@@ -24,8 +23,13 @@ func apercuMenusJoueur(pointeurJoueurI : pointeurJoueur, visibilite : bool) -> v
 		print(position)
 	%ConteneurMenus.visible = visibilite
 	
-	
-	
+	coords = pointeurJoueurI.positionSouris
+
+#Clear the interface
+func clearInterface() -> void:
+	%ConteneurMenus.visible = false
+	for child : Node in %noeudsTemp.get_children() :
+		child.queue_free()
 
 ##Permet de positionner correctement l'interface sur l'écran de jeu comme l'interface des unités
 func positionnement() -> void :
@@ -33,6 +37,6 @@ func positionnement() -> void :
 	position = Vector2(pos.x - 14, pos.y - 22)
 
 func _on_menu_placement_carte_pressed():
-	var menuPlacementCartes : Control = placementCartes.instantiate()
-	menuPlacementCartes#Fonction dans placementCartes au lancement
+	var menuPlacementCartes : interfacePlacementCards = placementCartes.instantiate()
+	menuPlacementCartes.setInterface(coords, load("res://nodes/interface/unitPlacementInterface.tscn")) #Fonction dans placementCartes au lancement
 	%noeudsTemp.add_child(menuPlacementCartes)

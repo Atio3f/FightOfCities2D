@@ -1,7 +1,7 @@
 extends Control
+class_name interfaceInfosUnite
 
-
-var capaciteTexte = preload("res://nodes/Unite/interfaceUnite/capaciteTexte.tscn")
+var effectDisplayI : PackedScene = preload("res://nodes/interface/effectDisplayInterface.tscn")
 
 #func _process(delta):
 	#%ItemPopUp.popup()
@@ -12,40 +12,35 @@ func _input(event) -> void:
 		queue_free()
 
 
-func apercuInfosUnite(uniteAssociee : unite, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
+func apercuInfosUnite(unitAssociated : AbstractUnit, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
 	if(!visibilite):
 		visible = false
 		return
-	%ImageUnite.texture = uniteAssociee.imageUnit
-	%LabelPV.text = "PV = %3d /%3d" % [uniteAssociee.pv_actuels + uniteAssociee.pv_temporaires, uniteAssociee.pv_actuels]
-	%LabelDR.text = "DR = %3d" % [uniteAssociee.DR]
-	%LabelPuissance.text = "P = %3d" % [uniteAssociee.P]
-	%LabelDt.text = "Dt = %2d" % [uniteAssociee.range]
-	%LabelVitesse.text = "Vitesse = %3d/%3d" % [uniteAssociee.vitesseRestante, uniteAssociee.V]
-	%LabelSagesse.text = "S = %3d" % [uniteAssociee.S]
-	%LabelNiveau.text = "Niveau %2d" % [uniteAssociee.niveau]
-	%LabelXP.text = "XP = %3d(%4d)" % [uniteAssociee.XP, uniteAssociee.paliersNiveaux[uniteAssociee.niveau+1]]
-	%LabelCapacites.text = "Capacites : "
-
+	%ImageUnite.texture = load(unitAssociated.getImagePath() + "_p.png")
+	%LabelPV.text = "PV = %3d/%-3d" % [unitAssociated.hpActual + unitAssociated.hpTemp, unitAssociated.hpMax]
+	%LabelDR.text = "DR|MR = %3d|%-3d" % [unitAssociated.dr, unitAssociated.mr]
+	%LabelPuissance.text = "P = %3d" % [unitAssociated.power]
+	%LabelDt.text = "Dt = %2d" % [unitAssociated.range]
+	%LabelVitesse.text = "Vitesse = %2d/%-2d" % [unitAssociated.speedRemaining,unitAssociated.speed]
+	%LabelSagesse.text = "S = %3d" % [unitAssociated.wisdom]
+	%LabelPotential.text = "Potential %1d" % [unitAssociated.level, unitAssociated.potential]
+	%LabelEffects.text = "Effects : "	
+	var effectDisplay : EffectDisplay
+	for effect: AbstractEffect in unitAssociated.effects:
+		#We don't show effects with hideEffect on
+		if effect.hideEffect :
+			return
+	#for capaciteI : capacite in unitAssociated.capacites.getCapasDescription() :	#On défile les catégories des capacités
+		#
+		effectDisplay = effectDisplayI.instantiate()
+		effectDisplay.generate(effect)
+		%ContainerEffects.add_child(effectDisplay)
+		##print("YEYE %s" % [capacite])
+		#
+		#labelCapa.append_text(capaciteI.nom)
+		#%ContainerCapa.add_child(labelCapa)
+		#labelCapa.placement(capaciteI)
+		
+	%LabelDescription.text = "Description : %s" % [Global.unitsStrings["en"][unitAssociated.id]["NAME"]]
 	
 	
-	for capaciteI : capacite in uniteAssociee.capacites.getCapasDescription() :	#On défile les catégories des capacités
-		
-		
-		
-		var labelCapa : capaciteTexte = capaciteTexte.instantiate()
-		#print("YEYE %s" % [capacite])
-		
-		labelCapa.append_text(capaciteI.nom)
-		%ContainerCapa.add_child(labelCapa)
-		labelCapa.placement(capaciteI)
-		
-		
-	
-	%LabelDescription.text = "Description : %s" % [uniteAssociee.description]
-	
-	
-
-
-
-

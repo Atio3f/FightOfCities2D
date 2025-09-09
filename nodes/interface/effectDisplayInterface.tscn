@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://csue20eefw4c7"]
+
+[ext_resource type="Script" uid="uid://ca8t2t3afaqk3" path="res://scripts/interface/effectDisplayInterface.gd" id="1_igitl"]
+[ext_resource type="Texture2D" uid="uid://cj2dxi38ccfhy" path="res://assets/sprites/units/Monkey_p.png" id="2_nme6r"]
+
+[node name="EffectDisplay" type="MarginContainer"]
+anchors_preset = -1
+anchor_left = -0.0173611
+anchor_right = 0.0173611
+anchor_bottom = 0.0617284
+offset_left = 20.0
+offset_right = -20.0
+offset_bottom = -40.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_igitl")
+metadata/_edit_use_anchors_ = true
+
+[node name="BtnEffect" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_nme6r")
+
+[node name="PreviewEffect" type="Label" parent="BtnEffect"]
+unique_name_in_owner = true
+editor_description = "Contains the effect description"
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.375
+anchor_top = -0.45
+anchor_right = 1.375
+anchor_bottom = 0.125
+grow_vertical = 0
+theme_override_constants/line_spacing = -4
+theme_override_constants/outline_size = 2
+text = "MONKEY"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BgPreview" type="ColorRect" parent="BtnEffect/PreviewEffect"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0784314, 0.368627)
+
+[connection signal="button_up" from="BtnEffect" to="." method="_on_btn_unit_button_up"]
+[connection signal="mouse_entered" from="BtnEffect" to="." method="_on_btn_effect_mouse_entered"]
+[connection signal="mouse_exited" from="BtnEffect" to="." method="_on_btn_effect_mouse_exited"]

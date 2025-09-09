@@ -11,11 +11,11 @@ extends Control
 @onready var menuConsommables = preload("res://scenes/popUps/unite/interfaceConsommables.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
-var _entiteeAssociee : Node2D
+var unitAssociated : Node2D
 var pointeursSurInterface : Array = []
 
 func actualisationPV(entiteeAssociee : Node2D) -> void:
-	_entiteeAssociee = entiteeAssociee
+	unitAssociated = entiteeAssociee
 	barreVie.max_value = entiteeAssociee.pv_max
 	barreVie.value = entiteeAssociee.pv_actuels
 	barreVieTemp.max_value = entiteeAssociee.pv_max
@@ -38,7 +38,7 @@ func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur,
 		if(!pointeursSurInterface.has(pointeurJoueurI)):
 			pointeursSurInterface.append(pointeurJoueurI) 
 	conteneurMenus.visible = visibilite
-	_entiteeAssociee = entiteAssociee
+	unitAssociated = entiteAssociee
 	
 
 
@@ -51,32 +51,33 @@ func _on_menu_capacites_actives_focus_entered() -> void:
 
 #Affichage des capacités actives de l'unité
 func _on_menu_capacites_actives_pressed() -> void:
-	if (pointeursSurInterface.size() == 1) :
-		var capaAct : Control = capaActives.instantiate()
+	if (true):
+	#if (pointeursSurInterface.size() == 1) :
+		var capaAct : menuCapa = capaActives.instantiate()
 		
 		
-		capaAct.capaActivesUnite(_entiteeAssociee, self, pointeursSurInterface[0], true)
+		capaAct.capaActivesUnite(unitAssociated, self, GameManager.getMainPlayer().playerPointer, true)
 		noeudsTempInfosStats.add_child(capaAct)
 
 #Affichage des infos de l'unité
 func _on_menu_stats_pressed():
-	if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
+	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
-		var infosUnit : Control = infosUnites.instantiate()
-		infosUnit.apercuInfosUnite(_entiteeAssociee, pointeursSurInterface[0], true)
-		noeudsTempInfosStats.add_child(infosUnit)
+	var infosUnit : interfaceInfosUnite = infosUnites.instantiate()
+	infosUnit.apercuInfosUnite(unitAssociated, GameManager.getMainPlayer().playerPointer, true)
+	noeudsTempInfosStats.add_child(infosUnit)
 	
 
 func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : pointeurJoueur):
 	print(capaciteActivee)
-	pointeurJoueurI.capaActives(capaciteActivee, _entiteeAssociee)
+	pointeurJoueurI.capaActives(capaciteActivee, unitAssociated)
 	pass
 
 
 ##Signal envoyé par le menu des Consommables
 func _on_menu_consommables_pressed():
-	if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
+	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
-		var menuConso : Control = menuConsommables.instantiate()
-		menuConso.apercuConsommables(_entiteeAssociee, pointeursSurInterface[0], true)
-		noeudsTempInfosStats.add_child(menuConso)
+	var menuConso : interfaceConsommables = menuConsommables.instantiate()
+	menuConso.apercuConsommables(unitAssociated, GameManager.getMainPlayer().playerPointer, true)
+	noeudsTempInfosStats.add_child(menuConso)

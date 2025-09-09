@@ -10,8 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 317.0
+offset_bottom = 96.0
 theme_override_constants/separation = 25
 alignment = 1
 
@@ -27,8 +27,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter your Wakatime API Key"
 max_length = 43
-secret = true
 expand_to_text_length = true
+secret = true
 
 [node name="show_btn" type="Button" parent="vbox_container/hbox_container_top"]
 custom_minimum_size = Vector2(60, 25)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bnmeq5i2ddban"]
 
-[ext_resource type="Script" path="res://scripts/interface/number.gd" id="1_8i2p7"]
+[ext_resource type="Script" uid="uid://dewf1sbg4i162" path="res://scripts/interface/number.gd" id="1_8i2p7"]
 [ext_resource type="LabelSettings" uid="uid://boxxcq5biyfte" path="res://assets/visualisation/number.tres" id="1_bfdfv"]
 [ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="2_6pje1"]
 

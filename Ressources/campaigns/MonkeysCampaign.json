@@ -1,0 +1,16 @@
+{
+	"mainCharacter": "set1:MonkeyMC",
+	"startingAllies": [
+		"set1:Monkey",
+		"set1:Monkey"
+	],
+	"startingItems": [
+		"test:VitalLink"
+	],
+	"startingTrinkets": [
+		"set1:OrbCrate",
+		"set1:ArtOfWar"
+	],
+	"startingOrbs": 2,
+	"startingMaxOrbs": 5
+}

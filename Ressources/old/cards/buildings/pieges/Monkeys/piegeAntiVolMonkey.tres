@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="batimentRessource" load_steps=2 format=3 uid="uid://e3ml0m2pokm1"]
+
+[ext_resource type="Script" uid="uid://d2ptkb81h4v8f" path="res://scripts/unites/general/ressourcesClasses/RessourceBatimentBase.gd" id="1_e0jr6"]
+
+[resource]
+script = ExtResource("1_e0jr6")
+TcMax = 0
+TcRestant = 0
+pv_max = 26
+pv_actuels = 26
+DR = 0
+P = 28
+typeDegats = "Physique"
+V = 0
+range = 3
+attaquesMax = 2
+attaquesRestantes = 2
+vitesseRestante = 0
+typeDeplacementPossible = ["aucun"]
+typeDeplacementActuel = "aucun"
+listeCapacites = []
+capacites = {
+"ActiveCapacitiesBased": {},
+"AttackBased": {},
+"DeathBased": {},
+"DefenseBased": {},
+"ItemBased": {},
+"KillBased": {},
+"LevelUpBased": {},
+"MovementBased": {},
+"PermanentBuff": {},
+"PlacementBased": {},
+"TurnBased": {}
+}
+typeCarte = "Piege"
+nom = "Piège anti-vol Monkey"
+description = "Un piège créé pour contrer l'invasion des chauve-souris "
+couleurEquipe = ""

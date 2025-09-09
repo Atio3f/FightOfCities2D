@@ -1,21 +1,21 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0xoj357iuq7c"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/cartesClasses/unite.gd" id="1_8x2i5"]
-[ext_resource type="Resource" uid="uid://bsk2sk22dc3mh" path="res://Ressources/cartes/unites/Monkeys/G1/singe.tres" id="2_h1ild"]
-[ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="3_mt4o2"]
-[ext_resource type="Texture2D" uid="uid://bm3sj7qiucgcq" path="res://assets/sprites/monkey/Monkey(512x512).png" id="5_jkama"]
-[ext_resource type="Script" path="res://scripts/unites/general/GestionCapacites.gd" id="6_figlw"]
+[ext_resource type="Script" uid="uid://oixsn6bpuivb" path="res://scripts/gameLogic/classes/AbstractUnit.gd" id="1_ion6h"]
+[ext_resource type="Texture2D" uid="uid://dt0lsyyf44bb6" path="res://assets/sprites/contourSelectionUnite(512x512).png" id="4_nrxwr"]
+[ext_resource type="Texture2D" uid="uid://bm3sj7qiucgcq" path="res://assets/sprites/units/Monkey.png" id="5_jkama"]
+[ext_resource type="Script" uid="uid://c0mjucwye5ul6" path="res://scripts/unites/general/GestionCapacites.gd" id="6_figlw"]
 [ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interfaceUnite.tscn" id="6_ujj46"]
+
+[sub_resource type="Curve2D" id="Curve2D_nrxwr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeksa"]
 size = Vector2(32, 32)
 
 [node name="Unite" type="Path2D"]
 position = Vector2(60, 60)
-script = ExtResource("1_8x2i5")
-ressource = ExtResource("2_h1ild")
-race = "Monkey"
-grid = ExtResource("3_mt4o2")
+curve = SubResource("Curve2D_nrxwr")
+script = ExtResource("1_ion6h")
+metadata/_custom_type_script = "uid://oixsn6bpuivb"
 
 [node name="GestionCapacites" type="Node2D" parent="."]
 script = ExtResource("6_figlw")
@@ -23,16 +23,31 @@ script = ExtResource("6_figlw")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
-[node name="ElementsUnite" type="PathFollow2D" parent="."]
+[node name="UnitElements" type="PathFollow2D" parent="."]
 rotates = false
 loop = false
 
-[node name="SpriteUnite" type="Sprite2D" parent="ElementsUnite"]
+[node name="InterfaceUnite" parent="UnitElements" instance=ExtResource("6_ujj46")]
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -292.0
+offset_right = 240.0
+offset_bottom = 220.0
+mouse_default_cursor_shape = 2
+
+[node name="UnitSprite" type="Sprite2D" parent="UnitElements"]
+z_index = -1
 position = Vector2(-16, -16)
 texture = ExtResource("5_jkama")
 
-[node name="CouleurEquipe" type="ColorRect" parent="ElementsUnite/SpriteUnite"]
+[node name="CouleurEquipe" type="ColorRect" parent="UnitElements/UnitSprite"]
 unique_name_in_owner = true
+visible = false
 show_behind_parent = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,31 +61,22 @@ grow_vertical = 2
 size_flags_horizontal = 4
 color = Color(0.0473758, 0.632694, 0.0388796, 1)
 
-[node name="ContourSelection" type="Sprite2D" parent="ElementsUnite"]
+[node name="ContourSelection" type="Sprite2D" parent="UnitElements"]
 visible = false
+z_index = -1
+texture = ExtResource("4_nrxwr")
 
-[node name="ZoneOccupe" type="Area2D" parent="ElementsUnite"]
+[node name="ZoneOccupe" type="Area2D" parent="UnitElements"]
 visible = false
+z_index = -1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ElementsUnite/ZoneOccupe"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnitElements/ZoneOccupe"]
 scale = Vector2(0.92, 0.92)
 shape = SubResource("RectangleShape2D_xeksa")
-
-[node name="InterfaceUnite" parent="ElementsUnite" instance=ExtResource("6_ujj46")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -272.0
-offset_top = -292.0
-offset_right = 240.0
-offset_bottom = 220.0
 
 [node name="NoeudsTemp" type="Node2D" parent="."]
 
 [node name="IndicDegats" type="Node2D" parent="NoeudsTemp"]
 
 [node name="InterfaceInfosStats" type="CanvasLayer" parent="NoeudsTemp"]
-
-[connection signal="focus_entered" from="ElementsUnite/InterfaceUnite" to="." method="_on_interface_unite_focus_entered"]
+layer = 2

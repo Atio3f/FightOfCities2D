@@ -8,10 +8,10 @@ func creation(cell : Vector2, valeur : int) -> void:
 	text = str(valeur)
 	#print(cell)
 	
-	cell = grid.grid_clamp(cell) * Global.cellSize
+	cell = MapManager.grid_clamp(cell) * MapManager.cellSize
 	global_position = cell
 	top_level = true
-	self.set_deferred("size", Vector2(Global.cellSize, Global.cellSize)) 
+	self.set_deferred("size", Vector2(MapManager.cellSize, MapManager.cellSize)) 
 
 
 func getText() -> String :

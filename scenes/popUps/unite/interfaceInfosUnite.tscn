@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://1k20t4ihh1ko"]
 
-[ext_resource type="Script" path="res://scripts/unites/general/interface/interfaceInfosUnite.gd" id="1_sdq13"]
+[ext_resource type="Script" uid="uid://dpp3d4d82yg8n" path="res://scripts/unites/general/interface/interfaceInfosUnite.gd" id="1_sdq13"]
 [ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_qh0k2"]
 
 [node name="PopUpInfosUnite" type="Control"]
@@ -107,6 +107,7 @@ size_flags_horizontal = 6
 text = "S = 10"
 
 [node name="RangeeExperience" type="HSplitContainer" parent="UI/Panel/FlowContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="LabelNiveau" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeExperience"]
@@ -122,21 +123,37 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "XP = 10(200)"
 
+[node name="Potentiel" type="HSplitContainer" parent="UI/Panel/FlowContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="LabelPotential" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/Potentiel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Niveau 1"
+horizontal_alignment = 1
+
+[node name="LabelXP" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/Potentiel"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "XP = 10(200)"
+
 [node name="HSeparator" type="HSeparator" parent="UI/Panel/FlowContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RangeeCapacites" type="HBoxContainer" parent="UI/Panel/FlowContainer/VBoxContainer"]
+[node name="RangeeEffects" type="HBoxContainer" parent="UI/Panel/FlowContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="LabelCapacites" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeCapacites"]
+[node name="LabelEffects" type="Label" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeEffects"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Capacités :"
+text = "Effects :"
 
-[node name="ContainerCapa" type="GridContainer" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeCapacites"]
+[node name="ContainerEffects" type="GridContainer" parent="UI/Panel/FlowContainer/VBoxContainer/RangeeEffects"]
 unique_name_in_owner = true
 layout_mode = 2
 

@@ -1,0 +1,14 @@
+extends Node
+
+enum tags {
+	FUTURISTIC,
+	MAGIC,
+	FLYING,
+	AQUATIC,
+	MONKEY,
+	BAT,
+	HUMAN,
+	PENGUIN,
+	BULL,
+	MAGICAL_BEAST
+}

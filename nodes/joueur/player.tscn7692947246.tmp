@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://rfbkx0b7abxh"]
+
+[ext_resource type="Script" uid="uid://crobcf7g1ay5d" path="res://scripts/gameLogic/classes/AbstractPlayer.gd" id="1_hu2d8"]
+[ext_resource type="Script" uid="uid://bpbcwy6rq5fjr" path="res://scripts/Player/PointeurPlayer.gd" id="3_pmukw"]
+[ext_resource type="Resource" uid="uid://wr2rrjw510by" path="res://Ressources/terrain/Grid.tres" id="4_13yfm"]
+[ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://nodes/tilemaps/UnitPath.tscn" id="5_3ppum"]
+[ext_resource type="PackedScene" uid="uid://be5epi7wi8gaj" path="res://nodes/tilemaps/visualisation_actions.tscn" id="6_oepiw"]
+[ext_resource type="Script" uid="uid://bo3emjykgd13r" path="res://scripts/Player/MovementPlayer.gd" id="9_3cqm2"]
+[ext_resource type="Script" uid="uid://coltb6tvepm5p" path="res://scripts/Player/Action.gd" id="10_pc0xr"]
+[ext_resource type="PackedScene" uid="uid://vt2pgrwdeiji" path="res://nodes/interface/interface.tscn" id="11_p3gp3"]
+[ext_resource type="PackedScene" uid="uid://dn3hygwohims3" path="res://nodes/joueur/interface/interfaceJoueur.tscn" id="11_xhxfb"]
+
+[node name="Player" type="Node"]
+script = ExtResource("1_hu2d8")
+metadata/_custom_type_script = "uid://crobcf7g1ay5d"
+
+[node name="Pointeur_Selection" type="Node2D" parent="."]
+script = ExtResource("3_pmukw")
+grid = ExtResource("4_13yfm")
+
+[node name="UnitPathJ1" parent="Pointeur_Selection" instance=ExtResource("5_3ppum")]
+
+[node name="visualisationActionsJ" parent="Pointeur_Selection" instance=ExtResource("6_oepiw")]
+rendering_quadrant_size = 32
+
+[node name="visualisationCapas" parent="Pointeur_Selection" instance=ExtResource("6_oepiw")]
+editor_description = "Sert pour afficher la zone d'effet des capacités"
+rendering_quadrant_size = 32
+
+[node name="CaseSelecJ1" type="Sprite2D" parent="Pointeur_Selection"]
+visibility_layer = 2
+position = Vector2(80, 80)
+rotation = 3.14159
+
+[node name="CaseTargetJ1" type="Sprite2D" parent="Pointeur_Selection"]
+visible = false
+top_level = true
+position = Vector2(80, 80)
+rotation = 3.14159
+
+[node name="Movement" type="Camera2D" parent="."]
+position = Vector2(8, 8)
+zoom = Vector2(1.6, 1.6)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("9_3cqm2")
+
+[node name="Actions" type="Node2D" parent="."]
+script = ExtResource("10_pc0xr")
+
+[node name="CanvasInterfaceFixe" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 0
+
+[node name="interfaceFinTour" parent="CanvasInterfaceFixe" instance=ExtResource("11_p3gp3")]
+
+[node name="FPSMeter" type="Label" parent="CanvasInterfaceFixe"]
+unique_name_in_owner = true
+visibility_layer = 16
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -46.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "144"
+
+[node name="CanvasInterfaceViewport" type="CanvasLayer" parent="."]
+editor_description = "Contient les interfaces nécessitant un mouvement différent de celui de la caméra du joueur"
+follow_viewport_enabled = true
+
+[node name="interfaceJoueur" parent="CanvasInterfaceViewport" instance=ExtResource("11_xhxfb")]

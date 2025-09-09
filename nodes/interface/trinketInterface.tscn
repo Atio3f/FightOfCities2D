@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy4outce0vbvn"]
+
+[ext_resource type="Script" uid="uid://jcgyjhquidrc" path="res://scripts/interface/trinketInterface.gd" id="1_hwclm"]
+
+[node name="Trinket" type="MarginContainer"]
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 0
+script = ExtResource("1_hwclm")
+
+[node name="SpriteTrinket" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 16
+stretch_mode = 2
+
+[node name="Preview" type="Label" parent="SpriteTrinket"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.766667
+anchor_right = 2.26666
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="SpriteTrinket" to="." method="_on_sprite_trinket_mouse_entered"]
+[connection signal="mouse_exited" from="SpriteTrinket" to="." method="_on_sprite_trinket_mouse_exited"]

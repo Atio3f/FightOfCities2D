@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6wkay02jduiq"]
+
+[ext_resource type="Script" uid="uid://crobcf7g1ay5d" path="res://scripts/gameLogic/classes/AbstractPlayer.gd" id="1_0hbv8"]
+
+[node name="AbstractPlayer" type="Node"]
+script = ExtResource("1_0hbv8")
+metadata/_custom_type_script = "uid://crobcf7g1ay5d"

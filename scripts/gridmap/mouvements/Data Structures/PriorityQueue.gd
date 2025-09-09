@@ -19,7 +19,7 @@ func is_empty():
 ## Inserts element into our queue
 ## Value: Cell we want to push into the queue
 ## Priority: The distance of the cell from our position
-func push(value: Vector2, priority: int):
+func push(value: Vector2i, priority: int):
 	if is_empty():
 		front = LinkedNode.new(value, priority)
 	elif front.priority > priority: #we do this since we want to find the shortest path from lowest to highest priority
