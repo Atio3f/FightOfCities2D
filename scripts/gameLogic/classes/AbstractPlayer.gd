@@ -43,10 +43,10 @@ func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 ###Fix the limit of camera depending of terrain size & tile size
 func fixCameraLimit(x: int, y: int) -> void:
 	if !isGamePlayer : return
-	%Movement.limit_left = -7 * MapManager.cellSize
-	%Movement.limit_right = x * 1.4 * MapManager.cellSize
-	%Movement.limit_top = -6 * MapManager.cellSize
-	%Movement.limit_bottom = y * 1.2 * MapManager.cellSize
+	%Movement.limitLeft = -7 * MapManager.cellSize - 500
+	%Movement.limitRight = x * 1.4 * MapManager.cellSize + 80
+	%Movement.limitUp = -6 *  MapManager.cellSize - 100
+	%Movement.limitDown = y * 1.2 * MapManager.cellSize + 80
 
 
 func getUnits() -> Array[AbstractUnit]:

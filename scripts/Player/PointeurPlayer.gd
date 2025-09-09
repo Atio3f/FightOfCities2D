@@ -283,9 +283,10 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 	#print(new_cell)
 	#print(_units)
 	## Updates the interactive path's drawing if there's an active and selected unit.
+	var tileOn: AbstractTile = MapManager.getTileAt(new_cell)
+	caseSelec.visible = tileOn != null	#Hide the pointeur if we're out of bounds
 	if(!menuOpen):
 		if Selection and Selection.is_selected:
-			var tileOn: AbstractTile = MapManager.getTileAt(new_cell)
 			_unit_path.draw(Selection.tile.getCoords(), new_cell)
 			if Selection.atkRemaining > 0 and tileOn != null and tileOn.hasUnitOn() and Selection.team != tileOn.unitOn.team :
 				print("TARGET")
