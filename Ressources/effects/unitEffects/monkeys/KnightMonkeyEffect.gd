@@ -2,7 +2,7 @@ extends AbstractEffect
 class_name KnightMonkeyEffect
 
 
-const idEffect = "test:KnightMonkeyEffect"
+const idEffect = "set1:KnightMonkeyEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):

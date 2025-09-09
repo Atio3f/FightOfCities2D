@@ -49,6 +49,9 @@ static func useItem(playerUsing: AbstractPlayer, orbCost: int, unitTargeted: Abs
 	#if !canBeUsedOnUnit(unit) : return false
 	playerUsing.orbs -= orbCost
 	if unitTargeted != null : unitTargeted.onItemUsed(playerUsing, isMalus)	#Some items doesn't affected units
+	if playerUsing.isGamePlayer : 
+		for trinket: AbstractTrinket in playerUsing.trinkets :
+			trinket.onItemUsed(playerUsing, isMalus, unitTargeted)
 	return true
 
 static func getId() -> String:

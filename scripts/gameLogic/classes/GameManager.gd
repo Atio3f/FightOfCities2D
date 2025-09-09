@@ -2,11 +2,13 @@ extends Node
 class_name GameManager
 
 static var players: Array[AbstractPlayer] = []
-static var mainPlayer: AbstractPlayer
+static var mainPlayer: AbstractPlayer	#Main player
 static var scenePlayer: PackedScene = preload("res://nodes/joueur/player.tscn")
 static var sceneOtherPlayer: PackedScene = preload("res://nodes/joueur/otherPlayer.tscn")
 static var sceneUnit: PackedScene = preload("res://nodes/Unite/unite.tscn")
 var mapManager: MapManager
+static var campaign: AbstractCampaign	#Campaign, will be add by the main_menu
+
 #var turnManager: TurnManager
 
 ##JSP SI IL FAUT VRAIMENT QUE JE LE PLACE GAMEMANAGER ni que je dois init mapManager ici
@@ -15,29 +17,43 @@ func _ready():
 
 #Return value is to wait the load of all elements and check if we got an error during the loading
 func loadGame() -> bool : 
-	#On ajoute le GameManager dans Global pour être accessible partout
+	##On ajoute le GameManager dans Global pour être accessible partout
 	Global.gameManager = self
-	#Load all units from all player into players and place them on the map(and setup their effects?)
+	##Load all units from all player into players and place them on the map(and setup their effects?)
 	
+	#Generate Map
 	mapManager = %Map
-	generateMap(30, 50)
+	generateMap(12, 16)
 	
 	
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
 	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1", true)
-	
+	configPlayer(player1)
 	var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
 	placeUnit("test:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
 	
-	print(mainPlayer.orbs)
+	#print(mainPlayer.orbs)
 	#Ajout d'un trinket test
-	obtainTrinket(mainPlayer, "set1:OrbCrate")
-	obtainTrinket(mainPlayer, "set1:ArtOfWar")
-	print(mainPlayer.orbs)
+	#obtainTrinket(mainPlayer, "set1:OrbCrate")
+	#obtainTrinket(mainPlayer, "set1:ArtOfWar")
+	#print(mainPlayer.orbs)
 	
 	
 	return true
 
+##Config function to setup every stats of the player based of the actual campaign
+func configPlayer(player: AbstractPlayer) -> void:
+	player.maxOrbs = campaign.startingMaxOrbs
+	player.orbs = campaign.startingOrbs
+	##Add starting trinkets
+	for trinketId: String in campaign.startingTrinkets:
+		addTrinket(player, trinketId)
+	##Add starting units
+	for unitId: String in campaign.startingAllies:
+		player.addUnitCard(unitId)
+	##Add items
+	for itemId: String in campaign.startingItems:
+		player.addCard(itemId)
 
 static func getAllUnits() -> Array[AbstractUnit] :
 	var units: Array[AbstractUnit] = []
@@ -80,13 +96,16 @@ func createPlayer(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool)
 	if !TurnManager.teams.has(team) : TurnManager.addTeam(team)
 	return player
 
+## Return if the unit can be placed on the tile, we just send the weight actually
+static func unitCanBePlacedOnTile(player: AbstractPlayer, tile: AbstractTile, weight: int = 1) -> bool :
+	return tile != null and !tile.hasUnitOn() and player.maxWeight >= player.weight + weight
 
 #Pour les tests on a besoin d'être sûr du type de case
 func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
-	var u = sceneUnit.instantiate()
+	var u := sceneUnit.instantiate()
 	player.units.append(u)
-	var unit = u as AbstractUnit
-	%UnitsStorage.add_child(unit)
+	var unit : AbstractUnit = u as AbstractUnit
+	%UnitsStorage.add_child(unit, true)
 	print(unit)
 	UnitDb.UNITS[id].initialize(unit, player)
 	unit.onPlacement(tile)

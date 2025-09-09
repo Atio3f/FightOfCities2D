@@ -96,11 +96,11 @@ func initializeStats(id: String, imgPath: String, playerAssociated: AbstractPlay
 	self.power = powerBase
 	self.powerBase = powerBase
 	self.atkPerTurn = atkPerTurnBase
-	self.atkRemaining = atkPerTurnBase
+	self.atkRemaining = 0
 	self.atkPerTurnBase = atkPerTurnBase
 	self.range = range
 	self.speed = speedBase
-	self.speedRemaining = speedBase
+	self.speedRemaining = 0
 	self.speedBase = speedBase
 	self.drBase = drBase
 	self.dr = drBase
@@ -228,6 +228,8 @@ func onMovement(tile: AbstractTile) -> void:
 	tile.onUnitIn(self)
 	for effect: AbstractEffect in effects:
 		effect.onMovement()
+	for trinket: AbstractTrinket in player.trinkets :
+		trinket.onMovement(self)
 
 #J'ai retiré item: AbstractItem,  comme param parce que pour le moment ça sert à r
 func onItemUsed(player: AbstractPlayer, isMalus: bool) -> void:
@@ -247,6 +249,8 @@ func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.Dama
 	damage = 0 if (damageReduction > damage) else (damage - damageReduction)
 	for effect: AbstractEffect in effects:
 		damage = effect.onDamageTaken(unit, damage, damageType, visualisation)
+	for trinket: AbstractTrinket in player.trinkets :
+		damage = trinket.onDamageTaken(unit, self, damage, damageType, visualisation)
 	var hpLoses: Dictionary
 	#If it's not a true attack we just return value
 	if(!visualisation):
@@ -265,6 +269,8 @@ func onDamageDealed(unit: AbstractUnit, damageType: DamageTypes.DamageTypes, vis
 	var damage: int = getPower()
 	for effect: AbstractEffect in effects:
 		damage = effect.onDamageDealed(unit, damage, damageType, visualisation)
+	for trinket: AbstractTrinket in player.trinkets :
+		damage = trinket.onDamageDealed(self, unit, damage, damageType, visualisation)
 	return damage
 
 func loseHp(damage: int) -> Dictionary:
@@ -288,11 +294,15 @@ func getLoseHp(damage: int) -> Dictionary:
 func onHeal(unitHealed: AbstractUnit, healValue: int) -> int :
 	for effect: AbstractEffect in effects:
 		healValue = effect.onHeal(unitHealed, healValue)
+	for trinket: AbstractTrinket in player.trinkets:
+		healValue = trinket.onHeal(self, unitHealed, healValue)
 	return healValue
 
 func onHealed(unitHealing: AbstractUnit, healValue: int) -> int :
 	for effect: AbstractEffect in effects:
 		healValue = effect.onHealed(unitHealing, healValue)
+	for trinket: AbstractTrinket in player.trinkets:
+		healValue = trinket.onHealed(unitHealing, self, healValue)
 	return healValue
 
 func healHp(healValue: int):
@@ -305,10 +315,14 @@ func onKill(unitKilled: AbstractUnit) -> void :
 	#gainXp(ActionTypes.actionTypes.KILL, {"maxHp":unitKilled.hpMax})
 	for effect: AbstractEffect in effects:
 		effect.onKill(unitKilled)
+	for trinket: AbstractTrinket in player.trinkets:
+		trinket.onKill(self, unitKilled)
 
 func onDeath(unit: AbstractUnit = null) -> void:
 	for effect: AbstractEffect in effects:
 		effect.onDeath(unit)
+	for trinket: AbstractTrinket in player.trinkets:
+		trinket.onDeath(unit, self)
 	isDead = true	#You're not supposed to be able to survive once you're in this function
 	##Remove the unit from active units and its tile and hide it
 	player.removeUnit(self)

@@ -18,7 +18,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
 [node name="InterfaceUnite" type="Control"]
-z_index = 1
+clip_children = 2
 layout_mode = 3
 anchor_right = 0.0277778
 anchor_bottom = 0.0493827
@@ -69,6 +69,7 @@ anchor_left = -0.00195313
 anchor_right = -0.00195313
 offset_right = 512.0
 offset_bottom = 512.0
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ConteneurMenus" type="FlowContainer" parent="GestionnairePossibilite"]
@@ -116,6 +117,7 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_v7muh")
 
 [node name="MenuCapacitesActives" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
+visible = false
 clip_children = 2
 texture_filter = 1
 clip_contents = true

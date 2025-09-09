@@ -1,50 +1,62 @@
 {
 	"fr": {
-		"test:GodMonkeySpeedEffect" : {
+		"set1:GodMonkeySpeedEffect" : {
 			"NAME": "Dieu Monkey",
 			"DESCRIPTION": ""
 		},
-		"test:KnightMonkeyEffect" : {
+		"set1:KnightMonkeyEffect" : {
 			"NAME": "Chevalier Monkey",
 			"DESCRIPTION": ""
 		},
-		"test:AbominationMonkeyEffect" : {
+		"set1:AbominationMonkeyEffect" : {
 			"NAME": "Attack: -P and -V",
 			"DESCRIPTION": ""
 		},
-		"test:MonkeyEffect" : {
+		"set1:MonkeyEffect" : {
 			"NAME": "Soutien Monkey",
 			"DESCRIPTION": "Donne !VA! P et !VB! V à tous vos Monkeys."
 		},
-		"test:TemporalSnailKillEffect" : {
+		"set1:TemporalSnailKillEffect" : {
 			"NAME": "Kill: Orb+",
 			"DESCRIPTION": "Gain d'orbe à chaque ennemi tué."
 		},
-		"test:TemporalSnailRessurectEffect" : {
+		"set1:TemporalSnailRessurectEffect" : {
 			"NAME": "Death: Ressurect Orb",
 			"DESCRIPTION": "Peut ressusciter pour !C! orbe à sa mort. Le coût augmente de 1 à chaque utilisation."
 		},
 	},
 	"en": {
-		"test:GodMonkey" : {
+		"set1:GodMonkeySpeedEffect" : {
 			"NAME": "God Monkey",
 			"DESCRIPTION": ""
 		},
-		"test:KnightMonkey" : {
+		"set1:KnightMonkeyEffect" : {
 			"NAME": "Knight Monkey",
 			"DESCRIPTION": ""
 		},
-		"test:AbominationMonkey" : {
+		"set1:AbominationMonkeyEffect" : {
 			"NAME": "Abomination Monkey",
 			"DESCRIPTION": ""
 		},
-		"test:Monkey" : {
-			"NAME": "Monkey",
-			"DESCRIPTION": ""
+		"set1:MonkeyEffect" : {
+			"NAME": "Support Monkeys",
+			"DESCRIPTION": "All Monkeys gain !VA! P et !VB! V."
 		},
-		"test:TemporalSnail" : {
-			"NAME": "Temporal Snail",
-			"DESCRIPTION": ""
+		"set1:TemporalSnailResurrectEffect" : {
+			"NAME": "Infinity Loop",
+			"DESCRIPTION": "Resurrect for !C! orbs. Increases the amount of orbs needed by 1 each time."
+		},
+		"set1:TemporalSnailKillEffect" : {
+			"NAME": "Kill: Orb+",
+			"DESCRIPTION": "Gain !VA! orb each kill."
+		},
+		"set1:PenetrationPhysicalEffect" : {
+			"NAME": "Physical Penetration",
+			"DESCRIPTION": "Physical attacks ignore !VA! DR."
+		},
+		"set1:PenetrationMagicalEffect" : {
+			"NAME": "Magical Penetration",
+			"DESCRIPTION": "Magical attacks ignore !VA! MR."
 		},
 	}
 }

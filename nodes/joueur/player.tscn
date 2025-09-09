@@ -42,6 +42,7 @@ rotation = 3.14159
 texture = ExtResource("5_hu2d8")
 
 [node name="Movement" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(8, 8)
 zoom = Vector2(0.1, 0.1)
 position_smoothing_enabled = true

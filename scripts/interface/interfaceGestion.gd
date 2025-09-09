@@ -7,11 +7,21 @@ class_name interfaceFinTour
 
 var sourisOnInterface : bool = false	#Booléan de la présence ou non de la souris sur l'interface
 var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un endroit global
-
+@onready var mainPlayer : AbstractPlayer = $"../.."	#Player associated to the interface
 
 func _ready() -> void :
-	setActionsRest(3)
-	%LabelCouleurTour.text = "Tour %s" % [TurnManager.turn]
+	updateInterface()
+
+#Update interface on new turn
+func updateInterface() -> void:
+	#We check if we are during the preparation turn
+	if TurnManager.turn == 0 :
+		%LabelEndTurn.text = "START BATTLE"
+		%LabelCouleurTour.text = "Weight %s/%s" % [mainPlayer.weight, mainPlayer.maxWeight]	#We show the weight remaining of the player during preparation turn
+	else :
+		%LabelEndTurn.text = "END OF TURN"
+		setActionsRest(3)
+		%LabelCouleurTour.text = "Tour %s" % [TurnManager.turn]
 
 func setActionsRest(actions : int) -> void:
 	labelActionsRest.text = "Actions " + str(actions) + "/3"
@@ -32,13 +42,7 @@ func _on_mouse_exited() -> void:
 	print("mouseExited")
 
 #Fonction pour réaliser la fin du tour
-
 func _on_button_fin_tour_pressed() -> void:
 	setActionsRest(3)
 	TurnManager.nextTurn()
-	var units: Array[AbstractUnit] = GameManager.getAllUnits()
-	var turnColor: TeamsColor.TeamsColor = TurnManager.actualTurn()
-	#Réalisation d'une boucle pour parcourir toutes les unités sur le terrain et leur permettre de 
-	for unit: AbstractUnit in units :
-		unit.onStartOfTurn(TurnManager.actualTurn(), turnColor)	#actualTurn() give the color
-	%LabelCouleurTour.text = "Tour %s" % [TurnManager.turn]
+	updateInterface()

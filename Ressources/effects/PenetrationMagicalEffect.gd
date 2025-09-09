@@ -2,7 +2,7 @@ extends AbstractEffect
 class_name PenetrationMagicalEffect
 #All effects which ignore defense
 
-const idEffect = "test:PenetrationMagicalEffect"
+const idEffect = "set1:PenetrationMagicalEffect"
 const img = ""
 
 var damageType: DamageTypes.DamageTypes = DamageTypes.DamageTypes.MAGICAL

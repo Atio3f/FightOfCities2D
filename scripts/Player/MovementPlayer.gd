@@ -1,4 +1,4 @@
-extends Node2D
+extends Camera2D
 
 @onready var Souris = $"../Pointeur_Selection"
 @onready var scene = $"../../.."
@@ -21,13 +21,17 @@ func _ready() -> void:
 #Fonction continue permettant le déplacement dans toutes les directions
 func _physics_process(_delta) -> void:
 	if Input.is_action_pressed("up"):
-		y -= MapManager.cellSize / vitesseY
+		if limit_top < (y - (MapManager.cellSize / vitesseY)) :
+			y -= MapManager.cellSize / vitesseY
 	if Input.is_action_pressed("down"):
-		y += MapManager.cellSize / vitesseY
+		if limit_bottom > (y + (MapManager.cellSize / vitesseY)) :
+			y += MapManager.cellSize / vitesseY
 	if Input.is_action_pressed("right"):
-		x += MapManager.cellSize / vitesseX
+		if limit_right > (x + (MapManager.cellSize / vitesseX)) :
+			x += MapManager.cellSize / vitesseX
 	if Input.is_action_pressed("left"):
-		x -= MapManager.cellSize / vitesseX
+		if limit_left < (x - (MapManager.cellSize / vitesseX)) :
+			x -= MapManager.cellSize / vitesseX
 	emplacement.x = x
 	emplacement.y = y
 	x = x/3

@@ -1,10 +1,13 @@
 extends AbstractUnit
 class_name GodMonkey
 
-const idUnit = "test:GodMonkey"
+const idUnit = "set1:GodMonkey"
 const GRADE = 4
 const POTENTIAL = 4
-const img = ""
+const img = "Monkey"
+
+func _ready() :
+	grade = GRADE
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 45, 23, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 11, 6, 6, POTENTIAL, 24)

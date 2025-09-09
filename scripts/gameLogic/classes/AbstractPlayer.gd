@@ -17,10 +17,14 @@ var trinkets: Array[AbstractTrinket] = []
 const WEIGHT_BASE: int = 6
 var weight: int
 var maxWeight: int = WEIGHT_BASE
+#Max units represent the maximum number of units of the player
+const MAX_UNITS_BASE: int = 3	
+var maxUnits: int = WEIGHT_BASE
 var hand: PlayerHand
 var activeCapacity	#capacité active actuelle
 var isGamePlayer: bool = false	#Serve to know if the player is the one you control the game
 
+var playerPointer: pointeurJoueur	#Will allow interfaces to access some functions on Pointeur_Selection, for main player only
 
 func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 	self.playerName = name
@@ -30,9 +34,19 @@ func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 	hand = PlayerHand.new(self)
 	if isGamePlayer : 
 		$Actions.player = self
+		fixCameraLimit(MapManager.length, MapManager.width)
+		playerPointer = $Pointeur_Selection
 	else : 
 		pass#$Actions.player = self#Will contains the AI
 	weight = 0
+
+###Fix the limit of camera depending of terrain size & tile size
+func fixCameraLimit(x: int, y: int) -> void:
+	if !isGamePlayer : return
+	%Movement.limit_left = -7 * MapManager.cellSize
+	%Movement.limit_right = x * 1.4 * MapManager.cellSize
+	%Movement.limit_top = -6 * MapManager.cellSize
+	%Movement.limit_bottom = y * 1.2 * MapManager.cellSize
 
 
 func getUnits() -> Array[AbstractUnit]:
@@ -80,7 +94,8 @@ func removeUnit(unit: AbstractUnit) -> void:
 ##Add max weight to the player
 func addMaxWeight(amt: int) -> void:
 	maxWeight += amt
-
+	if $Actions :
+		$Actions.interfaceFinTour.updateInterface()
 ##Add weight to the player, usually when an unit dies or is spawned
 func addWeight(amt: int) -> void:
 	if amt > 0 :
@@ -89,6 +104,8 @@ func addWeight(amt: int) -> void:
 	else :
 		if amt + weight < 0 : weight = 0
 		else : weight += amt 
+	if $Actions :
+		$Actions.interfaceFinTour.updateInterface()
 
 func cardPlayable(idCard: String) -> Array :
 	if !hand.getHand().has(idCard) :
@@ -108,6 +125,11 @@ func useCard(idCard: String, targets: Array) -> void :
 #Pour ajouter une carte à la main du joueur
 func addCard(idCard: String) -> void:
 	hand.addCard(idCard)
+
+##Add a new unit to the player
+#Will need a way to stock infos about each unit between battles, idk where
+func addUnitCard(idCard: String) -> void:
+	hand.addUnitCard(idCard)
 
 ##Use when gaining or losing orbs
 func gainOrbs(amt: int) -> void:

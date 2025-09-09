@@ -1,7 +1,7 @@
 extends AbstractUnit
 class_name KnightMonkey
 
-const idUnit = "test:KnightMonkey"
+const idUnit = "set1:KnightMonkey"
 const GRADE = 1
 const POTENTIAL = 3
 const img = ""

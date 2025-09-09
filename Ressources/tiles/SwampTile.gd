@@ -16,4 +16,6 @@ func _init(x: int, y: int):
 func onStartOfTurn(unit: AbstractUnit) -> void:
 	if unit != null && !unit.isDead: 
 		unit.onDamageTaken(null, dmgPerTurn, DamageTypes.DamageTypes.UNKNOW, false)
+		if unit.hpActual <= 0 : 
+			unit.onDeath()
 	return

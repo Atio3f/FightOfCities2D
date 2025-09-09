@@ -2,7 +2,7 @@ extends AbstractEffect
 class_name PenetrationPhysicalEffect
 #All effects which ignore defense
 
-const idEffect = "test:PenetrationPhysicalEffect"
+const idEffect = "set1:PenetrationPhysicalEffect"
 const img = ""
 #value_B is for if the pen is on percentage or not : 0 == false, 1 == true
 var damageType: DamageTypes.DamageTypes = DamageTypes.DamageTypes.PHYSICAL

@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://x0m84l0esr6r"]
+
+[ext_resource type="Script" uid="uid://6wdg1cjaty0h" path="res://scripts/interface/unitPlacementInterface.gd" id="1_403tq"]
+[ext_resource type="Texture2D" uid="uid://cj2dxi38ccfhy" path="res://assets/sprites/units/Monkey_p.png" id="1_yj5oe"]
+
+[node name="UnitPlacementPreview" type="MarginContainer"]
+anchors_preset = -1
+anchor_left = -0.0173611
+anchor_right = 0.0173611
+anchor_bottom = 0.0617284
+offset_left = 20.0
+offset_right = -20.0
+offset_bottom = -40.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_403tq")
+metadata/_edit_use_anchors_ = true
+
+[node name="BtnUnit" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("1_yj5oe")
+
+[node name="Preview" type="Label" parent="BtnUnit"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.375
+anchor_top = -1.05
+anchor_right = 1.375
+grow_horizontal = 2
+theme_override_constants/line_spacing = -4
+text = "MONKEY
+G1"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_up" from="BtnUnit" to="." method="_on_btn_unit_button_up"]

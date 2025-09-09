@@ -1,36 +1,42 @@
 {
 	"fr": {
-		"test:GodMonkey" : {
+		"set1:GodMonkey" : {
 			"NAME": "Dieu Monkey"
 		},
-		"test:KnightMonkey" : {
+		"set1:KnightMonkey" : {
 			"NAME": "Chevalier Monkey"
 		},
-		"test:AbominationMonkey" : {
+		"set1:AbominationMonkey" : {
 			"NAME": "Aberration Monkey"
 		},
-		"test:Monkey" : {
+		"set1:Monkey" : {
 			"NAME": "Monkey"
 		},
 		"test:TemporalSnail" : {
 			"NAME": "Escargot Temporel"
 		},
+		"test:Bull" : {
+			"NAME": "Taureau"
+		},
 	},
 	"en": {
-		"test:GodMonkey" : {
+		"set1:GodMonkey" : {
 			"NAME": "God Monkey"
 		},
-		"test:KnightMonkey" : {
+		"set1:KnightMonkey" : {
 			"NAME": "Knight Monkey"
 		},
-		"test:AbominationMonkey" : {
+		"set1:AbominationMonkey" : {
 			"NAME": "Abomination Monkey"
 		},
-		"test:Monkey" : {
+		"set1:Monkey" : {
 			"NAME": "Monkey"
 		},
 		"test:TemporalSnail" : {
 			"NAME": "Temporal Snail"
+		},
+		"test:Bull" : {
+			"NAME": "Bull"
 		},
 	}
 }

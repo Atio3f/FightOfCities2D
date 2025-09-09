@@ -69,8 +69,6 @@ func onKill(unitKilling: AbstractUnit, unitKilled: AbstractUnit) -> void :
 func onDeath(unitKilling: AbstractUnit, unitKilled: AbstractUnit) -> void:
 	pass
 
-func onLevelUp(level: int) -> void :
-	pass
 
 ##Activate at the start of turn
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:

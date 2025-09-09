@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsu83w022fw8v"]
+
+[ext_resource type="Texture2D" uid="uid://c5x8lkdgwym40" path="res://assets/interface/menus/play_hover.png" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://bhb1usdhnsg3e" path="res://assets/interface/menus/play.png" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://tuodwoxu643u" path="res://scripts/interface/menus/main_menu.gd" id="1_wu84c"]
+[ext_resource type="Texture2D" uid="uid://ip3bjxb63h0u" path="res://assets/interface/menus/settings.png" id="3_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://bo3yxhn0i2spy" path="res://nodes/menus/campaign_btn.tscn" id="5_8ln24"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu84c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.172833, 0.172833, 0.172833, 0.74902)
+
+[node name="Main" type="VBoxContainer" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CampaignSelectionBtn" type="Button" parent="ColorRect/Main"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 17
+theme_override_icons/icon = ExtResource("1_ekxnf")
+icon = ExtResource("1_l6cm7")
+flat = true
+icon_alignment = 1
+
+[node name="SettingsBtn" type="Button" parent="ColorRect/Main"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 17
+icon = ExtResource("3_bqqt6")
+flat = true
+icon_alignment = 1
+
+[node name="CampaignSelection" type="VBoxContainer" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartBtn" type="Button" parent="ColorRect/CampaignSelection"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 17
+theme_override_icons/icon = ExtResource("1_ekxnf")
+icon = ExtResource("1_l6cm7")
+flat = true
+icon_alignment = 1
+
+[node name="CampaignsList" type="ItemList" parent="ColorRect/CampaignSelection"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MonkeysCampaignBtn" parent="ColorRect/CampaignSelection/CampaignsList" instance=ExtResource("5_8ln24")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482639
+anchor_top = 0.469136
+anchor_right = 0.517361
+anchor_bottom = 0.530864
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings" type="VBoxContainer" parent="ColorRect"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+
+[connection signal="pressed" from="ColorRect/Main/CampaignSelectionBtn" to="." method="_on_campaign_selection_btn_pressed"]
+[connection signal="pressed" from="ColorRect/Main/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="ColorRect/CampaignSelection/StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="ColorRect/CampaignSelection/CampaignsList/MonkeysCampaignBtn" to="." method="_on_monkeys_campaign_btn_pressed"]

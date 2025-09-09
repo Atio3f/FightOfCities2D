@@ -1,7 +1,7 @@
 extends AbstractEffect
 class_name TemporalSnailResurrectEffect
 
-const idEffect = "test:TemporalSnailResurrectEffect"
+const idEffect = "set1:TemporalSnailResurrectEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 1):

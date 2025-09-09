@@ -2,7 +2,7 @@ extends AbstractEffect
 class_name GodMonkeyMinionEffect
 
 
-const idEffect = "test:GodMonkeyMinionEffect"
+const idEffect = "set1:GodMonkeyMinionEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int = 0, value_B: int = 0, value_C: int = 0, counter: int = 0):

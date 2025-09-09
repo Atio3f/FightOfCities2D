@@ -5,5 +5,5 @@ enum movementTypes {
 	WALK,
 	FLYING,
 	SWIMMING,
-	ATTACK	#For djisktra calcs
+	ATTACK	#For dijsktra calcs
 }

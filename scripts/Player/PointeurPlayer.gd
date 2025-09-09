@@ -11,9 +11,9 @@ var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initial
 @onready var caseTarget : Sprite2D = $CaseTargetJ1
 @onready var position_cam : Camera2D = $"../Movement"
 @onready var terrain: Terrain = $"../../../Map/Terrain512x512"
-@onready var scene = $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
-@onready var map = $"../../../Map"
-@onready var interfaceJoueurI = $"../CanvasInterfaceViewport/interfaceJoueur"
+@onready var scene := $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
+@onready var map := $"../../../Map"
+@onready var interfaceJoueurI := $"../CanvasInterfaceViewport/interfaceJoueur"
 
 
 const DIRECTIONS = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
@@ -122,7 +122,7 @@ func get_walkable_cells(unit: AbstractUnit) -> Dictionary:
 	##Add adjacents tiles if the unit can't move and have full speed because its max speed is inferior to adjacent tiles 
 	if unit.speed == unit.speedRemaining :
 		var cells: Dictionary = _dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes, unit)
-		print(cells)
+		#print(cells)
 		for direction in DIRECTIONS:
 			var coords: Vector2i = tileOnCoords + direction
 			if !cells.has(coords) && MapManager.getTileAt(coords) != null && !(MapManager.getTileAt(coords).hasUnitOn()):
@@ -417,7 +417,7 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 		#print(Global._units)
 		#print("NON")
 		if typeClick == "rightclick":		#Ouvre l'interface du joueur si il n'y a pas d'unité à cette case
-			print("A DEVELOPPER LIGNE 410 POINTEURPLAYER")
+			print("A DEVELOPPER LIGNE 420 POINTEURPLAYER")
 			interfaceJoueurI.apercuMenusJoueur(self, true)
 			
 	else :

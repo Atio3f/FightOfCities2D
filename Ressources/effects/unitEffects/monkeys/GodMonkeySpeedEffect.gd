@@ -2,7 +2,7 @@ extends AbstractEffect
 class_name GodMonkeySpeedEffect
 
 
-const idEffect = "test:GodMonkeySpeedEffect"
+const idEffect = "set1:GodMonkeySpeedEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):
@@ -37,7 +37,6 @@ func onDeath(unit: AbstractUnit) -> void :
 
 #newValue == number of Monkey alived
 func updateValue(newValue: int) -> void:
-	print("fzesd2f")
 	if (counter - newValue) == 0 : return
 	var speedCgtEffect = SpeedPlusEffect.new(unitAssociated, -1, (newValue - counter) * value_A)
 	unitAssociated.addEffect(speedCgtEffect)

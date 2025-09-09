@@ -4,8 +4,8 @@ class_name MapManager
 
 static var tiles: Array = []	#All tiles stocked
 static var activeTiles: Dictionary = {}	#Tiles actually on the visible map
-static var length: int
-static var width: int
+static var length: int	#x
+static var width: int	#y
 #clé nom case, valeur =  poids de la case
 const genMapDefault = {"test:ForestTile": 100, "test:PlainTile": 83, "test:SwampTile": 11, "test:LakeTile": 25, "test:DesertTile": 5, "test:MountainTile": 19, "test:SakuraForestTile": 7, "test:DeepWaterTile": 2, "test:TropicalForestTile": 2}
 #J'ai pas encore fait les autres cases

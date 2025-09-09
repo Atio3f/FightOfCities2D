@@ -10,7 +10,7 @@ var effectAssociated: AbstractEffect = null	#Generaly use when this effect is a 
 var remainingTurns: int = -1	#Indicate how many turn before the end of the effect. If the effect is permanent, this value is -1
 var priority: int	#Serve to place the effect on the Array on the unit. Determine if the order when we iterate effects
 var stackable: bool	#Allow to know if we can stack effects
-var hideEffect: bool = false	#Allow to hide the effect on the when it doesn't really affect the unit itself
+var hideEffect: bool = false	#Allow to hide the effect on the info Interface when it doesn't really affect the unit itself
 var isActivable: bool = false	#Determine if the ability is an activable ability
 #3 values to assign values to the effect once  
 var value_A: int
@@ -94,7 +94,7 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if remainingTurns == 0 : onEffectEnd()
 
 func getDescription() -> String:
-	var desc: String = EffectsStrings["en"][id]["DESCRIPTION"]
+	var desc: String = Global.effectsStrings["en"][id]["DESCRIPTION"]
 	var finalDesc : String = ""
 	for t: String in desc.split("!"):
 		match t:
@@ -107,7 +107,7 @@ func getDescription() -> String:
 			"C":
 				finalDesc += str(counter)
 			_:
-				finalDesc
+				finalDesc += t
 	return finalDesc
 
 func registerEffect() -> Dictionary:
