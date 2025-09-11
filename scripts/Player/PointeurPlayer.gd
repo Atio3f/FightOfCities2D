@@ -33,6 +33,7 @@ var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacit�
 @onready var _unit_path: UnitPath = $UnitPathJ1
 @onready var visuActions : UnitOverlay = $visualisationActionsJ
 @onready var visuZoneCapa : UnitOverlay = $visualisationCapas
+@onready var visuPlacement : VisualisationPlacement = $visualisationPlacement
 const MAX_VALUE: int = 99999
 
 var capaciteActuelle : activeCapacite = null
@@ -418,17 +419,18 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 		#print(Global._units)
 		#print("NON")
 		if typeClick == "rightclick":		#Ouvre l'interface du joueur si il n'y a pas d'unité à cette case
-			print("A DEVELOPPER LIGNE 420 POINTEURPLAYER")
 			interfaceJoueurI.apercuMenusJoueur(self, true)
 			
 	else :
-		if tileOn != null :
-			Selection = tileOn.unitOn
-			Selection.selectionneSelf(self, ouvrirMenu)
-			interfaceJoueurI.apercuMenusJoueur(self, false)
-			## Acquire the walkable and attackable cells
-			_walkable_cells = get_walkable_cells(Selection)
-			_attackable_cells = get_attackable_cells(Selection)
+		if tileOn != null && tileOn.hasUnitOn() :
+			#Can't select an unit when outside its turn
+			if tileOn.unitOn.team == TurnManager.actualTurn() :
+				Selection = tileOn.unitOn
+				Selection.selectionneSelf(self, ouvrirMenu)
+				interfaceJoueurI.apercuMenusJoueur(self, false)
+				## Acquire the walkable and attackable cells
+				_walkable_cells = get_walkable_cells(Selection)
+				_attackable_cells = get_attackable_cells(Selection)
 		
 		## Draw out the walkable and attackable cells now
 		if(!menuOpen && Selection != null):
@@ -601,3 +603,14 @@ func getTilesMouvementForAttaque(casesAutourTarget : Array) -> Dictionary:
 		if vec in set_dict:
 			casesPossibles[vec] = _walkable_cells[vec]
 	return casesPossibles
+
+
+func draw_placeable_cells(cells: Array[Vector2i]) -> void:
+	visuPlacement.draw_placeable_cells(cells)
+
+##If cell == (-1, -1), function will clear all cells hovewer it will clear only a cell
+func clear_placeable_cells(cell: Vector2i = Vector2i(-1, -1)) -> void :
+	if cell == Vector2i(-1, -1) :
+		visuPlacement.clear()
+	else :
+		visuPlacement.clearTile(cell)

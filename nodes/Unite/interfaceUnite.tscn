@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://27awq5ull731"]
+[gd_scene load_steps=12 format=3 uid="uid://27awq5ull731"]
 
 [ext_resource type="Script" uid="uid://b6lwpjipqps2u" path="res://scripts/unites/general/interface/interface_unite.gd" id="1_dk80o"]
 [ext_resource type="Texture2D" uid="uid://ccfqynwh8c63w" path="res://assets/interface/unite/BarreVieZoneVieVide(512x512).png" id="2_76stb"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://51527uw3luky" path="res://assets/interface/unite/polices/reppixel.ttf" id="6_c2bh5"]
 [ext_resource type="Texture2D" uid="uid://c08rq4ph7vx68" path="res://assets/interface/unite/UIuniteConsommables(512x512).png" id="6_v7muh"]
 [ext_resource type="Script" uid="uid://bchpfc7lkilwi" path="res://scripts/unites/general/interface/ConteneurPlacementPossibilite.gd" id="7_tbqdh"]
+[ext_resource type="Texture2D" uid="uid://dvfsv53l64qs5" path="res://assets/interface/unite/UIunitDelete(512x512).png" id="7_wxqjw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gopln"]
 font = ExtResource("6_c2bh5")
@@ -91,13 +92,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="MenuCapacitesActives" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
-visible = false
+[node name="DeleteUnitBtn" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
+unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("4_kwkcr")
+texture_normal = ExtResource("7_wxqjw")
 
 [node name="MenuStats" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
 texture_filter = 1
@@ -125,6 +126,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_kwkcr")
 
+[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/DeleteUnitBtn" to="." method="_on_delete_unit_btn_pressed"]
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/MenuStats" to="." method="_on_menu_stats_pressed"]
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuConsommables" to="." method="_on_menu_consommables_pressed"]
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuCapacitesActives" to="." method="_on_menu_capacites_actives_pressed"]

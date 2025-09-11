@@ -7,7 +7,7 @@ const flySpeed: int = 2
 const swimSpeed: int = 1
 
 
-func _init(x: int, y: int):
-	self.x = x
-	self.y = y
+func _init(_x: int, _y: int):
+	self.x = _x
+	self.y = _y
 	super._init(idTile, walkSpeed, flySpeed, swimSpeed)

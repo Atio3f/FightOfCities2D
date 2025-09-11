@@ -37,8 +37,8 @@ func setTile(x: int, y: int, idTile: Vector2i) -> void :
 	
 
 #Depuis un certain point donné(emplacement) montre les chemins disponibles avec la vitesse restante ça va pas renvoyer un void
-func deplacement_possible(emplacement : Vector2i, vitesseR : int) -> void:
-	pass
+#func deplacement_possible(emplacement : Vector2i, vitesseR : int) -> void:
+	#pass
 
 
 

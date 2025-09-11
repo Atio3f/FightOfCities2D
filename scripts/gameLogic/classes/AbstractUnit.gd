@@ -324,7 +324,10 @@ func onDeath(unit: AbstractUnit = null) -> void:
 	for trinket: AbstractTrinket in player.trinkets:
 		trinket.onDeath(unit, self)
 	isDead = true	#You're not supposed to be able to survive once you're in this function
-	##Remove the unit from active units and its tile and hide it
+	removeSelf()
+
+##Remove the unit from active units and its tile and hide it, will be called by onDeath method and the delete button on interface
+func removeSelf() -> void:
 	player.removeUnit(self)
 	tile.unitOn = null	#Free the tile
 	queue_free()

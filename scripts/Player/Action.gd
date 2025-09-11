@@ -38,7 +38,7 @@ func _input(_event) -> void:
 		else :
 			#Permet de créer un ennemi(sert à faire des tests ne coûte aucune action
 			if Input.is_action_just_pressed("action2") and actualTile != null and !actualTile.hasUnitOn():
-				Global.gameManager.placeUnit("test:Bull", player, actualTile)
+				Global.gameManager.placeUnit("set1:Bull", player, actualTile)
 				
 			
 			#

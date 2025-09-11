@@ -11,7 +11,7 @@ extends Control
 @onready var menuConsommables = preload("res://scenes/popUps/unite/interfaceConsommables.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
-var unitAssociated : Node2D
+var unitAssociated : AbstractUnit
 var pointeursSurInterface : Array = []
 
 func actualisationPV(entiteeAssociee : Node2D) -> void:
@@ -25,9 +25,7 @@ func actualisationPV(entiteeAssociee : Node2D) -> void:
 
 #S'active lorsque le joueur effectue un clic droit sur une unité/bâtiment(visibilite = true), 
 #lorsqu'un des boutons des menus est actionné(visibilite -> true) ou que l'entité est désélectionnée (visibilite -> true)
- 
 func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
-	conteneurMenus.visible = visibilite
 	if(!visibilite) :
 		if(pointeursSurInterface.has(pointeurJoueurI)):
 			pointeursSurInterface.erase(pointeurJoueurI)
@@ -38,6 +36,7 @@ func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur,
 		if(!pointeursSurInterface.has(pointeurJoueurI)):
 			pointeursSurInterface.append(pointeurJoueurI) 
 	conteneurMenus.visible = visibilite
+	%DeleteUnitBtn.visible = (TurnManager.turn == 0)	#Hide the Delete button outside the preparation turn
 	unitAssociated = entiteAssociee
 	
 
@@ -81,3 +80,12 @@ func _on_menu_consommables_pressed():
 	var menuConso : interfaceConsommables = menuConsommables.instantiate()
 	menuConso.apercuConsommables(unitAssociated, GameManager.getMainPlayer().playerPointer, true)
 	noeudsTempInfosStats.add_child(menuConso)
+
+##Delete the unit if used during the preparation turn
+func _on_delete_unit_btn_pressed():
+	#Add the unit to the player inventory WILL NEED CHANGE IF CHANGE OF addUnitCard
+	unitAssociated.player.addUnitCard(unitAssociated.id)
+	#Add its tile on the placement tiles
+	unitAssociated.player.playerPointer.draw_placeable_cells([unitAssociated.tile.getCoords()])
+	#Delete the unit on board
+	unitAssociated.removeSelf()

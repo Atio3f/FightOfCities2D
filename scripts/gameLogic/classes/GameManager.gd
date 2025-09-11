@@ -29,8 +29,9 @@ func loadGame() -> bool :
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
 	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1", true)
 	configPlayer(player1)
-	var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
-	placeUnit("test:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
+	campaign.startMission(1)
+	#var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
+	#placeUnit("set1:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
 	
 	#print(mainPlayer.orbs)
 	#Ajout d'un trinket test

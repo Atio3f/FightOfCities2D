@@ -19,11 +19,16 @@ func apercuMenusJoueur(pointeurJoueurI : pointeurJoueur, visibilite : bool) -> v
 		positionnement()
 		
 		
-		
 		print(position)
 	%ConteneurMenus.visible = visibilite
-	
 	coords = pointeurJoueurI.positionSouris
+	# Manage the visibility of the Placement Menu. Is true if the cell is a placement cell & if its the preparation turn
+	#(not necessary bc we're supposed to delete all placement tiles after turn 0)
+	if !pointeurInterface :
+		%MenuPlacementCard.visible = false
+	else :
+		%MenuPlacementCard.visible = pointeurInterface.visuPlacement.get_cell_source_id(coords) == 0 && TurnManager.turn == 0
+
 
 #Clear the interface
 func clearInterface() -> void:
@@ -36,7 +41,7 @@ func positionnement() -> void :
 	var pos : Vector2 = grid.calculate_map_position(pointeurInterface.positionSouris)
 	position = Vector2(pos.x - 14, pos.y - 22)
 
-func _on_menu_placement_carte_pressed():
+func _on_menu_placement_card_pressed():
 	var menuPlacementCartes : interfacePlacementCards = placementCartes.instantiate()
 	menuPlacementCartes.setInterface(coords, load("res://nodes/interface/unitPlacementInterface.tscn")) #Fonction dans placementCartes au lancement
 	%noeudsTemp.add_child(menuPlacementCartes)

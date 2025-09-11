@@ -23,6 +23,9 @@ static func nextTurn() -> void:
 	#Iterate through trinket to proc their effect
 	for trinket: AbstractTrinket in GameManager.getMainPlayer().trinkets :
 		trinket.onStartOfTurn(turn, nextTurn)
+	#Clear placement tiles on first turn
+	if turn == 1 :
+		GameManager.getMainPlayer().playerPointer.clear_placeable_cells()
 	#Animation du bouton et actualisation de l'interface
 
 #Return the actual color of team this turn

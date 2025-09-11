@@ -35,7 +35,7 @@
 		"test:TemporalSnail" : {
 			"NAME": "Temporal Snail"
 		},
-		"test:Bull" : {
+		"set1:Bull" : {
 			"NAME": "Bull"
 		},
 	}

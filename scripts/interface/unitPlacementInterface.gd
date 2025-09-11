@@ -22,6 +22,7 @@ func _on_btn_unit_button_up():
 	if TurnManager.turn == 0:
 		Global.gameManager.placeUnit(id, player, MapManager.getTileAt(coords))
 		player.hand.unitsStock.erase(id)
+		player.playerPointer.clear_placeable_cells(coords)#Clear the tile
 	else :
 		print("NOT YOUR TURN")	#Will need a pop up message later
 	deleteInterface()

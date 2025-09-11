@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqap8lovdtglv"
-path="res://.godot/imported/casesMouvements.png-c3cbef32c6d5011a3cdd1286b06bac3d.ctex"
+uid="uid://c3sxrmp2y6mdp"
+path="res://.godot/imported/placementTiles(512x512).png-3ce21a8f5fb13492b1d77508fd53ecdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visualisation/casesMouvements.png"
-dest_files=["res://.godot/imported/casesMouvements.png-c3cbef32c6d5011a3cdd1286b06bac3d.ctex"]
+source_file="res://assets/visualisation/placementTiles(512x512).png"
+dest_files=["res://.godot/imported/placementTiles(512x512).png-3ce21a8f5fb13492b1d77508fd53ecdb.ctex"]
 
 [params]
 

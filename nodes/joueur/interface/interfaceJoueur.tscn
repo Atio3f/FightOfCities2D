@@ -68,7 +68,8 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("5_68fsq")
 
-[node name="MenuPlacementCarte" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
+[node name="MenuPlacementCard" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
+unique_name_in_owner = true
 clip_children = 2
 texture_filter = 1
 clip_contents = true
@@ -82,4 +83,4 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuPlacementCarte" to="." method="_on_menu_placement_carte_pressed"]
+[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuPlacementCard" to="." method="_on_menu_placement_card_pressed"]

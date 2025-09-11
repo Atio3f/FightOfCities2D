@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bti7k6ft2uf4o"]
+
+[ext_resource type="Script" uid="uid://bbab23dmnihot" path="res://scripts/gridmap/mouvements/visualisation_placement.gd" id="1_gu1qr"]
+[ext_resource type="Texture2D" uid="uid://c3sxrmp2y6mdp" path="res://assets/visualisation/placementTiles(512x512).png" id="1_sebta"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rr48w"]
+texture = ExtResource("1_sebta")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_butm3"]
+tile_size = Vector2i(512, 512)
+sources/0 = SubResource("TileSetAtlasSource_rr48w")
+
+[node name="visualisationPlacement" type="TileMapLayer"]
+tile_set = SubResource("TileSet_butm3")
+script = ExtResource("1_gu1qr")

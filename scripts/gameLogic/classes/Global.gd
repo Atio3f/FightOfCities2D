@@ -29,7 +29,8 @@ func loadStrings(filePath: String) -> Dictionary:
 
 ##Affichage des fps pour chaque joueur
 func _process(delta):
-	var fps : int = Engine.get_frames_per_second()
+	pass
+	#var fps : int = Engine.get_frames_per_second()
 	#%FPSMeter.text = "FPS: %03d" % [fps]
 	#if(fps < 30):	#Check lorsqu'on fera beaucoup de conneries
 		#print(fps)

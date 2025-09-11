@@ -88,7 +88,7 @@ func targetsAvailable(idCard: String) -> Array :
 	return targets
 
 func removeUnit(unit: AbstractUnit) -> void:
-	weight -= unit.grade
+	addWeight(-unit.grade) 
 	units.erase(unit)
 
 ##Add max weight to the player
@@ -96,6 +96,7 @@ func addMaxWeight(amt: int) -> void:
 	maxWeight += amt
 	if $Actions :
 		$Actions.interfaceFinTour.updateInterface()
+
 ##Add weight to the player, usually when an unit dies or is spawned
 func addWeight(amt: int) -> void:
 	if amt > 0 :

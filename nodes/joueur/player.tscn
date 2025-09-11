@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://rfbkx0b7abxh"]
+[gd_scene load_steps=12 format=3 uid="uid://rfbkx0b7abxh"]
 
 [ext_resource type="Script" uid="uid://crobcf7g1ay5d" path="res://scripts/gameLogic/classes/AbstractPlayer.gd" id="1_hu2d8"]
 [ext_resource type="Script" uid="uid://bpbcwy6rq5fjr" path="res://scripts/Player/PointeurPlayer.gd" id="3_pmukw"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://nodes/tilemaps/UnitPath.tscn" id="5_3ppum"]
 [ext_resource type="Texture2D" uid="uid://d2yn3tn6n6kop" path="res://assets/tiles/curseurPosition(512x512).png" id="5_50rh1"]
 [ext_resource type="Texture2D" uid="uid://cn5umltddbepu" path="res://assets/tiles/curseurTarget(512x512).png" id="5_hu2d8"]
+[ext_resource type="PackedScene" uid="uid://bti7k6ft2uf4o" path="res://nodes/tilemaps/visualisation_placement.tscn" id="5_jj60h"]
 [ext_resource type="PackedScene" uid="uid://be5epi7wi8gaj" path="res://nodes/tilemaps/visualisation_actions.tscn" id="6_oepiw"]
 [ext_resource type="Script" uid="uid://bo3emjykgd13r" path="res://scripts/Player/MovementPlayer.gd" id="9_3cqm2"]
 [ext_resource type="Script" uid="uid://coltb6tvepm5p" path="res://scripts/Player/Action.gd" id="10_pc0xr"]
@@ -28,7 +29,11 @@ rendering_quadrant_size = 32
 editor_description = "Sert pour afficher la zone d'effet des capacités"
 rendering_quadrant_size = 32
 
+[node name="visualisationPlacement" parent="Pointeur_Selection" instance=ExtResource("5_jj60h")]
+rendering_quadrant_size = 32
+
 [node name="CaseSelecJ1" type="Sprite2D" parent="Pointeur_Selection"]
+visible = false
 visibility_layer = 2
 position = Vector2(80, 80)
 rotation = 3.14159
