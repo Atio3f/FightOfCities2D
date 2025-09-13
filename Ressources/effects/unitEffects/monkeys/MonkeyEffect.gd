@@ -20,7 +20,7 @@ func onPlacement(tile: AbstractTile) -> void:
 		unit.addEffect(effectAdd2)
 
 func onUnitPlace(unit: AbstractUnit) -> void:
-	if(unit.tags.has(Tags.tags.MONKEY) && unit.player.team == unitAssociated.team):
+	if(unit.tags.has(Tags.tags.MONKEY) && unit.player.team == unitAssociated.team && unit != unitAssociated):
 		unitsStocked.append(unit)
 		var effectAdd : AbstractEffect = PowerPlusEffect.new(unit, -1, value_A)
 		unit.addEffect(effectAdd)
@@ -31,7 +31,8 @@ func onDeath(unit: AbstractUnit) -> void :
 	var effectAdd : AbstractEffect
 	var effectAdd2 : AbstractEffect
 	for _unit: AbstractUnit in unitsStocked :
-		effectAdd = PowerPlusEffect.new(_unit, -1, -value_A)
-		_unit.addEffect(effectAdd)
-		effectAdd2 = SpeedPlusEffect.new(unit, -1, -value_B)
-		_unit.addEffect(effectAdd2)
+		if _unit != null :
+			effectAdd = PowerPlusEffect.new(_unit, -1, -value_A)
+			_unit.addEffect(effectAdd)
+			effectAdd2 = SpeedPlusEffect.new(unit, -1, -value_B)
+			_unit.addEffect(effectAdd2)

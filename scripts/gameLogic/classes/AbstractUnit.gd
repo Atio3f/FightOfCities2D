@@ -205,7 +205,7 @@ func addEffect(effect: AbstractEffect) -> void:
 func onPlacement(tile: AbstractTile) -> void:
 	self.tile = tile
 	self.position = MapManager.calculate_map_position(tile.getCoords())
-	print("onPlacement : "+ str(tile.getCoords()) + " COORDS FINALES:" + str(tile.getCoords() * MapManager.cellSize + Vector2i(MapManager._half_cell_size, MapManager._half_cell_size)))
+	#print("onPlacement : "+ str(tile.getCoords()) + " COORDS FINALES:" + str(tile.getCoords() * MapManager.cellSize + Vector2i(MapManager._half_cell_size, MapManager._half_cell_size)))
 	GameManager.whenUnitPlace(self)
 	for effect: AbstractEffect in effects:
 		effect.onPlacement(tile)
@@ -318,6 +318,7 @@ func onKill(unitKilled: AbstractUnit) -> void :
 	for trinket: AbstractTrinket in player.trinkets:
 		trinket.onKill(self, unitKilled)
 
+##Some trinkets and effects will need to check if we're on a placement turn to avoid errors
 func onDeath(unit: AbstractUnit = null) -> void:
 	for effect: AbstractEffect in effects:
 		effect.onDeath(unit)
@@ -332,6 +333,9 @@ func removeSelf() -> void:
 	tile.unitOn = null	#Free the tile
 	queue_free()
 
+func placeOnInventory() -> void:
+	player.addCard(id)	#Will be replaced by the registerUnit I think
+
 #func onLevelUp() -> void :
 	#for effect: AbstractEffect in effects:
 		#effect.onLevelUp(level)
@@ -339,7 +343,6 @@ func removeSelf() -> void:
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if(turnColor == self.team):
-		print("OUR TURN")
 		speedRemaining = speed
 		atkRemaining = atkPerTurn
 		tile.onStartOfTurn(self)
@@ -424,7 +427,7 @@ func getClass() -> String :
 	return "AbstractUnit"
 
 func getName() -> String :
-	return UnitsStrings["en"][id]["NAME"]
+	return Global.UnitsStrings["en"][id]["NAME"]
 	#return Global.getUnitsStrings()
 
 func getImagePath() -> String :

@@ -32,6 +32,9 @@
 		"set1:Monkey" : {
 			"NAME": "Monkey"
 		},
+		"set1:MonkeyMC" : {
+			"NAME": "Monkey Main Character"
+		},
 		"test:TemporalSnail" : {
 			"NAME": "Temporal Snail"
 		},

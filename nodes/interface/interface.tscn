@@ -78,6 +78,7 @@ expand_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="LabelActionsRestantes" type="Label" parent="FondActionsRestantes"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.332031
@@ -103,6 +104,7 @@ expand_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonFinTour" type="Button" parent="bouttonFinTour"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

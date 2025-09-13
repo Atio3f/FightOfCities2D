@@ -2,7 +2,8 @@
 	"mainCharacter": "set1:MonkeyMC",
 	"startingAllies": [
 		"set1:Monkey",
-		"set1:Monkey"
+		"set1:Monkey",
+		"set1:MonkeyMC"
 	],
 	"startingItems": [
 		"test:VitalLink"
@@ -13,36 +14,71 @@
 	],
 	"startingOrbs": 2,
 	"startingMaxOrbs": 5,
-	"map1": {
-		"size": {
-			"width": 12,
-			"length": 16
-		},
-		"enemies": [
-			{
-				"id": "set1:Bull",
-				"coords": [5, 9]
+	"maps":{
+		"map1": {
+			"size": {
+				"width": 12,
+				"length": 9
 			},
-			{
-				"id": "set1:Bull",
-				"coords": [7, 10]
+			"enemies": [
+				{
+					"id": "set1:Bull",
+					"coords": [5, 7]
+				}
+			],
+			"placementTiles": [
+				[4, 3],
+				[2, 4],
+				[5, 3],
+				[6, 2],
+				[1, 2],
+				[3, 2]
+			],
+			"placementArea": {
+				"left": 0,
+				"right-old": 11,
+				"right": 0,
+				"top": 0,
+				"bottom-old": 4,
+				"bottom": 0
+			},
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": []
+			},
+			"rewards": [
+				"reward:unitMonkey"
+			],
+			"nextLevel": "2"
+		},
+		"map2": {
+			"size": {
+				"width": 12,
+				"length": 13
+			},
+			"enemies": [
+				{
+					"id": "set1:Bull",
+					"coords": [5, 10]
+				},
+				{
+					"id": "set1:Bull",
+					"coords": [7, 11]
+				}
+			],
+			"placementTiles": [
+				[2, 4],
+				[5, 3],
+				[6, 2],
+				[1, 2],
+				[3, 2]
+			],
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": []
 			}
-		],
-		"placementTiles": [
-			[4, 3],
-			[2, 4],
-			[5, 3],
-			[6, 2],
-			[1, 2],
-			[3, 2]
-		],
-		"placementArea": {
-			"left": 0,
-			"right-old": 11,
-			"right": 0,
-			"top": 0,
-			"bottom-old": 4,
-			"bottom": 0
 		}
 	}
 }

@@ -18,10 +18,15 @@ func updateInterface() -> void:
 	if TurnManager.turn == 0 :
 		%LabelEndTurn.text = "START BATTLE"
 		%LabelCouleurTour.text = "Weight %s/%s" % [mainPlayer.weight, mainPlayer.maxWeight]	#We show the weight remaining of the player during preparation turn
+		%ButtonFinTour.disabled = (mainPlayer.getUnits().size() == 0)	#We can't go outside preparation turn without units on board
 	else :
 		%LabelEndTurn.text = "END OF TURN"
 		setActionsRest(3)
 		%LabelCouleurTour.text = "Tour %s" % [TurnManager.turn]
+		if TurnManager.actualTurn() == mainPlayer.team :
+			%LabelActionsRestantes.text = "A vous de jouer"
+		else :
+			%LabelActionsRestantes.text = "Au tour de "+ str(TurnManager.actualTurn())
 
 func setActionsRest(actions : int) -> void:
 	labelActionsRest.text = "Actions " + str(actions) + "/3"

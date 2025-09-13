@@ -32,8 +32,9 @@ func onUnitPlace(unit: AbstractUnit) -> void:
 
 func onDeath(unit: AbstractUnit) -> void :
 	for _unit: AbstractUnit in unitsStocked :
-		#Find effect on each unit and remove it
-		1
+		if _unit != null :
+			#Find effect on each unit and remove it
+			1
 
 #newValue == number of Monkey alived
 func updateValue(newValue: int) -> void:

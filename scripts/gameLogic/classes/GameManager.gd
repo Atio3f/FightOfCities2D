@@ -86,10 +86,8 @@ func createPlayer(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool)
 		p = scenePlayer.instantiate()
 	else :
 		p = sceneOtherPlayer.instantiate()
-	players.append(p)
 	var player = p as AbstractPlayer
 	%Players.add_child(p)
-	print(player)
 	player.initialize(team, name, isGamePlayer)	#We initialize AbstractPlayer infos here
 		#Add to the scene
 	if isGamePlayer : mainPlayer = player
@@ -104,7 +102,6 @@ static func unitCanBePlacedOnTile(player: AbstractPlayer, tile: AbstractTile, we
 #Pour les tests on a besoin d'être sûr du type de case
 func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
 	var u := sceneUnit.instantiate()
-	player.units.append(u)
 	var unit : AbstractUnit = u as AbstractUnit
 	%UnitsStorage.add_child(unit, true)
 	print(unit)
@@ -171,6 +168,31 @@ static func addTrinket(player: AbstractPlayer, idTrinket: String) -> void:
 		return
 	else: 
 		player.setTrinket(trinket)#Place the trinket on screen
+
+## Function called to check if the player have win or lose
+static func checkWin() -> void :
+	var isWinning: bool = campaign.checkWin()
+	var isLosing: bool = campaign.checkLose()	#Can serve if there are some ways to lose other than units
+	if isWinning :
+		endMap(true)
+	elif isLosing :
+		endMap(false)
+
+## Function used to clean the board, show dialogs and when the win have been obtained go to the next map
+# victoryStatus is true if player have win and false if not
+static func endMap(victoryStatus: bool) -> void :
+	for unit: AbstractUnit in getMainPlayer().getUnits() :
+		unit.placeOnInventory()	#Return the unit card on the mainPlayer hand
+	for unit: AbstractUnit in getMainPlayer().getUnits() :	#On est obligé de boucler 2 fois pour le moment
+		unit.removeSelf()	#Alors jsp si faudra pas revoir l'organisation de cette partie à voir
+	#Maybe delete enemies units bc they could still lived
+	
+	##Delete all players except the main one
+	for player: AbstractPlayer in players:
+		if player != getMainPlayer() :
+			players.erase(player)
+	##Play dialogs and then go to the next map on the endMap method from AbstractCampaign
+	campaign.endMap(victoryStatus)
 
 static func savingGame() -> void :
 	

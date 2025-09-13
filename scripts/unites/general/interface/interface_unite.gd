@@ -87,5 +87,5 @@ func _on_delete_unit_btn_pressed():
 	unitAssociated.player.addUnitCard(unitAssociated.id)
 	#Add its tile on the placement tiles
 	unitAssociated.player.playerPointer.draw_placeable_cells([unitAssociated.tile.getCoords()])
-	#Delete the unit on board
-	unitAssociated.removeSelf()
+	#Delete the unit on board, we use onDeath to be sure we don't forget some effects
+	unitAssociated.onDeath()

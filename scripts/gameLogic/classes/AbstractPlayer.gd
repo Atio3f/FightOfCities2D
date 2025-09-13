@@ -19,7 +19,7 @@ var weight: int
 var maxWeight: int = WEIGHT_BASE
 #Max units represent the maximum number of units of the player
 const MAX_UNITS_BASE: int = 3	
-var maxUnits: int = WEIGHT_BASE
+var maxUnits: int = MAX_UNITS_BASE
 var hand: PlayerHand
 var activeCapacity	#capacité active actuelle
 var isGamePlayer: bool = false	#Serve to know if the player is the one you control the game

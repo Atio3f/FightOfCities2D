@@ -28,13 +28,11 @@ DamageTypes="*res://scripts/gameLogic/enums/damageTypes.gd"
 MovementTypes="*res://scripts/gameLogic/enums/movementTypes.gd"
 Tags="*res://scripts/gameLogic/enums/tags.gd"
 TeamsColor="*res://scripts/gameLogic/enums/TeamsColor.gd"
-EffectsStrings="*res://Ressources/effects/EffectsStrings.json"
-UnitsStrings="*res://Ressources/units/UnitsStrings.json"
 Rarities="*res://scripts/gameLogic/enums/rarities.gd"
 EquipmentTypes="*res://scripts/gameLogic/enums/equipmentTypes.gd"
 TrinketDb="*res://scripts/gameLogic/DB/trinketDB.gd"
-TrinketsStrings="*res://Ressources/trinkets/TrinketsStrings.json"
 CampaignDb="*res://scripts/gameLogic/DB/campaignDB.gd"
+RewardDb="*res://scripts/gameLogic/DB/rewardDB.gd"
 
 [editor_plugins]
 

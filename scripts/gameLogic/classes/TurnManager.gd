@@ -26,12 +26,20 @@ static func nextTurn() -> void:
 	#Clear placement tiles on first turn
 	if turn == 1 :
 		GameManager.getMainPlayer().playerPointer.clear_placeable_cells()
+	else :
+		GameManager.checkWin()	#Check if someone won at the start of each turn
 	#Animation du bouton et actualisation de l'interface
 
 #Return the actual color of team this turn
 static func actualTurn() -> TeamsColor.TeamsColor :
 	if teams.size() == 0 : return TeamsColor.TeamsColor.EMPTY
 	return teams[turn % teams.size()]
+
+##Reset the TurnManager at the turn of each map
+static func reset() -> void :
+	turn = 0
+	teams.clear()
+	teams.append(GameManager.getPlayers())
 
 static func registerTurnM() -> Dictionary:
 	var turnData := {
