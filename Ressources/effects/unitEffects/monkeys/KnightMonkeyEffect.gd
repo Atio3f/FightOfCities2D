@@ -15,5 +15,3 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 		healValue = unitAssociated.onHealed(unitAssociated, healValue)
 		healValue = unitAssociated.onHeal(unitAssociated, healValue)
 		unitAssociated.healHp(healValue)
-		unitAssociated.healHp(healValue)
-		unitAssociated.healHp(healValue)

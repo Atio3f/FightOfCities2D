@@ -371,8 +371,9 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 		
 	elif Selection.is_selected:
 		var cellI : Vector2i = cell
+		#Can't move or attack with an unit outside its turn
+		if Selection.team != TurnManager.actualTurn() : return
 		if(!menuOpen):
-			print(cell)
 			#print(_walkable_cells)
 			#print(cell in _walkable_cells)
 			#print(_attackable_cells)
@@ -422,14 +423,12 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 			
 	else :
 		if tileOn != null && tileOn.hasUnitOn() :
-			#Can't select an unit when outside its turn
-			if tileOn.unitOn.team == TurnManager.actualTurn() :
-				Selection = tileOn.unitOn
-				Selection.selectionneSelf(self, ouvrirMenu)
-				interfaceJoueurI.apercuMenusJoueur(self, false)
-				## Acquire the walkable and attackable cells
-				_walkable_cells = get_walkable_cells(Selection)
-				_attackable_cells = get_attackable_cells(Selection)
+			Selection = tileOn.unitOn
+			Selection.selectionneSelf(self, ouvrirMenu)
+			interfaceJoueurI.apercuMenusJoueur(self, false)
+			## Acquire the walkable and attackable cells
+			_walkable_cells = get_walkable_cells(Selection)
+			_attackable_cells = get_attackable_cells(Selection)
 		
 		## Draw out the walkable and attackable cells now
 		if(!menuOpen && Selection != null):

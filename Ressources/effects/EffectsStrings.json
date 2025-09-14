@@ -30,6 +30,10 @@
 			"NAME": "God Monkey",
 			"DESCRIPTION": ""
 		},
+		"set1:GodMonkeyHealEffect" : {
+			"NAME": "Heal on Forest",
+			"DESCRIPTION": "At the start of your turn, heal !VA! HP on Forest Tiles."
+		},
 		"set1:KnightMonkeyEffect" : {
 			"NAME": "Knight Monkey",
 			"DESCRIPTION": ""

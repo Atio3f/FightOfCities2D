@@ -4,7 +4,8 @@ class_name AbominationMonkey
 const idUnit = "set1:AbominationMonkey"
 const GRADE = 2
 const POTENTIAL = 2
-const img = ""
+const img = "Monkey"
+
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 41, 13, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 4, 2, 3, POTENTIAL, 0)
 	var effect1: AbstractEffect = AbominationMonkeyEffect.new(unit, -1, 1, 1)
