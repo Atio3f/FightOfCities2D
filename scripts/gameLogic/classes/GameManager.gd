@@ -173,24 +173,28 @@ static func addTrinket(player: AbstractPlayer, idTrinket: String) -> void:
 static func checkWin() -> void :
 	var isWinning: bool = campaign.checkWin()
 	var isLosing: bool = campaign.checkLose()	#Can serve if there are some ways to lose other than units
-	if isWinning :
+	if isWinning && !isLosing:
 		endMap(true)
 	elif isLosing :
 		endMap(false)
+	getMainPlayer().addWeight(0)	#Update interface
 
 ## Function used to clean the board, show dialogs and when the win have been obtained go to the next map
 # victoryStatus is true if player have win and false if not
 static func endMap(victoryStatus: bool) -> void :
 	for unit: AbstractUnit in getMainPlayer().getUnits() :
 		unit.placeOnInventory()	#Return the unit card on the mainPlayer hand
-	for unit: AbstractUnit in getMainPlayer().getUnits() :	#On est obligé de boucler 2 fois pour le moment
-		unit.removeSelf()	#Alors jsp si faudra pas revoir l'organisation de cette partie à voir
+	#We duplicate to avoid the iteration to skip some elements bc we delete the first one
+	for unit: AbstractUnit in getMainPlayer().getUnits().duplicate() :	#On est obligé de boucler 2 fois pour le moment, 
+		unit.removeSelf(false)	#Alors jsp si faudra pas revoir l'organisation de cette partie à voir
 	#Maybe delete enemies units bc they could still lived
-	
+	print(getMainPlayer().getUnits())
 	##Delete all players except the main one
+	players.erase(getMainPlayer())
 	for player: AbstractPlayer in players:
-		if player != getMainPlayer() :
-			players.erase(player)
+		players.erase(player)
+		player.queue_free()
+	players.append(getMainPlayer())
 	##Play dialogs and then go to the next map on the endMap method from AbstractCampaign
 	campaign.endMap(victoryStatus)
 

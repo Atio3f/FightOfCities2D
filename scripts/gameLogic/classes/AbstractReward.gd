@@ -8,6 +8,7 @@ var rewardsNumber: int = 3	#Number of rewards on rewards list
 
 ## Randomize rewards 
 func randomizeRewards() -> void: 
+	rewards.clear()#Clear old choice
 	#Add 3 randoms items of rewardsAvailable into rewards
 	var i : int = 0
 	rewardsAvailable.shuffle()
@@ -25,3 +26,4 @@ func getScreenReward() -> PackedScene:
 func obtainReward(player: AbstractPlayer, number: int) -> void :
 	#Pour l'instant on gère que des unités en gain
 	player.addUnitCard(rewards[number])
+	queue_free()

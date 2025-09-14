@@ -66,6 +66,9 @@ func getUnitsByTag(tag: Tags.tags) -> Array[AbstractUnit]:
 func getCards() -> Array[String] :
 	return hand.getHand()
 
+func getUnitCards() -> Array[String]:
+	return hand.getUnitsStocked()
+
 #Renvoie les cartes jouables du joueur depuis son inventaire(pour le moment on compte pas 
 #pê inutile et juste faire getCards et boucler cardCanBePlayedInventory pour toutes les cartes
 func getUsableCardsInventory() -> Array[String] :
@@ -105,7 +108,7 @@ func addWeight(amt: int) -> void:
 	else :
 		if amt + weight < 0 : weight = 0
 		else : weight += amt 
-	if $Actions :
+	if has_node("Actions") :
 		$Actions.interfaceFinTour.updateInterface()
 
 func cardPlayable(idCard: String) -> Array :

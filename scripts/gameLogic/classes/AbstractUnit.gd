@@ -325,16 +325,18 @@ func onDeath(unit: AbstractUnit = null) -> void:
 	for trinket: AbstractTrinket in player.trinkets:
 		trinket.onDeath(unit, self)
 	isDead = true	#You're not supposed to be able to survive once you're in this function
-	removeSelf()
+	removeSelf(true)
 
 ##Remove the unit from active units and its tile and hide it, will be called by onDeath method and the delete button on interface
-func removeSelf() -> void:
+#Param checkWin served to avoid check win when we remove units at the end of a map
+func removeSelf(checkWin: bool) -> void:
 	player.removeUnit(self)
 	tile.unitOn = null	#Free the tile
+	if TurnManager.turn != 0 && checkWin: GameManager.checkWin()	#Check if win/lose after removing the unit
 	queue_free()
 
 func placeOnInventory() -> void:
-	player.addCard(id)	#Will be replaced by the registerUnit I think
+	player.addUnitCard(id)	#Will be replaced by the registerUnit I think
 
 #func onLevelUp() -> void :
 	#for effect: AbstractEffect in effects:

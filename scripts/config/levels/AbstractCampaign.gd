@@ -97,7 +97,10 @@ func endMap(victoryStatus: bool) -> void:
 			reward = RewardDb.REWARDS[rewardS].new()
 			reward.randomizeRewards()
 			reward.obtainReward(mainPlayer, 1)	#NORMALEMENT DOIT ÊTRE APPELLE par l'écran des récompenses
-			reward.queue_free()	#Pas nécessaire mais on sait jamais
 		##Start next mission
-		startMission(progress + 1)
+		if dataMap.has("nextMission") : 
+			startMission(dataMap["nextMission"])
+		else :
+			startMission(progress + 1)
 		print("WOUHOU")
+		print(progress)

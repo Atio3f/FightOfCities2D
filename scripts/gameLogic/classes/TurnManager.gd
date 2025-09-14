@@ -35,11 +35,13 @@ static func actualTurn() -> TeamsColor.TeamsColor :
 	if teams.size() == 0 : return TeamsColor.TeamsColor.EMPTY
 	return teams[turn % teams.size()]
 
-##Reset the TurnManager at the turn of each map
+##Reset the TurnManager at the end of each map
 static func reset() -> void :
 	turn = 0
 	teams.clear()
-	teams.append(GameManager.getPlayers())
+	##Replace players team which remained
+	for player: AbstractPlayer in GameManager.getPlayers() :
+		teams.append(player.team)
 
 static func registerTurnM() -> Dictionary:
 	var turnData := {

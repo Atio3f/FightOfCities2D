@@ -247,7 +247,6 @@ func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, moveme
 						#print(is_occupied(coordinatesI)) b
 						if is_occupied(coordinatesI):
 							var unitI: AbstractUnit = MapManager.getTileAt(coordinatesI).unitOn
-							print(curr_unit != null)
 							if curr_unit != null && curr_unit.team != unitI.team: #Remove this line if you want to make possible to travel also ennemies 
 								distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
 							## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
@@ -360,7 +359,7 @@ func getCellsZoneCapa(cell : Vector2i, capaciteI : activeCapacite) -> Array :
 
 ## Selects or moves a unit based on where the cursor is.
 func cursorPressed(cell: Vector2i, typeClick : String) -> void:
-	print(typeClick)
+	#print(typeClick)
 	if not Selection:
 		if(typeClick == "rightclick") :
 			menuOpen = true

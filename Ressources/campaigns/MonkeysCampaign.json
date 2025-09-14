@@ -78,7 +78,12 @@
 				"start": [],
 				"win": [],
 				"lose": []
-			}
+			},
+			"rewards": [
+				"reward:unitMonkey",
+				"reward:unitMonkey"
+			],
+			"nextLevel": "1"
 		}
 	}
 }
