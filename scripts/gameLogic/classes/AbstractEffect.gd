@@ -94,6 +94,7 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if remainingTurns == 0 : onEffectEnd()
 
 func getDescription() -> String:
+	if !Global.effectsStrings["en"].has(id) : return "DESCRIPTION NOT FOUND"
 	var desc: String = Global.effectsStrings["en"][id]["DESCRIPTION"]
 	var finalDesc : String = ""
 	for t: String in desc.split("!"):

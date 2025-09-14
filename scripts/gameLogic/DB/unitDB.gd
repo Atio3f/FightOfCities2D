@@ -4,6 +4,7 @@ extends Node
 const UNITS = {
 	"set1:MonkeyMC": preload("res://Ressources/units/mainCharacters/monkeys/MonkeyMC.gd"),
 	"set1:Monkey": preload("res://Ressources/units/monkeys/Monkey.gd"),
+	"set1:QueenMonkey": preload("res://Ressources/units/monkeys/QueenMonkey.gd"),
 	"test:BerserkerBull": preload("res://Ressources/units/bulls/BerserkerBull.gd"),
 	"set1:KnightMonkey": preload("res://Ressources/units/monkeys/KnightMonkey.gd"),
 	"set1:GodMonkey": preload("res://Ressources/units/monkeys/GodMonkey.gd"),

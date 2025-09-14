@@ -46,6 +46,10 @@
 			"NAME": "Support Monkeys",
 			"DESCRIPTION": "All Monkeys gain !VA! P et !VB! V."
 		},
+		"set1:QueenMonkeyEffect" : {
+			"NAME": "Queen Presence",
+			"DESCRIPTION": "Nullify !VA!% of melee damage received."
+		},
 		"set1:TemporalSnailResurrectEffect" : {
 			"NAME": "Infinity Loop",
 			"DESCRIPTION": "Resurrect for !C! orbs. Increases the amount of orbs needed by 1 each time."
