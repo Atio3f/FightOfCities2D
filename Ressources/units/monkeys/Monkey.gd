@@ -8,7 +8,7 @@ const img = "Monkey"
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 23, 7, DamageTypes.DamageTypes.PHYSICAL, 1, 2, 6, 1, 3, POTENTIAL, 9)
-	var effect1: AbstractEffect = MonkeyEffect.new(unit, -1, 2, 1)
+	var effect1: AbstractEffect = MonkeyEffect.new(unit, -1, 20, 1)
 	unit.effects.append(effect1)
 	unit.tags.append(Tags.tags.MONKEY)
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]

@@ -251,7 +251,7 @@ func boostStats(statsUp : Dictionary):
 		i += 1
 
 
-#Reçu depuis InterfaceFinTour, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements
+#Reçu depuis combatUI, Est envoyé lorsque l'on change de tour et permet lorsque le tour qui commence est celui de l'unité de lui recharger ses mouvements
 func nextTurn() -> void:
 	if Global.ordreCouleur[Global.couleurTour] == couleurEquipe:
 		vitesseRestante = V

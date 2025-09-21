@@ -25,6 +25,7 @@ var activeCapacity	#capacité active actuelle
 var isGamePlayer: bool = false	#Serve to know if the player is the one you control the game
 
 var playerPointer: pointeurJoueur	#Will allow interfaces to access some functions on Pointeur_Selection, for main player only
+var metaInterface: MetaUI = null
 
 func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 	self.playerName = name
@@ -36,6 +37,7 @@ func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 		$Actions.player = self
 		fixCameraLimit(MapManager.length, MapManager.width)
 		playerPointer = $Pointeur_Selection
+		metaInterface = %MetaUI
 	else : 
 		pass#$Actions.player = self#Will contains the AI
 	weight = 0
@@ -98,7 +100,7 @@ func removeUnit(unit: AbstractUnit) -> void:
 func addMaxWeight(amt: int) -> void:
 	maxWeight += amt
 	if $Actions :
-		$Actions.interfaceFinTour.updateInterface()
+		$Actions.combatUI.updateInterface()
 
 ##Add weight to the player, usually when an unit dies or is spawned
 func addWeight(amt: int) -> void:
@@ -109,7 +111,7 @@ func addWeight(amt: int) -> void:
 		if amt + weight < 0 : weight = 0
 		else : weight += amt 
 	if has_node("Actions") :
-		$Actions.interfaceFinTour.updateInterface()
+		$Actions.combatUI.updateInterface()
 
 func cardPlayable(idCard: String) -> Array :
 	if !hand.getHand().has(idCard) :
@@ -157,6 +159,17 @@ func setTrinket(trinket: AbstractTrinket) -> void :
 		var trinketIface: trinketInterface = Global.trinketInterface.instantiate() as trinketInterface
 		%Trinkets.add_child(trinketIface)
 		trinketIface.setTrinket(trinket)
+
+func getInterface() -> interfaceJoueur :
+	return playerPointer.interfaceJoueurI
+
+func toggleCombatUI() -> void :
+	%MetaUI.visible = false
+	%CombatUI.visible = true
+
+func toggleMetaUI() -> void :
+	%MetaUI.visible = true
+	%CombatUI.visible = false
 
 #We can't override get_class method from Node sadly
 func getClass() -> String :

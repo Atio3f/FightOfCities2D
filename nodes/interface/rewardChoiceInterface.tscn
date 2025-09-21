@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl5gdx6efeb0g"]
+
+[ext_resource type="Script" uid="uid://bocip5w6ydu6f" path="res://scripts/interface/outsideFights/reward_choice_interface.gd" id="1_txbnu"]
+
+[node name="RewardChoiceInterface" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.172549, 0.172549, 0.172549, 0.74902)
+script = ExtResource("1_txbnu")
+metadata/_custom_type_script = "uid://bocip5w6ydu6f"
+metadata/_edit_use_anchors_ = true
+
+[node name="RewardList" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 140
+alignment = 1

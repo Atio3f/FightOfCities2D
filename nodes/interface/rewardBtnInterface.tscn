@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://debcc0ybo8qg8"]
+
+[ext_resource type="Texture2D" uid="uid://cj2dxi38ccfhy" path="res://assets/sprites/units/Monkey_p.png" id="1_wguq7"]
+[ext_resource type="Script" uid="uid://cg72r46hiewj1" path="res://scripts/interface/outsideFights/reward_btn_interface.gd" id="2_mw3to"]
+
+[node name="RewardBtn" type="Button"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("1_wguq7")
+script = ExtResource("2_mw3to")
+
+[node name="TitleReward" type="Label" parent="."]
+unique_name_in_owner = true
+editor_description = "Contains the effect description"
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.375
+anchor_top = 1.0
+anchor_right = 1.375
+anchor_bottom = 1.575
+grow_horizontal = 2
+theme_override_constants/line_spacing = -4
+theme_override_constants/outline_size = 2
+text = "MONKEY"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DescReward" type="Label" parent="."]
+unique_name_in_owner = true
+editor_description = "Contains the effect description"
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.375
+anchor_top = -0.45
+anchor_right = 1.375
+anchor_bottom = 0.125
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = -4
+theme_override_constants/outline_size = 2
+text = "A Monkey"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BgPreview" type="ColorRect" parent="DescReward"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0784314, 0.368627)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

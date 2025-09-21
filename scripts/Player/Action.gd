@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var uniteStandard = "res://nodes/Unite/unite.tscn"
 @onready var scene = get_tree().root
-@onready var interfaceFinTour : interfaceFinTour = $"../CanvasInterfaceFixe/interfaceFinTour"
+@onready var combatUI : CombatUI = %CombatUI
 @onready var pointeurSouris : Node2D = $"../Pointeur_Selection"
 @onready var map : Node2D = $"../../../Map"
 @onready var player : AbstractPlayer
@@ -10,10 +10,10 @@ extends Node2D
 func _input(_event) -> void:
 	#A remettre après les tests
 	#if player != null && !player.isGamePlayer : return
-	#print(interfaceFinTour.sourisOnInterface)
-	if !interfaceFinTour.sourisOnInterface && player != null : 
+	#print(combatUI.sourisOnInterface)
+	if !combatUI.sourisOnInterface && player != null : 
 		#Permet de poser un nouveau monkey
-		#if Input.is_action_just_pressed("action") and Global._units.has(pointeurSouris.positionSouris) == false and interfaceFinTour.actionsRest > 0:
+		#if Input.is_action_just_pressed("action") and Global._units.has(pointeurSouris.positionSouris) == false and CombatUI.actionsRest > 0:
 			#print("CREATION SINGE BLEU")
 			#var nvlUnite = preload("res://nodes/Unite/unite.tscn").instantiate()	#
 			#
@@ -26,8 +26,8 @@ func _input(_event) -> void:
 			#nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps. Normalement sa vitesseRestante doit être de 0 avec les règles de base
 			#
 			##print(pointeurSouris.get_tile_data_at(pointeurSouris.positionSouris))
-			#interfaceFinTour.setActionsRest(interfaceFinTour.actionsRest - 1)
-			##print(interfaceFinTour.actionsRest)
+			#combatUI.setActionsRest(combatUI.actionsRest - 1)
+			##print(combatUI.actionsRest)
 		#print("POINTEUR COORDS" + str(pointeurSouris.positionSouris) + " RESULT : "+ str(MapManager.getTileAt(pointeurSouris.positionSouris)))
 		var actualTile: AbstractTile = MapManager.getTileAt(pointeurSouris.positionSouris)
 		

@@ -1,5 +1,5 @@
 extends Control
-class_name interfaceFinTour
+class_name CombatUI
 
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes
 @onready var bouttonFinTour : Button = $bouttonFinTour/ButtonFinTour
@@ -7,7 +7,7 @@ class_name interfaceFinTour
 
 var sourisOnInterface : bool = false	#Booléan de la présence ou non de la souris sur l'interface
 var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un endroit global
-@onready var mainPlayer : AbstractPlayer = $"../.."	#Player associated to the interface
+@onready var mainPlayer : AbstractPlayer = $"../../.."	#Player associated to the interface
 
 func _ready() -> void :
 	updateInterface()

@@ -29,7 +29,7 @@ func loadGame() -> bool :
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
 	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1", true)
 	configPlayer(player1)
-	campaign.startMission(1)
+	campaign.startNextMission()
 	#var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
 	#placeUnit("set1:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
 	
@@ -197,6 +197,7 @@ static func endMap(victoryStatus: bool) -> void :
 	players.append(getMainPlayer())
 	##Play dialogs and then go to the next map on the endMap method from AbstractCampaign
 	campaign.endMap(victoryStatus)
+
 
 static func savingGame() -> void :
 	

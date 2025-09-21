@@ -13,7 +13,7 @@ var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initial
 @onready var terrain: Terrain = $"../../../Map/Terrain512x512"
 @onready var scene := $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map := $"../../../Map"
-@onready var interfaceJoueurI := $"../CanvasInterfaceViewport/interfaceJoueur"
+@onready var interfaceJoueurI : interfaceJoueur= $"../CanvasInterfaceViewport/interfaceJoueur"
 
 
 const DIRECTIONS = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]

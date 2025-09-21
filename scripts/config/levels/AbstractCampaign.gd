@@ -10,12 +10,13 @@ var startingOrbs: int #Number of orbs at the start of the campaign
 var startingMaxOrbs: int #Max orbs at the start of the campaign
 
 var difficulty: int	#Ascension like system, start at 0 and will go up to 5
-var progress: int = 0	#Actual level on the campaign
+var progress: String = ""	#Actual level on the campaign
 var dataMaps: Dictionary = {}	#Data with all maps
+var nextMission: String	#Next mission to be played, useful with reward interface
 
 func setupCampaign(difficulty: int, campaignFile: String) -> void :
 	self.difficulty = difficulty
-	self.progress = 1
+	self.nextMission = "map1"
 	self.campaignFile = campaignFile
 	#Get all informations from the campaign on its file
 	var file : FileAccess = FileAccess.open(self.campaignFile, FileAccess.READ)
@@ -33,14 +34,14 @@ func setupCampaign(difficulty: int, campaignFile: String) -> void :
 	file.close()
 
 ##Start a new map, will create the map, place units from enemies and make dialogs
-func startMission(level: int) -> void :
+func startNextMission() -> void :
 	var file : FileAccess = FileAccess.open(self.campaignFile, FileAccess.READ)	#Pê créer un autre fichier pour ça
 	if file :
 		var content : String = file.get_as_text()
 		var data: Dictionary = JSON.parse_string(content)
 		dataMaps = data.get("maps")
-		var dataMap : Dictionary = dataMaps.get("map"+str(level))
-		progress = level
+		var dataMap : Dictionary = dataMaps.get(nextMission)
+		progress = nextMission
 		##Generate map
 		GameManager.generateMap(dataMap["size"]["length"], dataMap["size"]["width"])
 		##Reset TurnManager
@@ -90,17 +91,19 @@ func endMap(victoryStatus: bool) -> void:
 	if victoryStatus :
 		##Clean le board(dans GameManager en fait)
 		##Get rewards from map victory
-		var dataMap : Dictionary = dataMaps.get("map"+str(progress))
+		var dataMap : Dictionary = dataMaps.get(progress)
+		##Update info about next mission
+		if dataMap.has("nextMission") : 
+			nextMission = dataMap["nextMission"]
+		
 		var mainPlayer: AbstractPlayer = GameManager.getMainPlayer()
-		var reward: AbstractReward 
+		var reward: AbstractReward
 		for rewardS: String in dataMap["rewards"] :
 			reward = RewardDb.REWARDS[rewardS].new()
 			reward.randomizeRewards()
-			reward.obtainReward(mainPlayer, 1)	#NORMALEMENT DOIT ÊTRE APPELLE par l'écran des récompenses
-		##Start next mission
-		if dataMap.has("nextMission") : 
-			startMission(dataMap["nextMission"])
-		else :
-			startMission(progress + 1)
+		#Show interface to get rewards
+
+		mainPlayer.metaInterface.placeInterface(reward.getScreenReward(), true)
+		
 		print("WOUHOU")
 		print(progress)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rfbkx0b7abxh"]
+[gd_scene load_steps=13 format=3 uid="uid://rfbkx0b7abxh"]
 
 [ext_resource type="Script" uid="uid://crobcf7g1ay5d" path="res://scripts/gameLogic/classes/AbstractPlayer.gd" id="1_hu2d8"]
 [ext_resource type="Script" uid="uid://bpbcwy6rq5fjr" path="res://scripts/Player/PointeurPlayer.gd" id="3_pmukw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://be5epi7wi8gaj" path="res://nodes/tilemaps/visualisation_actions.tscn" id="6_oepiw"]
 [ext_resource type="Script" uid="uid://bo3emjykgd13r" path="res://scripts/Player/MovementPlayer.gd" id="9_3cqm2"]
 [ext_resource type="Script" uid="uid://coltb6tvepm5p" path="res://scripts/Player/Action.gd" id="10_pc0xr"]
+[ext_resource type="Script" uid="uid://bimjotcaqyqe3" path="res://scripts/interface/outsideFights/meta_interface.gd" id="11_ocqqe"]
 [ext_resource type="PackedScene" uid="uid://vt2pgrwdeiji" path="res://nodes/interface/interface.tscn" id="11_p3gp3"]
 [ext_resource type="PackedScene" uid="uid://dn3hygwohims3" path="res://nodes/joueur/interface/interfaceJoueur.tscn" id="11_xhxfb"]
 
@@ -61,8 +62,6 @@ script = ExtResource("10_pc0xr")
 unique_name_in_owner = true
 layer = 0
 
-[node name="interfaceFinTour" parent="CanvasInterfaceFixe" instance=ExtResource("11_p3gp3")]
-
 [node name="FPSMeter" type="Label" parent="CanvasInterfaceFixe"]
 unique_name_in_owner = true
 visibility_layer = 16
@@ -90,6 +89,33 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
+
+[node name="OverlayUI" type="Control" parent="CanvasInterfaceFixe"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MetaUI" type="Control" parent="CanvasInterfaceFixe/OverlayUI"]
+unique_name_in_owner = true
+editor_description = "Contains rewards interface and all other interface between fights."
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("11_ocqqe")
+metadata/_edit_use_anchors_ = true
+
+[node name="CombatUI" parent="CanvasInterfaceFixe/OverlayUI" instance=ExtResource("11_p3gp3")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [node name="CanvasInterfaceViewport" type="CanvasLayer" parent="."]
 editor_description = "Contient les interfaces nécessitant un mouvement différent de celui de la caméra du joueur"

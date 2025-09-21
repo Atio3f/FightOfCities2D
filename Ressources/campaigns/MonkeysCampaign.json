@@ -50,7 +50,7 @@
 			"rewards": [
 				"reward:unitMonkey"
 			],
-			"nextLevel": "2"
+			"nextLevel": "map2"
 		},
 		"map2": {
 			"size": {
@@ -83,7 +83,7 @@
 				"reward:unitMonkey",
 				"reward:unitMonkey"
 			],
-			"nextLevel": "1"
+			"nextLevel": "map1"
 		}
 	}
 }
