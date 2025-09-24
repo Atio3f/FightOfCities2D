@@ -103,6 +103,7 @@ metadata/_edit_use_anchors_ = true
 [node name="MetaUI" type="Control" parent="CanvasInterfaceFixe/OverlayUI"]
 unique_name_in_owner = true
 editor_description = "Contains rewards interface and all other interface between fights."
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

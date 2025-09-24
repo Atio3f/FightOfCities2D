@@ -42,6 +42,7 @@ static func reset() -> void :
 	##Replace players team which remained
 	for player: AbstractPlayer in GameManager.getPlayers() :
 		teams.append(player.team)
+		if player.isGamePlayer : player.addWeight(0)	#Update interface
 
 static func registerTurnM() -> Dictionary:
 	var turnData := {

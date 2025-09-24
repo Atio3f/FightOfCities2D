@@ -64,6 +64,33 @@ texture = ExtResource("1_btko8")
 expand_mode = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="MaxUnitLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.939236
+anchor_top = 0.503086
+anchor_right = 1.0
+anchor_bottom = 0.54321
+grow_vertical = 2
+text = "0 / 3"
+label_settings = SubResource("LabelSettings_d73ns")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FondCouleurTour" type="TextureRect" parent="MaxUnitLabel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_btko8")
+expand_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [node name="FondActionsRestantes" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1

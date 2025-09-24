@@ -1,14 +1,14 @@
 class_name interfaceUnite
 extends Control
 
-@onready var barreVie = $BarreVie
-@onready var barreVieTemp = $BarreVie/BarreVieTemporaire
-@onready var affichageVie = $BarreVie/BarreVieTemporaire/AffichageVie
-@onready var conteneurMenus = $GestionnairePossibilite/ConteneurMenus
+@onready var healthBar = $HealthBar
+@onready var tempHealthBar = $HealthBar/TempHealthBar
+@onready var affichageVie = $HealthBar/TempHealthBar/AffichageVie
+@onready var conteneurMenus = $PossibilityManager/ConteneurMenus
 
 @onready var infosUnites = preload("res://scenes/popUps/unite/interfaceInfosUnite.tscn")
 @onready var capaActives = preload("res://scenes/popUps/unite/interfaceCapaActivesUnites.tscn")
-@onready var menuConsommables = preload("res://scenes/popUps/unite/interfaceConsommables.tscn")
+@onready var menuConsommables = preload("res://scenes/popUps/unite/unitItemsInterface.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
 var unitAssociated : AbstractUnit
@@ -16,11 +16,11 @@ var pointeursSurInterface : Array = []
 
 func actualisationPV(entiteeAssociee : Node2D) -> void:
 	unitAssociated = entiteeAssociee
-	barreVie.max_value = entiteeAssociee.pv_max
-	barreVie.value = entiteeAssociee.pv_actuels
-	barreVieTemp.max_value = entiteeAssociee.pv_max
-	barreVieTemp.value = entiteeAssociee.pv_temporaires
-	affichageVie.text = "%3d|%3d" % [barreVie.value + barreVieTemp.value, barreVie.max_value]
+	healthBar.max_value = entiteeAssociee.pv_max
+	healthBar.value = entiteeAssociee.pv_actuels
+	tempHealthBar.max_value = entiteeAssociee.pv_max
+	tempHealthBar.value = entiteeAssociee.pv_temporaires
+	affichageVie.text = "%3d|%3d" % [healthBar.value + tempHealthBar.value, healthBar.max_value]
 	
 
 #S'active lorsque le joueur effectue un clic droit sur une unité/bâtiment(visibilite = true), 
@@ -77,8 +77,8 @@ func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : point
 func _on_menu_consommables_pressed():
 	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
-	var menuConso : interfaceConsommables = menuConsommables.instantiate()
-	menuConso.apercuConsommables(unitAssociated, GameManager.getMainPlayer().playerPointer, true)
+	var menuConso : UnitItemsInterface = menuConsommables.instantiate()
+	menuConso.showItems(unitAssociated, GameManager.getMainPlayer())
 	noeudsTempInfosStats.add_child(menuConso)
 
 ##Delete the unit if used during the preparation turn

@@ -1,15 +1,13 @@
 [gd_scene format=3 uid="uid://kpysr5v7gf2v"]
 
-[node name="BouttonConsommable" type="Button"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+[node name="ItemBtn" type="Button"]
+anchors_preset = -1
+anchor_left = 0.496528
+anchor_top = 0.493827
+anchor_right = 0.96
+anchor_bottom = 0.506173
+offset_right = -501.92
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

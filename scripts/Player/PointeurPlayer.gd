@@ -359,6 +359,7 @@ func getCellsZoneCapa(cell : Vector2i, capaciteI : activeCapacite) -> Array :
 
 ## Selects or moves a unit based on where the cursor is.
 func cursorPressed(cell: Vector2i, typeClick : String) -> void:
+	if %MetaUI.visible : return
 	#print(typeClick)
 	if not Selection:
 		if(typeClick == "rightclick") :

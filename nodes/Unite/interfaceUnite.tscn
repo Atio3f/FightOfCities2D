@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dk80o")
 
-[node name="BarreVie" type="TextureProgressBar" parent="."]
+[node name="HealthBar" type="TextureProgressBar" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
@@ -43,7 +43,7 @@ value = 25.0
 texture_under = ExtResource("2_76stb")
 texture_progress = ExtResource("3_5kmur")
 
-[node name="BarreVieTemporaire" type="TextureProgressBar" parent="BarreVie"]
+[node name="TempHealthBar" type="TextureProgressBar" parent="HealthBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,7 +53,7 @@ grow_vertical = 2
 texture_progress = ExtResource("4_diped")
 texture_progress_offset = Vector2(1, 1)
 
-[node name="AffichageVie" type="Label" parent="BarreVie/BarreVieTemporaire"]
+[node name="AffichageVie" type="Label" parent="HealthBar/TempHealthBar"]
 visible = false
 texture_filter = 1
 layout_mode = 1
@@ -64,7 +64,7 @@ label_settings = SubResource("LabelSettings_gopln")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="GestionnairePossibilite" type="Control" parent="."]
+[node name="PossibilityManager" type="Control" parent="."]
 layout_mode = 1
 anchor_left = -0.00195313
 anchor_right = -0.00195313
@@ -73,7 +73,7 @@ offset_bottom = 512.0
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="ConteneurMenus" type="FlowContainer" parent="GestionnairePossibilite"]
+[node name="ConteneurMenus" type="FlowContainer" parent="PossibilityManager"]
 visible = false
 texture_filter = 1
 layout_mode = 1
@@ -87,12 +87,12 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("7_tbqdh")
 
-[node name="Rangee1" type="VBoxContainer" parent="GestionnairePossibilite/ConteneurMenus"]
+[node name="Rangee1" type="VBoxContainer" parent="PossibilityManager/ConteneurMenus"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="DeleteUnitBtn" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
+[node name="DeleteUnitBtn" type="TextureButton" parent="PossibilityManager/ConteneurMenus/Rangee1"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
@@ -100,24 +100,24 @@ size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("7_wxqjw")
 
-[node name="MenuStats" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee1"]
+[node name="MenuStats" type="TextureButton" parent="PossibilityManager/ConteneurMenus/Rangee1"]
 texture_filter = 1
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("5_6wd5v")
 
-[node name="Rangee 2" type="VBoxContainer" parent="GestionnairePossibilite/ConteneurMenus"]
+[node name="Rangee 2" type="VBoxContainer" parent="PossibilityManager/ConteneurMenus"]
 layout_mode = 2
 size_flags_horizontal = 10
 alignment = 2
 
-[node name="MenuConsommables" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
+[node name="MenuConsommables" type="TextureButton" parent="PossibilityManager/ConteneurMenus/Rangee 2"]
 texture_filter = 1
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_v7muh")
 
-[node name="MenuCapacitesActives" type="TextureButton" parent="GestionnairePossibilite/ConteneurMenus/Rangee 2"]
+[node name="MenuCapacitesActives" type="TextureButton" parent="PossibilityManager/ConteneurMenus/Rangee 2"]
 visible = false
 clip_children = 2
 texture_filter = 1
@@ -126,7 +126,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_kwkcr")
 
-[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/DeleteUnitBtn" to="." method="_on_delete_unit_btn_pressed"]
-[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee1/MenuStats" to="." method="_on_menu_stats_pressed"]
-[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuConsommables" to="." method="_on_menu_consommables_pressed"]
-[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuCapacitesActives" to="." method="_on_menu_capacites_actives_pressed"]
+[connection signal="pressed" from="PossibilityManager/ConteneurMenus/Rangee1/DeleteUnitBtn" to="." method="_on_delete_unit_btn_pressed"]
+[connection signal="pressed" from="PossibilityManager/ConteneurMenus/Rangee1/MenuStats" to="." method="_on_menu_stats_pressed"]
+[connection signal="pressed" from="PossibilityManager/ConteneurMenus/Rangee 2/MenuConsommables" to="." method="_on_menu_consommables_pressed"]
+[connection signal="pressed" from="PossibilityManager/ConteneurMenus/Rangee 2/MenuCapacitesActives" to="." method="_on_menu_capacites_actives_pressed"]

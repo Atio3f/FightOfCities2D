@@ -68,6 +68,8 @@ func startNextMission() -> void :
 			placementTiles.append(Vector2i(coordArray[0], coordArray[1]))
 		#Draw tiles
 		GameManager.getMainPlayer().playerPointer.draw_placeable_cells(placementTiles)
+		#Hide Meta Interface
+		GameManager.getMainPlayer().toggleCombatUI()
 	file.close()
 
 func checkWin() -> bool :
