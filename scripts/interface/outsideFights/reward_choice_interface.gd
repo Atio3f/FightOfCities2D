@@ -27,3 +27,8 @@ func closeRewardInterface() -> void :
 
 func getEndSignal() -> Signal :
 	return reward_interface_closed
+
+
+func _on_skip_btn_pressed() -> void:
+	reward.obtainReward(GameManager.getMainPlayer(), -1)	#Return skip action
+	closeRewardInterface()
