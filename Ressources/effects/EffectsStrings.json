@@ -40,7 +40,7 @@
 		},
 		"set1:AbominationMonkeyEffect" : {
 			"NAME": "Abomination Monkey",
-			"DESCRIPTION": ""
+			"DESCRIPTION": "Reduce ennemi Power by !VA! and Speed by !VB! on contact."
 		},
 		"set1:MonkeyEffect" : {
 			"NAME": "Support Monkeys",
