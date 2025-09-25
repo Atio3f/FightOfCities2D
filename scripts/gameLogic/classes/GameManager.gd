@@ -125,6 +125,7 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 	print("DAMAGE TAKED: "+ str(infoDamagesTaked["damage"]))
 	
 	unitAttacking.atkRemaining -= 1
+	unitAttacking.speedRemaining = 0
 	#We resolve cases when the attacker died while attacking
 	if(unitAttacking.hpActual <= 0):
 		unitAttacked.onKill(unitAttacking)

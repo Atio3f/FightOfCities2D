@@ -2,7 +2,7 @@
 	"fr": {
 		"set1:GodMonkeySpeedEffect" : {
 			"NAME": "Dieu Monkey",
-			"DESCRIPTION": ""
+			"DESCRIPTION": "Gagne !VA! V pour chacun de vos Monkeys.(+!C!)"
 		},
 		"set1:KnightMonkeyEffect" : {
 			"NAME": "Chevalier Monkey",
@@ -28,15 +28,15 @@
 	"en": {
 		"set1:GodMonkeySpeedEffect" : {
 			"NAME": "God Monkey",
-			"DESCRIPTION": ""
+			"DESCRIPTION": "Gain !VA! Speed for each of your Monkeys.(Currently +!C!)"
 		},
 		"set1:GodMonkeyHealEffect" : {
 			"NAME": "Heal on Forest",
 			"DESCRIPTION": "At the start of your turn, heal !VA! HP on Forest Tiles."
 		},
 		"set1:KnightMonkeyEffect" : {
-			"NAME": "Knight Monkey",
-			"DESCRIPTION": ""
+			"NAME": "Heal on Forest",
+			"DESCRIPTION": "At the start of your turn, heal !VA! HP on Forest Tiles."
 		},
 		"set1:AbominationMonkeyEffect" : {
 			"NAME": "Abomination Monkey",
