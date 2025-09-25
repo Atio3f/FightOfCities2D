@@ -1,7 +1,7 @@
 extends AbstractTile
 class_name ForestTile
 
-const idTile: String = "test:ForestTile"
+const idTile: String = "set1:ForestTile"
 const walkSpeed: int = 3
 const flySpeed: int = 2
 const swimSpeed: int = 999

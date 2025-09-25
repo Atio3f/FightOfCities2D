@@ -50,8 +50,9 @@
 			"rewards": [
 				"reward:unitMonkey"
 			],
-			"nextLevel": "map2"
+			"nextMission": "map2"
 		},
+		
 		"map2": {
 			"size": {
 				"width": 12,
@@ -80,10 +81,43 @@
 				"lose": []
 			},
 			"rewards": [
-				"reward:magicalBeast",
+				"reward:magicalBeast"
+			],
+			"nextMission": "map1"
+		},
+		
+		"map3": {
+			"size": {
+				"width": 8,
+				"length": 17
+			},
+			"enemies": [
+				{
+					"id": "set1:WingedBull",
+					"coords": [5, 4]
+				},
+				{
+					"id": "set1:WingedBull",
+					"coords": [6, 13]
+				}
+			],
+			"placementTiles": [
+				[2, 8],
+				[5, 8],
+				[4, 8],
+				[1, 9],
+				[3, 9]
+			],
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": []
+			},
+			"rewards": [
 				"reward:trinketBoss"
 			],
-			"nextLevel": "map1"
-		}
+			"nextMission": "map1"
+		},
+		
 	}
 }

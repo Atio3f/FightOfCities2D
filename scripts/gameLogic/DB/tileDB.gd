@@ -2,38 +2,38 @@ extends Node
 
 
 const TILES = {
-	"test:ForestTile" : preload("res://Ressources/tiles/ForestTile.gd"),
-	"test:SakuraForestTile" : preload("res://Ressources/tiles/SakuraForestTile.gd"),
-	"test:SwampTile" : preload("res://Ressources/tiles/SwampTile.gd"),
-	"test:MountainTile" : preload("res://Ressources/tiles/MountainTile.gd"),
-	"test:PlainTile" : preload("res://Ressources/tiles/PlainTile.gd"),
-	"test:SnowPlainTile" : preload("res://Ressources/tiles/SnowPlainTile.gd"),
-	"test:LakeTile" : preload("res://Ressources/tiles/LakeTile.gd"),
-	"test:DesertTile" : preload("res://Ressources/tiles/DesertTile.gd"),
-	"test:DeepWaterTile" : preload("res://Ressources/tiles/DeepWaterTile.gd"),
-	"test:TropicalForestTile" : preload("res://Ressources/tiles/TropicalForestTile.gd"),
+	"set1:ForestTile" : preload("res://Ressources/tiles/ForestTile.gd"),
+	"set1:SakuraForestTile" : preload("res://Ressources/tiles/SakuraForestTile.gd"),
+	"set1:SwampTile" : preload("res://Ressources/tiles/SwampTile.gd"),
+	"set1:MountainTile" : preload("res://Ressources/tiles/MountainTile.gd"),
+	"set1:PlainTile" : preload("res://Ressources/tiles/PlainTile.gd"),
+	"set1:SnowPlainTile" : preload("res://Ressources/tiles/SnowPlainTile.gd"),
+	"set1:LakeTile" : preload("res://Ressources/tiles/LakeTile.gd"),
+	"set1:DesertTile" : preload("res://Ressources/tiles/DesertTile.gd"),
+	"set1:DeepWaterTile" : preload("res://Ressources/tiles/DeepWaterTile.gd"),
+	"set1:TropicalForestTile" : preload("res://Ressources/tiles/TropicalForestTile.gd"),
 }
 
 #Pour récup du tileset
 #const TILES_NAME = {
-	#"test:ForestTile" : "forest",
-	#"test:SakuraForestTile" : "forest",	#A CHANGER QUAND ON AURA MIS DANS LE TILESET
-	#"test:SwampTile" : "swamp",
-	#"test:SnowPlainTile" : "snowPlain",
-	#"test:PlainTile" : "plain",
-	#"test:MountainTile" : "mountain",
-	#"test:LakeTile" : "lake",
-	#"test:DesertTile" : "desert"
+	#"set1:ForestTile" : "forest",
+	#"set1:SakuraForestTile" : "forest",	#A CHANGER QUAND ON AURA MIS DANS LE TILESET
+	#"set1:SwampTile" : "swamp",
+	#"set1:SnowPlainTile" : "snowPlain",
+	#"set1:PlainTile" : "plain",
+	#"set1:MountainTile" : "mountain",
+	#"set1:LakeTile" : "lake",
+	#"set1:DesertTile" : "desert"
 #}
 const TILES_VECTORS = {
-	"test:PlainTile" : Vector2i(0, 0),
-	"test:LakeTile" : Vector2i(0, 1),
-	"test:SwampTile" : Vector2i(1, 0),
-	"test:MountainTile" : Vector2i(1, 1),
-	"test:SnowPlainTile" : Vector2i(2, 0),
-	"test:ForestTile" : Vector2i(2, 1),
-	"test:SakuraForestTile" : Vector2i(3, 0),
-	"test:DesertTile" : Vector2i(3, 1),
-	"test:DeepWaterTile" : Vector2i(4, 0),
-	"test:TropicalForestTile" : Vector2i(4, 1)
+	"set1:PlainTile" : Vector2i(0, 0),
+	"set1:LakeTile" : Vector2i(0, 1),
+	"set1:SwampTile" : Vector2i(1, 0),
+	"set1:MountainTile" : Vector2i(1, 1),
+	"set1:SnowPlainTile" : Vector2i(2, 0),
+	"set1:ForestTile" : Vector2i(2, 1),
+	"set1:SakuraForestTile" : Vector2i(3, 0),
+	"set1:DesertTile" : Vector2i(3, 1),
+	"set1:DeepWaterTile" : Vector2i(4, 0),
+	"set1:TropicalForestTile" : Vector2i(4, 1)
 }

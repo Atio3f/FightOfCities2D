@@ -1,7 +1,7 @@
 extends AbstractEffect
 class_name FreezeEffect
 
-const idEffect = "test:FreezeEffect"
+const idEffect = "set1:FreezeEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int = 0, value_B: int = 0, value_C: int = 0, counter: int = 0):

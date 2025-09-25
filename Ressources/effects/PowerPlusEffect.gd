@@ -1,7 +1,7 @@
 extends AbstractEffect
 class_name PowerPlusEffect
 
-const idEffect = "test:PowerPlusEffect"
+const idEffect = "set1:PowerPlusEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):

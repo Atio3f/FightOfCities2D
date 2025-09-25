@@ -1,7 +1,7 @@
 extends AbstractUnit
 class_name IroncladBull
 
-const idUnit = "test:IroncladBull"
+const idUnit = "set1:IroncladBull"
 const GRADE = 1
 const POTENTIAL = 3#Maybe 4?
 const img = ""

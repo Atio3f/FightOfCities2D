@@ -7,9 +7,9 @@ static var activeTiles: Dictionary = {}	#Tiles actually on the visible map
 static var length: int	#x
 static var width: int	#y
 #clé nom case, valeur =  poids de la case
-const genMapDefault = {"test:ForestTile": 100, "test:PlainTile": 83, "test:SwampTile": 11, "test:LakeTile": 25, "test:DesertTile": 5, "test:MountainTile": 19, "test:SakuraForestTile": 7, "test:DeepWaterTile": 2, "test:TropicalForestTile": 2}
+const genMapDefault = {"set1:ForestTile": 100, "set1:PlainTile": 83, "set1:SwampTile": 11, "set1:LakeTile": 25, "set1:DesertTile": 5, "set1:MountainTile": 19, "set1:SakuraForestTile": 7, "set1:DeepWaterTile": 2, "set1:TropicalForestTile": 2}
 #J'ai pas encore fait les autres cases
-const genMapTEST = {"test:ForestTile": 100, "test:LakeTile": 25}
+const genMapTEST = {"set1:ForestTile": 100, "set1:LakeTile": 25}
 static var sceneTerrain: PackedScene = preload("res://nodes/tilemaps/terrain512x512.tscn")
 static var instanceTerrain
 static var terrain : Terrain	#We get the script

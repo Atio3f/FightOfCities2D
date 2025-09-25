@@ -1,7 +1,7 @@
 extends AbstractUnit
 class_name TemporalSnail
 
-const idUnit = "test:TemporalSnail"
+const idUnit = "set1:TemporalSnail"
 const GRADE = 4
 const POTENTIAL = 5
 const img = ""

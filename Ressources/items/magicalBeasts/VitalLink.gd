@@ -13,7 +13,7 @@ func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> vo
 	
 #PAS ENCORE FONCTIONNELLE LA STRUC DES ITEMS
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :
-	if unit.tile.id == "test:ForestTile" && super.canBeUsedOnUnit(playerUsing, unit, orbCost) && unit.hpActual < unit.hpMax: return true
+	if unit.tile.id == "set1:ForestTile" && super.canBeUsedOnUnit(playerUsing, unit, orbCost) && unit.hpActual < unit.hpMax: return true
 	else :return false
 
 static func canBeUsedOnPlayer(playerUsing: AbstractPlayer, playerTargeted: AbstractPlayer, orbCost: int = ORB_COST) -> bool:

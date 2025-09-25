@@ -2,7 +2,7 @@ extends AbstractEffect
 class_name GodMonkeyHealEffect
 
 
-const idEffect = "test:GodMonkeyHealEffect"
+const idEffect = "set1:GodMonkeyHealEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):
@@ -10,7 +10,7 @@ func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int =
 
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
-	if(unitAssociated.tile.id == "test:ForestTile"):
+	if(unitAssociated.tile.id == "set1:ForestTile"):
 		var healValue = value_A
 		healValue = unitAssociated.onHealed(unitAssociated, healValue)
 		healValue = unitAssociated.onHeal(unitAssociated, healValue)

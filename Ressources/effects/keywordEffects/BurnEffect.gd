@@ -1,7 +1,7 @@
 extends AbstractEffect
 class_name BurnEffect
 
-const idEffect = "test:BurnEffect"
+const idEffect = "set1:BurnEffect"
 const img = ""
 
 const BASE_DAMAGE = 4

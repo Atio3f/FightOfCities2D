@@ -12,11 +12,23 @@
 		"set1:Monkey" : {
 			"NAME": "Monkey"
 		},
-		"test:TemporalSnail" : {
-			"NAME": "Escargot Temporel"
-		},
-		"test:Bull" : {
+		"set1:Bull" : {
 			"NAME": "Taureau"
+		},
+		"set1:IroncladBull" : {
+			"NAME": "Taureau Cuirassé"
+		},
+		"set1:WingedBull" : {
+			"NAME": "Taureau Ailé"
+		},
+		"set1:BerserkerBull" : {
+			"NAME": "Taureau berserk"
+		},
+		"set1:BlueMushroom" : {
+			"NAME": "Champignon bleu"
+		},
+		"set1:TemporalSnail" : {
+			"NAME": "Escargot Temporel"
 		},
 	},
 	"en": {
@@ -38,11 +50,23 @@
 		"set1:MonkeyMC" : {
 			"NAME": "Monkey Main Character"
 		},
-		"test:TemporalSnail" : {
-			"NAME": "Temporal Snail"
-		},
 		"set1:Bull" : {
 			"NAME": "Bull"
+		},
+		"set1:IroncladBull" : {
+			"NAME": "Ironclad Bull"
+		},
+		"set1:WingedBull" : {
+			"NAME": "Winged Bull"
+		},
+		"set1:BerserkerBull" : {
+			"NAME": "Berserker Bull"
+		},
+		"set1:BlueMushroom" : {
+			"NAME": "Blue Mushroom"
+		},
+		"set1:TemporalSnail" : {
+			"NAME": "Temporal Snail"
 		},
 	}
 }

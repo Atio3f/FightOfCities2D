@@ -1,7 +1,7 @@
 extends AbstractEffect
 class_name IroncladBullEffect
 
-const idEffect = "test:IroncladBullEffect"
+const idEffect = "set1:IroncladBullEffect"
 const img = ""
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):

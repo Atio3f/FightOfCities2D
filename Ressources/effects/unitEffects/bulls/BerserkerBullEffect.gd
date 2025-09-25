@@ -1,7 +1,7 @@
 extends AbstractEffect
 class_name BerserkerBullEffect
 
-const idEffect = "test:BerserkerBullEffect"
+const idEffect = "set1:BerserkerBullEffect"
 const img = ""
 const DMG_MULTIPLIER = 2
 const HEAL_VALUE = 10
