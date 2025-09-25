@@ -54,3 +54,6 @@ func _on_button_fin_tour_pressed() -> void:
 	setActionsRest(3)
 	TurnManager.nextTurn()
 	updateInterface()
+	if mainPlayer.playerPointer.Selection :
+		mainPlayer.playerPointer._deselect_active_unit()
+	mainPlayer.playerPointer._clear_active_unit()
