@@ -4,7 +4,7 @@ extends Node
 var effectsStrings := {}
 var unitsStrings := {}
 var trinketsStrings := {}
-
+var itemsStrings := {}
 var parameters: ParamPlayer = preload("res://Ressources/old/player/joueur1/paramJoueur1.tres")
 var unitOn : Node2D
 var unitSelec : Node2D
@@ -14,6 +14,7 @@ func _ready():
 	effectsStrings = loadStrings("res://Ressources/effects/EffectsStrings.json")
 	unitsStrings = loadStrings("res://Ressources/units/UnitsStrings.json")
 	trinketsStrings = loadStrings("res://Ressources/trinkets/TrinketsStrings.json")
+	itemsStrings = loadStrings("res://Ressources/items/ItemsStrings.json")
 
 #Load strings from a json
 func loadStrings(filePath: String) -> Dictionary:

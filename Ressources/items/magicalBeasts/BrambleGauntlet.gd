@@ -1,7 +1,7 @@
 extends AbstractItem
 class_name BrambleGauntlet
 
-const idItem = "test:BrambleGauntlet"
+const idItem = "set1:BrambleGauntlet"
 const img = ""
 const ORB_COST = 0
 const DAMAGE_BONUS = 2

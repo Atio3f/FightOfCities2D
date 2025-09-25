@@ -37,7 +37,7 @@ RewardDb="*res://scripts/gameLogic/DB/rewardDB.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 

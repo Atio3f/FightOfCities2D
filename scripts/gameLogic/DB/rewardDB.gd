@@ -2,7 +2,9 @@ extends Node
 
 
 const REWARDS = {
-	"reward:unitMonkey" : preload("res://Ressources/rewards/UnitMonkeyReward.gd")
+	"reward:unitMonkey" : preload("res://Ressources/rewards/UnitMonkeyReward.gd"),
+	"reward:magicalBeast" : preload("res://Ressources/rewards/MagicalBeastReward.gd"),
+	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd")
 }
 
 const REWARDS_DICO = {

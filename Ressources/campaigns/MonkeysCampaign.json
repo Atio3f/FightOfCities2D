@@ -6,7 +6,7 @@
 		"set1:MonkeyMC"
 	],
 	"startingItems": [
-		"test:VitalLink"
+		"set1:VitalLink"
 	],
 	"startingTrinkets": [
 		"set1:OrbCrate",
@@ -80,8 +80,8 @@
 				"lose": []
 			},
 			"rewards": [
-				"reward:unitMonkey",
-				"reward:unitMonkey"
+				"reward:magicalBeast",
+				"reward:trinketBoss"
 			],
 			"nextLevel": "map1"
 		}

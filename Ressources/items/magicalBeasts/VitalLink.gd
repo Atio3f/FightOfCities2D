@@ -1,8 +1,8 @@
 extends AbstractItem
 class_name VitalLink
 
-const idItem = "test:VitalLink"
-const img = ""
+const idItem = "set1:VitalLink"
+const img = "Monkey"
 const ORB_COST = 0
 const HEAL_VALUE = 10
 const BONUS_HEAL = 5

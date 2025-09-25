@@ -1,0 +1,28 @@
+{
+	"fr":
+		{
+			"set1:BrambleGauntlet" : {
+				"NAME": "Gantelet de ronces",
+				"DESC": "",
+				"IMG": "res://assets/sprites/items/BrambleGauntlet.png"
+			},
+			"set1:VitalLink" : {
+				"NAME": "Lien Vital",
+				"DESC": "Soigne 10 pv à une unité dans une forêt(15 si c’est une Magical Beast).",
+				"IMG": "res://assets/sprites/items/VitalLink.png"
+			},
+		},
+	"en": 
+		{
+			"set1:BrambleGauntlet" : {
+				"NAME": "Bramble Gauntlet",
+				"DESC": "",
+				"IMG": "res://assets/sprites/items/BrambleGauntlet.png"
+			},
+			"set1:VitalLink" : {
+				"NAME": "Vital Link",
+				"DESC": "Heal unit on forest for 10, or 15 if Magical Beast.",
+				"IMG": "res://assets/sprites/items/VitalLink.png"
+			},
+		}
+}

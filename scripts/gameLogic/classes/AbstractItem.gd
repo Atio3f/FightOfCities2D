@@ -3,7 +3,7 @@ class_name AbstractItem
 
 static var id: String
 var nameItem: String
-var imgPath: String
+var imgPath: String = ""
 var playerAssociated: AbstractPlayer
 var unitAssociated: AbstractUnit = null
 var orbCost: int	#Coût en orbe de l'objet
@@ -56,6 +56,29 @@ static func useItem(playerUsing: AbstractPlayer, orbCost: int, unitTargeted: Abs
 
 static func getId() -> String:
 	return "UNDEFINED"
+
+func getImagePath() -> String :
+	return "res://assets/sprites/items/"+imgPath
+
+func getDescription() -> String:
+	if !Global.effectsStrings["en"].has(id) : return "DESCRIPTION NOT FOUND"
+	var desc: String = Global.effectsStrings["en"][id]["DESCRIPTION"]
+	var finalDesc : String = ""
+	for t: String in desc.split("!"):
+		match t:
+			"VA":
+				finalDesc += str(value_A)
+			"VB":
+				finalDesc += str(value_B)
+			"VC":
+				finalDesc += str(value_C)
+			"C":
+				finalDesc += str(counter)
+			"OC":
+				finalDesc += str(orbCost)
+			_:
+				finalDesc += t
+	return finalDesc
 
 func registerItem() -> Dictionary:
 	return {}

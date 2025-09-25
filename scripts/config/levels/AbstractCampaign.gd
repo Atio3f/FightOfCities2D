@@ -103,9 +103,8 @@ func endMap(victoryStatus: bool) -> void:
 		for rewardS: String in dataMap["rewards"] :
 			reward = RewardDb.REWARDS[rewardS].new()
 			reward.randomizeRewards()
-		#Show interface to get rewards
-
-		mainPlayer.metaInterface.placeInterface(reward.getScreenReward(), true)
+			#Show interface to get rewards
+			mainPlayer.metaInterface.placeInterface(reward.getScreenReward(), true)
 		
 		print("WOUHOU")
 		print(progress)
