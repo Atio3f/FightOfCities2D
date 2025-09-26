@@ -1,7 +1,7 @@
 extends Node
 class_name AbstractReward
 
-var rewardInterface: PackedScene = preload("res://nodes/interface/rewardChoiceInterface.tscn")
+var rewardInterface: PackedScene = preload("res://nodes/interface/metaUI/placeholderScreens/rewardChoiceInterface.tscn")
 #Reward screen scene variable
 var rewardsAvailable: Dictionary = {}#List of items obtainable from the reward, key is item id and value is item weight
 var totalWeight: int = 0	#Total weight of all items on rewardsAvailable

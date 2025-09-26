@@ -75,6 +75,9 @@ func startNextMission() -> void :
 func checkWin() -> bool :
 	var isWinning: bool = true
 	for player: AbstractPlayer in GameManager.getPlayers() :
+		if !player :	#Delete player if we forgot to remove it before
+			GameManager.getPlayers().erase(player)
+			continue
 		#We don't check units from base player
 		if player == GameManager.getMainPlayer() :
 			continue
@@ -108,3 +111,6 @@ func endMap(victoryStatus: bool) -> void:
 		
 		print("WOUHOU")
 		print(progress)
+	else :
+		GameManager.campaign = null
+		Global.gameManager.get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

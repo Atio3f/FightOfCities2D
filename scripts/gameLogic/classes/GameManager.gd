@@ -59,11 +59,17 @@ func configPlayer(player: AbstractPlayer) -> void:
 static func getAllUnits() -> Array[AbstractUnit] :
 	var units: Array[AbstractUnit] = []
 	for player: AbstractPlayer in players: 
+		if !player :
+			GameManager.getPlayers().erase(player)
+			continue
 		units.append_array(player.getUnits())
 	return units
 
 static func getUnits(team: TeamsColor.TeamsColor) -> Array[AbstractUnit] :
 	for player: AbstractPlayer in players: 
+		if !player :
+			GameManager.getPlayers().erase(player)
+			continue
 		if(player.team == team):
 			return player.getUnits()
 	return []
@@ -172,6 +178,7 @@ static func addTrinket(player: AbstractPlayer, idTrinket: String) -> void:
 
 ## Function called to check if the player have win or lose
 static func checkWin() -> void :
+	print(campaign)
 	var isWinning: bool = campaign.checkWin()
 	var isLosing: bool = campaign.checkLose()	#Can serve if there are some ways to lose other than units
 	if isWinning && !isLosing:
@@ -194,7 +201,7 @@ static func endMap(victoryStatus: bool) -> void :
 	players.erase(getMainPlayer())
 	for player: AbstractPlayer in players:
 		players.erase(player)
-		player.queue_free()
+		if player : player.queue_free()
 	players.append(getMainPlayer())
 	##Play dialogs and then go to the next map on the endMap method from AbstractCampaign
 	campaign.endMap(victoryStatus)

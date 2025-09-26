@@ -23,6 +23,7 @@ func _on_campaign_selection_btn_pressed():
 
 func _on_start_btn_pressed():
 	if campaignName != "":	#Will need to be automatized later when we will have many campaings
+		print("YAYAYAYAYYAYAYAYAYYA")
 		GameManager.campaign = load(CampaignDb.CAMPAIGNS[campaignName]).new()
 		GameManager.campaign.startCampaign(0)
 		get_tree().change_scene_to_file("res://scenes/scene_1.tscn")

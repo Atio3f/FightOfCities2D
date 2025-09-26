@@ -41,6 +41,9 @@ static func reset() -> void :
 	teams.clear()
 	##Replace players team which remained
 	for player: AbstractPlayer in GameManager.getPlayers() :
+		if !player :
+			GameManager.getPlayers().erase(player)
+			continue
 		teams.append(player.team)
 		if player.isGamePlayer : player.addWeight(0)	#Update interface
 

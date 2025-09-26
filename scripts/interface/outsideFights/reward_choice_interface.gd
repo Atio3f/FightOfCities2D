@@ -2,7 +2,7 @@
 extends AbstractMetaUI
 class_name RewardChoiceInterface
 
-@onready var interfaceRewardScene: PackedScene = preload("res://nodes/interface/rewardBtnInterface.tscn")
+@onready var interfaceRewardScene: PackedScene = preload("res://nodes/interface/metaUI/placeholderScreens/rewardBtnInterface.tscn")
 
 var reward: AbstractReward
 
