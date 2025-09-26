@@ -116,7 +116,7 @@
 			"rewards": [
 				"reward:trinketBoss"
 			],
-			"nextMission": "map1"
+			"nextMission": "ending1"
 		},
 		
 	}
