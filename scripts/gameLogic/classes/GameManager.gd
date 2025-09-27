@@ -168,12 +168,19 @@ static func obtainTrinket(player: AbstractPlayer, idTrinket: String) -> void:
 	trinket.onGain()
 
 ##Add a trinket to a player, used during save load and doesn't activate obtain effect
-static func addTrinket(player: AbstractPlayer, idTrinket: String) -> void:
+# dataTrinket serves to recover data on save
+static func addTrinket(player: AbstractPlayer, idTrinket: String, dataTrinket: Dictionary = {}) -> void:
 	var trinket : AbstractTrinket = TrinketDb.TRINKETS[idTrinket].new(player)
 	if trinket == null :
 		print("ERROR TRINKET NOT FOUND ON DB!")
 		return
 	else: 
+		if dataTrinket != {} :
+			trinket.value_A = dataTrinket["value_A"]
+			trinket.value_B = dataTrinket["value_B"]
+			trinket.value_C = dataTrinket["value_C"]
+			trinket.counter = dataTrinket["counter"]
+			trinket.counter2 = dataTrinket["counter2"]
 		player.setTrinket(trinket)#Place the trinket on screen
 
 ## Function called to check if the player have win or lose
@@ -210,8 +217,9 @@ static func endMap(victoryStatus: bool) -> void :
 static func savingGame() -> void :
 	
 	var gameData := {
-		"turnData": {},
-		"players": []
+		"turnData": TurnManager.registerTurnM(),
+		"players": [],
+		"campaign": campaign.saveCampaignProgress()
 	}
 	for player in players :
 		gameData["players"].append(player.registerPlayer())
@@ -300,9 +308,11 @@ static func getSave(save: int) -> Dictionary:
 
 #static func loadSave(save: int) -> void :
 	#var data = getSave(save)
+	#TurnManager.recoverTurnManager(data["turnData"])
 	#players = []
 	#for player: Dictionary in data.players:
 		#players.append(AbstractPlayer.recoverPlayer(player))
+	##Recover campaign too
 
 #Allow to delete all saves during test because I can't find the user://saves repo
 static func deleteAllSaves() -> void :

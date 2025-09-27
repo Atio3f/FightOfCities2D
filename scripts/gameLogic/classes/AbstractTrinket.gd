@@ -73,3 +73,17 @@ func onDeath(unitKilling: AbstractUnit, unitKilled: AbstractUnit) -> void:
 ##Activate at the start of turn
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	pass
+
+
+func registerTrinket() -> Dictionary :
+	return {
+		"id": self.id,
+		"value_A": self.value_A,
+		"value_B": self.value_B,
+		"value_C": self.value_C,
+		"counter": self.counter,
+		"counter2": self.counter2
+	}
+
+static func recoverTrinket(trinketData: Dictionary, player: AbstractPlayer) -> void :
+	GameManager.addTrinket(player, trinketData["id"], trinketData)

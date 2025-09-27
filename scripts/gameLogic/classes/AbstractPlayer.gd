@@ -183,10 +183,15 @@ func registerPlayer() -> Dictionary :
 		"maxOrbs": self.maxOrbs,
 		"weight": self.weight,
 		"maxWeight": self.maxWeight,
-		"units": []  # Une liste d'unités
+		"maxUnits": self.maxUnits,
+		"units": [],  # Une liste d'unités
+		"hand": [],
+		"trinkets": []
 	}
 	for unit: AbstractUnit in units:
 		playerData["units"].append(unit.registerUnit())
+	for trinket: AbstractTrinket in trinkets:
+		playerData["trinkets"].append(trinket.registerTrinket())
 	return playerData
 
 ###Y'a un monde où il faudra le faire en dehors d'AbstractPlayer mtn

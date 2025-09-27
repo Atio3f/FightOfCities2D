@@ -114,3 +114,19 @@ func endMap(victoryStatus: bool) -> void:
 	else :
 		GameManager.campaign = null
 		Global.gameManager.get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+###Save campaign progress, units will be saved on the player side
+func saveCampaignProgress() -> Dictionary :
+	return {
+		"campaignFile": self.campaignFile,
+		"difficulty": self.difficulty,
+		"progress": self.progress,
+		"nextMission": self.nextMission
+	}
+
+static func recoverCampaign(campaignDico: Dictionary) -> AbstractCampaign :
+	var campaign: AbstractCampaign = load(CampaignDb.CAMPAIGNS[campaignDico["campaignFile"]]).new()
+	campaign.startCampaign(campaignDico["difficulty"], campaignDico["campaignFile"])
+	campaign.progress = campaignDico["progress"]
+	campaign.nextMission = campaignDico["nextMission"]
+	return campaign
