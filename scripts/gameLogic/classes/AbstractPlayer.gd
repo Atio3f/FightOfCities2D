@@ -179,6 +179,7 @@ func registerPlayer() -> Dictionary :
 	var playerData := {
 		"playerName": self.playerName,
 		"team": self.team,
+		"isGamePlayer": self.isGamePlayer,
 		"orbs": self.orbs,
 		"maxOrbs": self.maxOrbs,
 		"weight": self.weight,
@@ -195,12 +196,14 @@ func registerPlayer() -> Dictionary :
 	return playerData
 
 ###Y'a un monde où il faudra le faire en dehors d'AbstractPlayer mtn
-#static func recoverPlayer(data: Dictionary) -> AbstractPlayer :
-	#var player = AbstractPlayer.new(data.team, data.playerName)
-	#player.orbs = data.orbs
-	#player.maxOrbs = data.maxOrbs
-	#player.weight = data.weight
-	#player.maxWeight = data.maxWeight
+static func recoverPlayer(data: Dictionary) -> AbstractPlayer :
+	var player = Global.gameManager.createPlayer(data.team, data.playerName, data.isGamePlayer)
+	player.orbs = data.orbs
+	player.maxOrbs = data.maxOrbs
+	player.weight = data.weight
+	player.maxWeight = data.maxWeight
 	#for unitData in data.units:
 		#player.units.append(AbstractUnit.recoverUnit(unitData, player))
-	#return player
+	for trinketData: Dictionary in data.trinkets:
+		AbstractTrinket.recoverTrinket(trinketData, player)
+	return player

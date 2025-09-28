@@ -28,7 +28,7 @@ func loadGame() -> bool :
 	
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
 	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1", true)
-	configPlayer(player1)
+	configPlayer(player1)#A CHANGER POUR N'ÊTRE QUE LORSQU'ON DEMARRE UNE NOUVELLE PARTIE
 	campaign.startNextMission()
 	#var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
 	#placeUnit("set1:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
@@ -175,6 +175,7 @@ static func addTrinket(player: AbstractPlayer, idTrinket: String, dataTrinket: D
 		print("ERROR TRINKET NOT FOUND ON DB!")
 		return
 	else: 
+		#For recover cases
 		if dataTrinket != {} :
 			trinket.value_A = dataTrinket["value_A"]
 			trinket.value_B = dataTrinket["value_B"]
@@ -306,13 +307,14 @@ static func getSave(save: int) -> Dictionary:
 	var data = json.get_data()
 	return data
 
-#static func loadSave(save: int) -> void :
-	#var data = getSave(save)
-	#TurnManager.recoverTurnManager(data["turnData"])
-	#players = []
-	#for player: Dictionary in data.players:
-		#players.append(AbstractPlayer.recoverPlayer(player))
-	##Recover campaign too
+static func loadSave(save: Dictionary) -> void :
+	TurnManager.recoverTurnManager(save["turnData"])
+	players = []
+	for player: Dictionary in save.players:
+		players.append(AbstractPlayer.recoverPlayer(player))
+	##Recover campaign at the end
+	campaign = AbstractCampaign.recoverCampaign(save["campaign"])
+	if campaign.progress != campaign.nextMission : campaign.startNextMission()# progress != nextMission bc this could cause ennemi duplication or other probs
 
 #Allow to delete all saves during test because I can't find the user://saves repo
 static func deleteAllSaves() -> void :
