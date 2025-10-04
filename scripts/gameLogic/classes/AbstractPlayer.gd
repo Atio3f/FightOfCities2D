@@ -196,14 +196,20 @@ func registerPlayer() -> Dictionary :
 	return playerData
 
 ###Y'a un monde où il faudra le faire en dehors d'AbstractPlayer mtn
-static func recoverPlayer(data: Dictionary) -> AbstractPlayer :
+static func recoverPlayer(data: Dictionary) -> Dictionary :
 	var player = Global.gameManager.createPlayer(data.team, data.playerName, data.isGamePlayer)
 	player.orbs = data.orbs
 	player.maxOrbs = data.maxOrbs
 	player.weight = data.weight
 	player.maxWeight = data.maxWeight
-	#for unitData in data.units:
-		#player.units.append(AbstractUnit.recoverUnit(unitData, player))
+	
+	var playerDico: Dictionary = {"effectsDico": {}, "unitsDico": {}}
+	var unitDico: Dictionary
+	for unitData in data.units:
+		unitDico = AbstractUnit.recoverUnit(unitData, player)
+		playerDico["effectsDico"].merge(unitDico["effectsDico"])
+		playerDico["unitsDico"].merge(unitDico["unit"])
 	for trinketData: Dictionary in data.trinkets:
 		AbstractTrinket.recoverTrinket(trinketData, player)
-	return player
+	GameManager.players.append(player)
+	return playerDico

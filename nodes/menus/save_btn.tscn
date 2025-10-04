@@ -3,7 +3,15 @@
 [ext_resource type="Script" uid="uid://cwwxhjch7ve1x" path="res://scripts/interface/menus/save_btn.gd" id="1_h2cqc"]
 
 [node name="SaveBtnContainer" type="MarginContainer"]
+anchors_preset = -1
+anchor_left = 0.477431
+anchor_top = 0.47608
+anchor_right = 0.522569
+anchor_bottom = 0.52392
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_h2cqc")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2

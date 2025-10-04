@@ -1,6 +1,7 @@
 class_name AbstractCampaign extends Node
 #Contains all levels from a campaign
 
+var campaignName: String	#Campaign name, serve when loading a save to load the right campaign class
 var campaignFile: String	#File path of the file with all dialogs & list of units/items available for the campaign, will also contains mainCharacter id
 var mainCharacter: String	#Id of the main character
 var startingAllies: Array	#Array with all allies id on the starting team 
@@ -13,6 +14,10 @@ var difficulty: int	#Ascension like system, start at 0 and will go up to 5
 var progress: String = ""	#Actual level on the campaign
 var dataMaps: Dictionary = {}	#Data with all maps
 var nextMission: String	#Next mission to be played, useful with reward interface
+
+func _init(campaignName: String) -> void:
+	self.campaignName = campaignName
+
 
 func setupCampaign(difficulty: int, campaignFile: String) -> void :
 	self.difficulty = difficulty
@@ -118,6 +123,7 @@ func endMap(victoryStatus: bool) -> void:
 ###Save campaign progress, units will be saved on the player side
 func saveCampaignProgress() -> Dictionary :
 	return {
+		"campaignName": self.campaignName,
 		"campaignFile": self.campaignFile,
 		"difficulty": self.difficulty,
 		"progress": self.progress,
@@ -125,8 +131,10 @@ func saveCampaignProgress() -> Dictionary :
 	}
 
 static func recoverCampaign(campaignDico: Dictionary) -> AbstractCampaign :
-	var campaign: AbstractCampaign = load(CampaignDb.CAMPAIGNS[campaignDico["campaignFile"]]).new()
-	campaign.startCampaign(campaignDico["difficulty"], campaignDico["campaignFile"])
+	print("campaignRECOVER name")
+	var campaign: AbstractCampaign = load(CampaignDb.CAMPAIGNS[campaignDico["campaignName"]]).new(campaignDico["campaignName"])
+	campaign.campaignFile = campaignDico["campaignFile"]
 	campaign.progress = campaignDico["progress"]
 	campaign.nextMission = campaignDico["nextMission"]
+	campaign.startCampaign(campaignDico["difficulty"])
 	return campaign

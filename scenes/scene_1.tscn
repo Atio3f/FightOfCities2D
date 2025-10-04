@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cferradf2m4ex"]
+[gd_scene load_steps=2 format=3 uid="uid://cferradf2m4ex"]
 
-[ext_resource type="Script" uid="uid://d0hn5no4xyu4j" path="res://scripts/gameLogic/classes/GameManager.gd" id="1_d7a6c"]
 [ext_resource type="Script" uid="uid://cchu78ucpgyp1" path="res://scripts/gameLogic/classes/MapManager.gd" id="1_t6bmd"]
 
-[node name="scene1" type="Node2D"]
+[node name="gameScene" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -21,13 +20,3 @@ visible = false
 top_level = true
 position = Vector2(80, 80)
 rotation = 3.14159
-
-[node name="UnitsStorage" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Players" type="Node" parent="."]
-unique_name_in_owner = true
-
-[node name="GameManager" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("1_d7a6c")

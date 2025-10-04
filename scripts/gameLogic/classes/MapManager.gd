@@ -128,17 +128,22 @@ static func get_movement_costs(movementType: MovementTypes.movementTypes):
 	
 
 static func registerMap() -> Dictionary:
+	var dataTiles: Dictionary = AbstractTile.registerTiles(tiles, activeTiles)
 	var turnData := {
-		"tiles": tiles, 
-		"activeTiles": activeTiles,
+		"tiles": dataTiles["tiles"], 
+		"activeTiles": dataTiles["activeTiles"],
 		"length": length,
 		"width": width
 	}
 	return turnData
 
-static func recoverMap(data: Dictionary, player: AbstractPlayer) -> void :
+static func recoverMap(data: Dictionary) -> void :
 	tiles = data.tiles
-	activeTiles = data.activeTiles
+	var tile: AbstractTile
+	for tileData: Dictionary in data.activeTiles :
+		if (!TileDb.TILES[tileData["id"]]) : continue
+		tile = TileDb.TILES[tileData["id"]].new(tileData["x"], tileData["y"])
+		activeTiles[tile.getCoords()] = tile
 	length = data.length
 	width = data.width
 	#Remettre les cases du terrain

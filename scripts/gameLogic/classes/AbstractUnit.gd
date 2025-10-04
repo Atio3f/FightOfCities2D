@@ -443,7 +443,6 @@ func registerUnit() -> Dictionary :
 		"id": self.id,
 		"imgPath": self.imgPath,
 		"uid": self.uid,
-		"className": get_script().resource_path.get_file().get_basename(),
 		"grade": self.grade,
 		"hpBase": self.hpBase,
 		"hpMax": self.hpMax,
@@ -471,7 +470,7 @@ func registerUnit() -> Dictionary :
 		"tags": self.tags,
 		"movementTypes": self.movementTypes,
 		"actualMovementTypes": self.actualMovementTypes,
-		"tile": self.tile,
+		"tileCoords": {"x": self.tile.getCoords().x, "y": self.tile.getCoords().y},
 		"isDead": self.isDead,
 		"effects": []  # Une liste d'effets
 	}
@@ -503,3 +502,32 @@ func registerUnit() -> Dictionary :
 		#return null#Maybe create a unit via ?
 	
 	
+static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary :
+	if UnitDb.UNITS.has(data["id"]):
+		#var unit = AbstractUnit.new(data.id, data.imgPath, player, data.grade, data.hpBase, data.powerBase, data.damageType, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
+		var tile: AbstractTile = MapManager.getTileAt(Vector2i(data["tileCoords"]["x"], data["tileCoords"]["y"]))
+		var unit = Global.gameManager.createUnit(data["id"], player, tile)
+		unit.initStats(data["uid"], data["hpMax"], data["hpActual"], data["hpTemp"], data["power"], data["speed"], data["speedRemaining"], data["atkPerTurn"], data["atkRemaining"], data["dr"], data["mr"], data["wisdom"], data["level"])
+		unit.tile = MapManager.getTileAt(Vector2i(data["tileCoords"]["x"], data["tileCoords"]["y"]))
+		player.units.append(unit)
+		var unitDico: Dictionary = {}
+		unitDico["unit"] = {unit.uid: unit}
+		unitDico["effectsDico"] = recoverEffectsForUnit(data["effects"], unit)
+		return unitDico
+	else :
+		return {}
+
+##Return a dico with all effects uid from this unit
+static func recoverEffectsForUnit(effectsData: Array, unit: AbstractUnit) -> Dictionary :
+	var effectsDico: Dictionary = {}
+	for effectData: Dictionary in effectsData :
+		var newEff: AbstractEffect = AbstractEffect.recoverEffect(effectData, unit)
+		if newEff != null :
+			effectsDico[newEff.uid] = newEff
+	return effectsDico
+
+#Recover units & effeects stocked on unit effects
+func recoverUnitsStocked(dico: Dictionary) -> void :
+	for effect: AbstractEffect in self.effects :
+		effect.recoverUnitsStocked(dico["effectsDico"], dico["unitsDico"])
+	pass

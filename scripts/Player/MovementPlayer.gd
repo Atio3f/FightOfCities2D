@@ -1,7 +1,6 @@
 extends Camera2D
 
 @onready var Souris = $"../Pointeur_Selection"
-@onready var scene = $"../../.."
 @onready var caseSelec = $"../Pointeur_Selection/CaseSelecJ1"
 @onready var joueurMov = $"../"
 
@@ -44,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	position = emplacement  # au lieu de translate(emplacement)
 
 	# Gestion souris
-	var newPositionSouris: Vector2i = scene.get_global_mouse_position() / MapManager.vectCellSize
+	var newPositionSouris: Vector2i = get_global_mouse_position() / MapManager.vectCellSize
 	if Souris.positionSouris != newPositionSouris:
 		Souris.positionSouris = newPositionSouris
 		caseSelec.global_position = Souris.getMiddleMouseCell()

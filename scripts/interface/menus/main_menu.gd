@@ -19,12 +19,14 @@ func _ready() -> void:
 	#	campaignsAvailable.append(name)
 	
 	##Get saves and add them to SavesList on Continue Menu
-	saves = GameManager.getSavesList()
+	var savesName : Array[String] = GameManager.getSavesList()
 	var saveBtn: SaveBtn
-	for save: Dictionary in saves:
+	for save: String in savesName:
 		saveBtn = saveBtnScene.instantiate()
+		print(save)
 		saveBtn.toggleSave(save, self)
 		%SavesList.add_child(saveBtn)
+		print(saveBtn.visible)
 
 #Show list of campaigns availables
 func _on_campaign_selection_btn_pressed():
@@ -37,8 +39,16 @@ func _on_campaign_selection_btn_pressed():
 
 func _on_start_btn_pressed():
 	if campaignName != "":	#Will need to be automatized later when we will have many campaings
-		GameManager.campaign = load(CampaignDb.CAMPAIGNS[campaignName]).new()
-		GameManager.campaign.startCampaign(0)
+		##Create the campaign with the starting config & place it on a new GameManager
+		var campaign: AbstractCampaign = load(CampaignDb.CAMPAIGNS[campaignName]).new(campaignName)
+		campaign.startCampaign(0)
+		Global.change_gameM_instance(campaign)
+		Global.gameManager.configPlayer(Global.gameManager.getMainPlayer())	#We want to use it only on load for a new campaign not when we load a save
+		print("STARTING CAMPAIGN")
+		print(GameManager.campaign.startingAllies)
+		GameManager.campaign.startNextMission()
+		print("END _on_start_btn_pressed")
+		print(MapManager.activeTiles)	#Vide ça a pas dû charger quoi que ce soit
 		get_tree().change_scene_to_file("res://scenes/scene_1.tscn")
 
 func _on_monkeys_campaign_btn_pressed():
@@ -69,6 +79,11 @@ func _on_continue_btn_pressed():
 	%Settings.visible = false
 	%LoadSaveBtn.visible = false
 	%SavesList.visible = true
+
+func loadSave(save: Dictionary) -> void: 
+	save_to_load = save
+	%LoadSaveBtn.visible = true
+	%SavesList.visible = false
 
 ##Load the save and
 func _on_load_save_btn_pressed():

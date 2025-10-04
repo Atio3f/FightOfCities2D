@@ -49,6 +49,29 @@ func colorSelector(couleurEq : String) -> Color :
 	else:
 		return Color.hex(0xf7f7f740)  # Blanc par défaut
 
+##Change the only instance of gameManager, like a singleton
+func change_gameM_instance(campaignNode: AbstractCampaign = null) -> void :
+	var mainPlayer: AbstractPlayer
+	var gameM: GameManager = GameManager.new()
+	get_tree().root.add_child(gameM)
+	if campaignNode != null : 
+		gameM.campaign = campaignNode	#Setup campaign
+	##Remove old gameManager if there is one
+	if gameManager :
+		mainPlayer = gameManager.mainPlayer	#Transfer main player node to the next scene
+		gameManager.queue_free()
+	else :
+		mainPlayer = gameM.createPlayer(TeamsColor.TeamsColor.GREEN, "ATIO", true)	#Create the main player if 
+	Global.gameManager = gameM
+	change_mapM_instance()
+
+func change_mapM_instance() -> void :
+	##Remove old mapManager if there is one
+	if gameManager.mapManager :
+		gameManager.mapManager.queue_free()
+	var mapM: MapManager = MapManager.new()
+	gameManager.mapManager = mapM
+	get_tree().root.add_child(mapM)
 
 ### All scenes to preload here
 #Interface of an trinket on the trinket list

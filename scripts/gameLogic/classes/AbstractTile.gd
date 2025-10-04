@@ -39,3 +39,21 @@ func getCoords() -> Vector2i :
 ##Return if there is an unit on this tile
 func hasUnitOn() -> bool:
 	return unitOn != null
+
+static func registerTiles(tiles: Array, active_tiles: Dictionary) -> Dictionary :
+	var tilesData: Dictionary = {
+		"tiles": [],
+		"activeTiles": []
+	}
+	for tile: AbstractTile in tiles :
+		pass	#We never use tiles actually
+	for coords: Vector2i in active_tiles :
+		var dataTile: Dictionary = {
+		"x": coords.x,
+		"y": coords.y,
+		"id": active_tiles[coords].id
+		#For the moment no need to stock speed because it will be restored by the id
+		}
+		tilesData.activeTiles.append(dataTile)
+		
+	return tilesData

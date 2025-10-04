@@ -11,25 +11,26 @@ static var campaign: AbstractCampaign	#Campaign, will be add by the main_menu
 
 #var turnManager: TurnManager
 
-##JSP SI IL FAUT VRAIMENT QUE JE LE PLACE GAMEMANAGER ni que je dois init mapManager ici
-func _ready():
-	loadGame()
+var nodePlayers: Node
+var nodeStorage: Node
 
+##Initialize storage nodes for game elements
+func _ready():
+	nodePlayers = Node.new()
+	self.add_child(nodePlayers)
+	nodeStorage = Node.new()
+	self.add_child(nodeStorage)
+
+##A CHANGER AVEC LE NOUVEAU SYSTEME
 #Return value is to wait the load of all elements and check if we got an error during the loading
 func loadGame() -> bool : 
-	##On ajoute le GameManager dans Global pour être accessible partout
-	Global.gameManager = self
 	##Load all units from all player into players and place them on the map(and setup their effects?)
 	
-	#Generate Map
-	mapManager = %Map
-	generateMap(12, 16)
-	
-	
 	###POUR LE MOMENT ON FAIT JUSTE UNE CONFIG PAR DEFAUT
-	var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1", true)
-	configPlayer(player1)#A CHANGER POUR N'ÊTRE QUE LORSQU'ON DEMARRE UNE NOUVELLE PARTIE
-	campaign.startNextMission()
+	##A CHANGER POUR N'ÊTRE QUE LORSQU'ON DEMARRE UNE NOUVELLE PARTIE
+	#var player1: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.GREEN, "Player1", true)
+	#configPlayer(player1)
+	#campaign.startNextMission()
 	#var ennemi: AbstractPlayer = createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
 	#placeUnit("set1:Bull", ennemi, MapManager.getTileAt(Vector2i(5, 10)))
 	
@@ -93,7 +94,7 @@ func createPlayer(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool)
 	else :
 		p = sceneOtherPlayer.instantiate()
 	var player = p as AbstractPlayer
-	%Players.add_child(p)
+	nodePlayers.add_child(p)
 	player.initialize(team, name, isGamePlayer)	#We initialize AbstractPlayer infos here
 		#Add to the scene
 	if isGamePlayer : mainPlayer = player
@@ -109,11 +110,20 @@ static func unitCanBePlacedOnTile(player: AbstractPlayer, tile: AbstractTile, we
 func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
 	var u := sceneUnit.instantiate()
 	var unit : AbstractUnit = u as AbstractUnit
-	%UnitsStorage.add_child(unit, true)
+	nodeStorage.add_child(unit, true)
 	print(unit)
 	UnitDb.UNITS[id].initialize(unit, player)
 	unit.onPlacement(tile)
 	player.addWeight(unit.grade)	#POTENTIELLEMENT A CHANGER DE PLACE SI ON NE DOIT PAS TJRS CHANGER LE POIDS
+	return unit
+
+## Use on recoverUnit to get the unit without weight change or onPlacement call
+func createUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:
+	var u := sceneUnit.instantiate()
+	var unit : AbstractUnit = u as AbstractUnit
+	nodeStorage.add_child(unit, true)
+	print(unit)
+	UnitDb.UNITS[id].initialize(unit, player)
 	return unit
 
 static func whenUnitPlace(unit: AbstractUnit) -> void :
@@ -219,6 +229,7 @@ static func savingGame() -> void :
 	
 	var gameData := {
 		"turnData": TurnManager.registerTurnM(),
+		"mapData": MapManager.registerMap(),
 		"players": [],
 		"campaign": campaign.saveCampaignProgress()
 	}
@@ -255,8 +266,8 @@ static func saveJson(json: String) -> void:
 	else:
 		push_error("Erreur lors de l'ouverture du fichier pour écrire.")
 
-static func getSavesList() -> Array:
-	var saveFiles := []
+static func getSavesList() -> Array[String]:
+	var saveFiles : Array[String] = []
 	var dir := DirAccess.open("user://saves")
 
 	if dir == null:
@@ -282,13 +293,13 @@ static func deleteSave(save: int) -> bool:
 			return true
 		else:
 			return false
-	else:
+	else :
 		return false
 
 #Permet de récupérer les infos d'une sauvegarde à partir de son numéro
-static func getSave(save: int) -> Dictionary:
+static func getSave(save: String) -> Dictionary:
 	#On récupère le fichier json
-	var file_path := "user://saves/save%d.json" % save
+	var file_path := "user://saves/%s" % save
 	if not FileAccess.file_exists(file_path):
 		return {}
 	
@@ -308,10 +319,16 @@ static func getSave(save: int) -> Dictionary:
 	return data
 
 static func loadSave(save: Dictionary) -> void :
+	Global.change_gameM_instance()	#Add the gameManager singleton to Global
 	TurnManager.recoverTurnManager(save["turnData"])
+	MapManager.recoverMap(save["mapData"])
 	players = []
+	var playersDico: Dictionary = {}
 	for player: Dictionary in save.players:
-		players.append(AbstractPlayer.recoverPlayer(player))
+		playersDico.merge(AbstractPlayer.recoverPlayer(player))
+	##Iterate through all units to add unitsStocked and effectStocked on all effects
+	for unit: AbstractUnit in getAllUnits() :
+		unit.recoverUnitsStocked(playersDico)
 	##Recover campaign at the end
 	campaign = AbstractCampaign.recoverCampaign(save["campaign"])
 	if campaign.progress != campaign.nextMission : campaign.startNextMission()# progress != nextMission bc this could cause ennemi duplication or other probs
@@ -322,3 +339,13 @@ static func deleteAllSaves() -> void :
 	for save: String in getSavesList():
 		print(deleteSave(i))
 		i += 1
+
+##Change the only instance of gameManager
+#static func change_instance() -> void :
+	###Remove old gameManager if there is one
+	#if Global.gameManager :
+		#Global.gameManager.queue_free()
+	#var gameM: GameManager = GameManager.new()
+	#Global.gameManager = gameM
+	#get_tree().root.add_child(gameM)
+	
