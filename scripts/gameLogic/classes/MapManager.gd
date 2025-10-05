@@ -42,9 +42,7 @@ static func initMap(_length: int, _width: int) -> void :
 	while i < _length :
 		while j < _width :
 			tile = pickTile(genMaxValue, i, j, genMapDefault)
-			activeTiles[Vector2i(i, j)] = tile
-			tiles.append(tile)
-			
+			placeTile(tile, Vector2i(i, j))
 			j += 1
 		i += 1
 		j = 0
@@ -59,11 +57,17 @@ static func pickTile(totalWeight: int, i: int, j: int, genMap: Dictionary) -> Ab
 		current += genMap[tile_name]
 		if random < current:
 			tile = TileDb.TILES[tile_name].new(i, j)
-			var vectorTile : Vector2i = TileDb.TILES_VECTORS[tile.id]
+			placeTile(tile, Vector2i(i, j))
+			tiles.append(tile)
 			#if !terrain : Terrain.synchroTerrain()
-			terrain.setTile(i, j, vectorTile)
 			break
 	return tile
+
+##Add tile to activeTiles & draw it on tilemap
+static func placeTile(tile: AbstractTile, coords: Vector2i) -> void :
+	activeTiles[coords] = tile
+	var vectorTile : Vector2i = TileDb.TILES_VECTORS[tile.id]
+	terrain.setTile(coords.x, coords.y, vectorTile)
 
 ##Get tile at coordinates entered(Vector2i)
 static func getTileAt(coords: Vector2i) -> AbstractTile :
@@ -139,12 +143,12 @@ static func registerMap() -> Dictionary:
 
 static func recoverMap(data: Dictionary) -> void :
 	tiles = data.tiles
+	#Remettre les cases du terrain
 	var tile: AbstractTile
 	for tileData: Dictionary in data.activeTiles :
 		if (!TileDb.TILES[tileData["id"]]) : continue
 		tile = TileDb.TILES[tileData["id"]].new(tileData["x"], tileData["y"])
-		activeTiles[tile.getCoords()] = tile
+		placeTile(tile, tile.getCoords())
 	length = data.length
 	width = data.width
-	#Remettre les cases du terrain
 	

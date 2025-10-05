@@ -1,11 +1,11 @@
 class_name AbstractTrinket extends Node
 
-static var id: String
+var id: String
 var nameTrinket: String
 var imgPath: String
 var playerAssociated: AbstractPlayer	#Forcément le joueur principal en soit
 
-static var rarity: Rarities.raritiesTrinkets
+var rarity: Rarities.raritiesTrinkets
 
 #3 values like effects to keep parameters for trinkets
 var value_A: int

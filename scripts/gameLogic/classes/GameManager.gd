@@ -324,7 +324,7 @@ static func loadSave(save: Dictionary) -> void :
 	MapManager.recoverMap(save["mapData"])
 	players = []
 	var playersDico: Dictionary = {}
-	for player: Dictionary in save.players:
+	for player: Dictionary in save["players"]:
 		playersDico.merge(AbstractPlayer.recoverPlayer(player))
 	##Iterate through all units to add unitsStocked and effectStocked on all effects
 	for unit: AbstractUnit in getAllUnits() :
@@ -332,6 +332,10 @@ static func loadSave(save: Dictionary) -> void :
 	##Recover campaign at the end
 	campaign = AbstractCampaign.recoverCampaign(save["campaign"])
 	if campaign.progress != campaign.nextMission : campaign.startNextMission()# progress != nextMission bc this could cause ennemi duplication or other probs
+	print(GameManager.players)
+	print(save["players"])
+	print(GameManager.getAllUnits())
+	print(playersDico)
 
 #Allow to delete all saves during test because I can't find the user://saves repo
 static func deleteAllSaves() -> void :
