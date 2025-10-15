@@ -508,7 +508,8 @@ static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary 
 		var tile: AbstractTile = MapManager.getTileAt(Vector2i(data["tileCoords"]["x"], data["tileCoords"]["y"]))
 		var unit = Global.gameManager.createUnit(data["id"], player, tile)
 		unit.initStats(data["uid"], data["hpMax"], data["hpActual"], data["hpTemp"], data["power"], data["speed"], data["speedRemaining"], data["atkPerTurn"], data["atkRemaining"], data["dr"], data["mr"], data["wisdom"], data["level"])
-		unit.tile = MapManager.getTileAt(Vector2i(data["tileCoords"]["x"], data["tileCoords"]["y"]))
+		unit.tile = tile
+		unit.position = MapManager.calculate_map_position(tile.getCoords())
 		player.units.append(unit)
 		var unitDico: Dictionary = {}
 		unitDico["unit"] = {unit.uid: unit}
