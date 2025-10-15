@@ -45,6 +45,7 @@ func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 ###Fix the limit of camera depending of terrain size & tile size
 func fixCameraLimit(x: int, y: int) -> void:
 	if !isGamePlayer : return
+	print("limitLeft" + str(x) + ""+ str(y))
 	%Movement.limitLeft = -7 * MapManager.cellSize - 500
 	%Movement.limitRight = x * 1.4 * MapManager.cellSize + 80
 	%Movement.limitUp = -6 *  MapManager.cellSize - 100
@@ -197,12 +198,18 @@ func registerPlayer() -> Dictionary :
 
 ###Y'a un monde où il faudra le faire en dehors d'AbstractPlayer mtn
 static func recoverPlayer(data: Dictionary) -> Dictionary :
-	var player = Global.gameManager.createPlayer(data.team, data.playerName, data.isGamePlayer)
+	var player : AbstractPlayer
+	#Avoid making a duplicate of main player on loading a save
+	if data.isGamePlayer && GameManager.getMainPlayer():
+		player = GameManager.getMainPlayer()
+		player.initialize(data.team, data.playerName, data.isGamePlayer)
+	else :
+		player = Global.gameManager.createPlayer(data.team, data.playerName, data.isGamePlayer)
 	player.orbs = data.orbs
 	player.maxOrbs = data.maxOrbs
 	player.weight = data.weight
 	player.maxWeight = data.maxWeight
-	
+	player.fixCameraLimit(MapManager.length, MapManager.width)
 	var playerDico: Dictionary = {"effectsDico": {}, "unitsDico": {}}
 	var unitDico: Dictionary
 	for unitData in data.units:
