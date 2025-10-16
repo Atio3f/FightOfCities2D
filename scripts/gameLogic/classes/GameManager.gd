@@ -165,6 +165,7 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 static func generateMap(length: int, width: int) -> void :
 
 	MapManager.initMap(length, width)
+	if getMainPlayer() != null : getMainPlayer().fixCameraLimit(length, width)	#Update camera limit
 	return
 
 ##Like addTrinket function but activate the obtain effet of the trinket

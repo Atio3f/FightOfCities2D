@@ -26,6 +26,7 @@ func actualisationPV(entiteeAssociee : Node2D) -> void:
 #S'active lorsque le joueur effectue un clic droit sur une unité/bâtiment(visibilite = true), 
 #lorsqu'un des boutons des menus est actionné(visibilite -> true) ou que l'entité est désélectionnée (visibilite -> true)
 func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur, visibilite : bool) -> void:
+	unitAssociated = entiteAssociee
 	if(!visibilite) :
 		if(pointeursSurInterface.has(pointeurJoueurI)):
 			pointeursSurInterface.erase(pointeurJoueurI)
@@ -36,8 +37,7 @@ func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur,
 		if(!pointeursSurInterface.has(pointeurJoueurI)):
 			pointeursSurInterface.append(pointeurJoueurI) 
 	conteneurMenus.visible = visibilite
-	%DeleteUnitBtn.visible = (TurnManager.turn == 0)	#Hide the Delete button outside the preparation turn
-	unitAssociated = entiteAssociee
+	%DeleteUnitBtn.visible = (TurnManager.turn == 0 && unitAssociated.player.isGamePlayer)	#Hide the Delete button outside the preparation turn
 	
 
 
@@ -83,6 +83,7 @@ func _on_menu_consommables_pressed():
 
 ##Delete the unit if used during the preparation turn
 func _on_delete_unit_btn_pressed():
+	if !unitAssociated.player.isGamePlayer : return#Avoid crashes
 	#Add the unit to the player inventory WILL NEED CHANGE IF CHANGE OF addUnitCard
 	unitAssociated.player.addUnitCard(unitAssociated.id)
 	#Add its tile on the placement tiles
