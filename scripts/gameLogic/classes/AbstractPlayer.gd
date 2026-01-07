@@ -42,6 +42,7 @@ func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 		pass#$Actions.player = self#Will contains the AI
 	weight = 0
 
+
 ###Fix the limit of camera depending of terrain size & tile size
 func fixCameraLimit(x: int, y: int) -> void:
 	if !isGamePlayer : return
@@ -187,13 +188,14 @@ func registerPlayer() -> Dictionary :
 		"maxWeight": self.maxWeight,
 		"maxUnits": self.maxUnits,
 		"units": [],  # Une liste d'unités
-		"hand": [],
+		"hand": hand.registerHand(), # Store hand cards, max size & cards used
 		"trinkets": []
 	}
 	for unit: AbstractUnit in units:
 		playerData["units"].append(unit.registerUnit())
 	for trinket: AbstractTrinket in trinkets:
 		playerData["trinkets"].append(trinket.registerTrinket())
+	
 	return playerData
 
 ###Y'a un monde où il faudra le faire en dehors d'AbstractPlayer mtn
@@ -218,5 +220,5 @@ static func recoverPlayer(data: Dictionary) -> Dictionary :
 		playerDico["unitsDico"].merge(unitDico["unit"])
 	for trinketData: Dictionary in data.trinkets:
 		AbstractTrinket.recoverTrinket(trinketData, player)
-	GameManager.players.append(player)
+	PlayerHand.recoverHand(data["hand"], player)
 	return playerDico

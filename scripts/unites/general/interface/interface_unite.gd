@@ -38,7 +38,7 @@ func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur,
 			pointeursSurInterface.append(pointeurJoueurI) 
 	conteneurMenus.visible = visibilite
 	%DeleteUnitBtn.visible = (TurnManager.turn == 0 && unitAssociated.player.isGamePlayer)	#Hide the Delete button outside the preparation turn
-	
+
 
 
 

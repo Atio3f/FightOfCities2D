@@ -1,7 +1,7 @@
 extends Node
 
 
-const UNITS = {
+const UNITS := {
 	"set1:MonkeyMC": preload("res://Ressources/units/mainCharacters/monkeys/MonkeyMC.gd"),
 	"set1:Monkey": preload("res://Ressources/units/monkeys/Monkey.gd"),
 	"set1:QueenMonkey": preload("res://Ressources/units/monkeys/QueenMonkey.gd"),

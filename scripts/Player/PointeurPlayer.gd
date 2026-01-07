@@ -603,6 +603,8 @@ func getTilesMouvementForAttaque(casesAutourTarget : Array) -> Dictionary:
 			casesPossibles[vec] = _walkable_cells[vec]
 	return casesPossibles
 
+func get_placeables_cells() -> Array[Vector2i] :
+	return visuPlacement.getCells()
 
 func draw_placeable_cells(cells: Array[Vector2i]) -> void:
 	visuPlacement.draw_placeable_cells(cells)

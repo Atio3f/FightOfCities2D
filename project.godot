@@ -34,6 +34,7 @@ UnitDb="*res://scripts/gameLogic/DB/unitDB.gd"
 TrinketDb="*res://scripts/gameLogic/DB/trinketDB.gd"
 CampaignDb="*res://scripts/gameLogic/DB/campaignDB.gd"
 RewardDb="*res://scripts/gameLogic/DB/rewardDB.gd"
+GoalsDb="*res://scripts/gameLogic/DB/goalsDB.gd"
 
 [editor_plugins]
 

@@ -1,14 +1,15 @@
 extends Node
 
 
-const REWARDS = {
+const REWARDS := {
 	"reward:unitMonkey" : preload("res://Ressources/rewards/UnitMonkeyReward.gd"),
 	"reward:magicalBeast" : preload("res://Ressources/rewards/MagicalBeastReward.gd"),
-	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd")
+	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd"),
+	"reward:classic_banana": preload("res://Ressources/rewards/ClassicBananaReward.gd")
 }
 
 #A CHANGER faudra que ça soit en fonction de la langue les desc et title, sûrement grâce à la valeur de rewardType
-const REWARDS_DICO = {
+const REWARDS_DICO := {
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:KnightMonkey": {"title": "Knight Monkey", "desc": "He always help the weakest.", "idReward": "set1:KnightMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:AbominationMonkey": {"title": "Abomination Monkey", "desc": "A failed experiementation. Poor Monkey...", "idReward": "set1:AbominationMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},

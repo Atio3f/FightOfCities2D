@@ -72,24 +72,20 @@ func startNextMission() -> void :
 		for coordArray: Array in dataMap.get("placementTiles"):
 			placementTiles.append(Vector2i(coordArray[0], coordArray[1]))
 		#Draw tiles
-		GameManager.getMainPlayer().playerPointer.draw_placeable_cells(placementTiles)
+		GameManager.drawPlaceablesTiles(placementTiles)
+		
+		## Add goals if its a fight
+		if dataMap.get("goals") :
+			GameManager.loadGoals(dataMap.get("goals"))
 		#Hide Meta Interface
 		GameManager.getMainPlayer().toggleCombatUI()
 	file.close()
+	GameManager.savingGame()
 
 func checkWin() -> bool :
 	var isWinning: bool = true
-	for player: AbstractPlayer in GameManager.getPlayers() :
-		if !player :	#Delete player if we forgot to remove it before
-			GameManager.getPlayers().erase(player)
-			continue
-		#We don't check units from base player
-		if player == GameManager.getMainPlayer() :
-			continue
-		else :
-			if player.getUnits().size() != 0 :
-				isWinning = false
-				break
+	for goal: AbstractGoal in GameManager.currentGoals :
+		if goal.primaryGoal : isWinning = isWinning && goal.checkObjectiveStatus()
 	return isWinning
 
 ##Function to check if the player has lose on the map
@@ -134,7 +130,13 @@ static func recoverCampaign(campaignDico: Dictionary) -> AbstractCampaign :
 	print("campaignRECOVER name")
 	var campaign: AbstractCampaign = load(CampaignDb.CAMPAIGNS[campaignDico["campaignName"]]).new(campaignDico["campaignName"])
 	campaign.campaignFile = campaignDico["campaignFile"]
+	var file : FileAccess = FileAccess.open(campaign.campaignFile, FileAccess.READ)	#Pê créer un autre fichier pour ça
+	if file :
+		var content : String = file.get_as_text()
+		var data: Dictionary = JSON.parse_string(content)
+		campaign.dataMaps = data.get("maps")
 	campaign.progress = campaignDico["progress"]
 	campaign.nextMission = campaignDico["nextMission"]
+	campaign.difficulty = campaignDico["difficulty"]
 	campaign.startCampaign(campaignDico["difficulty"])
 	return campaign

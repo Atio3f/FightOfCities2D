@@ -17,3 +17,9 @@ func getEndSignal() -> Signal :
 
 func display(metaUI: MetaUI) -> void :
 	pass
+
+func saveInterface() -> Dictionary :
+	var dico:= {
+		"type": "Abstract"
+	}
+	return dico

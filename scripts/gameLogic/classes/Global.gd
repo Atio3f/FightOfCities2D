@@ -53,6 +53,7 @@ func colorSelector(couleurEq : String) -> Color :
 func change_gameM_instance(campaignNode: AbstractCampaign = null) -> void :
 	var mainPlayer: AbstractPlayer
 	var gameM: GameManager = GameManager.new()
+	gameM.name = "GameManager"
 	get_tree().root.add_child(gameM)
 	if campaignNode != null : 
 		gameM.campaign = campaignNode	#Setup campaign

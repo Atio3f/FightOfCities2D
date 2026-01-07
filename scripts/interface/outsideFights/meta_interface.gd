@@ -18,3 +18,10 @@ func onRewardInterfaceClosed() -> void:
 	print("CLOSED")
 	GameManager.campaign.startNextMission()
 	$"../../..".toggleCombatUI()
+
+
+func saveInterfaces() -> Array :
+	var interfaces:= []
+	for interface: AbstractMetaUI in get_children():
+		interfaces.append(interface.saveInterface())
+	return interfaces

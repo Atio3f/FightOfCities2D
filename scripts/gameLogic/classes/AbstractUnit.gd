@@ -510,7 +510,7 @@ static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary 
 		unit.initStats(data["uid"], data["hpMax"], data["hpActual"], data["hpTemp"], data["power"], data["speed"], data["speedRemaining"], data["atkPerTurn"], data["atkRemaining"], data["dr"], data["mr"], data["wisdom"], data["level"])
 		unit.tile = tile
 		unit.position = MapManager.calculate_map_position(tile.getCoords())
-		player.units.append(unit)
+		tile.unitOn = unit #Place unit on tile
 		var unitDico: Dictionary = {}
 		unitDico["unit"] = {unit.uid: unit}
 		unitDico["effectsDico"] = recoverEffectsForUnit(data["effects"], unit)

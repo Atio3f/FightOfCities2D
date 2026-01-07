@@ -47,6 +47,17 @@
 				"win": [],
 				"lose": []
 			},
+			"goals": [
+				{
+					"className": "KillAllGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"colorsToKill": [1],
+					"killsAtStart": 1,
+					"killsRemaining": 1
+				}
+			],
 			"rewards": [
 				"reward:unitMonkey"
 			],
@@ -80,6 +91,17 @@
 				"win": [],
 				"lose": []
 			},
+			"goals": [
+				{
+					"className": "KillAllGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"colorsToKill": [1],
+					"killsAtStart": 2,
+					"killsRemaining": 2
+				}
+			],
 			"rewards": [
 				"reward:magicalBeast"
 			],
@@ -113,6 +135,17 @@
 				"win": [],
 				"lose": []
 			},
+			"goals": [
+				{
+					"className": "KillAllGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"colorsToKill": [1],
+					"killsAtStart": 2,
+					"killsRemaining": 2
+				}
+			],
 			"rewards": [
 				"reward:trinketBoss"
 			],

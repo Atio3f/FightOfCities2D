@@ -29,17 +29,20 @@ func getHand() -> Array[String]:
 func getUnitsStocked() -> Array[String]:
 	return unitsStock
 
-func registerHand(player: AbstractPlayer) -> Dictionary:
-	var turnData := {
+func registerHand() -> Dictionary:
+	var handData := {
 		"cards": cards, 
 		"cardsPlayed": cardsPlayed,
-		"maxSize": maxSize
+		"maxSize": maxSize,
+		"units": unitsStock 
 	}
-	return turnData
+	return handData
 
-static func recoverHand(data: Dictionary, player: AbstractPlayer) -> PlayerHand :
+static func recoverHand(data: Dictionary, player: AbstractPlayer) -> void :
 	var hand: PlayerHand = PlayerHand.new(player)
-	hand.cards = data.cards
-	hand.cardsPlayed = data.cardsPlayed
+	hand.cards.assign(data["cards"])
+	hand.cardsPlayed.assign(data["cardsPlayed"])
 	hand.maxSize = data.maxSize
-	return hand
+	if data["units"] : hand.unitsStock.assign(data["units"])
+	player.hand = hand
+	#return hand No need to return the hand

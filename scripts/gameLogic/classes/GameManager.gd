@@ -8,7 +8,7 @@ static var sceneOtherPlayer: PackedScene = preload("res://nodes/joueur/otherPlay
 static var sceneUnit: PackedScene = preload("res://nodes/Unite/unite.tscn")
 var mapManager: MapManager
 static var campaign: AbstractCampaign	#Campaign, will be add by the main_menu
-
+static var currentGoals: Array[AbstractGoal] = [] #All goals for the active mission
 #var turnManager: TurnManager
 
 var nodePlayers: Node
@@ -91,6 +91,7 @@ func createPlayer(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool)
 	var p : Node 
 	if isGamePlayer :
 		p = scenePlayer.instantiate()
+		p.name = name
 	else :
 		p = sceneOtherPlayer.instantiate()
 	var player = p as AbstractPlayer
@@ -168,6 +169,16 @@ static func generateMap(length: int, width: int) -> void :
 	if getMainPlayer() != null : getMainPlayer().fixCameraLimit(length, width)	#Update camera limit
 	return
 
+## Draw placeables tiles for the main player
+static func drawPlaceablesTiles(placementTiles: Array[Vector2i]) -> void :
+	getMainPlayer().playerPointer.draw_placeable_cells(placementTiles)
+
+static func getPlaceablesTiles() -> Array[Vector2i] :
+	if getMainPlayer().playerPointer :
+		return getMainPlayer().playerPointer.get_placeables_cells()
+	else :
+		return []
+
 ##Like addTrinket function but activate the obtain effet of the trinket
 static func obtainTrinket(player: AbstractPlayer, idTrinket: String) -> void:
 	var trinket : AbstractTrinket = TrinketDb.TRINKETS[idTrinket].new(player)
@@ -195,8 +206,15 @@ static func addTrinket(player: AbstractPlayer, idTrinket: String, dataTrinket: D
 			trinket.counter2 = dataTrinket["counter2"]
 		player.setTrinket(trinket)#Place the trinket on screen
 
+## Function
+static func checkGoals() -> void :
+	for goal: AbstractGoal in currentGoals :
+		goal.updateObjective()
+
+
 ## Function called to check if the player have win or lose
 static func checkWin() -> void :
+	checkGoals() #Pourra être déplacer plus tard ou ajouter à d'autres fonctions
 	print(campaign)
 	var isWinning: bool = campaign.checkWin()
 	var isLosing: bool = campaign.checkLose()	#Can serve if there are some ways to lose other than units
@@ -214,26 +232,35 @@ static func endMap(victoryStatus: bool) -> void :
 	#We duplicate to avoid the iteration to skip some elements bc we delete the first one
 	for unit: AbstractUnit in getMainPlayer().getUnits().duplicate() :	#On est obligé de boucler 2 fois pour le moment, 
 		unit.removeSelf(false)	#Alors jsp si faudra pas revoir l'organisation de cette partie à voir
-	#Maybe delete enemies units bc they could still lived
-	print(getMainPlayer().getUnits())
 	##Delete all players except the main one
 	players.erase(getMainPlayer())
 	for player: AbstractPlayer in players:
 		players.erase(player)
-		if player : player.queue_free()
+		if player : 
+			# If it delete also the main player it is because players had multiple exemples of him
+			player.queue_free()
+			#TODO Check si ça marche réellement dans des scénarios sans
+			for unit: AbstractUnit in player.getUnits() :
+				unit.removeSelf(false)
 	players.append(getMainPlayer())
 	##Play dialogs and then go to the next map on the endMap method from AbstractCampaign
 	campaign.endMap(victoryStatus)
 
+static var file_name: String = "";
 
+## Save state of the game
+# State is saved before each fight
 static func savingGame() -> void :
 	
 	var gameData := {
 		"turnData": TurnManager.registerTurnM(),
 		"mapData": MapManager.registerMap(),
 		"players": [],
-		"campaign": campaign.saveCampaignProgress()
+		"campaign": campaign.saveCampaignProgress(),
+		"goals": []#currentGoals.map(func(element: AbstractGoal): element.registerGoal())
 	}
+	for goal: AbstractGoal in currentGoals :
+		gameData.goals.append(goal.registerGoal())
 	for player in players :
 		gameData["players"].append(player.registerPlayer())
 	var json = JSON.new()
@@ -249,16 +276,20 @@ static func saveJson(json: String) -> void:
 	if dir == null:
 		DirAccess.make_dir_absolute(dir_path)
 		dir = DirAccess.open(dir_path)
-
-	var existing_files := dir.get_files()
-	var i := 1
-	while true:
-		var filename := "save%d.json" % i
-		if not filename in existing_files:
-			break
-		i += 1
-
-	var full_path := "%s/%s" % [dir_path, "save%d.json" % i]
+	# Check if we have already a file name for this file
+	var full_path : String = ""
+	if file_name == "" :
+		var existing_files := dir.get_files()
+		var i := 1
+		var filename : String = "save%d.json" % i
+		while filename in existing_files:
+			filename = "save%d.json" % i
+			i += 1
+		file_name = filename
+		full_path = "%s/%s" % [dir_path, "save%d.json" % i]
+	else :
+		full_path = "%s/%s" % [dir_path, file_name]
+	
 	var file := FileAccess.open(full_path, FileAccess.WRITE)
 	if file:
 		file.store_string(json)
@@ -285,9 +316,9 @@ static func getSavesList() -> Array[String]:
 	dir.list_dir_end()
 	return saveFiles
 
-#Permet de supprimer une save à partir de son numéro
-static func deleteSave(save: int) -> bool:
-	var file_path := "user://saves/save%d.json" % save
+#Permet de supprimer une save à partir de son nom
+static func deleteSave(save: String) -> bool:
+	var file_path := "user://saves/%s" % save
 	if FileAccess.file_exists(file_path):
 		var err := DirAccess.remove_absolute(file_path)
 		if err == OK:
@@ -321,6 +352,7 @@ static func getSave(save: String) -> Dictionary:
 
 static func loadSave(save: Dictionary) -> void :
 	Global.change_gameM_instance()	#Add the gameManager singleton to Global
+	if save["saveName"] : file_name = save["saveName"]
 	TurnManager.recoverTurnManager(save["turnData"])
 	MapManager.recoverMap(save["mapData"])
 	players = []
@@ -330,20 +362,33 @@ static func loadSave(save: Dictionary) -> void :
 	##Iterate through all units to add unitsStocked and effectStocked on all effects
 	for unit: AbstractUnit in getAllUnits() :
 		unit.recoverUnitsStocked(playersDico)
+	## Recover file name
 	##Recover campaign at the end
 	campaign = AbstractCampaign.recoverCampaign(save["campaign"])
-	if campaign.progress != campaign.nextMission : campaign.startNextMission()# progress != nextMission bc this could cause ennemi duplication or other probs
+	# Not usage of that while 
+	#if campaign.progress != campaign.nextMission : campaign.startNextMission()# progress != nextMission bc this could cause ennemi duplication or other probs
+	### Recover goals from current mission
+	loadGoals(save["goals"])
 	print(GameManager.players)
-	print(save["players"])
+	print(save)
+	#print(save["players"])
 	print(GameManager.getAllUnits())
 	print(playersDico)
+	#Hide Meta Interface -> no check here bc save will be done after charging the map for each fight
+	GameManager.getMainPlayer().toggleCombatUI()
 
+## Load goals for the actual mission
+# Use on the loadSave to replace goals and on the startNextMission from AbstractCampaign to place goals for the actual mission
+static func loadGoals(goalsData: Array) -> void :
+	currentGoals = []
+	var goal
+	for goal_dico: Dictionary in goalsData:
+		goal = AbstractGoal.recoverObjective(goal_dico)
+		if goal != null : currentGoals.append(goal)
 #Allow to delete all saves during test because I can't find the user://saves repo
 static func deleteAllSaves() -> void :
-	var i:=1
 	for save: String in getSavesList():
-		print(deleteSave(i))
-		i += 1
+		print(deleteSave(save))
 
 ##Change the only instance of gameManager
 #static func change_instance() -> void :

@@ -53,6 +53,7 @@ static func registerTiles(tiles: Array, active_tiles: Dictionary) -> Dictionary 
 		"y": coords.y,
 		"id": active_tiles[coords].id
 		#For the moment no need to stock speed because it will be restored by the id
+		#UnitOn will be recovered by the unit recovering system
 		}
 		tilesData.activeTiles.append(dataTile)
 		

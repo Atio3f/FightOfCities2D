@@ -124,8 +124,8 @@ static func get_movement_costs(movementType: MovementTypes.movementTypes):
 			#var tile = get_cell_source_id(0, Vector2i(x,y))
 			var tile: AbstractTile = activeTiles[coords]
 			if tile != null :		#Un peu une solution bouchon pour empêcher d'avoir une erreur quand il n'y a aucune tuile posée sur une case des dimensions de la grille qu'on a mis
-				movement_cost = tile.speedRequired[movementType]
-				if movement_cost == null : movement_cost = 999 #In case there is no speed indicateed for this movement type
+				if !tile.speedRequired[movementType] : tile.speedRequired[movementType] = 999 #In case there is no speed indicateed for this movement type
+				movement_cost = tile.speedRequired[movementType] 
 			#var movement_cost = movement_data.get(tile)	#Le système pour récupérer le coût de déplacement sur la case dans le tuto
 				movement_costs[y].append(movement_cost)
 	return movement_costs
@@ -136,6 +136,7 @@ static func registerMap() -> Dictionary:
 	var turnData := {
 		"tiles": dataTiles["tiles"], 
 		"activeTiles": dataTiles["activeTiles"],
+		"placementTiles": GameManager.getPlaceablesTiles(),
 		"length": length,
 		"width": width
 	}
@@ -152,3 +153,7 @@ static func recoverMap(data: Dictionary) -> void :
 	length = data.length
 	width = data.width
 	
+	# 
+	var placementTiles: Array[Vector2i] = []
+	placementTiles.assign(data.placementTiles.map(func(e): return str_to_var("Vector2i" + e)))
+	GameManager.drawPlaceablesTiles(placementTiles)

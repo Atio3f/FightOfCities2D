@@ -1,7 +1,7 @@
 extends Node
 
 
-const TILES = {
+const TILES := {
 	"set1:ForestTile" : preload("res://Ressources/tiles/ForestTile.gd"),
 	"set1:SakuraForestTile" : preload("res://Ressources/tiles/SakuraForestTile.gd"),
 	"set1:SwampTile" : preload("res://Ressources/tiles/SwampTile.gd"),
@@ -25,7 +25,7 @@ const TILES = {
 	#"set1:LakeTile" : "lake",
 	#"set1:DesertTile" : "desert"
 #}
-const TILES_VECTORS = {
+const TILES_VECTORS := {
 	"set1:PlainTile" : Vector2i(0, 0),
 	"set1:LakeTile" : Vector2i(0, 1),
 	"set1:SwampTile" : Vector2i(1, 0),

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://oixsn6bpuivb" path="res://scripts/gameLogic/classes/AbstractUnit.gd" id="1_ion6h"]
 [ext_resource type="Texture2D" uid="uid://dt0lsyyf44bb6" path="res://assets/sprites/contourSelectionUnite(512x512).png" id="4_nrxwr"]
-[ext_resource type="Texture2D" uid="uid://bm3sj7qiucgcq" path="res://assets/sprites/units/Monkey.png" id="5_jkama"]
+[ext_resource type="Texture2D" uid="uid://chg76tk7ttdti" path="res://assets/sprites/units/Monkey.png" id="5_jkama"]
 [ext_resource type="Script" uid="uid://c0mjucwye5ul6" path="res://scripts/unites/general/GestionCapacites.gd" id="6_figlw"]
 [ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interfaceUnite.tscn" id="6_ujj46"]
 
