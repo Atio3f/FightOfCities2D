@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0on2uq7e2vwm"]
+
+[ext_resource type="Script" uid="uid://b8wghf8w548bd" path="res://scripts/Player/interface/goal_display.gd" id="1_13c71"]
+[ext_resource type="Texture2D" uid="uid://cj2dxi38ccfhy" path="res://assets/sprites/units/Monkey_p.png" id="1_ksgjd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opx6t"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.956863, 0.8, 1)
+border_blend = true
+corner_detail = 1
+
+[node name="GoalDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 158.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_opx6t")
+script = ExtResource("1_13c71")
+metadata/_custom_type_script = "uid://b8wghf8w548bd"
+
+[node name="AlignmentGoalDisplay" type="HBoxContainer" parent="."]
+editor_description = "Display a goal on the interface. Will be updated with signals everytime a goal is "
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="GoalImg" type="TextureRect" parent="AlignmentGoalDisplay"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_ksgjd")
+stretch_mode = 5
+
+[node name="GoalInfos" type="VBoxContainer" parent="AlignmentGoalDisplay"]
+layout_mode = 2
+
+[node name="GoalTitle" type="Label" parent="AlignmentGoalDisplay/GoalInfos"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Kill ALL enemies"
+
+[node name="MarginRight" type="MarginContainer" parent="AlignmentGoalDisplay/GoalInfos"]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+
+[node name="GoalProgress" type="Label" parent="AlignmentGoalDisplay/GoalInfos/MarginRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 / 5"
+horizontal_alignment = 2

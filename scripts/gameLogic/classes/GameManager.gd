@@ -227,6 +227,11 @@ static func checkWin() -> void :
 ## Function used to clean the board, show dialogs and when the win have been obtained go to the next map
 # victoryStatus is true if player have win and false if not
 static func endMap(victoryStatus: bool) -> void :
+	#TODO Add rewards from each goal
+	## Remove current goals and associated interface
+	for goal: AbstractGoal in currentGoals :
+		goal.goal_delete.emit()
+		goal.free()
 	for unit: AbstractUnit in getMainPlayer().getUnits() :
 		unit.placeOnInventory()	#Return the unit card on the mainPlayer hand
 	#We duplicate to avoid the iteration to skip some elements bc we delete the first one
@@ -265,7 +270,7 @@ static func savingGame() -> void :
 		gameData["players"].append(player.registerPlayer())
 	var json = JSON.new()
 	json = json.stringify(gameData)
-	print(json)
+	#print(json)
 	saveJson(json)
 
 #From datas on savingGame, we save the json on the computer

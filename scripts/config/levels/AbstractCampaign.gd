@@ -101,7 +101,6 @@ func endMap(victoryStatus: bool) -> void:
 		##Update info about next mission
 		if dataMap.has("nextMission") : 
 			nextMission = dataMap["nextMission"]
-		
 		var mainPlayer: AbstractPlayer = GameManager.getMainPlayer()
 		var reward: AbstractReward
 		for rewardS: String in dataMap["rewards"] :

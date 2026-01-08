@@ -9,3 +9,5 @@ const img = ""
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 28, 5, DamageTypes.DamageTypes.MAGICAL, 3, 1, 10, 0, 5, POTENTIAL, 3)
 	unit.tags.append(Tags.tags.MAGICAL_BEAST)
+	unit.movementTypes = [MovementTypes.movementTypes.WALK]
+	unit.actualMovementTypes = MovementTypes.movementTypes.WALK

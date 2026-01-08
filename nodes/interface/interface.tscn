@@ -159,6 +159,18 @@ text = "FIN DU TOUR"
 label_settings = SubResource("LabelSettings_1x52l")
 horizontal_alignment = 1
 
+[node name="GoalsPanel" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.149691
+anchor_right = 0.111111
+anchor_bottom = 0.430556
+offset_left = 8.0
+offset_right = 184.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="focus_entered" from="bouttonFinTour" to="." method="_on_boutton_fin_tour_focus_entered"]

@@ -173,6 +173,10 @@ func toggleMetaUI() -> void :
 	%MetaUI.visible = true
 	%CombatUI.visible = false
 
+## Add goal on combat interface
+func addGoalInterface(goal: AbstractGoal) -> void :
+	%CombatUI.addGoalInterface(goal)
+
 #We can't override get_class method from Node sadly
 func getClass() -> String :
 	return "AbstractPlayer"

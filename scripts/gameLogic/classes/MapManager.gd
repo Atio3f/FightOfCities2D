@@ -124,7 +124,7 @@ static func get_movement_costs(movementType: MovementTypes.movementTypes):
 			#var tile = get_cell_source_id(0, Vector2i(x,y))
 			var tile: AbstractTile = activeTiles[coords]
 			if tile != null :		#Un peu une solution bouchon pour empêcher d'avoir une erreur quand il n'y a aucune tuile posée sur une case des dimensions de la grille qu'on a mis
-				if !tile.speedRequired[movementType] : tile.speedRequired[movementType] = 999 #In case there is no speed indicateed for this movement type
+				if !tile.speedRequired.has(movementType) : tile.speedRequired[movementType] = 999 #In case there is no speed indicateed for this movement type
 				movement_cost = tile.speedRequired[movementType] 
 			#var movement_cost = movement_data.get(tile)	#Le système pour récupérer le coût de déplacement sur la case dans le tuto
 				movement_costs[y].append(movement_cost)

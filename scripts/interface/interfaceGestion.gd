@@ -3,7 +3,7 @@ class_name CombatUI
 
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes
 @onready var bouttonFinTour : Button = $bouttonFinTour/ButtonFinTour
-
+var goalDisplayScene: PackedScene = null
 
 var sourisOnInterface : bool = false	#Booléan de la présence ou non de la souris sur l'interface
 var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un endroit global
@@ -35,7 +35,13 @@ func setActionsRest(actions : int) -> void:
 	labelActionsRest.text = "Actions " + str(actions) + "/3"
 	actionsRest = actions
 
-
+## Add goal on interface
+func addGoalInterface(goal: AbstractGoal) -> void :
+	if goalDisplayScene == null :
+		goalDisplayScene = load("res://nodes/joueur/interface/goal_display.tscn")
+	var goalDisplayNode: GoalDisplay = goalDisplayScene.instantiate()
+	goalDisplayNode.setGoal(goal)
+	%GoalsPanel.add_child(goalDisplayNode)
 
 #On crée 2 signaux pour éviter de pouvoir effectuer des actions en ayant le curseur de la souris sur l'interface
 #Me demandait pas pourquoi lorsque la souris rentre dans l'interface on met false et inversement, c'est parce que

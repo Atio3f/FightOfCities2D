@@ -7,7 +7,6 @@ var killsRemaining: int = 0
 
 #Called from Campaigns to create new objective
 func setupObjective(data: Dictionary) -> void :
-	super.setup(data["isPrimary"], data["reward"])
 	if data.has("killsAtStart"):
 		killsAtStart = data["killsAtStart"]
 	else :
@@ -18,6 +17,7 @@ func setupObjective(data: Dictionary) -> void :
 		killsRemaining = killsAtStart
 	if data.has("colorsToKill") : 
 		colorsToKill.assign(data["colorsToKill"].map(func(e): return int(e)))
+	super.setup(data["isPrimary"], data["reward"]) # Setup in last to give interface real values at start
 	
 	#checkObjectiveStatus()
 
@@ -30,7 +30,11 @@ func getRemainingEnemies() -> int :
 func updateObjective() -> void :
 	killsRemaining = getRemainingEnemies()
 
-func getDisplayObjective() -> String :
+func getDisplayObjectiveTitle() -> String :
+	return "Kill ALL enemies"
+
+
+func getDisplayObjectiveStatus() -> String :
 	return str(killsAtStart - killsRemaining) + "/" + str(killsAtStart)
 
 func checkObjectiveStatus() -> bool :
