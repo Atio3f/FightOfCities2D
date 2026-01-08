@@ -29,6 +29,7 @@ func getRemainingEnemies() -> int :
 
 func updateObjective() -> void :
 	killsRemaining = getRemainingEnemies()
+	super.updateObjective()
 
 func getDisplayObjectiveTitle() -> String :
 	return "Kill ALL enemies"

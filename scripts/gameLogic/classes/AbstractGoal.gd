@@ -21,8 +21,8 @@ func setup(isPrimary: bool, reward: String) -> void :
 
 
 func updateObjective() -> void :
-	pass
-	#TODO ? Send a signal to the interface to send new display objective value
+	#Send a signal to the interface to send new display objective value
+	updateDisplay()
 
 # Return if goal is completed or not
 func checkObjectiveStatus() -> bool :
