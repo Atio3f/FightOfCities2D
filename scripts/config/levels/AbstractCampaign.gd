@@ -77,6 +77,9 @@ func startNextMission() -> void :
 		## Add goals if its a fight
 		if dataMap.get("goals") :
 			GameManager.loadGoals(dataMap.get("goals"))
+		## Add goals if there are on the mission
+		if dataMap.get("dialogs") && dataMap.get("dialogs").get("start") :
+			GameManager.loadDialogs(dataMap.get("dialogs").get("start")) # TODO Find if we keep other dialogs type from here
 		#Hide Meta Interface
 		GameManager.getMainPlayer().toggleCombatUI()
 	file.close()

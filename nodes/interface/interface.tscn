@@ -171,6 +171,40 @@ offset_right = 184.0
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="DialogsContainer" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BgDialogsContainer" type="ColorRect" parent="DialogsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.192157, 0.192157, 0.192157, 0.584314)
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogsList" type="GridContainer" parent="DialogsContainer"]
+unique_name_in_owner = true
+editor_description = "Contient la liste des dialogues à jouer (classe: DialogDisplay)"
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.418837
+anchor_top = 0.453704
+anchor_right = 0.581163
+anchor_bottom = 0.546296
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 12
+metadata/_edit_use_anchors_ = true
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="focus_entered" from="bouttonFinTour" to="." method="_on_boutton_fin_tour_focus_entered"]

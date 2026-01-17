@@ -1,0 +1,30 @@
+{
+	"monkeysCampaign:dialog1": [
+		{
+			"unit": "MonkeyMC",
+			"feeling": "neutral",
+			"name": "UNIT_NAME_MONKEY_MC",
+			"text": "DIALOG_MONKEY_CAMPAIGN_1"
+		},
+		{
+			"unit": "Bull",
+			"feeling": "angry",
+			"name": "UNIT_NAME_BULL",
+			"text": "DIALOG_MONKEY_CAMPAIGN_1_2"
+		},
+	],
+	"monkeysCampaign:dialog2": [
+		{
+			"unit": "Bull",
+			"feeling": "neutral",
+			"name": "UNIT_NAME_BULL",
+			"text": "DIALOG_MONKEY_CAMPAIGN_2"
+		},
+		{
+			"unit": "MonkeyMC",
+			"feeling": "neutral",
+			"name": "UNIT_NAME_MONKEY_MC",
+			"text": "DIALOG_MONKEY_CAMPAIGN_2_2"
+		},
+	]
+}

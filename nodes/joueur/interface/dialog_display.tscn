@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs6se5vsdnxbg"]
+
+[ext_resource type="Script" uid="uid://smbs58s1ttbf" path="res://scripts/Player/interface/dialog_display.gd" id="1_4v1g5"]
+[ext_resource type="Texture2D" uid="uid://cj2dxi38ccfhy" path="res://assets/sprites/units/Monkey_p.png" id="1_f0uj4"]
+
+[node name="DialogDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 187.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_4v1g5")
+
+[node name="AlignmentDialogDisplay" type="HBoxContainer" parent="."]
+editor_description = "Display a dialog part"
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginDialogText" type="MarginContainer" parent="AlignmentDialogDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 5
+
+[node name="DialogText" type="Label" parent="AlignmentDialogDisplay/MarginDialogText"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "On est dans de beaux draps"
+autowrap_mode = 2
+
+[node name="DialogImg" type="TextureRect" parent="AlignmentDialogDisplay"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("1_f0uj4")
+stretch_mode = 5

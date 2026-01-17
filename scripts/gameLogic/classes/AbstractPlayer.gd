@@ -177,6 +177,10 @@ func toggleMetaUI() -> void :
 func addGoalInterface(goal: AbstractGoal) -> void :
 	%CombatUI.addGoalInterface(goal)
 
+## Open dialogs at the start of a map
+func openDialogs(dialogs: Array[DialogInterface]) -> void :
+	if dialogs.size() > 0 : %CombatUI.setDialogs(dialogs)
+
 #We can't override get_class method from Node sadly
 func getClass() -> String :
 	return "AbstractPlayer"

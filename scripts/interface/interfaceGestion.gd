@@ -4,10 +4,14 @@ class_name CombatUI
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes
 @onready var bouttonFinTour : Button = $bouttonFinTour/ButtonFinTour
 var goalDisplayScene: PackedScene = null
+var dialogDisplayScene: PackedScene = null
 
 var sourisOnInterface : bool = false	#Booléan de la présence ou non de la souris sur l'interface
 var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un endroit global
 @onready var mainPlayer : AbstractPlayer = $"../../.."	#Player associated to the interface
+
+var dialogsList: Array[DialogInterface] = []
+var indexNextDialog: int = 0
 
 func _ready() -> void :
 	updateInterface()
@@ -42,6 +46,39 @@ func addGoalInterface(goal: AbstractGoal) -> void :
 	var goalDisplayNode: GoalDisplay = goalDisplayScene.instantiate()
 	goalDisplayNode.setGoal(goal)
 	%GoalsPanel.add_child(goalDisplayNode)
+
+func setDialogs(dialogs: Array[DialogInterface]) -> void :
+	for dialogNode: DialogDisplay in %DialogsList.get_children() :
+		dialogNode.queue_free()
+	dialogsList = dialogs
+	addDialogInterface(dialogsList[0])
+	indexNextDialog = 1
+	visibilityDialogs(true)
+
+
+func addDialogInterface(dialog: DialogInterface) -> void :
+	if dialogDisplayScene == null :
+		dialogDisplayScene = load("res://nodes/joueur/interface/dialog_display.tscn")
+	var dialogDisplayNode: DialogDisplay = dialogDisplayScene.instantiate()
+	dialogDisplayNode.setDialog(dialog)
+	%DialogsList.add_child(dialogDisplayNode)
+
+func visibilityDialogs(visibility: bool) -> void :
+	%DialogsContainer.visible = visibility
+
+func _input(event):
+	if %DialogsContainer.visible :
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				if indexNextDialog >= dialogsList.size() :
+					#Remove dialogs part
+					visibilityDialogs(false)
+				else:
+					# show next dialog
+					addDialogInterface(dialogsList[indexNextDialog]) 
+					indexNextDialog += 1
+					get_viewport().set_input_as_handled()
+
 
 #On crée 2 signaux pour éviter de pouvoir effectuer des actions en ayant le curseur de la souris sur l'interface
 #Me demandait pas pourquoi lorsque la souris rentre dans l'interface on met false et inversement, c'est parce que

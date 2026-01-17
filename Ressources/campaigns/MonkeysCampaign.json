@@ -43,9 +43,9 @@
 				"bottom": 0
 			},
 			"dialogs": {
-				"start": [],
-				"win": [],
-				"lose": []
+				"start": ["monkeysCampaign:dialog1"],
+				"win": ["monkeysCampaign:dialogwin1"],
+				"lose": ["monkeysCampaign:lose"]
 			},
 			"goals": [
 				{
@@ -87,9 +87,9 @@
 				[3, 2]
 			],
 			"dialogs": {
-				"start": [],
-				"win": [],
-				"lose": []
+				"start": ["monkeysCampaign:dialog2"],
+				"win": ["monkeysCampaign:dialogwin2"],
+				"lose": ["monkeysCampaign:lose"]
 			},
 			"goals": [
 				{
@@ -105,7 +105,7 @@
 			"rewards": [
 				"reward:magicalBeast"
 			],
-			"nextMission": "map1"
+			"nextMission": "map3"
 		},
 		
 		"map3": {
@@ -149,7 +149,7 @@
 			"rewards": [
 				"reward:trinketBoss"
 			],
-			"nextMission": "ending1"
+			"nextMission": "map1"
 		},
 		
 	}

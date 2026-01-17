@@ -390,6 +390,15 @@ static func loadGoals(goalsData: Array) -> void :
 	for goal_dico: Dictionary in goalsData:
 		goal = AbstractGoal.recoverObjective(goal_dico)
 		if goal != null : currentGoals.append(goal)
+
+## Load goals for the actual mission
+# Use on the loadSave to replace goals and on the startNextMission from AbstractCampaign to place goals for the actual mission
+static func loadDialogs(dialogsData: Array) -> void :
+	var dialogs: Array[DialogInterface] = []
+	for dialog_id: String in dialogsData:
+		dialogs.append_array(DialogInterface.recoverDialog(dialog_id))
+	GameManager.getMainPlayer().openDialogs(dialogs) #TODO Trouver quoi faire du reste de dialogs
+
 #Allow to delete all saves during test because I can't find the user://saves repo
 static func deleteAllSaves() -> void :
 	for save: String in getSavesList():
