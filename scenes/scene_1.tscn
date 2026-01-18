@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cferradf2m4ex"]
+[gd_scene load_steps=3 format=3 uid="uid://cferradf2m4ex"]
 
 [ext_resource type="Script" uid="uid://cchu78ucpgyp1" path="res://scripts/gameLogic/classes/MapManager.gd" id="1_t6bmd"]
+[ext_resource type="PackedScene" uid="uid://srafdyba20bx" path="res://nodes/interface/bg_game.tscn" id="2_ka884"]
 
 [node name="gameScene" type="Node2D"]
 
@@ -20,3 +21,5 @@ visible = false
 top_level = true
 position = Vector2(80, 80)
 rotation = 3.14159
+
+[node name="BgGame" parent="." instance=ExtResource("2_ka884")]

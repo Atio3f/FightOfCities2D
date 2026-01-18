@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://srafdyba20bx"]
+
+[sub_resource type="Gradient" id="Gradient_ns6re"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gra5k"]
+gradient = SubResource("Gradient_ns6re")
+
+[sub_resource type="Gradient" id="Gradient_qcaq8"]
+offsets = PackedFloat32Array(0, 0.196429, 1)
+colors = PackedColorArray(0.349434, 0.388907, 0.374078, 1, 0.25098, 0.282353, 0.270588, 1, 0.144994, 0.168653, 0.159187, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ns6re"]
+gradient = SubResource("Gradient_qcaq8")
+fill = 1
+
+[sub_resource type="Gradient" id="Gradient_gra5k"]
+offsets = PackedFloat32Array(0.0802469, 0.407407, 0.740741, 1)
+colors = PackedColorArray(0.172549, 0.243137, 0.313726, 1, 0.0999336, 0.139401, 0.178868, 1, 0.0904714, 0.122441, 0.154412, 1, 0.0736991, 0.0993865, 0.125075, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a3iqs"]
+gradient = SubResource("Gradient_gra5k")
+fill = 1
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ds243"]
+frames = 2
+frame_0/texture = SubResource("GradientTexture2D_a3iqs")
+frame_1/texture = SubResource("GradientTexture2D_a3iqs")
+frame_1/duration = 1.0
+
+[node name="BgGame" type="ParallaxBackground"]
+editor_description = "General Background for atmosphere"
+
+[node name="BgGameGradient1" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_gra5k")
+metadata/_edit_use_anchors_ = true
+
+[node name="BgGameGradient2" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_ns6re")
+metadata/_edit_use_anchors_ = true
+
+[node name="BgGameGradient3" type="TextureRect" parent="."]
+editor_description = "7/10 pour un gradient ça va"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AnimatedTexture_ds243")
+metadata/_edit_use_anchors_ = true

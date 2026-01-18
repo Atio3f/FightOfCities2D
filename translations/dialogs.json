@@ -15,16 +15,48 @@
 	],
 	"monkeysCampaign:dialog2": [
 		{
+			"unit": "MonkeyMC",
+			"feeling": "neutral",
+			"name": "UNIT_NAME_MONKEY_MC",
+			"text": "DIALOG_MONKEY_CAMPAIGN_2"
+		},
+		{
 			"unit": "Bull",
 			"feeling": "neutral",
 			"name": "UNIT_NAME_BULL",
-			"text": "DIALOG_MONKEY_CAMPAIGN_2"
+			"text": "DIALOG_MONKEY_CAMPAIGN_2_2"
 		},
 		{
 			"unit": "MonkeyMC",
 			"feeling": "neutral",
 			"name": "UNIT_NAME_MONKEY_MC",
-			"text": "DIALOG_MONKEY_CAMPAIGN_2_2"
+			"text": "DIALOG_MONKEY_CAMPAIGN_2_3"
 		},
-	]
+		{
+			"unit": "Bull",
+			"feeling": "angry",
+			"name": "UNIT_NAME_BULL",
+			"text": "DIALOG_MONKEY_CAMPAIGN_2_4"
+		},
+		{
+			"unit": "MonkeyMC",
+			"feeling": "annoy",
+			"name": "UNIT_NAME_MONKEY_MC",
+			"text": "DIALOG_MONKEY_CAMPAIGN_2_5"
+		},
+	],
+	"monkeysCampaign:dialog2_win": [
+		{
+			"unit": "MonkeyMC",
+			"feeling": "neutral",
+			"name": "UNIT_NAME_MONKEY_MC",
+			"text": "DIALOG_MONKEY_CAMPAIGN_2_WIN"
+		},
+		{
+			"unit": "Bull",
+			"feeling": "angry",
+			"name": "UNIT_NAME_BULL",
+			"text": "DIALOG_MONKEY_CAMPAIGN_1_2"
+		},
+	],
 }

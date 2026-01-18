@@ -14,12 +14,15 @@ static var sceneTerrain: PackedScene = preload("res://nodes/tilemaps/terrain512x
 static var instanceTerrain
 static var terrain : Terrain	#We get the script
 
-@onready var visuActions: UnitOverlay = $visualisationActions
-@onready var _unit_path: UnitPath = $UnitPath
+var visuActions: UnitOverlay
+var _unit_path: UnitPath
 
 func _ready():
+	visuActions = $visualisationActions
+	_unit_path = $UnitPath
 	print("CREATION TERRAIN")
 	createTerrain()
+	
 
 func createTerrain() -> void :
 	#We instantiate here to avoid null values
