@@ -17,12 +17,12 @@ func apercuInfosUnite(unitAssociated : AbstractUnit, pointeurJoueurI : pointeurJ
 		visible = false
 		return
 	%ImageUnite.texture = load(unitAssociated.getImagePath() + "_p.png")
-	%LabelPV.text = "PV = %3d/%-3d" % [unitAssociated.hpActual + unitAssociated.hpTemp, unitAssociated.hpMax]
-	%LabelDR.text = "DR|MR = %3d|%-3d" % [unitAssociated.dr, unitAssociated.mr]
-	%LabelPuissance.text = "P = %3d" % [unitAssociated.power]
-	%LabelDt.text = "Dt = %2d" % [unitAssociated.range]
-	%LabelVitesse.text = "Vitesse = %2d/%-2d" % [unitAssociated.speedRemaining,unitAssociated.speed]
-	%LabelSagesse.text = "S = %3d" % [unitAssociated.wisdom]
+	%LabelPV.text = "❤︎%3d/%-3d" % [unitAssociated.hpActual + unitAssociated.hpTemp, unitAssociated.hpMax]
+	%LabelDR.text = "🛡️|💠= %3d|%-3d" % [unitAssociated.dr, unitAssociated.mr] # TODO Replace emojis with other shield and something for magical reduction
+	%LabelPuissance.text = "⚔️%3d" % [unitAssociated.power]
+	%LabelDt.text = "🎯%2d" % [unitAssociated.range]
+	%LabelVitesse.text = "⚡%2d/%-2d" % [unitAssociated.speedRemaining,unitAssociated.speed] # TODO CHange symbol for Hermes boots
+	%LabelSagesse.text = "📘%3d" % [unitAssociated.wisdom]
 	%LabelPotential.text = "Potential %1d" % [unitAssociated.level, unitAssociated.potential]
 	%LabelEffects.text = "Effects : "	
 	var effectDisplay : EffectDisplay

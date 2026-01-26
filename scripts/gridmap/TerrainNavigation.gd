@@ -32,7 +32,7 @@ func setTile(x: int, y: int, idTile: Vector2i) -> void :
 	#Check si y'avait déjà une case avant
 	
 	#Placer la case en fonction des valeurs mises
-	terrain.set_cell(Vector2i(x, y), 1, idTile)
+	terrain.set_cell(Vector2i(x, y), 0, idTile)
 	
 	
 
