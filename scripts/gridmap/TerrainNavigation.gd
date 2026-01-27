@@ -33,7 +33,7 @@ func setTile(x: int, y: int, idTile: Vector2i) -> void :
 	
 	#Placer la case en fonction des valeurs mises
 	terrain.set_cell(Vector2i(x, y), 0, idTile)
-	
+	#%ShadowLayer.set_cell(Vector2i(x, y), 1, Vector2i(2, 0)) # TODO Faire en sorte qu'on le voit (pê en réduisant encore la taille des cases de base)
 	
 
 #Depuis un certain point donné(emplacement) montre les chemins disponibles avec la vitesse restante ça va pas renvoyer un void

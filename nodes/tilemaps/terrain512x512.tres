@@ -1,0 +1,80 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bkmlxgkvmhfxg"]
+
+[ext_resource type="Texture2D" uid="uid://db3wbehiog3s1" path="res://assets/tiles/tilesSet1Inset(512x512).png" id="1_jmoxo"]
+[ext_resource type="Texture2D" uid="uid://ddboryik1v4o5" path="res://assets/tiles/tilesSet1(512x512).png" id="2_bnefq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f12qs"]
+texture = ExtResource("1_jmoxo")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/custom_data_0 = 1
+0:0/0/custom_data_1 = "plain"
+1:0/0 = 0
+1:0/0/custom_data_0 = 2
+1:0/0/custom_data_1 = "swamp"
+2:0/0 = 0
+2:0/0/custom_data_0 = 2
+2:0/0/custom_data_1 = "snowPlain"
+3:0/0 = 0
+3:0/0/custom_data_0 = 1
+3:0/0/custom_data_1 = "sakuraForest"
+4:0/0 = 0
+4:0/0/custom_data_0 = 999
+4:0/0/custom_data_1 = "deepWater"
+0:1/0 = 0
+0:1/0/custom_data_0 = 6
+0:1/0/custom_data_1 = "lake"
+1:1/0 = 0
+1:1/0/custom_data_0 = 9
+1:1/0/custom_data_1 = "mountain"
+2:1/0 = 0
+2:1/0/custom_data_0 = 3
+2:1/0/custom_data_1 = "forest"
+3:1/0 = 0
+3:1/0/custom_data_0 = 2
+3:1/0/custom_data_1 = "desert"
+4:1/0 = 0
+4:1/0/custom_data_0 = 5
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwrqn"]
+texture = ExtResource("2_bnefq")
+texture_region_size = Vector2i(512, 512)
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/custom_data_0 = 1
+0:0/0/custom_data_1 = "plain"
+1:0/0 = 0
+1:0/0/custom_data_0 = 2
+1:0/0/custom_data_1 = "swamp"
+2:0/0 = 0
+2:0/0/custom_data_0 = 2
+2:0/0/custom_data_1 = "snowPlain"
+0:1/0 = 0
+0:1/0/custom_data_0 = 6
+0:1/0/custom_data_1 = "lake"
+1:1/0 = 0
+1:1/0/custom_data_0 = 9
+1:1/0/custom_data_1 = "moutain"
+2:1/0 = 0
+2:1/0/custom_data_0 = 3
+2:1/0/custom_data_1 = "forest"
+3:0/0 = 0
+3:0/0/custom_data_0 = 1
+3:0/0/custom_data_1 = "sakuraForest"
+4:0/0 = 0
+4:0/0/custom_data_0 = 999
+4:0/0/custom_data_1 = "deepWater"
+3:1/0 = 0
+3:1/0/custom_data_0 = 2
+3:1/0/custom_data_1 = "desert"
+4:1/0 = 0
+4:1/0/custom_data_0 = 5
+
+[resource]
+tile_size = Vector2i(512, 512)
+custom_data_layer_0/name = "vitesseRequise"
+custom_data_layer_0/type = 2
+custom_data_layer_1/name = "typeTerrain"
+custom_data_layer_1/type = 4
+sources/1 = SubResource("TileSetAtlasSource_cwrqn")
+sources/0 = SubResource("TileSetAtlasSource_f12qs")
