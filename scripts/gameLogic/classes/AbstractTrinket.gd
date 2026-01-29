@@ -5,7 +5,7 @@ var nameTrinket: String
 var imgPath: String
 var playerAssociated: AbstractPlayer	#Forcément le joueur principal en soit
 
-var rarity: Rarities.raritiesTrinkets
+var rarity: RarityData
 
 #3 values like effects to keep parameters for trinkets
 var value_A: int
@@ -14,7 +14,7 @@ var value_C: int
 var counter: int #Can be used to increment a value, will be used to count turns
 var counter2: int #Can be used to increment a value, will be used to increment a value
 
-func initialize(id: String, imgPath: String, rarity: Rarities.raritiesTrinkets, player: AbstractPlayer, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0, counter2: int = 0) -> void:
+func initialize(id: String, imgPath: String, rarity: RarityData, player: AbstractPlayer, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0, counter2: int = 0) -> void:
 	self.id = id
 	self.imgPath = imgPath
 	#INSERER IMAGE A PARTIR DU PATH ICI

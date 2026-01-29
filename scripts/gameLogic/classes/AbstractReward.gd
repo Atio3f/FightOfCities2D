@@ -12,7 +12,7 @@ var rewardsNumber: int = 3	#Number of rewards on rewards list
 func initWeight() -> void :
 	totalWeight = 0
 	for rewardId in rewardsAvailable:
-		totalWeight += rewardsAvailable[rewardId]
+		totalWeight += rewardsAvailable[rewardId].weight
 
 
 ## Randomize rewards 
@@ -32,7 +32,7 @@ func pickReward() -> String :
 	var tile: AbstractTile
 	
 	for rewardId in rewardsAvailable:
-		current += rewardsAvailable[rewardId]
+		current += rewardsAvailable[rewardId].weight
 		if random < current:
 			return rewardId
 	return ""

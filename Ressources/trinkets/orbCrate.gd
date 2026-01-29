@@ -6,7 +6,7 @@ const img = "res://assets/sprites/trinkets/OrbCrate"
 const ORB_GAIN = 3
 
 func _init(playerAssociated: AbstractPlayer) -> void:
-	super.initialize(idItem, img, Rarities.raritiesTrinkets.UNCOMMON, playerAssociated, ORB_GAIN)
+	super.initialize(idItem, img, Rarities.TRINKET_UNCOMMON, playerAssociated, ORB_GAIN)
 
 
 func onGain() -> void :

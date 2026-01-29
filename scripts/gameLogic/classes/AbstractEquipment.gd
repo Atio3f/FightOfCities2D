@@ -3,7 +3,7 @@ class_name AbstractEquipment extends AbstractItem
 
 
 
-static var rarity: Rarities.raritiesEquipments
+static var rarity: RarityData # All data about equipment rarity
 static var equipmentType: EquipmentTypes.equipmentTypes
 
 

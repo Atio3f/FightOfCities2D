@@ -7,7 +7,7 @@ const BANANA_GAIN = 2
 const HEAL_BANANA = 3
 
 func _init(playerAssociated: AbstractPlayer) -> void:
-	super.initialize(idItem, img, Rarities.raritiesTrinkets.UNCOMMON, playerAssociated, BANANA_GAIN, HEAL_BANANA)
+	super.initialize(idItem, img, Rarities.TRINKET_UNCOMMON, playerAssociated, BANANA_GAIN, HEAL_BANANA)
 
 
 func onGain() -> void :
