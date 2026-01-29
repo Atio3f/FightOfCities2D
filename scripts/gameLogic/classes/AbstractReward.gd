@@ -45,7 +45,9 @@ func getScreenReward() -> RewardChoiceInterface:
 
 ###Use when selecting a reward, maybe will be placed on an interface
 func obtainReward(player: AbstractPlayer, number: int) -> void :
-	if number == -1 : skipReward()
+	if number == -1 : 
+		skipReward()
+		return # Need a return to avoid going to the rest of function and getting the last element even with queue_free() in skipReward()
 	var rewardId: String = rewards[number]
 	var reward: Dictionary = RewardDb.REWARDS_DICO[rewardId]
 	match reward["rewardType"] :

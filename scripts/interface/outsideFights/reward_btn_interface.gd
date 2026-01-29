@@ -24,10 +24,10 @@ func generate(rewards: AbstractReward, nbr: int) -> void :
 	# Config bgColor
 	border.bg_color = Color(BG_COLOR)
 	# Config border size
-	border.border_width_left = 1
-	border.border_width_top = 1
-	border.border_width_right = 1
-	border.border_width_bottom = 1
+	border.border_width_left = 2
+	border.border_width_top = 2
+	border.border_width_right = 2
+	border.border_width_bottom = 2
 	
 	# Apply color
 	if rewards.rewardsAvailable.has(rewardId) :
