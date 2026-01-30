@@ -17,6 +17,7 @@ func apercuInfosUnite(unitAssociated : AbstractUnit, pointeurJoueurI : pointeurJ
 		visible = false
 		return
 	%ImageUnite.texture = load(unitAssociated.getImagePath() + "_p.png")
+	%LabelName.text = unitAssociated.name # TODO Changer par variable nom unité lorsqu'on implémentera le json
 	%LabelPV.text = "❤︎%3d/%-3d" % [unitAssociated.hpActual + unitAssociated.hpTemp, unitAssociated.hpMax]
 	%LabelDR.text = "🛡️|💠= %3d|%-3d" % [unitAssociated.dr, unitAssociated.mr] # TODO Replace emojis with other shield and something for magical reduction
 	%LabelPuissance.text = "⚔️%3d" % [unitAssociated.power]

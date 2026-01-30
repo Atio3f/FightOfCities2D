@@ -9,7 +9,7 @@
 		"set1:VitalLink"
 	],
 	"startingTrinkets": [
-		"set1:OrbCrate",
+		"set1:PunchingBallMonkey",
 		"set1:ArtOfWar"
 	],
 	"startingOrbs": 2,
@@ -110,7 +110,7 @@
 		
 		"map3": {
 			"size": {
-				"width": 8,
+				"width": 10,
 				"length": 12
 			},
 			"enemies": [
@@ -120,15 +120,15 @@
 				},
 				{
 					"id": "set1:WingedBull",
-					"coords": [6, 9]
+					"coords": [9, 6]
 				}
 			],
 			"placementTiles": [
-				[2, 8],
-				[5, 8],
-				[4, 8],
-				[1, 9],
-				[3, 9]
+				[2, 7],
+				[5, 7],
+				[4, 7],
+				[1, 8],
+				[3, 8]
 			],
 			"dialogs": {
 				"start": [],

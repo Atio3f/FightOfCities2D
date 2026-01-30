@@ -13,6 +13,7 @@ const genMapTEST = {"set1:ForestTile": 100, "set1:LakeTile": 25}
 static var sceneTerrain: PackedScene = preload("res://nodes/tilemaps/terrain512x512.tscn")
 static var instanceTerrain
 static var terrain : Terrain	#We get the script
+static var mapManager: MapManager
 
 var visuActions: UnitOverlay
 var _unit_path: UnitPath
@@ -26,14 +27,23 @@ func _ready():
 
 func createTerrain() -> void :
 	#We instantiate here to avoid null values
-	instanceTerrain = sceneTerrain.instantiate()
-	terrain = instanceTerrain as Terrain
+	if !terrain :
+		instanceTerrain = sceneTerrain.instantiate()
+		terrain = instanceTerrain as Terrain
 	self.add_child(terrain.getNode())	#Import the tilemap on scene
 	#initMap(10, 10)
+
+## Reset Map, including all tiles on terrain 
+static func resetMap() -> void :
+	tiles.clear()
+	activeTiles.clear()
+	if terrain :
+		terrain.resetTerrain()
 
 #pê rajouter un param mapType dans le futur pour avoir différentes générations de
 #map pour le moment j'en met une par défaut ici 
 static func initMap(_length: int, _width: int) -> void :
+	resetMap() # Reset actual map generation and all tiles to clean up terrain
 	length = _length
 	width = _width
 	var genMaxValue: int = 0
@@ -49,7 +59,6 @@ static func initMap(_length: int, _width: int) -> void :
 			j += 1
 		i += 1
 		j = 0
-	
 
 static func pickTile(totalWeight: int, i: int, j: int, genMap: Dictionary) -> AbstractTile:
 	var random = randi() % totalWeight

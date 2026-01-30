@@ -6,7 +6,7 @@ extends AbstractTrinket
 const idItem = "set1:PunchingBallMonkey"
 const img = "res://assets/sprites/trinkets/ArtOfWar"
 const POWER_GAIN = 3
-const POWER_THRESHOLD = 7 # Max power base to gain buff from this
+const POWER_THRESHOLD = 8 # Max power base to gain buff from this
 
 func _init(playerAssociated: AbstractPlayer) -> void:
 	super.initialize(idItem, img, Rarities.TRINKET_UNCOMMON, playerAssociated, POWER_GAIN, POWER_THRESHOLD)

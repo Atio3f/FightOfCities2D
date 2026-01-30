@@ -164,7 +164,6 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 		#unitAttacked.gainXp(ActionTypes.actionTypes.ATTACKED, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
 
 static func generateMap(length: int, width: int) -> void :
-
 	MapManager.initMap(length, width)
 	if getMainPlayer() != null : getMainPlayer().fixCameraLimit(length, width)	#Update camera limit
 	return

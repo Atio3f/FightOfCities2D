@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://5mi2ac34f7r4"
+
+[deps]
+
+files=["res://translations/trinket.fr.translation", "res://translations/trinket.en.translation"]
+
+source_file="res://translations/trinket.csv"
+dest_files=["res://translations/trinket.fr.translation", "res://translations/trinket.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

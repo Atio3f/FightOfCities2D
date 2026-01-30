@@ -8,13 +8,13 @@ func _ready() -> void:
 ##Set the trinket label and texture
 func setTrinket(trinket: AbstractTrinket) -> void :
 	self.id = trinket.id
-	%Preview.text = getPreviewText(trinket, Global.trinketsStrings["en"][id]["PREVIEW"])
+	%Preview.text = getPreviewText(trinket)
 	%SpriteTrinket.texture = load(trinket.imgPath+"(32x32).png")
 	
 
-func getPreviewText(trinket: AbstractTrinket, text: String) -> String :
+func getPreviewText(trinket: AbstractTrinket) -> String :
 	var finalText : String = ""
-	for t: String in text.split("!"):
+	for t: String in trinket.previewTrinket.split("!"):
 		match t:
 			"VA":
 				finalText += str(trinket.value_A)

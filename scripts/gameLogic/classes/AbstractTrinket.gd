@@ -2,6 +2,8 @@ class_name AbstractTrinket extends Node
 
 var id: String
 var nameTrinket: String
+var descriptionTrinket: String
+var previewTrinket: String
 var imgPath: String
 var playerAssociated: AbstractPlayer	#Forcément le joueur principal en soit
 
@@ -25,6 +27,10 @@ func initialize(id: String, imgPath: String, rarity: RarityData, player: Abstrac
 	self.value_C = value_C
 	self.counter = counter
 	self.counter2 = counter2
+	var trinketsData: Dictionary = TrinketDb.getTrinket(id)
+	nameTrinket = tr(trinketsData["name"])
+	descriptionTrinket = tr(trinketsData["description"])
+	previewTrinket = tr(trinketsData["preview"])
 
 
 ##Function called when the player obtain the trinket, not called on recover data

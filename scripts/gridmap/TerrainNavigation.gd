@@ -27,7 +27,11 @@ func setupGrid() -> void:
 	#astarGrid.set_point_weight_scale(Vector2i(1, 0), 9)
 	#astarGrid.set_point_weight_scale(Vector2i(1, 1), 6)
 
-#Place a tile
+## Clear all tiles display
+
+func resetTerrain() -> void :
+	self.clear()
+## Place a tile
 func setTile(x: int, y: int, idTile: Vector2i) -> void :
 	#Check si y'avait déjà une case avant
 	
@@ -43,7 +47,7 @@ func setTile(x: int, y: int, idTile: Vector2i) -> void :
 
 
 
-#Récupère la tuile à l'emplacement rentré en paramètre
+## Récupère la tuile à l'emplacement rentré en paramètre
 func get_tile_data_at(emplacement : Vector2i):
 	var local_position : Vector2i = terrain.local_to_map(emplacement)			#On récupère l'information de la tuile où se trouve le pointeur de souris
 	return terrain.get_cell_tile_data(local_position)

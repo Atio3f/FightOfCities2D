@@ -49,7 +49,7 @@ func colorSelector(couleurEq : String) -> Color :
 	else:
 		return Color.hex(0xf7f7f740)  # Blanc par défaut
 
-##Change the only instance of gameManager, like a singleton
+## Change the only instance of gameManager, like a singleton
 func change_gameM_instance(campaignNode: AbstractCampaign = null) -> void :
 	var mainPlayer: AbstractPlayer
 	var gameM: GameManager = GameManager.new()
@@ -67,7 +67,7 @@ func change_gameM_instance(campaignNode: AbstractCampaign = null) -> void :
 	change_mapM_instance()
 
 func change_mapM_instance() -> void :
-	##Remove old mapManager if there is one
+	## Reset old mapManager if there is one or create a map manager
 	if gameManager.mapManager :
 		gameManager.mapManager.queue_free()
 	var mapM: MapManager = MapManager.new()

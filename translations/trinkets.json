@@ -1,0 +1,33 @@
+{
+	"set1:OrbCrate": {
+		"id": "set1:OrbCrate",
+		"name": "TRINKET_NAME_ORB_CRATE",
+		"description": "TRINKET_DESC_ORB_CRATE",
+		"preview": "TRINKET_PREVIEW_ORB_CRATE"
+	},
+	"set1:BananaRecipes": {
+		"id": "set1:BananaRecipes",
+		"name": "TRINKET_NAME_BANANA_RECIPES",
+		"description": "TRINKET_DESC_BANANA_RECIPES",
+		"preview": "TRINKET_PREVIEW_BANANA_RECIPES"
+	},
+	"set1:ArtOfWar": {
+		"id": "set1:ArtOfWar",
+		"name": "TRINKET_NAME_ART_OF_WAR",
+		"description": "TRINKET_DESC_ART_OF_WAR",
+		"preview": "TRINKET_PREVIEW_ART_OF_WAR"
+	},
+	"set1:PunchingBallMonkey": {
+		"id": "set1:PunchingBallMonkey",
+		"name": "TRINKET_NAME_PUNCHING_BALL_MONKEY",
+		"description": "TRINKET_DESC_PUNCHING_BALL_MONKEY",
+		"preview": "TRINKET_PREVIEW_PUNCHING_BALL_MONKEY"
+	},
+	"set1:MonkeySoap": {
+		"id": "set1:MonkeySoap",
+		"name": "TRINKET_NAME_MONKEY_SOAP",
+		"description": "TRINKET_DESC_MONKEY_SOAP",
+		"preview": "TRINKET_PREVIEW_MONKEY_SOAP"
+	}
+	
+}
