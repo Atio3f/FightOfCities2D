@@ -49,6 +49,7 @@ flat = true
 icon_alignment = 1
 
 [node name="ContinueBtn" type="Button" parent="ColorRect/Main"]
+unique_name_in_owner = true
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 4

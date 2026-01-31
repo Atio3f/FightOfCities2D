@@ -18,7 +18,7 @@ func _ready() -> void:
 	#	Add a campaign button with the name of the campaign
 	#	campaignsAvailable.append(name)
 	
-	##Get saves and add them to SavesList on Continue Menu
+	## Get saves and add them to SavesList on Continue Menu
 	var savesName : Array[String] = GameManager.getSavesList()
 	var saveBtn: SaveBtn
 	for save: String in savesName:
@@ -27,6 +27,7 @@ func _ready() -> void:
 		saveBtn.toggleSave(save, self)
 		%SavesList.add_child(saveBtn)
 		print(saveBtn.visible)
+	%ContinueBtn.visible = savesName.size() > 0
 
 #Show list of campaigns availables
 func _on_campaign_selection_btn_pressed():
