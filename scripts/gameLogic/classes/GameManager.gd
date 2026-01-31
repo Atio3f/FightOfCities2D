@@ -127,11 +127,15 @@ func createUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> Abstr
 	UnitDb.UNITS[id].initialize(unit, player)
 	return unit
 
+## Activate all onUnitPlace capacities for units and player trinkets
 static func whenUnitPlace(unit: AbstractUnit) -> void :
 	var units = getAllUnits()
 	for _unit: AbstractUnit in units:
 		if(_unit.uid != unit.uid):#Avoid to count 2 time the same effect for the unit which spawn
 			_unit.onUnitPlace(unit)
+	## Iterate all trinkets
+	for trinket: AbstractTrinket in getMainPlayer().trinkets :
+		trinket.onUnitPlace(unit)
 
 static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> void:
 	if((unitAttacked.hpActual <= 0) or (unitAttacking.atkRemaining <= 0)):

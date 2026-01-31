@@ -3,5 +3,5 @@ class_name MagicalBeastReward
 
 
 func _init() -> void:
-	rewardsAvailable = {"set1:BlueMushroom": Rarities.UNIT_COMMON, "set1:TemporalSnail": Rarities.UNIT_RARE}
+	rewardsAvailable = {"set1:BlueMushroom": Rarities.UNIT_COMMON, "set1:TemporalSnail": Rarities.UNIT_LEGENDARY}
 	initWeight()
