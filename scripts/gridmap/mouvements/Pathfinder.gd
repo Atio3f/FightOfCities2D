@@ -17,8 +17,8 @@ func _init(walkable_cells: Array) -> void:
 	_astar.update()
 	# Iterate over all points on the grid and disable any which are
 	#	not in the given array of walkable cells
-	for y in range(MapManager.length):
-		for x in range(MapManager.width):
+	for x in range(MapManager.length):
+		for y in range(MapManager.width):
 			if not walkable_cells.has(Vector2i(x,y)):
 				_astar.set_point_solid(Vector2i(x,y))
 

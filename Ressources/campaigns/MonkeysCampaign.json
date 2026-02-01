@@ -6,7 +6,8 @@
 		"set1:MonkeyMC"
 	],
 	"startingItems": [
-		"set1:VitalLink"
+		"set1:VitalLink",
+		"set1:MagicalCoconut",
 	],
 	"startingTrinkets": [
 		"set1:OrbCrate",

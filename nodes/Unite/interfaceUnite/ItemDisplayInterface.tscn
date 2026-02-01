@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cj2dxi38ccfhy" path="res://assets/sprites/units/Monkey_p.png" id="2_pd158"]
 
 [node name="ItemDisplay" type="MarginContainer"]
+editor_description = "Affiche un objet dans l'inventaire"
 anchors_preset = -1
 anchor_left = -0.0173611
 anchor_right = 0.0173611
@@ -83,6 +84,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0784314, 0.0784314, 0.0784314, 0.368627)
 
-[connection signal="button_up" from="ItemBtn" to="ItemBtn" method="_on_button_up"]
+[connection signal="button_up" from="ItemBtn" to="." method="_on_item_btn_button_up"]
 [connection signal="mouse_entered" from="ItemBtn" to="." method="_on_item_btn_mouse_entered"]
 [connection signal="mouse_exited" from="ItemBtn" to="." method="_on_item_btn_mouse_exited"]

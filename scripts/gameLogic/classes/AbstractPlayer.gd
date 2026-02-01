@@ -122,12 +122,28 @@ func cardPlayable(idCard: String) -> Array :
 
 #Sera appelé quand on clique sur une carte jouable
 func useCard(idCard: String, targets: Array) -> void :
+	if not ItemDb.ITEMS.has(idCard): 
+		push_error("Item not found : " + idCard)
+		return
+	var itemClass = ItemDb.ITEMS[idCard]
+	
 	for target in targets :
-		#Permet d'envoyer des informations différentes en fonction de si la cible est une unité ou un joueur
-		if target.getClass() == "AbstractUnit" : 
-			ItemDb.ITEMS[idCard].new(target.player, target)
-		elif target.getClass() == "AbstractPlayer": 
-			ItemDb.ITEMS[idCard].new(target, null)
+		var is_malus = itemClass.get("IS_MALUS") if "IS_MALUS" in itemClass else false
+	# Call item function to do : 
+		# - Orb cost TODO Check how ORB COST would work on this
+		# - Trinkets triggers
+		# - Unit reactions (onItemUsed)
+		var success = AbstractItem.useItem(self, itemClass.ORB_COST, target, is_malus)
+		
+		if success:
+			var instance: AbstractItem
+			#Permet d'envoyer des informations différentes en fonction de si la cible est une unité ou un joueur
+			if target.getClass() == "AbstractUnit" : 
+				instance = ItemDb.ITEMS[idCard].new(self, target)
+			elif target.getClass() == "AbstractPlayer": 
+				instance = ItemDb.ITEMS[idCard].new(target, null)
+			# Clean instance
+			instance.queue_free()
 	hand.useCard(idCard)
 
 #Pour ajouter une carte à la main du joueur

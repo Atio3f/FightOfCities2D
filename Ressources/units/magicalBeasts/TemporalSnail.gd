@@ -25,6 +25,6 @@ static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 
 #Compliqué d'en faire un pouvoir pour l'instant
 # parce qu'il faudrait rajouter getPower pour les effets
-##Fonctionnera pas avec la nouvelle méthode de création d'unité on appellera jamais cette fonction
+## Fonctionnera pas avec la nouvelle méthode de création d'unité on appellera jamais cette fonction
 func getPower() -> int:
 	return power + player.orbs * 2

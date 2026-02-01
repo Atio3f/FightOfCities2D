@@ -30,7 +30,8 @@ static func nextTurn() -> void:
 		GameManager.checkWin()	#Check if someone won at the start of each turn
 	#Animation du bouton et actualisation de l'interface
 
-#Return the actual color of team this turn
+## Return the actual color of team this turn
+## 0 is the preparation turn
 static func actualTurn() -> TeamsColor.TeamsColor :
 	if teams.size() == 0 : return TeamsColor.TeamsColor.EMPTY
 	return teams[turn % teams.size()]

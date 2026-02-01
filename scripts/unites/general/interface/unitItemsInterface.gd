@@ -12,6 +12,9 @@ func showItems(unit: AbstractUnit, player: AbstractPlayer)-> void :#Y'avait un b
 	for idCard: String in cards :
 		#Create a ItemBtn
 		itemBtn = itemBtnScene.instantiate()
-		itemBtn.toggleItems(idCard, player, unit)
+		itemBtn.toggleItems(idCard, player, self, unit)
 		#Place ItemBtn
 		%ItemList.add_child(itemBtn)
+
+func closeInterface() -> void :
+	queue_free()

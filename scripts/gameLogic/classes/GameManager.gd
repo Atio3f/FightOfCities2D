@@ -43,7 +43,7 @@ func loadGame() -> bool :
 	
 	return true
 
-##Config function to setup every stats of the player based of the actual campaign
+## Config function to setup every stats of the player based of the actual campaign
 func configPlayer(player: AbstractPlayer) -> void:
 	player.maxOrbs = campaign.startingMaxOrbs
 	player.orbs = campaign.startingOrbs
@@ -53,10 +53,11 @@ func configPlayer(player: AbstractPlayer) -> void:
 	##Add starting units
 	for unitId: String in campaign.startingAllies:
 		player.addUnitCard(unitId)
-	##Add items
+	## Add items
 	for itemId: String in campaign.startingItems:
 		player.addCard(itemId)
 
+## Get all units
 static func getAllUnits() -> Array[AbstractUnit] :
 	var units: Array[AbstractUnit] = []
 	for player: AbstractPlayer in players: 
@@ -66,6 +67,7 @@ static func getAllUnits() -> Array[AbstractUnit] :
 		units.append_array(player.getUnits())
 	return units
 
+## Get units list from an team
 static func getUnits(team: TeamsColor.TeamsColor) -> Array[AbstractUnit] :
 	for player: AbstractPlayer in players: 
 		if !player :
@@ -74,6 +76,30 @@ static func getUnits(team: TeamsColor.TeamsColor) -> Array[AbstractUnit] :
 		if(player.team == team):
 			return player.getUnits()
 	return []
+
+## Get random units from teams not in teamsToExlude and in specificTeam if precised
+static func getRandomUnits(nbrUnits: int = 1, teamsToExclude: Array[TeamsColor.TeamsColor] = [], specificTeam: TeamsColor.TeamsColor = -1) -> Array[AbstractUnit] :
+	var candidates: Array[AbstractUnit] = []
+	## Get all units if no specificTeam is entered. Else, get units from specificTeam
+	if specificTeam != -1:
+		candidates = getUnits(specificTeam)
+	else:
+		candidates = getAllUnits()
+	
+	## FILTER : Remove units from excluded teams or dead. This will keep all potentials units that can be selected by the randomizer
+	var validUnits = candidates.filter(func(unit):
+		# Check unit alive
+		if not is_instance_valid(unit) or unit.isDead: 
+			return false
+		# Check in excluded team or not
+		if unit.player.team in teamsToExclude:
+			return false
+			
+		return true
+	)
+	## Randomize units position
+	validUnits.shuffle() 
+	return validUnits.slice(0, min(nbrUnits, validUnits.size())) # Return selected units
 
 static func getPlayers() -> Array[AbstractPlayer]:
 	return players
@@ -166,6 +192,10 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 		#unitAttacking.gainXp(ActionTypes.actionTypes.ATTACK, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
 	#if(unitAttacked.hpActual > 0):
 		#unitAttacked.gainXp(ActionTypes.actionTypes.ATTACKED, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
+
+## Activate item effect on units
+static func useItemOnUnits(itemId: String, player: AbstractPlayer, units: Array[AbstractUnit]) -> void:
+	player.useCard(itemId, units)
 
 static func generateMap(length: int, width: int) -> void :
 	MapManager.initMap(length, width)
