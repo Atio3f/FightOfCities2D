@@ -41,6 +41,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SkipBtn" type="Button" parent="SkipBtnMargin"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 35
 text = "SKIP"
 icon_alignment = 1
