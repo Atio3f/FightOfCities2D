@@ -14,7 +14,12 @@
 			"set1:MagicalCoconut" : {
 				"NAME": "Noix de coco magique",
 				"DESC": "Inflige 18 dégâts physiques à un ennemi aléatoire. Gagne 1 orbe.",
-				"IMG": "res://assets/sprites/items/VitalLink.png"
+				"IMG": "res://assets/sprites/items/MagicalCoconut.png"
+			},
+			"set1:FairyMiracle" : {
+				"NAME": "Miracle féérique",
+				"DESC": "Soigne une unité à 100% de ses pv et lui donne 15 PV Temp.",
+				"IMG": "res://assets/sprites/items/FairyMiracle.png"
 			},
 		},
 	"en": 
@@ -32,6 +37,11 @@
 			"set1:MagicalCoconut" : {
 				"NAME": "Magical Coconut",
 				"DESC": "Deal 18 physical damage to a random ennemi. Gain 1 orb.",
+				"IMG": "res://assets/sprites/items/VitalLink.png"
+			},
+			"set1:FairyMiracle" : {
+				"NAME": "Fairy Miracle",
+				"DESC": "Heal an unit at 100% and give it 15 HP Temp.",
 				"IMG": "res://assets/sprites/items/VitalLink.png"
 			},
 		}

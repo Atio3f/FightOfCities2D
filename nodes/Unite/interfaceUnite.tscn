@@ -30,6 +30,7 @@ grow_vertical = 2
 script = ExtResource("1_dk80o")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5

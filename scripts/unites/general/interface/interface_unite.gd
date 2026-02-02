@@ -75,6 +75,7 @@ func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : point
 
 ##Signal envoyé par le menu des Consommables
 func _on_menu_consommables_pressed():
+	print("ff") # TODO Check pq ça marche pas quand unité case au dessus
 	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
 	var menuConso : UnitItemsInterface = menuConsommables.instantiate()

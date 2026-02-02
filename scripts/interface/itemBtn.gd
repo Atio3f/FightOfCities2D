@@ -9,6 +9,8 @@ var unitStocked: AbstractUnit # Stock unit when inventory is open from an unit
 ## Display item on inventory
 # inventoryInterface is the interface where is displayed this item Btn
 func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: UnitItemsInterface, unit: AbstractUnit = null) -> void :
+	%PreviewItem.visible = false
+	%NameItem.visible = false
 	associatedId = itemId
 	playerStocked = player
 	unitStocked = unit
@@ -37,10 +39,12 @@ func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Uni
 
 func _on_item_btn_mouse_entered():
 	%PreviewItem.visible = true
+	%NameItem.visible = true
 
 
 func _on_item_btn_mouse_exited():
 	%PreviewItem.visible = false
+	%NameItem.visible = false
 
 ## When clicking on the item button
 func _on_item_btn_button_up():

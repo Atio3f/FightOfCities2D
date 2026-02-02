@@ -305,11 +305,14 @@ func onHealed(unitHealing: AbstractUnit, healValue: int) -> int :
 		healValue = trinket.onHealed(unitHealing, self, healValue)
 	return healValue
 
-func healHp(healValue: int):
+func healHp(healValue: int) -> void :
 	if(hpActual + healValue > hpMax):
 		hpActual = hpMax
 	else:
 		hpActual += healValue
+
+func gainHpTemp(hpTempAmt: int) -> void :
+	hpTemp += hpTempAmt
 
 func onKill(unitKilled: AbstractUnit) -> void :
 	#gainXp(ActionTypes.actionTypes.KILL, {"maxHp":unitKilled.hpMax})
