@@ -22,16 +22,16 @@ func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> vo
 		speedBoost += MONKEY_STATS_BUFF
 		powerBoost += MONKEY_STATS_BUFF
 		healAmt += MONKEY_HEAL_BUFF
-	var effectSpeed: AbstractEffect = SpeedPlusEffect.new(unitAssociated, BOOST_DURATION, SPEED_BOOST_AMT)
+	var effectSpeed: AbstractEffect = SpeedPlusEffect.new(unitAssociated, BOOST_DURATION, speedBoost)
 	unitAssociated.addEffect(effectSpeed)
-	var effectPower: AbstractEffect = PowerPlusEffect.new(unitAssociated, BOOST_DURATION, POWER_BOOST_AMT)
+	var effectPower: AbstractEffect = PowerPlusEffect.new(unitAssociated, BOOST_DURATION, powerBoost)
 	unitAssociated.addEffect(effectPower)
 	# Heal unit
 	unitAssociated.healHp(healAmt)
 
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :
-	if unit.team == playerUsing.team && super.canBeUsedOnUnit(playerUsing, unit, orbCost) && !unit.isDead : return true
-	else :return false
+	if unit.team == playerUsing.team && TurnManager.actualTurn() == unit.team && super.canBeUsedOnUnit(playerUsing, unit, orbCost) && !unit.isDead : return true
+	else : return false
 
 static func canBeUsedOnPlayer(playerUsing: AbstractPlayer, playerTargeted: AbstractPlayer, orbCost: int = ORB_COST) -> bool:
 	return false	#Can't be used on a player

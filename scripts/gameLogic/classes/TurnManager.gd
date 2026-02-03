@@ -34,6 +34,7 @@ static func nextTurn() -> void:
 ## 0 is the preparation turn
 static func actualTurn() -> TeamsColor.TeamsColor :
 	if teams.size() == 0 : return TeamsColor.TeamsColor.EMPTY
+	if turn == 0 : return TeamsColor.TeamsColor.EMPTY
 	return teams[turn % teams.size()]
 
 ##Reset the TurnManager at the end of each map
