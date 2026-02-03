@@ -10,8 +10,8 @@ const BONUS_HEAL = 5
 func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	if unitAssociated.tags.has(Tags.tags.MAGICAL_BEAST) : unitAssociated.healHp(HEAL_VALUE + BONUS_HEAL)
 	else : unitAssociated.healHp(HEAL_VALUE)
-	
-# TODO Fonction s'active bien pour check objets utilisables mais il manque l'utilisation
+
+
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :
 	if unit.tile.id == "set1:ForestTile" && super.canBeUsedOnUnit(playerUsing, unit, orbCost) && unit.hpActual < unit.hpMax: return true
 	else :return false

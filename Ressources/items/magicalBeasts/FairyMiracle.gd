@@ -5,17 +5,17 @@ class_name FairyMiracle
 # Objet très rare (et puissant) pê mettre 1 en coût en orbe ?
 const idItem = "set1:FairyMiracle"
 const img = "Monkey"
-const ORB_COST = 0
+const ORB_COST = 1
 const HEAL_PERCENT = 100
 const BONUS_HP_TEMP = 15
  
 func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	unitAssociated.healHp(unitAssociated.hpMax)
 	unitAssociated.gainHpTemp(BONUS_HP_TEMP)
-	
-# TODO Fonction s'active bien pour check objets utilisables mais il manque l'utilisation
+
+
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :
-	if super.canBeUsedOnUnit(playerUsing, unit, orbCost) : return true
+	if super.canBeUsedOnUnit(playerUsing, unit, orbCost) && unit.team == playerUsing.team : return true
 	else : return false
 
 static func canBeUsedOnPlayer(playerUsing: AbstractPlayer, playerTargeted: AbstractPlayer, orbCost: int = ORB_COST) -> bool:

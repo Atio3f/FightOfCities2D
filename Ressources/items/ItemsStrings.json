@@ -21,6 +21,16 @@
 				"DESC": "Soigne une unité à 100% de ses pv et lui donne 15 PV Temp.",
 				"IMG": "res://assets/sprites/items/FairyMiracle.png"
 			},
+			"set1:BananaPeel" : {
+				"NAME": "Peau de banane",
+				"DESC": "Inflige 8 dégâts physiques et réduit la vitesse de 4 pour 3 tours",
+				"IMG": "res://assets/sprites/items/VitalLink.png"
+			},
+			"set1:Banana" : {
+				"NAME": "Banane",
+				"DESC": "Voir la classe à faire quand csv",
+				"IMG": "res://assets/sprites/items/VitalLink.png"
+			},
 		},
 	"en": 
 		{
@@ -42,6 +52,16 @@
 			"set1:FairyMiracle" : {
 				"NAME": "Fairy Miracle",
 				"DESC": "Heal an unit at 100% and give it 15 HP Temp.",
+				"IMG": "res://assets/sprites/items/VitalLink.png"
+			},
+			"set1:BananaPeel" : {
+				"NAME": "Banana Peel",
+				"DESC": "Deal 8 physical damage and reduces speed by 4 for 3 turns",
+				"IMG": "res://assets/sprites/items/VitalLink.png"
+			},
+			"set1:Banana" : {
+				"NAME": "Banana",
+				"DESC": "Voir la classe à faire quand csv",
 				"IMG": "res://assets/sprites/items/VitalLink.png"
 			},
 		}

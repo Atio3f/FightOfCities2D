@@ -19,5 +19,6 @@ func onEffectApplied(firstTime: bool, oldEffect:AbstractEffect = null) -> void:
 
 func onEffectEnd() -> void:
 	unitAssociated.speed -= value_A
+	unitAssociated.speedRemaining -= value_A
 	unitAssociated.effects.erase(self)
-	self.free()
+	self.queue_free()
