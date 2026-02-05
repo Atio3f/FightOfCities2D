@@ -52,8 +52,6 @@ func getReward() -> String :
 	else :
 		return "None"
 
-
-
 func registerGoal() -> Dictionary :
 	return {
 		

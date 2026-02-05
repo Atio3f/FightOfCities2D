@@ -88,7 +88,7 @@ func startNextMission() -> void :
 func checkWin() -> bool :
 	var isWinning: bool = true
 	for goal: AbstractGoal in GameManager.currentGoals :
-		if goal.primaryGoal : isWinning = isWinning && goal.checkObjectiveStatus()
+		if goal && goal.primaryGoal : isWinning = isWinning && goal.checkObjectiveStatus()
 	return isWinning
 
 ##Function to check if the player has lose on the map

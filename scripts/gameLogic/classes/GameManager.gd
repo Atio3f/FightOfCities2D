@@ -173,20 +173,6 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 	
 	unitAttacking.atkRemaining -= 1
 	unitAttacking.speedRemaining = 0
-	#We resolve cases when the attacker died while attacking
-	if(unitAttacking.hpActual <= 0):
-		unitAttacked.onKill(unitAttacking)
-		unitAttacking.onDeath(unitAttacked)
-		if(infoDamagesTaked["hpActual"] == 0):
-			unitAttacking.onKill(unitAttacked)
-			unitAttacked.onDeath(unitAttacking)
-	#We also check if the unit attacked has survived or not
-	elif(infoDamagesTaked["hpActual"] == 0):
-		unitAttacking.onKill(unitAttacked)
-		unitAttacked.onDeath(unitAttacking)
-		if(unitAttacking.hpActual <= 0):
-			unitAttacked.onKill(unitAttacking)
-			unitAttacking.onDeath(unitAttacked)
 	#Manage experience gained
 	#if(unitAttacking.hpActual > 0):
 		#unitAttacking.gainXp(ActionTypes.actionTypes.ATTACK, infoDamagesTaked)	#We could also create a dictionary {"damage": infoDamagesTaked["damage"]} but idk if its more efficient or not
@@ -264,6 +250,7 @@ static func endMap(victoryStatus: bool) -> void :
 	## Remove current goals and associated interface
 	for goal: AbstractGoal in currentGoals :
 		goal.goal_delete.emit()
+		currentGoals.erase(goal)
 		goal.free()
 	for unit: AbstractUnit in getMainPlayer().getUnits() :
 		unit.placeOnInventory()	#Return the unit card on the mainPlayer hand

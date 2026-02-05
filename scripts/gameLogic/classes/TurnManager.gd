@@ -27,7 +27,7 @@ static func nextTurn() -> void:
 	if turn == 1 :
 		GameManager.getMainPlayer().playerPointer.clear_placeable_cells()
 	else :
-		GameManager.checkWin()	#Check if someone won at the start of each turn
+		if !GameManager.currentGoals.is_empty() : GameManager.checkWin()	#Check if someone won at the start of each turn, but only if there is still some objectives (avoid double check that cause crash or bad result)
 	#Animation du bouton et actualisation de l'interface
 
 ## Return the actual color of team this turn

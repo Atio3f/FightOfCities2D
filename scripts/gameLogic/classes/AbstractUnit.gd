@@ -252,17 +252,37 @@ func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.Dama
 	for trinket: AbstractTrinket in player.trinkets :
 		damage = trinket.onDamageTaken(unit, self, damage, damageType, visualisation)
 	var hpLoses: Dictionary
-	#If it's not a true attack we just return value
+	# If it's not a true attack we just return value
 	if(!visualisation):
 		hpLoses = loseHp(damage)
 		##Damage Indicator
 		var indicDegats : damageIndicator = Global.popUpDegats.instantiate()	
 		noeudsTempIndic.add_child(indicDegats)		#Place l'indicateur de dégâts sur la scène
 		indicDegats.newPopUp(damage)
-		
+		## Check if the unit is dead
+		checkUnitDeath(hpLoses, unit)
 	else :
 		hpLoses = getLoseHp(damage)
 	return hpLoses
+
+## Manage if the unit is dead after having taken damage. An attacking unit can also be renseigned in case of a fight.
+## infoDamagesTaked is the dictionary returned by onDamageTaken on unit
+func checkUnitDeath(infoDamagesTaked: Dictionary, unitAttacking: AbstractUnit = null) -> void :
+	var unitAttackingNotNull: bool = unitAttacking != null # We need it 3 times
+	# We resolve cases when the attacker died while attacking if there is an attacker
+	if (unitAttackingNotNull && unitAttacking.hpActual <= 0):
+		self.onKill(unitAttacking)
+		unitAttacking.onDeath(self)
+		if(infoDamagesTaked["hpActual"] == 0):
+			unitAttacking.onKill(self)
+			self.onDeath(unitAttacking)
+	# We also check if the unit attacked (= self) has survived or not
+	elif(infoDamagesTaked["hpActual"] == 0):
+		if unitAttackingNotNull : unitAttacking.onKill(self)
+		self.onDeath(unitAttacking)
+		if(unitAttackingNotNull && unitAttacking.hpActual <= 0):
+			self.onKill(unitAttacking)
+			unitAttacking.onDeath(self)
 
 ## Return final damage taken
 func onDamageDealed(unit: AbstractUnit, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
@@ -321,7 +341,7 @@ func onKill(unitKilled: AbstractUnit) -> void :
 	for trinket: AbstractTrinket in player.trinkets:
 		trinket.onKill(self, unitKilled)
 
-##Some trinkets and effects will need to check if we're on a placement turn to avoid errors
+## Some trinkets and effects will need to check if we're on a placement turn to avoid errors
 func onDeath(unit: AbstractUnit = null) -> void:
 	for effect: AbstractEffect in effects:
 		effect.onDeath(unit)
@@ -330,8 +350,8 @@ func onDeath(unit: AbstractUnit = null) -> void:
 	isDead = true	#You're not supposed to be able to survive once you're in this function
 	removeSelf(true)
 
-##Remove the unit from active units and its tile and hide it, will be called by onDeath method and the delete button on interface
-#Param checkWin served to avoid check win when we remove units at the end of a map
+## Remove the unit from active units and its tile and hide it, will be called by onDeath method and the delete button on interface.
+## Param checkWin served to avoid check win when we remove units at the end of a map
 func removeSelf(checkWin: bool) -> void:
 	player.removeUnit(self)
 	tile.unitOn = null	#Free the tile
