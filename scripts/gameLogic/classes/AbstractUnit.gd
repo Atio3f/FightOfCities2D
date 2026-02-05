@@ -438,6 +438,20 @@ func getName() -> String :
 func getImagePath() -> String :
 	return "res://assets/sprites/units/"+imgPath
 
+## Return if an unit is on the ground, in the sky or in water
+## Potentiellement rajouter un check du type de case où se trouve l'unité aussi
+func getPositionType() -> MovementTypes.positionCategories :
+	match actualMovementTypes :
+		MovementTypes.movementTypes.WALK : # Need to add check of tile type to be sure he is not on a deep water tile
+			return MovementTypes.positionCategories.GROUNDED
+		MovementTypes.movementTypes.SWIMMING :
+			return MovementTypes.positionCategories.SWIMMING
+		MovementTypes.movementTypes.FLYING :
+			return MovementTypes.positionCategories.FLYING
+		_ :
+			return MovementTypes.positionCategories.UNKNOWN
+
+
 func refreshSprite() -> void :
 	sprite.texture = load(getImagePath()+".png")
 

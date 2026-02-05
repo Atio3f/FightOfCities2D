@@ -25,7 +25,7 @@ func onUnitIn(unit: AbstractUnit) -> void :
 	return
 
 #Quand unité est sur la case au début du tour
-func onStartOfTurn(unit: AbstractUnit) -> void:
+func onStartOfTurn(_unit: AbstractUnit) -> void:
 	return
 
 #Quand unité quitte case, y'avait unit: AbstractUnit comme param mais en vrai c'est stupide

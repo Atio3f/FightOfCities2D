@@ -15,7 +15,7 @@ func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> vo
 	unitAssociated.addEffect(effectSpeed)
 
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :
-	if unit.team != playerUsing.team && super.canBeUsedOnUnit(playerUsing, unit, orbCost) && !unit.isDead : return true
+	if unit.getPositionType() == MovementTypes.positionCategories.GROUNDED && unit.team != playerUsing.team && super.canBeUsedOnUnit(playerUsing, unit, orbCost) && !unit.isDead : return true
 	else :return false
 
 static func canBeUsedOnPlayer(playerUsing: AbstractPlayer, playerTargeted: AbstractPlayer, orbCost: int = ORB_COST) -> bool:
