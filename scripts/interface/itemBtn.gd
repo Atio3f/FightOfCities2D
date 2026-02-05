@@ -14,11 +14,11 @@ func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Uni
 	associatedId = itemId
 	playerStocked = player
 	unitStocked = unit
-	if itemId != "" && Global.itemsStrings["en"].has(itemId):
-		var itemStrings : Dictionary = Global.itemsStrings["en"][itemId]
-		%PreviewItem.text = itemStrings["DESC"]
-		%NameItem.text = itemStrings["NAME"]
-		%ItemBtn.icon = load(itemStrings["IMG"])
+	if itemId != "" :
+		var itemData: Dictionary = ItemDb.getItem(itemId)
+		%PreviewItem.text = tr(itemData["description"])
+		%NameItem.text = tr(itemData["name"])
+		%ItemBtn.icon = load(itemData["img"])
 	else :
 		%ItemBtn.icon = load("res://assets/sprites/items/BrambleGauntlet.png")
 	

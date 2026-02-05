@@ -1,0 +1,39 @@
+{
+	"set1:BrambleGauntlet": {
+		"id": "set1:BrambleGauntlet",
+		"name": "ITEM_NAME_BRAMBLE_GAUNTLET",
+		"description": "ITEM_DESC_BRAMBLE_GAUNTLET",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
+	"set1:VitalLink": {
+		"id": "set1:VitalLink",
+		"name": "ITEM_NAME_VITAL_LINK",
+		"description": "ITEM_DESC_VITAL_LINK",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:MagicalCoconut": {
+		"id": "set1:MagicalCoconut",
+		"name": "ITEM_NAME_MAGICAL_COCONUT",
+		"description": "ITEM_DESC_MAGICAL_COCONUT",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:FairyMiracle": {
+		"id": "set1:FairyMiracle",
+		"name": "ITEM_NAME_FAIRY_MIRACLE",
+		"description": "ITEM_DESC_FAIRY_MIRACLE",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:BananaPeel": {
+		"id": "set1:BananaPeel",
+		"name": "ITEM_NAME_BANANA_PEEL",
+		"description": "ITEM_DESC_BANANA_PEEL",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:Banana": {
+		"id": "set1:Banana",
+		"name": "ITEM_NAME_BANANA",
+		"description": "ITEM_DESC_BANANA",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	}
+	
+}

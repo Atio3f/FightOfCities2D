@@ -3,8 +3,6 @@ extends Node
 
 var effectsStrings := {}
 var unitsStrings := {}
-var trinketsStrings := {}
-var itemsStrings := {}
 var parameters: ParamPlayer = preload("res://Ressources/old/player/joueur1/paramJoueur1.tres")
 var unitOn : Node2D
 var unitSelec : Node2D
@@ -13,8 +11,6 @@ var gameManager: GameManager
 func _ready():
 	effectsStrings = loadStrings("res://Ressources/effects/EffectsStrings.json")
 	unitsStrings = loadStrings("res://Ressources/units/UnitsStrings.json")
-	trinketsStrings = loadStrings("res://Ressources/trinkets/TrinketsStrings.json")
-	itemsStrings = loadStrings("res://Ressources/items/ItemsStrings.json")
 
 #Load strings from a json
 func loadStrings(filePath: String) -> Dictionary:
@@ -55,6 +51,7 @@ func change_gameM_instance(campaignNode: AbstractCampaign = null) -> void :
 	var gameM: GameManager = GameManager.new()
 	gameM.name = "GameManager"
 	get_tree().root.add_child(gameM)
+	get_tree().root.remove_child(Global.gameManager)
 	if campaignNode != null : 
 		gameM.campaign = campaignNode	#Setup campaign
 	##Remove old gameManager if there is one

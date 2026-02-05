@@ -4,7 +4,8 @@ class_name WingedBull
 const idUnit = "set1:WingedBull"
 const GRADE = 2
 const POTENTIAL = 3
-const img = ""
+const img = "Bull" # TODO Changer l'image
+
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 40, 19, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 8, 3, 4, POTENTIAL, 3)
 	unit.tags.append(Tags.tags.BULL)

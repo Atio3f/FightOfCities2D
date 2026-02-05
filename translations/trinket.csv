@@ -8,9 +8,9 @@ TRINKET_PREVIEW_BANANA_RECIPES,Obtention : +!VA! Poids,Obtain : +!VA! Weight
 TRINKET_NAME_ART_OF_WAR,L'Art de la Guerre,The Art Of War
 TRINKET_DESC_ART_OF_WAR,"A l'obtention, gagnez !VA! Poids bonus.","On Obtain, gain !VA! Weight."
 TRINKET_PREVIEW_ART_OF_WAR,Obtention : +!VA! Poids.,Obtain : +!VA! Weight.
-TRINKET_NAME_PUNCHING_BALL_MONKEY,Sac à frappe Monkey,Punching Ball Monkey
-TRINKET_DESC_PUNCHING_BALL_MONKEY,"Les unités avec moins de !VB! Puissance de base, gagnent !VA! Puissance","All units with less than !VB! Base Power, gain !VA! Power"
-TRINKET_PREVIEW_PUNCHING_BALL_MONKEY,Puissance base unité < !VB! : +!VA! Puissance,Unit Base Power < !VB! : +!VA! Power
+TRINKET_NAME_PUNCHING_BALL_MONKEY,Sac Ã  frappe Monkey,Punching Ball Monkey
+TRINKET_DESC_PUNCHING_BALL_MONKEY,"Les unitÃ©s avec moins de !VB! Puissance de base, gagnent !VA! Puissance","All units with less than !VB! Base Power, gain !VA! Power"
+TRINKET_PREVIEW_PUNCHING_BALL_MONKEY,Puissance base unitÃ© < !VB!Â : +!VA! Puissance,Unit Base Power < !VB!Â : +!VA! Power
 TRINKET_NAME_MONKEY_SOAP,Savon Monkey,Monkey Soap
 TRINKET_DESC_MONKEY_SOAP,Les Monkey gagne + !VA! DR,ALL Monkeys gain !VA! DR
-TRINKET_PREVIEW_MONKEY_SOAP,Monkeys : + !VA! DR,Monkeys : + !VA! DR
+TRINKET_PREVIEW_MONKEY_SOAP,MonkeysÂ : + !VA! DR,MonkeysÂ : + !VA! DR

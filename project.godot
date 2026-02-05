@@ -137,7 +137,7 @@ delete_save_test={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/strings.en.translation", "res://translations/strings.fr.translation", "res://translations/ui.en.translation", "res://translations/ui.fr.translation", "res://translations/unit.en.translation", "res://translations/unit.fr.translation", "res://translations/trinket.en.translation", "res://translations/trinket.fr.translation")
+locale/translations=PackedStringArray("res://translations/strings.en.translation", "res://translations/strings.fr.translation", "res://translations/ui.en.translation", "res://translations/ui.fr.translation", "res://translations/unit.en.translation", "res://translations/unit.fr.translation", "res://translations/trinket.en.translation", "res://translations/trinket.fr.translation", "res://translations/item.en.translation", "res://translations/item.fr.translation")
 
 [rendering]
 

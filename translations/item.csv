@@ -1,0 +1,15 @@
+key,fr,en
+ITEM_NAME_BRAMBLE_GAUNTLET,Gantelet de ronces,Bramble Gauntlet
+ITEM_DESC_BRAMBLE_GAUNTLET,Augmente les dégâts des attaques de contact de 2 et réduit la vitesse de la cible de 3 pendant 2 tours,Increases contact damage by 2 and reduce target speed by 3 for 2 turns
+ITEM_NAME_VITAL_LINK,Lien Vital,Vital Link
+ITEM_DESC_VITAL_LINK,Soigne 10 pv à une unité dans une forêt (15 si c’est une Magical Beast),"Heal unit on forest for 10, or 15 if Magical Beast"
+ITEM_NAME_MAGICAL_COCONUT,Noix de coco magique,Magical Coconut
+ITEM_DESC_MAGICAL_COCONUT,Inflige 18 dégâts physiques à un ennemi aléatoire. Gagne 1 orbe,Deal 18 physical damage to a random ennemi. Gain 1 orb
+ITEM_NAME_FAIRY_MIRACLE,Miracle féérique,Fairy Miracle
+ITEM_DESC_FAIRY_MIRACLE,Soigne une unité à 100% de ses pv et lui donne 15 PV Temp,Heal an unit at 100% and give it 15 HP Temp
+ITEM_NAME_BANANA_PEEL,Peau de banane,Banana Peel
+ITEM_DESC_BANANA_PEEL,Inflige 8 dégâts physiques et réduit la vitesse de 4 pour 3 tours,Deal 8 physical damage and reduces speed by 4 for 3 turns
+ITEM_NAME_BANANA,Banane,Banana
+ITEM_DESC_BANANA,"Donne +3P et +3V pdt 2 tours et soigne 5PV.  +1P, +1V et soigne +2PV aux Monkeys",Give 3 P and 3 V for 2 turns and heal 5 HP. Give +1 P and V and heal 1 more on Monkeys
+ITEM_NAME_,,
+ITEM_DESC_,,

@@ -25,7 +25,7 @@ echo -------------------------------------------------------
 :: Boucle sur tous les fichiers .ods du dossier
 for %%f in (*.ods) do (
     echo Traitement de : %%f
-    "%SOFFICE_PATH%" --headless --convert-to csv "%%f"
+    "%SOFFICE_PATH%" --headless --convert-to csv:"Text - txt - csv (StarCalc)":44,34,76 "%%f"
 )
 
 echo.

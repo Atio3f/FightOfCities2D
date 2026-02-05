@@ -5,7 +5,7 @@ class_name KnightMonkeyEffect
 const idEffect = "set1:KnightMonkeyEffect"
 const img = ""
 
-func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):
+func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, _value_B: int = 0, _value_C: int = 0, _counter: int = 0):
 	super._init(idEffect, img, unit, remainingTurns, 0, true, value_A, 0, 0, 0)
 
 
