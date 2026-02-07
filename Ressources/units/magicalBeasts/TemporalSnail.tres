@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://dpxgjm0fh5yww"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_0lqib"]
+
+[resource]
+script = ExtResource("1_0lqib")
+id = "set1:TemporalSnail"
+imgPath = "Monkey"
+hpBase = 40
+drBase = 5
+mrBase = 0
+grade = 4
+potential = 5
+wisdomBase = 25
+powerBase = 3
+damageType = 1
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 4
+metadata/_custom_type_script = "uid://chjck7svelps7"

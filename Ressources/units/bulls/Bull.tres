@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bkbddxxt6lbds"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_i1on2"]
+
+[resource]
+script = ExtResource("1_i1on2")
+id = "set1:Bull"
+imgPath = "Bull"
+hpBase = 43
+drBase = 5
+mrBase = 0
+grade = 1
+potential = 1
+wisdomBase = 1
+powerBase = 19
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 8
+metadata/_custom_type_script = "uid://chjck7svelps7"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://dldaxe4lg3fur"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_8g8ll"]
+
+[resource]
+script = ExtResource("1_8g8ll")
+id = "set1:AbominationMonkey"
+imgPath = "Monkey"
+hpBase = 41
+drBase = 2
+mrBase = 3
+grade = 2
+potential = 2
+wisdomBase = 0
+powerBase = 13
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 4
+metadata/_custom_type_script = "uid://chjck7svelps7"

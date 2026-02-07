@@ -1,13 +1,10 @@
 extends AbstractUnit
 class_name Bull
 
-const idUnit = "set1:Bull"
-const GRADE = 1
-const POTENTIAL = 1
-const img = "Bull"
+const STATS: UnitStats = preload("res://Ressources/units/bulls/Bull.tres")
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
-	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 43, 19, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 8, 5, 0, POTENTIAL, 1)
+	unit.initializeStats(STATS, playerAssociated)
 	unit.tags.append(Tags.tags.BULL)
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]
 	unit.actualMovementTypes = MovementTypes.movementTypes.WALK

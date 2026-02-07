@@ -6,15 +6,15 @@ var coords: Vector2i #Coords of the interface tile
 
 ##Set the unit preview label and texture
 func setUnitPreview(unit: AbstractUnit, coords: Vector2i) -> void :
-	self.id = unit.idUnit
+	self.id = unit.STATS.id
 	self.coords = coords
 	%Preview.text = getPreviewText(unit, Global.unitsStrings["en"][id]["NAME"])
-	if unit.img != null and unit.img != "" :
+	if unit.STATS.imgPath != null and unit.STATS.imgPath != "" :
 		%BtnUnit.icon = load(unit.getImagePath()+"_p.png")
 
 ##Add a preview text on top
 func getPreviewText(unit:AbstractUnit, name: String) -> String :
-	var finalText : String = name + "\nG"+ str(unit.GRADE)
+	var finalText : String = name + "\nG"+ str(unit.STATS.grade)
 	return finalText
 
 func _on_btn_unit_button_up():

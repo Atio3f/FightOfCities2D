@@ -1,15 +1,11 @@
 extends AbstractUnit
 class_name TemporalSnail
 
-const idUnit = "set1:TemporalSnail"
-const GRADE = 4
-const POTENTIAL = 5
-const img = ""
 const BASE_ORB_COST = 1
+const STATS: UnitStats = preload("res://Ressources/units/magicalBeasts/TemporalSnail.tres")
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
-	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 40, 3, DamageTypes.DamageTypes.MAGICAL, 1, 1, 4, 5, 0, POTENTIAL, 25)
-	
+	unit.initializeStats(STATS, playerAssociated)
 	#Effets à mettre : 
 	#Augmentation des dégâts et défense magique en fonction des orbes du joueur associé
 	#Gain d'une orbe à chaque kill

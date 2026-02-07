@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://d288gwear7hwe"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_an2wp"]
+
+[resource]
+script = ExtResource("1_an2wp")
+id = "set1:BlueMushroom"
+imgPath = "Monkey"
+hpBase = 28
+drBase = 0
+mrBase = 5
+grade = 1
+potential = 1
+wisdomBase = 1
+powerBase = 5
+damageType = 1
+attackRange = 1
+atkPerTurnBase = 3
+speedBase = 10
+metadata/_custom_type_script = "uid://chjck7svelps7"

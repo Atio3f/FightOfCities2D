@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://cxohr26k1c2f4"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_86mtn"]
+
+[resource]
+script = ExtResource("1_86mtn")
+id = "set1:BerserkerBull"
+imgPath = "Bull"
+hpBase = 50
+drBase = null
+mrBase = 0
+grade = 3
+potential = 2
+wisdomBase = 0
+powerBase = 24
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 5
+metadata/_custom_type_script = "uid://chjck7svelps7"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://c5r0fee7vl8xg"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_ga5uh"]
+
+[resource]
+script = ExtResource("1_ga5uh")
+id = "set1:MonkeyMC"
+imgPath = "Monkey"
+hpBase = 37
+drBase = 4
+mrBase = 1
+grade = 0
+potential = 0
+wisdomBase = 13
+powerBase = 12
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 5
+metadata/_custom_type_script = "uid://chjck7svelps7"

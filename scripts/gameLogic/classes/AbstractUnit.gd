@@ -3,6 +3,7 @@ class_name AbstractUnit
 #Represent a unit
 static var _uid_counter := 0
 static var xpPerLevel = [0, 90, 220, 400, 700, 99999]
+var baseStats: UnitStats # Unit Default Stats
 var id: String	#Id of the unit, serve to know the id of the unit
 var uid: String	#Identifiant unique créer lorsqu'on place l'unité
 var imgPath: String
@@ -79,39 +80,53 @@ func _ready():
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 
-func initializeStats(id: String, imgPath: String, playerAssociated: AbstractPlayer, grade: int, hpBase: int, powerBase:int, damageType: DamageTypes.DamageTypes, atkPerTurnBase: int, range: int, speedBase: int, drBase: int, mrBase: int, potential: int, wisdomBase: int, idDead: bool = false):
-	self.id = id
+func initializeStats(stats: UnitStats, playerAssociated: AbstractPlayer, idDead: bool = false):
+	self.baseStats = stats
+	
+	self.id = stats.id
 	_uid_counter += 1
 	self.uid = str(randi() % 100000).pad_zeros(6) + str(Time.get_unix_time_from_system()) + str(_uid_counter)
 	#Add img and refresh the sprite
-	self.imgPath = imgPath
+	self.imgPath = stats.imgPath
 	refreshSprite()
+	
+	# --- Connect unit with player ---
 	self.player = playerAssociated
 	self.team = playerAssociated.team
-	self.grade = grade
-	self.hpActual = hpBase
-	self.hpMax = hpBase
-	self.hpBase = hpBase
-	self.hpTemp = 0
-	self.power = powerBase
-	self.powerBase = powerBase
-	self.atkPerTurn = atkPerTurnBase
-	self.atkRemaining = 0
-	self.atkPerTurnBase = atkPerTurnBase
-	self.range = range
-	self.speed = speedBase
-	self.speedRemaining = 0
-	self.speedBase = speedBase
-	self.drBase = drBase
-	self.dr = drBase
-	self.mr = mrBase
-	self.mrBase = mrBase
-	self.potential = potential
-	self.wisdom = wisdomBase
-	self.wisdomBase = wisdomBase
-	self.damageType = damageType
-	self.isDead = isDead
 	playerAssociated.units.append(self)
+	self.isDead = isDead
+
+	# --- Apply Unit Stats Resource ---
+	self.grade = stats.grade
+	
+	# Effective HP Stats
+	self.hpBase = stats.hpBase
+	self.hpMax = stats.hpBase
+	self.hpActual = stats.hpBase
+	self.hpTemp = 0
+	self.drBase = stats.drBase
+	self.dr = stats.drBase
+	self.mrBase = stats.mrBase
+	self.mr = stats.mrBase
+	
+		# Progress Stats
+	self.wisdomBase = stats.wisdomBase
+	self.wisdom = stats.wisdomBase
+	self.potential = stats.potential
+	
+	# Offensive stats
+	self.powerBase = stats.powerBase
+	self.power = stats.powerBase
+	self.damageType = stats.damageType
+	self.range = stats.attackRange
+	self.atkPerTurnBase = stats.atkPerTurnBase
+	self.atkPerTurn = stats.atkPerTurnBase
+	self.atkRemaining = 0 
+	
+	# Speed
+	self.speedBase = stats.speedBase
+	self.speed = stats.speedBase
+	self.speedRemaining = 0
 
 func initStats(uid: String, hpMax: int, hpActual: int, hpTemp: int, power: int, speed: int, speedRemaining: int, atkPerTurn: int, atkRemaining: int, dr: int, mr: int, wisdom: int, level: int):
 	self.uid = uid

@@ -1,15 +1,13 @@
 extends AbstractUnit
 class_name IroncladBull
 
-const idUnit = "set1:IroncladBull"
-const GRADE = 1
-const POTENTIAL = 3#Maybe 4?
-const img = ""
+const POTENTIAL = 3 # Maybe 4?
 const DR_VALUE = 3
 
+const STATS: UnitStats = preload("res://Ressources/units/bulls/IroncladBull.tres")
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
-	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 48, 21, DamageTypes.DamageTypes.PHYSICAL, 1, 1, 3, 8, 0, POTENTIAL, 1)
+	unit.initializeStats(STATS, playerAssociated)
 	var effect1: AbstractEffect = IroncladBullEffect.new(unit, -1, DR_VALUE)
 	unit.effects.append(effect1)
 	unit.tags.append(Tags.tags.BULL)

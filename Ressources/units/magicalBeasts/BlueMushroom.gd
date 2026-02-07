@@ -1,13 +1,10 @@
 extends AbstractUnit
 class_name BlueMushroom
 
-const idUnit = "set1:BlueMushroom"
-const GRADE = 2
-const POTENTIAL = 3
-const img = ""
+const STATS: UnitStats = preload("res://Ressources/units/magicalBeasts/BlueMushroom.tres")
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
-	unit.initializeStats(idUnit, img, playerAssociated, GRADE, 28, 5, DamageTypes.DamageTypes.MAGICAL, 3, 1, 10, 0, 5, POTENTIAL, 3)
+	unit.initializeStats(STATS, playerAssociated)
 	unit.tags.append(Tags.tags.MAGICAL_BEAST)
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]
 	unit.actualMovementTypes = MovementTypes.movementTypes.WALK
