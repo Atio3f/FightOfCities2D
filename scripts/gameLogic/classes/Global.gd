@@ -2,7 +2,6 @@ extends Node
 #S'occupe de tout charger et d'enregistrer les joueurs dans la partie
 
 var effectsStrings := {}
-var unitsStrings := {}
 var parameters: ParamPlayer = preload("res://Ressources/old/player/joueur1/paramJoueur1.tres")
 var unitOn : Node2D
 var unitSelec : Node2D
@@ -10,7 +9,6 @@ var gameManager: GameManager
 
 func _ready():
 	effectsStrings = loadStrings("res://Ressources/effects/EffectsStrings.json")
-	unitsStrings = loadStrings("res://Ressources/units/UnitsStrings.json")
 
 #Load strings from a json
 func loadStrings(filePath: String) -> Dictionary:
@@ -20,7 +18,7 @@ func loadStrings(filePath: String) -> Dictionary:
 		var parsed = JSON.parse_string(json_text)
 		return parsed
 	else:
-		push_error("Erreur : fichier UnitsStrings.json introuvable")
+		push_error("Erreur : fichier "+ filePath +" introuvable")
 		return {}
 
 

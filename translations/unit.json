@@ -1,0 +1,41 @@
+{
+	"set1:MonkeyMC" : {
+		"name": "UNIT_NAME_MONKEY_MC",
+	},
+	"set1:Bull" : {
+		"name": "UNIT_NAME_BULL",
+	},
+	"set1:Monkey": {
+		"name": "UNIT_NAME_MONKEY",
+	},
+	"set1:KnightMonkey" : {
+		"name": "UNIT_NAME_KNIGHT_MONKEY",
+	},
+	"set1:QueenMonkey" : {
+		"name": "UNIT_NAME_QUEEN_MONKEY",
+	},
+	"set1:BerserkerBull" : {
+		"name": "UNIT_NAME_BERSERKER_BULL",
+	},
+	"set1:CADO" : {
+		"name": "UNIT_NAME_CADO",
+	},
+	"set1:AbominationMonkey" : {
+		"name": "UNIT_NAME_ABOMINATION_MONKEY",
+	},
+	"set1:GodMonkey" : {
+		"name": "UNIT_NAME_GOD_MONKEY",
+	},
+	"set1:IroncladBull" : {
+		"name": "UNIT_NAME_IRONCLAD_BULL",
+	},
+	"set1:WingedBull" : {
+		"name": "UNIT_NAME_WINGED_BULL",
+	},
+	"set1:BlueMushroom" : {
+		"name": "UNIT_NAME_BLUE_MUSHROOM",
+	},
+	"set1:TemporalSnail" : {
+		"name": "UNIT_NAME_TEMPORAL_SNAIL",
+	},
+}

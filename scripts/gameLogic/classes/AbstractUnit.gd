@@ -467,8 +467,7 @@ func getClass() -> String :
 	return "AbstractUnit"
 
 func getName() -> String :
-	return Global.UnitsStrings["en"][id]["NAME"]
-	#return Global.getUnitsStrings()
+	return tr(UnitDb.getUnit(id)["name"])
 
 func getImagePath() -> String :
 	return "res://assets/sprites/units/"+imgPath

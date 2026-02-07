@@ -2,6 +2,13 @@ key,fr,en
 UNIT_NAME_MONKEY_MC,Monkey MC,Monkey MC
 UNIT_NAME_BULL,Taureau,Bull
 UNIT_NAME_MONKEY,Monkey,Monkey
-UNIT_NAME_MONKEY_KNIGHT,Chevalier Monkey,Knight Monkey
-UNIT_NAME_MONKEY_QUEEN,Reine Monkey,Queen Monkey
-UNIT_NAME_BULL_BERSERKER,Taureau Berserk,Berserker Bull
+UNIT_NAME_KNIGHT_MONKEY,Chevalier Monkey,Knight Monkey
+UNIT_NAME_QUEEN_MONKEY,Reine Monkey,Queen Monkey
+UNIT_NAME_BERSERKER_BULL,Taureau Berserk,Berserker Bull
+UNIT_NAME_CADO,Chat Adorant Dégager des Oiseaux,CADO
+UNIT_NAME_WINGED_BULL,Taureau ailé,Winged Bull
+UNIT_NAME_IRONCLAD_BULL,Taureau cuirassé,Ironclad Bull
+UNIT_NAME_GOD_MONKEY,Dieu Monkey,God Monkey
+UNIT_NAME_ABOMINATION_MONKEY,Abomination Monkey,Abomination Monkey
+UNIT_NAME_TEMPORAL_SNAIL,Escargot Temporel,Temporal Snail
+UNIT_NAME_BLUE_MUSHROOM,Champignon Bleu,Blue Mushroom

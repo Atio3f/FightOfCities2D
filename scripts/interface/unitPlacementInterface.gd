@@ -8,7 +8,8 @@ var coords: Vector2i #Coords of the interface tile
 func setUnitPreview(unit: AbstractUnit, coords: Vector2i) -> void :
 	self.id = unit.STATS.id
 	self.coords = coords
-	%Preview.text = getPreviewText(unit, Global.unitsStrings["en"][id]["NAME"])
+	var unitData: Dictionary = UnitDb.getUnit(id)
+	%Preview.text = getPreviewText(unit, tr(unitData["name"]))
 	if unit.STATS.imgPath != null and unit.STATS.imgPath != "" :
 		%BtnUnit.icon = load(unit.getImagePath()+"_p.png")
 
