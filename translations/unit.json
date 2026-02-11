@@ -38,4 +38,7 @@
 	"set1:TemporalSnail" : {
 		"name": "UNIT_NAME_TEMPORAL_SNAIL",
 	},
+	"set1:StarvingShadow" : {
+		"name": "UNIT_NAME_STARVING_SHADOW"
+	}
 }

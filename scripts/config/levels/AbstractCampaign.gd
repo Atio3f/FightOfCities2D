@@ -48,7 +48,7 @@ func startNextMission() -> void :
 		var dataMap : Dictionary = dataMaps.get(nextMission)
 		progress = nextMission
 		##Generate map
-		GameManager.generateMap(dataMap["size"]["length"], dataMap["size"]["width"])
+		GameManager.generateMap(dataMap["size"]["width"], dataMap["size"]["length"])
 		##Reset TurnManager
 		TurnManager.reset()
 		##Add opponents and allies players
@@ -116,6 +116,9 @@ func endMap(victoryStatus: bool) -> void:
 		print(progress)
 	else :
 		GameManager.campaign = null
+		## C'est pas ça mais il va falloir comment reset la scène, il y a souci de caméra là (supprimer joueur pê ?)
+		Global.gameManager.mapManager.queue_free()
+		Global.change_gameM_instance()
 		Global.gameManager.get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 ###Save campaign progress, units will be saved on the player side

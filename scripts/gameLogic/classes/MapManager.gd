@@ -42,10 +42,10 @@ static func resetMap() -> void :
 
 #pê rajouter un param mapType dans le futur pour avoir différentes générations de
 #map pour le moment j'en met une par défaut ici 
-static func initMap(_length: int, _width: int) -> void :
+static func initMap(_width: int, _length: int) -> void :
 	resetMap() # Reset actual map generation and all tiles to clean up terrain
-	length = _length
 	width = _width
+	length = _length
 	var genMaxValue: int = 0
 	for weight: int in genMapDefault.values() :
 		genMaxValue += weight

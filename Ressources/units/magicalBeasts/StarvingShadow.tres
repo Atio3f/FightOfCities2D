@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://baqw52lrh6fqn"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_llkey"]
+
+[resource]
+script = ExtResource("1_llkey")
+id = "set1:StarvingShadow"
+imgPath = "Monkey"
+hpBase = 60
+drBase = 7
+mrBase = 3
+grade = 3
+potential = 2
+wisdomBase = 0
+powerBase = 19
+damageType = 1
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 4
+metadata/_custom_type_script = "uid://chjck7svelps7"
