@@ -53,7 +53,7 @@ func obtainReward(player: AbstractPlayer, number: int) -> void :
 	match reward["rewardType"] :
 		RewardTypes.rewardTypes.UNIT :
 			print("OBTAIN IT")
-			GameManager.getMainPlayer().addUnitCard(reward["idReward"])
+			GameManager.getMainPlayer().addUnitCard(StoredUnit.new(reward["idReward"]))
 		RewardTypes.rewardTypes.ITEM :
 			GameManager.getMainPlayer().addCard(reward["idReward"])
 		RewardTypes.rewardTypes.TRINKET :

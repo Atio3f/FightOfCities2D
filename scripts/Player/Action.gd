@@ -34,7 +34,7 @@ func _input(_event) -> void:
 		#Joueur principal
 		if player.isGamePlayer :
 			if Input.is_action_just_pressed("action") and actualTile != null and !actualTile.hasUnitOn() and player.maxWeight >= player.weight + 1 and player.maxUnits > player.units.size():
-				Global.gameManager.placeUnit("set1:Monkey", player, actualTile)
+				Global.gameManager.placeUnit(StoredUnit.new("set1:Monkey"), player, actualTile)
 			if Input.is_action_just_pressed("save_test") : 
 				print("save_test start")
 				GameManager.savingGame()
@@ -46,7 +46,7 @@ func _input(_event) -> void:
 		else :
 			#Permet de créer un ennemi(sert à faire des tests ne coûte aucune action
 			if Input.is_action_just_pressed("action2") and actualTile != null and !actualTile.hasUnitOn():
-				Global.gameManager.placeUnit("set1:Bull", player, actualTile)
+				Global.gameManager.placeUnit(StoredUnit.new("set1:Bull"), player, actualTile)
 				
 
 			#

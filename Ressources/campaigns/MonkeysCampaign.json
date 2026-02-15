@@ -159,6 +159,54 @@
 			"rewards": [
 				"reward:trinketBoss"
 			],
+			"nextMission": "map5"
+		},
+		"map5": {
+			"size": {
+				"width": 10,
+				"length": 13
+			},
+			"enemies": [
+				{
+					"id": "set1:WingedBull",
+					"coords": [9, 7]
+				},
+				{
+					"id": "set1:WingedBull",
+					"coords": [2, 1]
+				},
+				{
+					"id": "set1:BerserkerBull",
+					"coords": [6, 8]
+				},
+			],
+			"placementTiles": [
+				[4, 1],
+				[5, 2],
+				[4, 3],
+				[9, 2],
+				[9, 3]
+			],
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": ["monkeysCampaign:lose"]
+			},
+			"goals": [
+				{
+					"className": "KillAllGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"colorsToKill": [1],
+					"killsAtStart": 3,
+					"killsRemaining": 3
+				}
+			],
+			"rewards": [
+				"reward:trinketBoss",
+				"reward:unitMonkey",
+			],
 			"nextMission": "map1"
 		},
 		

@@ -374,7 +374,16 @@ func removeSelf(checkWin: bool) -> void:
 	queue_free()
 
 func placeOnInventory() -> void:
-	player.addUnitCard(id)	#Will be replaced by the registerUnit I think
+	# On crée le snapshot de l'unité
+	var storedData: StoredUnit = StoredUnit.createFromUnit(self)
+	# On l'envoie à la main du joueur
+	player.addUnitCard(storedData)
+	# On se supprime du terrain (sans checkWin car c'est une fin de map normale)
+	removeSelf(false)
+
+func applyStoredData(data: StoredUnit) -> void:
+	## Apply upgrades and markers
+	data.applyToUnit(self)
 
 #func onLevelUp() -> void :
 	#for effect: AbstractEffect in effects:

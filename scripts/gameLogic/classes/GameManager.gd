@@ -52,7 +52,7 @@ func configPlayer(player: AbstractPlayer) -> void:
 		addTrinket(player, trinketId)
 	##Add starting units
 	for unitId: String in campaign.startingAllies:
-		player.addUnitCard(unitId)
+		player.addUnitCard(StoredUnit.new(unitId))
 	## Add items
 	for itemId: String in campaign.startingItems:
 		player.addCard(itemId)
@@ -134,12 +134,13 @@ static func unitCanBePlacedOnTile(player: AbstractPlayer, tile: AbstractTile, we
 	return tile != null and !tile.hasUnitOn() and player.maxWeight >= player.weight + weight
 
 #Pour les tests on a besoin d'être sûr du type de case
-func placeUnit(id: String, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
+func placeUnit(storedUnitData: StoredUnit, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
 	var u := sceneUnit.instantiate()
 	var unit : AbstractUnit = u as AbstractUnit
 	nodeStorage.add_child(unit, true)
 	print(unit)
-	UnitDb.UNITS[id].initialize(unit, player)
+	UnitDb.UNITS[storedUnitData.id].initialize(unit, player)
+	storedUnitData.applyToUnit(unit) # TODO Vérifier si c'est assez pour appliquer les effets
 	unit.onPlacement(tile)
 	player.addWeight(unit.grade)	#POTENTIELLEMENT A CHANGER DE PLACE SI ON NE DOIT PAS TJRS CHANGER LE POIDS
 	return unit

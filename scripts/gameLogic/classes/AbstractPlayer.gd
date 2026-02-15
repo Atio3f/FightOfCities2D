@@ -70,7 +70,7 @@ func getUnitsByTag(tag: Tags.tags) -> Array[AbstractUnit]:
 func getCards() -> Array[String] :
 	return hand.getHand()
 
-func getUnitCards() -> Array[String]:
+func getUnitCards() -> Array[StoredUnit]:
 	return hand.getUnitsStocked()
 
 #Renvoie les cartes jouables du joueur depuis son inventaire(pour le moment on compte pas 
@@ -152,7 +152,7 @@ func addCard(idCard: String) -> void:
 
 ##Add a new unit to the player
 #Will need a way to stock infos about each unit between battles, idk where
-func addUnitCard(idCard: String) -> void:
+func addUnitCard(idCard: StoredUnit) -> void:
 	hand.addUnitCard(idCard)
 
 ##Use when gaining or losing orbs

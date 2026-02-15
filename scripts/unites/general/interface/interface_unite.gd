@@ -85,9 +85,7 @@ func _on_menu_consommables_pressed():
 ##Delete the unit if used during the preparation turn
 func _on_delete_unit_btn_pressed():
 	if !unitAssociated.player.isGamePlayer : return#Avoid crashes
-	#Add the unit to the player inventory WILL NEED CHANGE IF CHANGE OF addUnitCard
-	unitAssociated.player.addUnitCard(unitAssociated.id)
 	#Add its tile on the placement tiles
 	unitAssociated.player.playerPointer.draw_placeable_cells([unitAssociated.tile.getCoords()])
-	#Delete the unit on board, we use onDeath to be sure we don't forget some effects
-	unitAssociated.onDeath()
+	#Add the unit to the player inventory and remove it
+	unitAssociated.placeOnInventory()

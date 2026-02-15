@@ -60,7 +60,9 @@ func startNextMission() -> void :
 		var tile: AbstractTile
 		for enemiesDico: Dictionary in dataMap.get("enemies"):
 			tile = MapManager.getTileAt(Vector2i(enemiesDico["coords"][0], enemiesDico["coords"][1]))
-			Global.gameManager.placeUnit(enemiesDico["id"], player, tile)
+			var unitData: StoredUnit = StoredUnit.new(enemiesDico["id"])
+			# Check if enemiesDico contains info about upgrades to add on unitData
+			Global.gameManager.placeUnit(unitData, player, tile)
 		
 		##Add the placement tiles and the placement area, where the player will be able to place units
 		var placementTiles : Array[Vector2i]

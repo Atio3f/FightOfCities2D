@@ -13,11 +13,11 @@ func setInterface(coords: Vector2i, unitPlacementIScene: PackedScene) -> void :
 	#Pour le moment on va juste récupérer la liste des unités dispos
 	var unit: AbstractUnit
 	var unitPlacementI: unitPlacementInterface
-	for unitS: String in p.hand.getUnitsStocked():
-		unit = UnitDb.UNITS[unitS].new()	#Get unit
+	for unitData: StoredUnit in p.hand.getUnitsStocked():
+		unit = UnitDb.UNITS[unitData.id].new()	#Get unit
 		unit.imgPath = unit.STATS.imgPath
 		unitPlacementI = unitPlacementIScene.instantiate()	#Get the scene which shows the unit infos
-		unitPlacementI.setUnitPreview(unit, coords)	#Add infos and coords to the scene
+		unitPlacementI.setUnitPreview(unit, unitData, coords)	#Add infos and coords to the scene
 		%UnitsToPlace.add_child(unitPlacementI)
 		#Disable the button if player haven't enough weight or have max units reached to place it
 		if !GameManager.unitCanBePlacedOnTile(p, MapManager.getTileAt(coords), unit.STATS.grade) or not p.maxUnits > p.units.size():
