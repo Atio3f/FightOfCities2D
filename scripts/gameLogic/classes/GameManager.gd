@@ -253,11 +253,8 @@ static func endMap(victoryStatus: bool) -> void :
 		goal.goal_delete.emit()
 		currentGoals.erase(goal)
 		goal.free()
-	for unit: AbstractUnit in getMainPlayer().getUnits() :
-		unit.placeOnInventory()	#Return the unit card on the mainPlayer hand
-	#We duplicate to avoid the iteration to skip some elements bc we delete the first one
-	for unit: AbstractUnit in getMainPlayer().getUnits().duplicate() :	#On est obligé de boucler 2 fois pour le moment, 
-		unit.removeSelf(false)	#Alors jsp si faudra pas revoir l'organisation de cette partie à voir
+	for unit: AbstractUnit in getMainPlayer().getUnits().duplicate() :
+		unit.placeOnInventory()	#Return the unit card on the mainPlayer hand and delete it from the map
 	##Delete all players except the main one
 	players.erase(getMainPlayer())
 	for player: AbstractPlayer in players:
