@@ -69,7 +69,8 @@
 				}
 			],
 			"rewards": [
-				"reward:unitMonkey"
+				"reward:unitMonkey",
+				"reward:classicBanana"
 			],
 			"nextMission": "map2"
 		},

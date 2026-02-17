@@ -16,6 +16,12 @@ var UNIT_LEGENDARY := RarityData.new("LEGENDARY", 3, TYPE_UNIT, RARITY_COLORS["L
 var UNIT_HEROIC := RarityData.new("HEROIC", 10, TYPE_UNIT, RARITY_COLORS["HEROIC"])
 var UNIT_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_UNIT, RARITY_COLORS["SPECIAL"])
 
+# --- CONFIGS ITEM REWARDS ---
+var ITEM_COMMON := RarityData.new("COMMON", 17, TYPE_ITEM, RARITY_COLORS["COMMON"])
+var ITEM_UNCOMMON := RarityData.new("UNCOMMON", 11, TYPE_ITEM, RARITY_COLORS["UNCOMMON"])
+var ITEM_RARE := RarityData.new("RARE", 4, TYPE_ITEM, RARITY_COLORS["RARE"]) # Unusual item to found
+var ITEM_SPECIAL := RarityData.new("SPECIAL", 12, TYPE_ITEM, RARITY_COLORS["SPECIAL"])
+
 # --- CONFIGS EQUIPMENT REWARDS ---
 var EQUIP_COMMON := RarityData.new("COMMON", 13, TYPE_EQUIPMENT, RARITY_COLORS["COMMON"]) #Can be found everywhere and cheap
 var EQUIP_UNCOMMON := RarityData.new("UNCOMMON", 7, TYPE_EQUIPMENT, RARITY_COLORS["UNCOMMON"]) #Can be found everywhere but cost a little bit
@@ -45,5 +51,6 @@ const RARITY_COLORS = {
 
 ## Types de récompense obtenables
 const TYPE_UNIT = "UNIT"
+const TYPE_ITEM = "ITEM"
 const TYPE_EQUIPMENT = "EQUIPMENT"
 const TYPE_TRINKET = "TRINKET"

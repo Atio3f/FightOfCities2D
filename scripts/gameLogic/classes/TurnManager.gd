@@ -13,7 +13,7 @@ static func createTeams(teamsColor: Dictionary) -> void :
 	for team: TeamsColor.TeamsColor in teamsColor:
 		teams.append(team)
 
-##Manage all events when a new turn occured, is missing the ennemies movement
+## Manage all events when a new turn occured, is missing the ennemies movement
 static func nextTurn() -> void:
 	var nextTurn := teams[(turn+1) % teams.size()]
 	turn += 1
@@ -37,7 +37,7 @@ static func actualTurn() -> TeamsColor.TeamsColor :
 	if turn == 0 : return TeamsColor.TeamsColor.EMPTY
 	return teams[turn % teams.size()]
 
-##Reset the TurnManager at the end of each map
+## Reset the TurnManager at the end of each map
 static func reset() -> void :
 	turn = 0
 	teams.clear()

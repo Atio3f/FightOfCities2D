@@ -5,7 +5,7 @@ const REWARDS := {
 	"reward:unitMonkey" : preload("res://Ressources/rewards/UnitMonkeyReward.gd"),
 	"reward:magicalBeast" : preload("res://Ressources/rewards/MagicalBeastReward.gd"),
 	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd"),
-	"reward:classic_banana": preload("res://Ressources/rewards/ClassicBananaReward.gd")
+	"reward:classicBanana": preload("res://Ressources/rewards/ClassicBananaReward.gd")
 }
 
 #A CHANGER faudra que ça soit en fonction de la langue les desc et title, sûrement grâce à la valeur de rewardType
@@ -21,4 +21,6 @@ const REWARDS_DICO := {
 	"set1:ArtOfWar": {"title": "Art Of War", "desc": "Learn the tactic's basics.", "idReward": "set1:ArtOfWar", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:PunchingBallMonkey": {"title": "Punching Ball Monkey", "desc": "TODO", "idReward": "set1:PunchingBallMonkey", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:MonkeySoap": {"title": "Monkey Soap", "desc": "TODO", "idReward": "set1:MonkeySoap", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	"set1:Banana": {"title": "Banana", "desc": "TODO", "idReward": "set1:Banana", "rewardType": RewardTypes.rewardTypes.ITEM},
+	"set1:BananaPeel": {"title": "Banana Peel", "desc": "TODO", "idReward": "set1:BananaPeel", "rewardType": RewardTypes.rewardTypes.ITEM},
 }

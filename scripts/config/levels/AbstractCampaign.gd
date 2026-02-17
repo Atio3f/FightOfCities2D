@@ -38,7 +38,7 @@ func setupCampaign(difficulty: int, campaignFile: String) -> void :
 		push_error("FILE FOR CAMPAIGN"+campaignFile+" NOT FOUND")
 	file.close()
 
-##Start a new map, will create the map, place units from enemies and make dialogs
+## Start a new map, will create the map, place units from enemies and make dialogs
 func startNextMission() -> void :
 	var file : FileAccess = FileAccess.open(self.campaignFile, FileAccess.READ)	#Pê créer un autre fichier pour ça
 	if file :
@@ -47,16 +47,16 @@ func startNextMission() -> void :
 		dataMaps = data.get("maps")
 		var dataMap : Dictionary = dataMaps.get(nextMission)
 		progress = nextMission
-		##Generate map
+		## Generate map
 		GameManager.generateMap(dataMap["size"]["width"], dataMap["size"]["length"])
-		##Reset TurnManager
+		## Reset TurnManager
 		TurnManager.reset()
-		##Add opponents and allies players
+		## Add opponents and allies players
 		var player: AbstractPlayer = Global.gameManager.createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
 		#ça sera comme ça plus tard mais pour le moment on va juste créer un adversaire rouge et lui donner les troupes
 		#for ennemi: Dictionary in dataMap.get("ennemies"):
 			#var player: AbstractPlayer = Global.gameManager.createPlayer()
-		##Setup all ennemis/allies(will be on the players loop)
+		## Setup all ennemis/allies(will be on the players loop)
 		var tile: AbstractTile
 		for enemiesDico: Dictionary in dataMap.get("enemies"):
 			tile = MapManager.getTileAt(Vector2i(enemiesDico["coords"][0], enemiesDico["coords"][1]))
@@ -64,7 +64,7 @@ func startNextMission() -> void :
 			# Check if enemiesDico contains info about upgrades to add on unitData
 			Global.gameManager.placeUnit(unitData, player, tile)
 		
-		##Add the placement tiles and the placement area, where the player will be able to place units
+		## Add the placement tiles and the placement area, where the player will be able to place units
 		var placementTiles : Array[Vector2i]
 		if dataMap.get("placementArea") : #A voir pour retirer placementArea pas très cool à voir une zone pleine
 			var pAreaData: Dictionary = dataMap.get("placementArea")
@@ -73,7 +73,7 @@ func startNextMission() -> void :
 					placementTiles.append(Vector2i(x, y))
 		for coordArray: Array in dataMap.get("placementTiles"):
 			placementTiles.append(Vector2i(coordArray[0], coordArray[1]))
-		#Draw tiles
+		# Draw tiles
 		GameManager.drawPlaceablesTiles(placementTiles)
 		
 		## Add goals if its a fight
@@ -93,8 +93,8 @@ func checkWin() -> bool :
 		if goal && goal.primaryGoal : isWinning = isWinning && goal.checkObjectiveStatus()
 	return isWinning
 
-##Function to check if the player has lose on the map
-#Will be override by campaigns, the actual check is the default one
+## Function to check if the player has lose on the map
+# Will be override by campaigns, the actual check is the default one
 func checkLose() -> bool :
 	return GameManager.getMainPlayer().getUnits().size() == 0
 
@@ -123,7 +123,7 @@ func endMap(victoryStatus: bool) -> void:
 		Global.change_gameM_instance()
 		Global.gameManager.get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
-###Save campaign progress, units will be saved on the player side
+## Save campaign progress, units will be saved on the player side
 func saveCampaignProgress() -> Dictionary :
 	return {
 		"campaignName": self.campaignName,
