@@ -8,6 +8,10 @@ var totalWeight: int = 0	#Total weight of all items on rewardsAvailable
 var rewards: Array[String] = []	#Rewards list for the returned screen reward
 var rewardsNumber: int = 3	#Number of rewards on rewards list
 
+# Use to set a data value, the corresponding param will be define on the recover function
+func setData(_additionalData: String) -> void :
+	pass
+
 ## Init total weight
 func initWeight() -> void :
 	totalWeight = 0
@@ -59,7 +63,7 @@ func obtainReward(player: AbstractPlayer, number: int) -> void :
 		RewardTypes.rewardTypes.TRINKET :
 			GameManager.addTrinket(GameManager.getMainPlayer(), reward["idReward"])
 		RewardTypes.rewardTypes.GOLD :
-			GameManager.getMainPlayer().addCard(reward["goldAmt"])
+			GameManager.getMainPlayer().gainGold(totalWeight)
 		RewardTypes.rewardTypes.ORB :
 			GameManager.getMainPlayer().addCard(reward["orbAmt"])
 		RewardTypes.rewardTypes.BONUS :

@@ -7,6 +7,7 @@ var team: TeamsColor.TeamsColor #Team Color
 var units: Array[AbstractUnit] = []
 var orbs: int = ORBS_BASE
 var maxOrbs: int = MAX_ORBS_BASE
+var gold: int = 0
 const ORBS_BASE: int = 2
 const MAX_ORBS_BASE: int = 5
 
@@ -164,6 +165,14 @@ func gainOrbs(amt: int) -> void:
 		if amt + orbs < 0 : orbs = 0
 		else : orbs += amt
 
+##Use when gaining or losing orbs
+func gainGold(amt: int) -> void:
+	if amt > 0 :
+		gold += amt
+	else :
+		if amt + gold < 0 : gold = 0
+		else : gold += amt
+
 ##To add an equipment to an unit
 func addEquipment(idEquipment: String) -> void:
 	if hand.cards.has(idEquipment) :
@@ -208,6 +217,7 @@ func registerPlayer() -> Dictionary :
 		"isGamePlayer": self.isGamePlayer,
 		"orbs": self.orbs,
 		"maxOrbs": self.maxOrbs,
+		"gold": self.gold,
 		"weight": self.weight,
 		"maxWeight": self.maxWeight,
 		"maxUnits": self.maxUnits,
@@ -233,6 +243,7 @@ static func recoverPlayer(data: Dictionary) -> Dictionary :
 		player = Global.gameManager.createPlayer(data.team, data.playerName, data.isGamePlayer)
 	player.orbs = data.orbs
 	player.maxOrbs = data.maxOrbs
+	player.gold = data.gold
 	player.weight = data.weight
 	player.maxWeight = data.maxWeight
 	player.fixCameraLimit(MapManager.length, MapManager.width)

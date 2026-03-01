@@ -37,6 +37,11 @@ var TRINKET_RARE := RarityData.new("RARE", 3, TYPE_TRINKET, RARITY_COLORS["RARE"
 var TRINKET_ANCIENT := RarityData.new("ANCIENT", 1, TYPE_TRINKET, RARITY_COLORS["ANCIENT"])
 var TRINKET_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_TRINKET, RARITY_COLORS["SPECIAL"]) #Can be found on events
 
+
+# --- CONFIGS GOLD REWARDS ---
+var GOLD_T1 := RarityData.new("T1", 1, TYPE_GOLD, RARITY_COLORS["COMMON"])
+
+
 ## Couleurs du contour des récompenses
 const RARITY_COLORS = {
 	"COMMON": Color("bdc3c7"),     # Gray, for Grade 1 units
@@ -52,5 +57,6 @@ const RARITY_COLORS = {
 ## Types de récompense obtenables
 const TYPE_UNIT = "UNIT"
 const TYPE_ITEM = "ITEM"
+const TYPE_GOLD = "GOLD"
 const TYPE_EQUIPMENT = "EQUIPMENT"
 const TYPE_TRINKET = "TRINKET"

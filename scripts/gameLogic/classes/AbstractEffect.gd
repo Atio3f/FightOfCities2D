@@ -145,6 +145,7 @@ func registerEffect() -> Dictionary:
 	}
 
 static func recoverEffect(data: Dictionary, unit: AbstractUnit) -> AbstractEffect :
+	if data == {} : return
 	#Create a effect with all elements associated
 	if EffectDb.EFFECTS.has(data.className):
 		var effect = EffectDb.EFFECTS[data.id].new(unit, data.remainingTurns, data.value_A, data.value_B, data.value_C, data.counter)

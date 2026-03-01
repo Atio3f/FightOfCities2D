@@ -109,7 +109,14 @@ func endMap(victoryStatus: bool) -> void:
 		var mainPlayer: AbstractPlayer = GameManager.getMainPlayer()
 		var reward: AbstractReward
 		for rewardS: String in dataMap["rewards"] :
+			var parts = rewardS.split(":")
+			var rewardId = parts[0] + ":" + parts[1]
+			var additionalData : String = "" # Indicate if the reward contains a precision for its data
+			if parts.size() > 2:
+				additionalData = parts[2]
+			
 			reward = RewardDb.REWARDS[rewardS].new()
+			reward.setData(additionalData)
 			reward.randomizeRewards()
 			#Show interface to get rewards
 			mainPlayer.metaInterface.placeInterface(reward.getScreenReward(), true)
