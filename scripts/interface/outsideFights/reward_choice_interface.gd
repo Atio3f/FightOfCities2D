@@ -30,8 +30,8 @@ func getEndSignal() -> Signal :
 
 
 func _on_skip_btn_pressed() -> void:
-	reward.obtainReward(GameManager.getMainPlayer(), -1)	#Return skip action
-	closeRewardInterface()
+	var shouldClose: bool = reward.obtainReward(GameManager.getMainPlayer(), -1)	#Return skip action
+	if shouldClose : closeRewardInterface()
 
 func saveInterface() -> Dictionary :
 	var dico := {

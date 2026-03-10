@@ -1,0 +1,39 @@
+{
+	"UpgradePromotionEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"hpMax": 10,
+			"dr": 2,
+			"mr": 1,
+			"grade": 1
+		},
+		"is_dynamic": false
+	},
+	"UpgradeAgilityEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"speed": 4
+		},
+		"is_dynamic": false
+	},
+	"UpgradeTestEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"speed": 4
+		},
+		"is_dynamic": false
+	},
+	"UpgradeScoutEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"hpMax": 4
+		},
+		"is_dynamic": false
+	},
+	"DynamicPowerEffect": {
+		"stats": {
+			"potentialCost": 1,
+		},
+		"is_dynamic": true
+	}
+}

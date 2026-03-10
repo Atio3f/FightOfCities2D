@@ -1,9 +1,24 @@
 {
 	"mainCharacter": "set1:MonkeyMC",
 	"startingAllies": [
-		"set1:Monkey",
-		"set1:Monkey",
-		"set1:MonkeyMC"
+		{
+			"id": "set1:Monkey",
+			"permanentUpgrades": [
+				"UpgradePromotionEffect"
+			],
+		},
+		{
+			"id": "set1:Monkey",
+		},
+		{
+			"id": "set1:MonkeyMC",
+		},
+		{
+			"id": "set1:CADO",
+		},
+		{
+			"id": "set1:StarvingShadow",
+		}
 	],
 	"startingItems": [
 		"set1:VitalLink",
@@ -33,6 +48,9 @@
 			"enemies": [
 				{
 					"id": "set1:Bull",
+					"permanentUpgrades": [
+						"UpgradeScoutEffect"
+					],
 					"coords": [5, 7]
 				}
 			],
@@ -69,7 +87,7 @@
 				}
 			],
 			"rewards": [
-				"reward:unitMonkey",
+				"reward:bonus",
 				"reward:classicBanana"
 			],
 			"nextMission": "map2"

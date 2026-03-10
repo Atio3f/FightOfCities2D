@@ -1,6 +1,5 @@
 extends Node
 
-
 const UNITS := {
 	"set1:MonkeyMC": preload("res://Ressources/units/mainCharacters/monkeys/MonkeyMC.gd"),
 	"set1:Monkey": preload("res://Ressources/units/monkeys/Monkey.gd"),
@@ -48,3 +47,10 @@ func getUnit(unit_id: String) -> Dictionary:
 	else:
 		push_error("unit id not found : " + unit_id)
 		return {}
+
+func getUnitStats(unit_id: String) -> UnitStats:
+	if UNITS.has(unit_id):
+		return UNITS[unit_id].STATS
+	else:
+		push_error("Stats not found for unit id : " + unit_id)
+		return null

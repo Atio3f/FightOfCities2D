@@ -51,6 +51,6 @@ func _on_mouse_exited():
 
 
 func _on_pressed():
-	rewards.obtainReward(GameManager.getMainPlayer(), rewardNbr)
+	var shouldClose: bool = rewards.obtainReward(GameManager.getMainPlayer(), rewardNbr)
 	print("GET IT")
-	get_parent().get_parent().closeRewardInterface()	#Close interface
+	if shouldClose : get_parent().get_parent().closeRewardInterface()	#Close interface

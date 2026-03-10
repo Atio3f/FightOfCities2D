@@ -41,6 +41,11 @@ var TRINKET_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_TRINKET, RARITY_COLORS[
 # --- CONFIGS GOLD REWARDS ---
 var GOLD_T1 := RarityData.new("T1", 1, TYPE_GOLD, RARITY_COLORS["COMMON"])
 
+# --- CONFIGS GOLD REWARDS ---
+var BONUS_COMMON := RarityData.new("COMMON", 4, TYPE_BONUS, RARITY_COLORS["COMMON"]) # Common bonus to get
+var BONUS_UNCOMMON := RarityData.new("UNCOMMON", 1, TYPE_BONUS, RARITY_COLORS["UNCOMMON"]) # Bonus that rarely appears
+var BONUS_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_BONUS, RARITY_COLORS["SPECIAL"]) #Can be found on events
+
 
 ## Couleurs du contour des récompenses
 const RARITY_COLORS = {
@@ -60,3 +65,4 @@ const TYPE_ITEM = "ITEM"
 const TYPE_GOLD = "GOLD"
 const TYPE_EQUIPMENT = "EQUIPMENT"
 const TYPE_TRINKET = "TRINKET"
+const TYPE_BONUS = "BONUS"

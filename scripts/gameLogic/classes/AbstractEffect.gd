@@ -58,7 +58,8 @@ func onEffectApplied(firstTime: bool, oldEffect:AbstractEffect = null) -> void:
 	1
 
 func onEffectEnd() -> void:
-	1
+	unitAssociated.effects.erase(self)
+	self.queue_free()
 
 #Will probably replace onUnitPlace for final version 
 func onCardPlay(player: AbstractPlayer) -> void:

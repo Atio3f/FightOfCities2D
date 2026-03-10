@@ -12,4 +12,9 @@ const EFFECTS := {
 	"set1:TemporalSnailResurrectEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/TemporalSnailResurrectEffect.gd"),
 	"set1:CADOEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/CADOEffect.gd"),
 	"set1:StarvingShadowEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/StarvingShadowEffect.gd"),
+	# UPGRADE EFFECTS
+	"UpgradeTestEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeTestEffect.gd"),
+	"UpgradePromotionEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradePromotionEffect.gd"),
+	"UpgradeScoutEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeScoutEffect.gd"),
+	"UpgradeAgilityEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeAgilityEffect.gd"),
 }

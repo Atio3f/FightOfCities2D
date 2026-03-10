@@ -30,7 +30,9 @@ func createTerrain() -> void :
 	if !terrain :
 		instanceTerrain = sceneTerrain.instantiate()
 		terrain = instanceTerrain as Terrain
-	self.add_child(terrain.getNode())	#Import the tilemap on scene
+	#Import the tilemap on scene 
+	if terrain.get_parent() != null : terrain.reparent(self) # Move the terrain if already have a parent
+	else : self.add_child(terrain.getNode())	# Else place it here
 	#initMap(10, 10)
 
 ## Reset Map, including all tiles on terrain 

@@ -43,6 +43,11 @@ var tags: Array[Tags.tags] = []
 var tile: AbstractTile	#Keep the tile where is the unit
 var isDead: bool	#Allow us to keep track of units killed
 
+# Datas from StoredUnit, used to be restaured for next maps
+var permanentUpgrades: Array[String] = []
+var markersEffects: Dictionary = {}
+var statModifiers: Dictionary = {}
+
 @onready var contourSelec : Sprite2D = $UnitElements/ContourSelection
 var is_selected : bool = false:
 	set(value):
@@ -381,9 +386,13 @@ func placeOnInventory() -> void:
 	# On se supprime du terrain (sans checkWin car c'est une fin de map normale)
 	removeSelf(false)
 
-func applyStoredData(data: StoredUnit) -> void:
-	## Apply upgrades and markers
-	data.applyToUnit(self)
+# Activate a permanent upgrade effect at the start of a map
+func activatePermanentUpgrade(permanentUpgradeId: String) -> void:
+	if EffectDb.EFFECTS.has(permanentUpgradeId):
+		var effectInstance = EffectDb.EFFECTS[permanentUpgradeId].new(self)
+		self.addEffect(effectInstance)
+	else:
+		push_warning("Effet permanent introuvable dans la base de données : " + permanentUpgradeId)
 
 #func onLevelUp() -> void :
 	#for effect: AbstractEffect in effects:
@@ -470,6 +479,30 @@ func canEquipEquipment(equipment: AbstractEquipment) -> bool :
 ## Use to equip an equipment, need to use the method from AbstractPlayer which check if we can equip it (canEquipEquipment())
 func equipEquipment(equipment: AbstractEquipment) -> void :
 	equipments.append(equipment)
+
+## Modify unit stat on statModifiers param
+func modifyStat(statName: String, amt: int) -> void :
+	if !statModifiers.has(statName) : 
+		statModifiers[statName] = 0
+	statModifiers[statName] += amt
+
+## Apply stat changes from statModifiers, used by StoredUnit when adding permanent buffs
+func applyStatModifiers() -> void :
+	for statName: String in statModifiers :
+		match statName :
+			"hpMax":
+				set(statName, get(statName) + statModifiers[statName])
+				set("hpActual", get("hpActual") + statModifiers[statName])
+			"speed":
+				set(statName, get(statName) + statModifiers[statName])
+				set("speedRemaining", get("speedRemaining") + statModifiers[statName])
+			"atkPerTurn":
+				set(statName, get(statName) + statModifiers[statName])
+				set("atkRemaining", get("atkRemaining") + statModifiers[statName])
+			"potentialCost":
+				pass
+			_: 
+				set(statName, get(statName) + statModifiers[statName])
 
 #We can't override get_class method from Node sadly
 func getClass() -> String :
@@ -582,9 +615,10 @@ static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary 
 static func recoverEffectsForUnit(effectsData: Array, unit: AbstractUnit) -> Dictionary :
 	var effectsDico: Dictionary = {}
 	for effectData: Dictionary in effectsData :
-		var newEff: AbstractEffect = AbstractEffect.recoverEffect(effectData, unit)
-		if newEff != null :
-			effectsDico[newEff.uid] = newEff
+		if effectData != {} :
+			var newEff: AbstractEffect = AbstractEffect.recoverEffect(effectData, unit)
+			if newEff != null :
+				effectsDico[newEff.uid] = newEff
 	return effectsDico
 
 #Recover units & effeects stocked on unit effects

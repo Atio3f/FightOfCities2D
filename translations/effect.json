@@ -1,0 +1,72 @@
+{
+	"set1:GodMonkeySpeedEffect": {
+		"id": "set1:GodMonkeySpeedEffect",
+		"name": "EFFECT_NAME_GOD_MONKEY_SPEED",
+		"description": "EFFECT_DESCRIPTION_GOD_MONKEY_SPEED"
+	},
+	"set1:GodMonkeyHealEffect": {
+		"id": "set1:GodMonkeyHealEffect",
+		"name": "EFFECT_NAME_GOD_MONKEY_HEAL",
+		"description": "EFFECT_DESCRIPTION_GOD_MONKEY_HEAL"
+	},
+	"set1:KnightMonkeyEffect": {
+		"id": "set1:KnightMonkeyEffect",
+		"name": "EFFECT_NAME_KNIGHT_MONKEY",
+		"description": "EFFECT_DESCRIPTION_KNIGHT_MONKEY"
+	},
+	"set1:AbominationMonkeyEffect": {
+		"id": "set1:AbominationMonkeyEffect",
+		"name": "EFFECT_NAME_ABOMINATION_MONKEY",
+		"description": "EFFECT_DESCRIPTION_ABOMINATION_MONKEY"
+	},
+	"set1:MonkeyEffect": {
+		"id": "set1:MonkeyEffect",
+		"name": "EFFECT_NAME_MONKEY",
+		"description": "EFFECT_DESCRIPTION_MONKEY"
+	},
+	"set1:QueenMonkeyEffect": {
+		"id": "set1:QueenMonkeyEffect",
+		"name": "EFFECT_NAME_QUEEN_MONKEY",
+		"description": "EFFECT_DESCRIPTION_QUEEN_MONKEY"
+	},
+	"set1:TemporalSnailResurrectEffect": {
+		"id": "set1:TemporalSnailResurrectEffect",
+		"name": "EFFECT_NAME_TEMPORAL_SNAIL_RESURRECT",
+		"description": "EFFECT_DESCRIPTION_TEMPORAL_SNAIL_RESURRECT"
+	},
+	"set1:TemporalSnailKillEffect": {
+		"id": "set1:TemporalSnailKillEffect",
+		"name": "EFFECT_NAME_TEMPORAL_SNAIL_KILL",
+		"description": "EFFECT_DESCRIPTION_TEMPORAL_SNAIL_KILL"
+	},
+	"set1:PenetrationPhysicalEffect": {
+		"id": "set1:PenetrationPhysicalEffect",
+		"name": "EFFECT_NAME_PENETRATION_PHYSICAL",
+		"description": "EFFECT_DESCRIPTION_PENETRATION_PHYSICAL"
+	},
+	"set1:PenetrationMagicalEffect": {
+		"id": "set1:PenetrationMagicalEffect",
+		"name": "EFFECT_NAME_PENETRATION_MAGICAL",
+		"description": "EFFECT_DESCRIPTION_PENETRATION_MAGICAL"
+	},
+	"UpgradeTestEffect": {
+		"id": "UpgradeTestEffect",
+		"name": "EFFECT_NAME_UPGRADE_TEST",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_TEST"
+	},
+	"UpgradeAgility": {
+		"id": "UpgradeAgility",
+		"name": "EFFECT_NAME_UPGRADE_AGILITY",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_AGILITY"
+	},
+	"UpgradeScout": {
+		"id": "UpgradeScout",
+		"name": "EFFECT_NAME_UPGRADE_SCOUT",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_SCOUT"
+	},
+	"UpgradePromotion": {
+		"id": "UpgradePromotion",
+		"name": "EFFECT_NAME_UPGRADE_PROMOTION",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_PROMOTION"
+	}
+}

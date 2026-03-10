@@ -5,12 +5,19 @@ const REWARDS := {
 	"reward:unitMonkey" : preload("res://Ressources/rewards/UnitMonkeyReward.gd"),
 	"reward:magicalBeast" : preload("res://Ressources/rewards/MagicalBeastReward.gd"),
 	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd"),
-	"reward:classicBanana": preload("res://Ressources/rewards/ClassicBananaReward.gd")
+	"reward:classicBanana": preload("res://Ressources/rewards/ClassicBananaReward.gd"),
+	"reward:gold" : preload("res://Ressources/rewards/GoldReward.gd"),
+	"reward:bonus" : preload("res://Ressources/rewards/UpgradeReward.gd"),
 }
 
 #A CHANGER faudra que ça soit en fonction de la langue les desc et title, sûrement grâce à la valeur de rewardType
 const REWARDS_DICO := {
 	"gold": {"title": "Gold", "desc": "Gain a certain amount of gold",  "rewardType": RewardTypes.rewardTypes.GOLD},
+	"bonus": {"title": "Bonus", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeAgilityEffect": {"title": "Bonus agility", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradePromotionEffect": {"title": "Bonus promotion", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeScoutEffect": {"title": "Bonus scout", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeTestEffect": {"title": "Bonus test", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:KnightMonkey": {"title": "Knight Monkey", "desc": "He always help the weakest.", "idReward": "set1:KnightMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:AbominationMonkey": {"title": "Abomination Monkey", "desc": "A failed experiementation. Poor Monkey...", "idReward": "set1:AbominationMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},

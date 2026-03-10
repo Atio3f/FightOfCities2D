@@ -1,6 +1,6 @@
+## Store unit infos and permanent upgrades & changes for save files and placement
 extends Resource
 class_name StoredUnit
-## Store unit infos and permanent upgrades & changes for save files and placement
 
 # --- IDENTIFICATION ---
 @export_group("Identity")
@@ -38,25 +38,46 @@ static func createFromUnit(unit: AbstractUnit) -> StoredUnit:
 	# Get permanent buffs and apply them
 	# TODO Faut trouver comment relier ça avec poids et tout parce que certains buffs jouent là dessus donc à voir si on récup pas juste UnitStats
 	# storedUnitData.permanentUpgrades = unit.markers.duplicate()
-	
+	storedUnitData.permanentUpgrades  = unit.permanentUpgrades.duplicate()
+	storedUnitData.markersEffects = unit.markersEffects.duplicate()
+	storedUnitData.statModifiers = unit.statModifiers.duplicate()
 	# Sauvegarde des effets
 	# Get permanent effects that need to be keep, we will call all effects and some of them will added data on markersEffects dico
 	# storedUnitData.markersEffects = unit.getPermanentsEffects()
-	
 	
 	return storedUnitData
 
 ## Apply data on load
 func applyToUnit(unit: AbstractUnit) -> void:
+	# 1. On injecte les données de la sauvegarde dans l'unité active
+	unit.permanentUpgrades = self.permanentUpgrades.duplicate()
+	unit.statModifiers = self.statModifiers.duplicate()
+	unit.markersEffects = self.markersEffects.duplicate()
 	
-	# Manage stat_modifiers activations
-	if statModifiers.has("hp_bonus"):
-		unit.hpMax += statModifiers["hp_bonus"]
-		unit.hpActual += statModifiers["hp_bonus"]
+	## Recalculate statModifiers with new permanentUpgrades
+	unit.applyStatModifiers() # Apply stat changes from upgrades
+
+	# Apply all permanent upgrades to the unit
+	for upgradeId: String in permanentUpgrades:
+		unit.activatePermanentUpgrade(upgradeId)
+
+## Add a permanent upgrade and its stat changes to the model, used on upgrade reward interface and when collecting units from json
+func addPermanentUpgrade(upgradeId: String) -> void:
+	#permanentUpgrades.append(upgradeId)
 	
-	# Appliquer les effets
-	# for effect_id in permanent_effects:
-	# 	unit.add_effect(effect_id, true) # true = silent add (pas d'anim)
+	var modifiers = UpgradeDB.get_stat_modifiers(upgradeId)
+	
+	## Add a default cost of 1 if the cost isn't present
+	if !modifiers.has("potentialCost") : modifiers["potentialCost"] = 1
+	
+	## Add every stat bonus to the unit
+	for stat_name: String in modifiers:
+		modifyStat(stat_name, modifiers[stat_name])
+
+func modifyStat(statName: String, amt: int) -> void :
+	if !statModifiers.has(statName) : 
+		statModifiers[statName] = 0
+	statModifiers[statName] += amt
 
 ## SERIALIZATION (JSON)
 ## Les Resources Godot ne se mettent pas directement dans JSON.stringify
@@ -77,5 +98,10 @@ static func loadStoredUnit(data: Dictionary) -> StoredUnit:
 	var storage = StoredUnit.new(idUnit)
 	storage.permanentUpgrades.assign(data.get("permanentUpgrades", []))
 	storage.markersEffects = data.get("markersEffects", {})
-	storage.statModifiers = data.get("modifiers", {})
+	# Check if data contains info about upgrades to add on unitData
+	if data.has("markersEffects") :
+		storage.statModifiers = data.get("modifiers", {})
+	else :
+		for upgradeId: String in storage.permanentUpgrades:
+			storage.addPermanentUpgrade(upgradeId)
 	return storage
