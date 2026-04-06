@@ -11,3 +11,4 @@ func _init(playerAssociated: AbstractPlayer) -> void:
 
 func onGain() -> void :
 	playerAssociated.gainOrbs(value_A)
+	isDisable = true

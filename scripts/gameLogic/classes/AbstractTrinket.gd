@@ -16,6 +16,23 @@ var value_C: int
 var counter: int #Can be used to increment a value, will be used to count turns
 var counter2: int #Can be used to increment a value, will be used to increment a value
 
+signal trinket_state_changed(is_active: bool, is_disable: bool)
+
+var isActive: bool: # Visual signal to see when a trinket activated
+	set(value):
+		if value == isActive : return # Avoid sending signal for not a changed value
+		if isDisable and value: return # Cannot activate if disabled
+		isActive = value
+		trinket_state_changed.emit(isActive, isDisable)
+
+var isDisable: bool: # Visual signal to see when a trinket have used all of its capacities and should not activate again
+	set(value):
+		if value == isDisable : return # Avoid sending signal for not a changed value
+		isDisable = value
+		if value :
+			isActive = false
+		trinket_state_changed.emit(isActive, isDisable)
+
 func initialize(id: String, imgPath: String, rarity: RarityData, player: AbstractPlayer, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0, counter2: int = 0) -> void:
 	self.id = id
 	self.imgPath = imgPath
@@ -96,7 +113,9 @@ func registerTrinket() -> Dictionary :
 		"value_B": self.value_B,
 		"value_C": self.value_C,
 		"counter": self.counter,
-		"counter2": self.counter2
+		"counter2": self.counter2,
+		"isActive": self.isActive,
+		"isDisable": self.isDisable,
 	}
 
 static func recoverTrinket(trinketData: Dictionary, player: AbstractPlayer) -> void :

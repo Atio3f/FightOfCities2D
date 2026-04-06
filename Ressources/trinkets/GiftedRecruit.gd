@@ -23,4 +23,5 @@ func onUnitGained(unitData: StoredUnit) -> StoredUnit :
 	# Disable trinket
 	counter = 1
 	## TODO Should display that trinket is off
+	isDisable = true
 	return unitData

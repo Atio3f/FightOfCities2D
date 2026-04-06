@@ -224,6 +224,8 @@ static func addTrinket(player: AbstractPlayer, idTrinket: String, dataTrinket: D
 			trinket.value_C = dataTrinket["value_C"]
 			trinket.counter = dataTrinket["counter"]
 			trinket.counter2 = dataTrinket["counter2"]
+			trinket.isActive = dataTrinket["isActive"]
+			trinket.isDisable = dataTrinket["isDisable"]
 		player.setTrinket(trinket)#Place the trinket on screen
 
 ## Function
