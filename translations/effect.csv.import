@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://qbbm2ag8qesc"
+
+[deps]
+
+files=["res://translations/effect.Dieu Monkey.translation", "res://translations/effect.God Monkey.translation"]
+
+source_file="res://translations/effect.csv"
+dest_files=["res://translations/effect.Dieu Monkey.translation", "res://translations/effect.God Monkey.translation"]
+
+[params]
+
+compress=true
+delimiter=0

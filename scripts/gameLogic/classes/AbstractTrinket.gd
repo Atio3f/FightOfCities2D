@@ -37,6 +37,10 @@ func initialize(id: String, imgPath: String, rarity: RarityData, player: Abstrac
 func onGain() -> void :
 	pass
 
+## Activate when you gain an unit
+func onUnitGained(unitData: StoredUnit) -> StoredUnit :
+	return unitData
+
 #ça sera probablement pas un String mais un type de carte ou alors la carte générée
 func onCardPlay(player: AbstractPlayer, card: String) -> void:
 	pass
@@ -45,11 +49,11 @@ func onCardPlay(player: AbstractPlayer, card: String) -> void:
 func onUnitPlace(unit: AbstractUnit) -> void:
 	pass
 
-##Activate when an unit is moving
+## Activate when an unit is moving
 func onMovement(unitMoving: AbstractUnit) -> void:
 	pass
 
-##Activate when an item is played,  unit can be null
+## Activate when an item is played,  unit can be null
 func onItemUsed(player: AbstractPlayer, isMalus: bool, unit: AbstractUnit = null) -> void:
 	pass
 
@@ -59,6 +63,10 @@ func onDamageTaken(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit, dama
 
 #Return final damage taken
 func onDamageDealed(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
+	return damage
+
+#Return final damage taken after damage reduction of the target
+func onDamageDealedAfterReduction(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
 	return damage
 
 func onHeal(unitHealing: AbstractUnit, unitHealed: AbstractUnit, healValue: int) -> int :

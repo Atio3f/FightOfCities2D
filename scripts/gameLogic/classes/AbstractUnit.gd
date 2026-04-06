@@ -266,11 +266,17 @@ func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.Dama
 			damageReduction = mr
 		_:
 			damageReduction = 0
-	damage = 0 if (damageReduction > damage) else (damage - damageReduction)
+	damage = 0 if (damageReduction > damage) else (damage - damageReduction)	
 	for effect: AbstractEffect in effects:
 		damage = effect.onDamageTaken(unit, damage, damageType, visualisation)
 	for trinket: AbstractTrinket in player.trinkets :
 		damage = trinket.onDamageTaken(unit, self, damage, damageType, visualisation)
+	if unit != null:
+		for effect: AbstractEffect in unit.effects:
+			damage = effect.onDamageDealedAfterReduction(self, damage, damageType, visualisation)
+		if unit.player != null:
+			for trinket: AbstractTrinket in unit.player.trinkets :
+				damage = trinket.onDamageDealedAfterReduction(unit, self, damage, damageType, visualisation)
 	var hpLoses: Dictionary
 	# If it's not a true attack we just return value
 	if(!visualisation):
@@ -322,6 +328,8 @@ func loseHp(damage: int) -> Dictionary:
 func getLoseHp(damage: int) -> Dictionary:
 	var hpLoses: Dictionary = {}
 	hpLoses["damage"] = damage
+	for effect: AbstractEffect in effects :
+		effect.loseHp(hpLoses)
 	if damage < hpTemp :
 		hpLoses["hpTemp"] = hpTemp - damage
 		hpLoses["hpActual"] = hpActual

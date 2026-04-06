@@ -52,7 +52,7 @@ func configPlayer(player: AbstractPlayer) -> void:
 		addTrinket(player, trinketId)
 	##Add starting units
 	for unitData: Dictionary in campaign.startingAllies:
-		player.addUnitCard(StoredUnit.loadStoredUnit(unitData))
+		player.gainUnitCard(StoredUnit.loadStoredUnit(unitData))
 	## Add items
 	for itemId: String in campaign.startingItems:
 		player.addCard(itemId)

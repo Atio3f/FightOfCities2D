@@ -50,12 +50,12 @@ func mergeEffect(effectToMerge: AbstractEffect) -> void:
 	onEffectApplied(false, effectToMerge)
 
 func onPlacement(tile: AbstractTile) -> void:
-	1
+	pass
 
 #First time is to use when we have stackable effects which can modify values
 #Parameter oldEffect serve to calculate how much we need to add in some effects like powerplus
 func onEffectApplied(firstTime: bool, oldEffect:AbstractEffect = null) -> void:
-	1
+	pass
 
 func onEffectEnd() -> void:
 	unitAssociated.effects.erase(self)
@@ -63,24 +63,36 @@ func onEffectEnd() -> void:
 
 #Will probably replace onUnitPlace for final version 
 func onCardPlay(player: AbstractPlayer) -> void:
-	1
+	pass
 
 func onUnitPlace(unit: AbstractUnit) -> void:
-	1
+	pass
 
 func onMovement() -> void:
-	1
+	pass
 
 func onItemUsed(player: AbstractPlayer, isMalus: bool) -> void:
-	1
+	pass
 
-#Return final damage taken, visualisation serves to avoid activating effects like damage on offender before a true attack 
+# Return final damage taken, visualisation serves to avoid activating effects like damage on offender before a true attack 
 func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
 	return damage
 
-#Return final damage taken
+# Return final damage taken
 func onDamageDealed(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
 	return damage
+
+# Return final damage taken after damage reduction of the target
+func onDamageDealedAfterReduction(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
+	return damage
+
+## Allow to add effects that can triggered after damage reduction and every effects like that 
+func loseHp(hpLoses: Dictionary) -> Dictionary:
+	return hpLoses
+
+## Allow to treat some effects after damage reduction on target side
+func getLoseHp(damageData: Dictionary) -> Dictionary:
+	return damageData
 
 func onHeal(unitHealed: AbstractUnit, healValue: int) -> int :
 	return healValue
@@ -89,13 +101,13 @@ func onHealed(unitHealing: AbstractUnit, healValue: int) -> int :
 	return healValue
 
 func onKill(unitKilled: AbstractUnit) -> void :
-	1
+	pass
 
 func onDeath(unit: AbstractUnit) -> void:
 	pass
 
 func onLevelUp(level: int) -> void :
-	1
+	pass
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if remainingTurns != -1 && turnColor == unitAssociated.team : remainingTurns -= 1 # Only decreases remainingTurns on unitAssociated turn

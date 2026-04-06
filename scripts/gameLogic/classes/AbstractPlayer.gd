@@ -147,16 +147,21 @@ func useCard(idCard: String, targets: Array) -> void :
 			instance.queue_free()
 	hand.useCard(idCard)
 
-#Pour ajouter une carte à la main du joueur
+# Pour ajouter une carte à la main du joueur
 func addCard(idCard: String) -> void:
 	hand.addCard(idCard)
 
-##Add a new unit to the player
-#Will need a way to stock infos about each unit between battles, idk where
-func addUnitCard(idCard: StoredUnit) -> void:
-	hand.addUnitCard(idCard)
+## Add a new unit to the player, used to getting all units on start of campaign or when player recruits a new unit on AbstractReward
+func gainUnitCard(storedUnitData: StoredUnit) -> void:
+	for trinket: AbstractTrinket in trinkets :
+		storedUnitData = trinket.onUnitGained(storedUnitData)
+	addUnitCard(storedUnitData)
 
-##Use when gaining or losing orbs
+## Add an unit to the player, used to collect an unit after a battle
+func addUnitCard(storedUnitData: StoredUnit) -> void:
+	hand.addUnitCard(storedUnitData)
+
+## Use when gaining or losing orbs
 func gainOrbs(amt: int) -> void:
 	if amt > 0 :
 		if amt + orbs > maxOrbs : orbs = maxOrbs
@@ -165,7 +170,7 @@ func gainOrbs(amt: int) -> void:
 		if amt + orbs < 0 : orbs = 0
 		else : orbs += amt
 
-##Use when gaining or losing orbs
+## Use when gaining or losing orbs
 func gainGold(amt: int) -> void:
 	if amt > 0 :
 		gold += amt
@@ -173,14 +178,14 @@ func gainGold(amt: int) -> void:
 		if amt + gold < 0 : gold = 0
 		else : gold += amt
 
-##To add an equipment to an unit
+## To add an equipment to an unit
 func addEquipment(idEquipment: String) -> void:
 	if hand.cards.has(idEquipment) :
 		#Check if the equipment can be equipped
 		#Add equipment to unit
 		pass
 
-###Add the trinket to the interface
+## Add the trinket to the interface
 func setTrinket(trinket: AbstractTrinket) -> void :
 	if isGamePlayer :
 		var trinketIface: trinketInterface = Global.trinketInterface.instantiate() as trinketInterface

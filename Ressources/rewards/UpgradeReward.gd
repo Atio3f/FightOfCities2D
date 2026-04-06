@@ -1,7 +1,7 @@
 extends AbstractReward
 class_name UpgradeReward
 
-func setData(_additionalData: String) -> void :
+func setData(_additionalData: String = "") -> void :
 	rewardsNumber = 3 # Number choices
 	
 	## TODO
@@ -13,7 +13,9 @@ func setData(_additionalData: String) -> void :
 	rewardsAvailable = {
 		"UpgradeAgilityEffect": Rarities.BONUS_COMMON,
 		"UpgradePromotionEffect": Rarities.BONUS_COMMON,
-		"UpgradeScoutEffect": Rarities.BONUS_UNCOMMON,
+		"UpgradeScoutEffect": Rarities.BONUS_COMMON,
+		"UpgradeSneakyEffect": Rarities.BONUS_UNCOMMON,
+		"UpgradeHiddenPotentialEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeTestEffect": Rarities.BONUS_COMMON
 	}
 	

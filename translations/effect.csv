@@ -1,0 +1,20 @@
+EFFECT_NAME_GOD_MONKEY_SPEED,Dieu Monkey,God Monkey
+EFFECT_DESCRIPTION_GOD_MONKEY_SPEED,Gagne !VA! V pour chacun de vos Monkeys.(+!C!),Gain !VA! Speed for each of your Monkeys.(Currently +!C!)
+EFFECT_NAME_GOD_MONKEY_HEAL,,Heal on Forest
+EFFECT_DESCRIPTION_GOD_MONKEY_HEAL,,"At the start of your turn, heal !VA! HP on Forest Tiles."
+EFFECT_NAME_KNIGHT_MONKEY,Chevalier Monkey,Heal on Forest
+EFFECT_DESCRIPTION_KNIGHT_MONKEY,,"At the start of your turn, heal !VA! HP on Forest Tiles."
+EFFECT_NAME_ABOMINATION_MONKEY,Attack: -P and -V,Abomination Monkey
+EFFECT_DESCRIPTION_ABOMINATION_MONKEY,,Reduce ennemi Power by !VA! and Speed by !VB! on contact.
+EFFECT_NAME_MONKEY,Soutien Monkey,Support Monkeys
+EFFECT_DESCRIPTION_MONKEY,Donne !VA! P et !VB! V à tous vos Monkeys.,All Monkeys gain !VA! P et !VB! V.
+EFFECT_NAME_QUEEN_MONKEY,,Queen Presence
+EFFECT_DESCRIPTION_QUEEN_MONKEY,,Nullify !VA!% of melee damage received.
+EFFECT_NAME_TEMPORAL_SNAIL_RESURRECT,Death: Ressurect Orb,Infinity Loop
+EFFECT_DESCRIPTION_TEMPORAL_SNAIL_RESURRECT,Peut ressusciter pour !C! orbe à sa mort. Le coût augmente de 1 à chaque utilisation.,Resurrect for !C! orbs. Increases the amount of orbs needed by 1 each time.
+EFFECT_NAME_TEMPORAL_SNAIL_KILL,Kill: Orb+,Kill: Orb+
+EFFECT_DESCRIPTION_TEMPORAL_SNAIL_KILL,Gain d'orbe à chaque ennemi tué.,Gain !VA! orb each kill.
+EFFECT_NAME_PENETRATION_PHYSICAL,Pas fait,Physical Penetration
+EFFECT_DESCRIPTION_PENETRATION_PHYSICAL,Pas fait,Physical attacks ignore !VA! DR.
+EFFECT_NAME_PENETRATION_MAGICAL,Pas fait,Magical Penetration
+EFFECT_DESCRIPTION_PENETRATION_MAGICAL,Pas fait,Magical attacks ignore !VA! MR.
