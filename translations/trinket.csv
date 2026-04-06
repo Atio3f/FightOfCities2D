@@ -14,3 +14,9 @@ TRINKET_PREVIEW_PUNCHING_BALL_MONKEY,Puissance base unité < !VB! : +!VA! Puiss
 TRINKET_NAME_MONKEY_SOAP,Savon Monkey,Monkey Soap
 TRINKET_DESC_MONKEY_SOAP,Les Monkey gagne + !VA! DR,ALL Monkeys gain !VA! DR
 TRINKET_PREVIEW_MONKEY_SOAP,Monkeys : + !VA! DR,Monkeys : + !VA! DR
+TRINKET_NAME_HR_DIPLOMA,Diplôme de RH,HR Diploma
+TRINKET_DESC_HR_DIPLOMA,Les unités recrutés ont + !VA ! PV Max,All units recruited have +6 Max HP
+TRINKET_PREVIEW_HR_DIPLOMA,Recrues : + !VA ! PV Max,Recruits : + !VA ! HP Max
+TRINKET_NAME_GIFTED_RECRUIT,Diplôme de RH,HR Diploma
+TRINKET_DESC_GIFTED_RECRUIT,Votre prochaine recrue gagne 2 améliorations permanentes aléatoires,Next recruit gain 2 randoms upgrades
+TRINKET_PREVIEW_GIFTED_RECRUIT,Prochaine recrue : + 2 améliorations permanentes aléatoires,Next recruit : + 2 random permanent upgrades

@@ -28,6 +28,17 @@
 		"name": "TRINKET_NAME_MONKEY_SOAP",
 		"description": "TRINKET_DESC_MONKEY_SOAP",
 		"preview": "TRINKET_PREVIEW_MONKEY_SOAP"
+	},
+	"set1:HRDiploma": {
+		"id": "set1:HRDiploma",
+		"name": "TRINKET_NAME_HR_DIPLOMA",
+		"description": "TRINKET_DESC_HR_DIPLOMA",
+		"preview": "TRINKET_PREVIEW_HR_DIPLOMA"
+	},
+	"set1:GiftedRecruit": {
+		"id": "set1:GiftedRecruit",
+		"name": "TRINKET_NAME_GIFTED_RECRUIT",
+		"description": "TRINKET_DESC_GIFTED_RECRUIT",
+		"preview": "TRINKET_PREVIEW_GIFTED_RECRUIT"
 	}
-	
 }
