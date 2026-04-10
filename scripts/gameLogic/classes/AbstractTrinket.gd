@@ -71,7 +71,7 @@ func onMovement(unitMoving: AbstractUnit) -> void:
 	pass
 
 ## Activate when an item is played,  unit can be null
-func onItemUsed(player: AbstractPlayer, isMalus: bool, unit: AbstractUnit = null) -> void:
+func onItemUsed(player: AbstractPlayer, item: AbstractItem, isMalus: bool, unit: AbstractUnit = null) -> void:
 	pass
 
 #Get final damage from attacks

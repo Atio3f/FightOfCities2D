@@ -251,10 +251,9 @@ func onMovement(tile: AbstractTile) -> void:
 	for trinket: AbstractTrinket in player.trinkets :
 		trinket.onMovement(self)
 
-#J'ai retiré item: AbstractItem,  comme param parce que pour le moment ça sert à r
-func onItemUsed(player: AbstractPlayer, isMalus: bool) -> void:
+func onItemUsed(player: AbstractPlayer, item: AbstractItem, isMalus: bool) -> void:
 	for effect: AbstractEffect in effects:
-		effect.onItemUsed(player, isMalus)
+		effect.onItemUsed(player, item, isMalus)
 
 ## Return final damage taken, visualisation serve if we need to see damage dealed before the action
 func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> Dictionary :#DamageType is an int because Gdscript is badly make and we can't place a enum which isn't the first on its file

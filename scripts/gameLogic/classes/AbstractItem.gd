@@ -10,8 +10,7 @@ var orbCost: int	#Coût en orbe de l'objet
 var orbCostBase: int
 var equipable: bool	#If the item is to be place on a unit(consumables counts like equipable)
 var isMalus: bool
-
-#3 values like effects to keep parameters for items 
+var tags: Array[Tags.tags] = []#3 values like effects to keep parameters for items 
 var value_A: int
 var value_B: int
 var value_C: int 
@@ -34,6 +33,9 @@ var avgPrice: int #Price on shops, items can be sell from 40% of this value
 	#self.value_C = value_C
 	#self.counter = counter
 
+func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+	pass
+
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unitTargeted: AbstractUnit, orbCost: int) -> bool:
 	return orbCost <= playerUsing.orbs
 
@@ -45,13 +47,13 @@ static func canBeUsedOnInventory(playerUsing: AbstractPlayer, orbCost: int) -> b
 static func canBeUsedOnPlayer(playerUsing: AbstractPlayer, playerTargeted: AbstractPlayer, orbCost: int) -> bool:
 	return orbCost <= playerUsing.orbs
 
-static func useItem(playerUsing: AbstractPlayer, orbCost: int, unitTargeted: AbstractUnit, isMalus: bool) -> bool:
+static func useItem(playerUsing: AbstractPlayer, orbCost: int, item: AbstractItem, unitTargeted: AbstractUnit, isMalus: bool) -> bool:
 	#if !canBeUsedOnUnit(unit) : return false
 	playerUsing.orbs -= orbCost
-	if unitTargeted != null : unitTargeted.onItemUsed(playerUsing, isMalus)	#Some items doesn't affected units
+	if unitTargeted != null : unitTargeted.onItemUsed(playerUsing, item, isMalus)	#Some items doesn't affected units
 	if playerUsing.isGamePlayer : 
 		for trinket: AbstractTrinket in playerUsing.trinkets :
-			trinket.onItemUsed(playerUsing, isMalus, unitTargeted)
+			trinket.onItemUsed(playerUsing, item, isMalus, unitTargeted)
 	return true
 
 static func getId() -> String:

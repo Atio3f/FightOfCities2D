@@ -9,7 +9,7 @@ const DMG_VALUE = 8
 const SPEED_LOSE_AMT = 4
 const SPEED_LOSE_DURATION = 3
  
-func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	unitAssociated.onDamageTaken(null, DMG_VALUE, DamageTypes.DamageTypes.PHYSICAL, false)
 	var effectSpeed: AbstractEffect = SpeedPlusEffect.new(unitAssociated, SPEED_LOSE_DURATION, -SPEED_LOSE_AMT)
 	unitAssociated.addEffect(effectSpeed)

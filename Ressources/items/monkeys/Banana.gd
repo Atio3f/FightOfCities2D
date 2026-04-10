@@ -12,7 +12,11 @@ const HEAL_VALUE = 5
 const MONKEY_STATS_BUFF = 1
 const MONKEY_HEAL_BUFF = 1
 
-func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func _init() -> void:
+	tags.append(Tags.tags.FOOD)
+	tags.append(Tags.tags.BANANA)
+
+func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	# Add buffs to unit
 	var speedBoost: int = SPEED_BOOST_AMT
 	var powerBoost: int = POWER_BOOST_AMT

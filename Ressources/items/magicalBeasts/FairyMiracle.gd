@@ -9,7 +9,7 @@ const ORB_COST = 1
 const HEAL_PERCENT = 100
 const BONUS_HP_TEMP = 15
  
-func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	unitAssociated.healHp(unitAssociated.hpMax)
 	unitAssociated.gainHpTemp(BONUS_HP_TEMP)
 

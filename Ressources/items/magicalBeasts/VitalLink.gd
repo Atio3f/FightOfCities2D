@@ -7,7 +7,7 @@ const ORB_COST = 0
 const HEAL_VALUE = 10
 const BONUS_HEAL = 5
  
-func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	if unitAssociated.tags.has(Tags.tags.MAGICAL_BEAST) : unitAssociated.healHp(HEAL_VALUE + BONUS_HEAL)
 	else : unitAssociated.healHp(HEAL_VALUE)
 

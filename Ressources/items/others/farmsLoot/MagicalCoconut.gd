@@ -9,7 +9,7 @@ const ORB_COST = 0
 const DMG_VALUE = 18
 const ORB_GAIN = 1
  
-func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	playerAssociated.gainOrbs(ORB_GAIN)
 	# Get one random unit from other team
 	var units: Array[AbstractUnit] = GameManager.getRandomUnits(1, [playerAssociated.team])

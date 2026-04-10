@@ -71,7 +71,7 @@ func onUnitPlace(unit: AbstractUnit) -> void:
 func onMovement() -> void:
 	pass
 
-func onItemUsed(player: AbstractPlayer, isMalus: bool) -> void:
+func onItemUsed(player: AbstractPlayer, item: AbstractItem, isMalus: bool) -> void:
 	pass
 
 # Return final damage taken, visualisation serves to avoid activating effects like damage on offender before a true attack 

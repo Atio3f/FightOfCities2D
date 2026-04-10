@@ -1,4 +1,4 @@
-extends AbstractItem
+extends AbstractEquipment
 class_name BrambleGauntlet
 
 const idItem = "set1:BrambleGauntlet"
@@ -8,7 +8,8 @@ const DAMAGE_BONUS = 2
 const SPEED_MALUS = -3
 const SPEED_MALUS_DURATION = 2
 
-func _init(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+	#unitAssociated.equipEquipment(self)
 	var effect: AbstractEffect = BrambleGauntletEffect.new(unitAssociated, -1, DAMAGE_BONUS, SPEED_MALUS, SPEED_MALUS_DURATION)
 	unitAssociated.addEffect(effect)
 

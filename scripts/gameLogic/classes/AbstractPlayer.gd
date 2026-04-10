@@ -134,17 +134,24 @@ func useCard(idCard: String, targets: Array) -> void :
 		# - Orb cost TODO Check how ORB COST would work on this
 		# - Trinkets triggers
 		# - Unit reactions (onItemUsed)
-		var success = AbstractItem.useItem(self, itemClass.ORB_COST, target, is_malus)
+		var instance: AbstractItem
+		if target.getClass() == "AbstractUnit" : 
+			instance = ItemDb.ITEMS[idCard].new()
+			instance.playerAssociated = self
+			instance.unitAssociated = target
+		elif target.getClass() == "AbstractPlayer": 
+			instance = ItemDb.ITEMS[idCard].new()
+			instance.playerAssociated = target
+			instance.unitAssociated = null
+		
+		# Now pass the item instance directly
+		var success = AbstractItem.useItem(self, itemClass.ORB_COST, instance, target, is_malus)
 		
 		if success:
-			var instance: AbstractItem
-			#Permet d'envoyer des informations différentes en fonction de si la cible est une unité ou un joueur
-			if target.getClass() == "AbstractUnit" : 
-				instance = ItemDb.ITEMS[idCard].new(self, target)
-			elif target.getClass() == "AbstractPlayer": 
-				instance = ItemDb.ITEMS[idCard].new(target, null)
-			# Clean instance
-			instance.queue_free()
+			instance.applyEffect(self, target)
+			
+		# Clean instance
+		instance.queue_free()
 	hand.useCard(idCard)
 
 # Pour ajouter une carte à la main du joueur
