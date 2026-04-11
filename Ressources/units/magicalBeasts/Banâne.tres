@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bjdsb3h15mxrp"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_qatbj"]
+
+[resource]
+script = ExtResource("1_qatbj")
+id = "set1:Banâne"
+imgPath = "Monkey"
+hpBase = 29
+drBase = 3
+mrBase = 2
+grade = 2
+potential = 1
+wisdomBase = 12
+powerBase = 7
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 7
+metadata/_custom_type_script = "uid://chjck7svelps7"

@@ -602,6 +602,10 @@ func registerUnit() -> Dictionary :
 		#return null#Maybe create a unit via ?
 	
 	
+## Default method called when unit is collected by the player
+static func onObtained(unitData: StoredUnit, player: AbstractPlayer) -> void :
+	pass
+
 static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary :
 	if UnitDb.UNITS.has(data["id"]):
 		#var unit = AbstractUnit.new(data.id, data.imgPath, player, data.grade, data.hpBase, data.powerBase, data.damageType, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)

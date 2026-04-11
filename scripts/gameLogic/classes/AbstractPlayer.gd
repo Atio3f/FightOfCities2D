@@ -162,6 +162,11 @@ func addCard(idCard: String) -> void:
 func gainUnitCard(storedUnitData: StoredUnit) -> void:
 	for trinket: AbstractTrinket in trinkets :
 		storedUnitData = trinket.onUnitGained(storedUnitData)
+	
+	var unitClass = UnitDb.UNITS.get(storedUnitData.id)
+	if unitClass:
+		unitClass.onObtained(storedUnitData, self)
+		
 	addUnitCard(storedUnitData)
 
 ## Add an unit to the player, used to collect an unit after a battle

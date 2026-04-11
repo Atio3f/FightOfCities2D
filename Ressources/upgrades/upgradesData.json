@@ -40,14 +40,21 @@
 	"UpgradeHiddenPotentialEffect": {
 		"stats": {
 			"potentialCost": -1,
-			"hpMax": 2,
+			"hpMax": 2
 		},
 		"is_dynamic": false
 	},
 	"DynamicPowerEffect": {
 		"stats": {
-			"potentialCost": 1,
+			"potentialCost": 1
 		},
 		"is_dynamic": true
 	},
+	"UpgradeBanâneEffect": {
+		"stats": {
+			"potentialCost": 0,
+			"hpMax": 6
+		},
+		"is_dynamic": false
+	}
 }
