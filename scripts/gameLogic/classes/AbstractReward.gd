@@ -57,7 +57,10 @@ func obtainReward(player: AbstractPlayer, number: int) -> bool :
 	match reward["rewardType"] :
 		RewardTypes.rewardTypes.UNIT :
 			print("OBTAIN IT")
-			GameManager.getMainPlayer().gainUnitCard(StoredUnit.new(reward["idReward"]))
+			# Hold the reward if the unit needs to display an interface
+			var hold = GameManager.getMainPlayer().gainUnitCard(StoredUnit.new(reward["idReward"]), self)
+			if hold:
+				return false
 		RewardTypes.rewardTypes.ITEM :
 			GameManager.getMainPlayer().addCard(reward["idReward"])
 		RewardTypes.rewardTypes.TRINKET :

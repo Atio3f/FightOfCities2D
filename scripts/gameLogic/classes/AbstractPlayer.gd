@@ -158,16 +158,18 @@ func useCard(idCard: String, targets: Array) -> void :
 func addCard(idCard: String) -> void:
 	hand.addCard(idCard)
 
-## Add a new unit to the player, used to getting all units on start of campaign or when player recruits a new unit on AbstractReward
-func gainUnitCard(storedUnitData: StoredUnit) -> void:
+## Add a new unit to the player, used to getting all units on start of campaign or when player recruits a new unit on AbstractReward, return true if the reward is held by some effects
+func gainUnitCard(storedUnitData: StoredUnit, reward: AbstractReward = null) -> bool:
 	for trinket: AbstractTrinket in trinkets :
 		storedUnitData = trinket.onUnitGained(storedUnitData)
 	
 	var unitClass = UnitDb.UNITS.get(storedUnitData.id)
+	var holdReward = false
 	if unitClass:
-		unitClass.onObtained(storedUnitData, self)
+		holdReward = unitClass.onObtained(storedUnitData, self, reward)
 		
 	addUnitCard(storedUnitData)
+	return holdReward
 
 ## Add an unit to the player, used to collect an unit after a battle
 func addUnitCard(storedUnitData: StoredUnit) -> void:

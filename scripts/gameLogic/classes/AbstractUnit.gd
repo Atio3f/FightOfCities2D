@@ -602,9 +602,9 @@ func registerUnit() -> Dictionary :
 		#return null#Maybe create a unit via ?
 	
 	
-## Default method called when unit is collected by the player
-static func onObtained(unitData: StoredUnit, player: AbstractPlayer) -> void :
-	pass
+## Default method called when unit is collected by the player, return true if the reward is held by some effects
+static func onObtained(unitData: StoredUnit, player: AbstractPlayer, reward: AbstractReward = null) -> bool :
+	return false
 
 static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary :
 	if UnitDb.UNITS.has(data["id"]):
