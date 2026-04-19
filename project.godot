@@ -36,6 +36,7 @@ CampaignDb="*res://scripts/gameLogic/DB/campaignDB.gd"
 RewardDb="*res://scripts/gameLogic/DB/rewardDB.gd"
 GoalsDb="*res://scripts/gameLogic/DB/goalsDB.gd"
 DialogDb="*res://scripts/gameLogic/DB/dialogDB.gd"
+CapacityDb="*res://scripts/gameLogic/DB/capacityDB.gd"
 
 [editor_plugins]
 

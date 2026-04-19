@@ -49,6 +49,11 @@
 		"name": "EFFECT_NAME_PENETRATION_MAGICAL",
 		"description": "EFFECT_DESCRIPTION_PENETRATION_MAGICAL"
 	},
+	"set1:OrangutanEffect": {
+		"id": "set1:OrangutanEffect",
+		"name": "EFFECT_NAME_ORANGUTAN",
+		"description": "EFFECT_DESCRIPTION_ORANGUTAN"
+	},
 	"UpgradeTestEffect": {
 		"id": "UpgradeTestEffect",
 		"name": "EFFECT_NAME_UPGRADE_TEST",

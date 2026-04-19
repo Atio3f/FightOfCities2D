@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://ces7jacq2yxid"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_ln4bt"]
+
+[resource]
+script = ExtResource("1_ln4bt")
+id = "set1:AssaultDroneMonkey"
+imgPath = "Monkey"
+hpBase = 20
+drBase = 0
+mrBase = 0
+grade = 1
+potential = 0
+wisdomBase = 1
+powerBase = 9
+damageType = 0
+attackRange = 2
+atkPerTurnBase = 1
+speedBase = 5
+metadata/_custom_type_script = "uid://chjck7svelps7"

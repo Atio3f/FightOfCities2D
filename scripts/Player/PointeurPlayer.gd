@@ -36,7 +36,7 @@ var zoneCells : Array = [] #Liste de toutes les cases affectées par la capacit�
 @onready var visuPlacement : VisualisationPlacement = $visualisationPlacement
 const MAX_VALUE: int = 99999
 
-var capaciteActuelle : activeCapacite = null
+var capaciteActuelle : AbstractCapacity = null
 var caseAttaque : Vector2
 var attaqueEnAttente : bool = false
 
@@ -305,8 +305,8 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 			_hover_display(new_cell)
 			
 	elif(capaciteActuelle != null):	#Ce qui se passe lorsque le joueur est en train d'activer la capa d'une unité et que son pointeur bouge
-									#Affiche la zone affectée par la capa
-		hoverZoneCapa(new_cell, capaciteActuelle)
+		#Affiche la zone affectée par la capa si elle la change selon la souris (plus tard)
+		pass
 
 ## This function will display walkable_cells, attackable_cells, unit stats,
 ## Unit items, and the unit avatar (like in fire emblem: engage)
@@ -326,36 +326,6 @@ func _hover_display(cell: Vector2i) -> void :
 	visuActions.draw_walkable_cells(_walkable_cells, curr_unit.team)
 	print(Time.get_ticks_msec() - time)
 
-## Fonction pour afficher la zone affectée par la capacité active
-func hoverZoneCapa(cell: Vector2i, capaciteI : activeCapacite) -> void:
-	
-	
-	##On clear les affichages des mouvements précédents avant d'en remettre sans toucher à la zone de la capa Active
-	_walkable_cells.clear() 
-	visuActions.clearNumbers()
-	
-	## Obtenir les cases affectées selon la forme et la taille ciblée par la capacité
-	zoneCells = getCellsZoneCapa(cell, capaciteI)
-	## Draw out the walkable and attackable cells now
-	
-	visuActions.draw_attackable_cells(zoneCells)
-	
-func getCellsZoneCapa(cell : Vector2i, capaciteI : activeCapacite) -> Array :
-	var cells : Array = []
-	
-	
-	
-	##Check de la forme d'effet de la capa
-	match(capaciteI.typeZone) :
-		"EW" : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
-			cells.append(cell)
-		"C" :
-			var i = 0
-			while(i < capaciteI.zoneEffet):
-				#cells.append()
-				i += 1
-			
-	return cells
 
 ## Selects or moves a unit based on where the cursor is.
 func cursorPressed(cell: Vector2i, typeClick : String) -> void:
@@ -403,7 +373,7 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 					attaqueEnAttenteCells = getTilesMouvementForAttaque(casesAutourTarget)
 					visuActions.draw_walkable_cells(attaqueEnAttenteCells, TeamsColor.TeamsColor.EMPTY)
 				
-		elif(capaciteActuelle != null and Global._units.has(cellI)):	#Faudra changer plus tard la seconde partie pour permettre certaines activations sans unité
+		elif(capaciteActuelle != null and MapManager.getTileAt(cellI) != null):	
 			declenchementCapaActive(cellI)
 	
 
@@ -503,94 +473,54 @@ func _clear_active_unit() -> void:
 
 
 #Attributs : case <=> case de l'unité ; 
-func get_actions_cells(case : Vector2i, capaPortee : int) -> Array[Vector2i] :
-	var action_cells : Array[Vector2i]= []
+func capaActives(capaciteActivee : AbstractCapacity, uniteAssociee : AbstractUnit) -> void:
+	_walkable_cells.clear()
+	visuActions.clearNumbers()
+	visuZoneCapa.clearNumbers()
 	
-	var real_actions_cells := _dijkstra(case, capaPortee, false, MovementTypes.movementTypes.ATTACK) 
-	
-	## iterate through every single cell and find their partners based on attack range(stat range)
-	for curr_cell in real_actions_cells:
-		for curr_range in range(1, capaPortee + 1):
-			action_cells = action_cells + _flood_fill(curr_cell, capaPortee)
-	
-	return (action_cells.filter(func(i): return i not in real_actions_cells)) as Array[Vector2i]
-	
-
-#PAS FINI A RESTRUCTURER !!!
-func capaActives(capaciteActivee : activeCapacite, uniteAssociee : Node2D) -> void:
-	#var keyCapa : Array = capaciteActivee.keys()
-	var capaPortee : String = capaciteActivee.typeZone
-	if(capaciteActivee.typeZone == "EW") : #Si la portée de la compétence est de toute la map on utilise un autre calculateur
-		actionCells = [MapManager.activeTiles]	#A CHANGER 
-	else :
-		actionCells = get_actions_cells(uniteAssociee.case, capaciteActivee.zoneEffet)
 	capaciteActuelle = capaciteActivee
-	visuZoneCapa.drawZoneAction(actionCells)	#Délocaliser dans declenchementCapaActive
+	var allTargets = capaciteActuelle.getTargetableCells(uniteAssociee.tile)
 	
-	pass
+	actionCells = []
+	for case in allTargets:
+		var tile: AbstractTile = MapManager.getTileAt(case)
+		if tile != null:
+			var targets: Array = []
+			if tile.hasUnitOn():
+				targets.append(tile.unitOn)
+			if capaciteActuelle.conditionActivation(tile, targets):
+				actionCells.append(case)
+				
+	# draw via visuActions as requested by user
+	visuActions.draw_attackable_cells(actionCells)
 
 
 func declenchementCapaActive(case : Vector2i) -> void :
-	print("DECLENCHEMENT CAPACITE")
-	
-	
-	#var contenuCapa : Array = Selection.capacites["ActiveCapacitiesBased"][capaciteActuelle.keys()[0]] #Plus rapide que de le retaper à chaque fois
-	
-	##Partie boucle pour chercher toutes les unités sur les cases affectées
-	
-	#Boucle pour tout ce qui se trouve dans la zone d'effet
-	var typeCible : Array = capaciteActuelle.typeCible
-	#Liste de toutes les cases où se trouvent une cible valide
-	var cibles = filtreCible(zoneCells, typeCible, [Selection.team])		#A CHANGER Selection.couleurEquipe par l'Array de ses équipes alliées
-	
-	##Activation des effets pour chaque cible valide
-	for cible in cibles :
+	if !(case in actionCells):
+		return
 		
-		#Filtre du type d'effet de la capacité
-		match(capaciteActuelle.operateur):
-			"+" : 
-				
-				cible.boostStats(capaciteActuelle.statsAffectees)
-				
-	
-	
-	
-	##Partie réduction du nombre du nombre d'utilisations restantes
-	
-	capaciteActuelle.nombreUtilisationsRestantes = capaciteActuelle.nombreUtilisationsRestantes - 1
-	
-	if(capaciteActuelle.nombreUtilisationsRestantes == 0):	#On supprime la capacité de l'unité lorsqu'elle n'a plus d'utilisations restantes
-		Selection.capacites.supprCapa(capaciteActuelle)
-	
-	##Reset de l'unité active et de sa sélection
-	_deselect_active_unit()
-	_clear_active_unit()
-
-
-
-##Renvoie toutes les unités et bâtiments affectés par la capacité
-func filtreCible(zoneCells : Array, typeCible : Array, equipesAlliees : Array) -> Array :
-	##Déclaration liste retournée
-	var cellsFiltrees := []
-	##Vérification des conditions pour chaque cellule
-
-	for case : Vector2i in zoneCells :
-		var cible = Global._units[case]
+	var tile: AbstractTile = MapManager.getTileAt(case)
+	if tile == null:
+		return
 		
-		if(cible != null):
-			#A CHANGER C'EST BIZARRE COMMENT CA MARCHE. ça a l'air de check tous les types de cibles et vérifier si l'unité en fait parti
-			for type in typeCible :
-				print(type)
-				##Check du bon type d'équipe visée par le ciblage
-				if (type[-1] == 'E' and !equipesAlliees.has(cible.team)):
-					
-					pass
-				elif (type[-1] != 'E' and equipesAlliees.has(cible.team)):
-					
-					if type == cible.race :	#A CHANGER faudra mettre différents critères de ciblage différents 
-						cellsFiltrees.append(cible)
-	
-	return cellsFiltrees
+	var targets: Array = []
+	if tile.hasUnitOn():
+		targets.append(tile.unitOn)
+		
+	if capaciteActuelle.conditionActivation(tile, targets):
+		print("DECLENCHEMENT CAPACITE : " + capaciteActuelle.nameCapacity)
+		capaciteActuelle.onActivation(tile, targets)
+		
+		# Update uses and cooldown
+		if capaciteActuelle.usesRemaining > 0:
+			capaciteActuelle.usesRemaining -= 1
+		capaciteActuelle.currentCooldown = capaciteActuelle.cooldown
+		
+		# Reset unit state
+		_deselect_active_unit()
+		_clear_active_unit()
+	else:
+		print("Condition d'activation non remplie")
 
 ##Permet d'obtenir les cases où l'unité doit se déplacer pour pouvoir attaquer
 func getTilesMouvementForAttaque(casesAutourTarget : Array) -> Dictionary:

@@ -9,6 +9,10 @@ static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.tags.append(Tags.tags.MAGICAL_BEAST)
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]
 	unit.actualMovementTypes = MovementTypes.movementTypes.WALK
+	
+	if CapacityDb.CAPACITIES.has("set1:BanâneBonusAttackCapacity"):
+		var capacity = CapacityDb.CAPACITIES["set1:BanâneBonusAttackCapacity"].new(unit)
+		unit.addCapacity(capacity)
 
 static func onObtained(unitData: StoredUnit, player: AbstractPlayer, reward: AbstractReward = null) -> bool:
 	# and a second ability that can be activate on corresponding action menu to give an unit a bonus attack this turn with a 6 turns cooldown

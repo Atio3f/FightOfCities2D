@@ -22,25 +22,21 @@ func capaActivesUnite(uniteAssociee : AbstractUnit, interfaceUnit : interfaceUni
 	interface = interfaceUnit
 	
 	
-	#On ne défile que la catégorie des capacités actives
-	var capasActives : Array = uniteAssociee.capacites.getCapasFrom("ActiveCapacitiesBased")
-	print(capasActives)
-	for capaciteI : activeCapacite in capasActives :
+	#On liste toutes les capacités de l'unité
+	var capasActives : Array[AbstractCapacity] = uniteAssociee.capacities
+	for capaciteI : AbstractCapacity in capasActives :
 		var boutonCapa : bouttonCapa = bouttonCapaBase.instantiate()
-		boutonCapa.text = capaciteI.descriptionCapa
-		#print("YEYE %s" % [capacite])
 		
-		boutonCapa.text += capaciteI.nom
 		boutonCapa.menuCapaI = self
 		%ListeCapaDispos.add_child(boutonCapa)
 		#%ContainerCapa.add_child(labelCapa)
 		boutonCapa.placement(self, pointeurJoueurI, capaciteI)
-		
+		boutonCapa.disabled = capaciteI.currentCooldown != 0
+		print( capaciteI.currentCooldown)
 		#%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
 	
 
 #Fonction appelée par bouttonCapa qui donne la capacité qui a été choisie pour être utilisée et de quel pointeurJoueur il vient
-func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : pointeurJoueur) -> void:
+func recuSelectionCapa(capaciteActivee : AbstractCapacity, pointeurJoueurI : pointeurJoueur) -> void:
 	interface.recuSelectionCapa(capaciteActivee, pointeurJoueurI)
-	pointeurJoueurI	#Manque un truc
 	queue_free()

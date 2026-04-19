@@ -14,6 +14,7 @@ func setData(_additionalData: String = "") -> void :
 		"UpgradeAgilityEffect": Rarities.BONUS_COMMON,
 		"UpgradePromotionEffect": Rarities.BONUS_COMMON,
 		"UpgradeScoutEffect": Rarities.BONUS_COMMON,
+		"UpgradeBloodyEffect": Rarities.BONUS_COMMON,
 		"UpgradeSneakyEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeHiddenPotentialEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeTestEffect": Rarities.BONUS_COMMON

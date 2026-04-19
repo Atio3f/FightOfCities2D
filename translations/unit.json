@@ -44,4 +44,10 @@
 	"set1:Banâne" : {
 		"name": "UNIT_NAME_BANÂNE"
 	},
+	"set1:Orangutan" : {
+		"name": "UNIT_NAME_ORANGUTAN"
+	},
+	"set1:AssaultDroneMonkey" : {
+		"name": "UNIT_NAME_ASSAULT_DRONE_MONKEY"
+	},
 }

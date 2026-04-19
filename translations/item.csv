@@ -11,5 +11,7 @@ ITEM_NAME_BANANA_PEEL,Peau de banane,Banana Peel
 ITEM_DESC_BANANA_PEEL,Inflige 8 dégâts physiques et réduit la vitesse de 4 pour 3 tours,Deal 8 physical damage and reduces speed by 4 for 3 turns
 ITEM_NAME_BANANA,Banane,Banana
 ITEM_DESC_BANANA,"Donne +3P et +3V pdt 2 tours et soigne 5PV.  +1P, +1V et soigne +2PV aux Monkeys",Give 3 P and 3 V for 2 turns and heal 5 HP. Give +1 P and V and heal 1 more on Monkeys
+ITEM_NAME_ASSAULT_DRONE_MONKEY_DEPLOYMENT,Déploiement drone d’assault Monkey,Assault Drone Monkey Deployment
+ITEM_DESC_ASSAULT_DRONE_MONKEY_DEPLOYMENT,Déploit un drone d’assaut Monkey sur n’importe quelle case libre (nécessite un tour avant de pouvoir agir),Deploy a assault drone Monkey on any empty space (requires one turn before it can act)
 ITEM_NAME_,,
 ITEM_DESC_,,

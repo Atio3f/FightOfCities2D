@@ -56,5 +56,11 @@
 			"speed": 3
 		},
 		"is_dynamic": false
+	},
+	"UpgradeBloodyEffect": {
+		"stats": {
+			"potentialCost": 1
+		},
+		"is_dynamic": true
 	}
 }

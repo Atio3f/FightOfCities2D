@@ -35,7 +35,8 @@
 	],
 	"startingTrinkets": [
 		"set1:OrbCrate",
-		"set1:ArtOfWar"
+		"set1:ArtOfWar",
+		"set1:GiftedRecruit"
 	],
 	"startingOrbs": 2,
 	"startingMaxOrbs": 5,
@@ -87,8 +88,8 @@
 				}
 			],
 			"rewards": [
+				"reward:unitMonkey",
 				"reward:bonus",
-				"reward:classicBanana"
 			],
 			"nextMission": "map2"
 		},

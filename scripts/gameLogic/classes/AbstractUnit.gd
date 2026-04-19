@@ -40,6 +40,7 @@ var effects: Array[AbstractEffect] = []
 var equipments: Array[AbstractEquipment] = []
 var equipmentLimit: int = 3	#Global limit on the number of equipments that an unit can have, some units will have a worse or better limit
 var tags: Array[Tags.tags] = []
+var capacities: Array[AbstractCapacity] = []
 var tile: AbstractTile	#Keep the tile where is the unit
 var isDead: bool	#Allow us to keep track of units killed
 
@@ -220,6 +221,11 @@ func addEffect(effect: AbstractEffect) -> void:
 	if(!inserted):
 		effects.append(effect)
 		effect.onEffectApplied(true)
+
+#Add a capacity to the unit
+func addCapacity(capacity: AbstractCapacity) -> void:
+	capacities.append(capacity)
+
 
 #Maybe we will change the type of tile and register it
 func onPlacement(tile: AbstractTile) -> void:
@@ -414,6 +420,8 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	#Est-ce qu'on bloquerait pas ça à seulement le tour du joueur avec le if?
 	for effect: AbstractEffect in effects:
 		effect.onStartOfTurn(turnNumber, turnColor)
+	for capacity: AbstractCapacity in capacities:
+		capacity.onStartOfTurn(turnNumber, turnColor)
 
 #Manage all cases where an unit gain xp
 #func gainXp(action: ActionTypes.actionTypes, infos: Dictionary = {})-> void:
@@ -572,10 +580,13 @@ func registerUnit() -> Dictionary :
 		"actualMovementTypes": self.actualMovementTypes,
 		"tileCoords": {"x": self.tile.getCoords().x, "y": self.tile.getCoords().y},
 		"isDead": self.isDead,
-		"effects": []  # Une liste d'effets
+		"effects": [],  # Une liste d'effets
+		"capacities": [] # Une liste de capacités
 	}
 	for effect: AbstractEffect in effects:
 		unitData["effects"].append(effect.registerEffect())
+	for capacity: AbstractCapacity in capacities:
+		unitData["capacities"].append(capacity.registerCapacity())
 	return unitData
 	
 ##Pareil que dans AbstractPlayer il faudra sûrement changer l'emplacement de cette fonction
@@ -615,6 +626,11 @@ static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary 
 		unit.tile = tile
 		unit.position = MapManager.calculate_map_position(tile.getCoords())
 		tile.unitOn = unit #Place unit on tile
+		if data.has("capacities"):
+			for capacityData in data["capacities"]:
+				var cap: AbstractCapacity = AbstractCapacity.recoverCapacity(capacityData, unit)
+				if cap != null:
+					unit.capacities.append(cap)
 		var unitDico: Dictionary = {}
 		unitDico["unit"] = {unit.uid: unit}
 		unitDico["effectsDico"] = recoverEffectsForUnit(data["effects"], unit)

@@ -14,11 +14,12 @@ grow_vertical = 2
 script = ExtResource("1_c8ugc")
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="FondGrise" parent="UI" instance=ExtResource("2_h3oly")]
 
 [node name="Panel" type="Panel" parent="UI"]
-editor_description = "Sert à visualiser comment ça rend(parece que y'a des probs avec le popUp"
+editor_description = "Sert à visualiser comment ça rend(parce que y'a des probs avec le popUp)"
 visibility_layer = 4
 anchors_preset = 8
 anchor_left = 0.5

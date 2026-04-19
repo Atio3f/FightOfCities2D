@@ -34,6 +34,12 @@
 		"name": "ITEM_NAME_BANANA",
 		"description": "ITEM_DESC_BANANA",
 		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:AssaultDroneMonkeyDeployment": {
+		"id": "set1:AssaultDroneMonkeyDeployment",
+		"name": "ITEM_NAME_ASSAULT_DRONE_MONKEY_DEPLOYMENT",
+		"description": "ITEM_DESC_ASSAULT_DRONE_MONKEY_DEPLOYMENT",
+		"img": "res://assets/sprites/items/VitalLink.png"
 	}
 	
 }

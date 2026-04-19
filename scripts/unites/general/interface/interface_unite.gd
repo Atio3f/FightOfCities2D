@@ -11,6 +11,7 @@ extends Control
 @onready var menuConsommables = preload("res://scenes/popUps/unite/unitItemsInterface.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
+@onready var menuCapacitesActives = $"PossibilityManager/ConteneurMenus/Rangee 2/MenuCapacitesActives"
 var unitAssociated : AbstractUnit
 var pointeursSurInterface : Array = []
 
@@ -36,6 +37,8 @@ func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur,
 	else :
 		if(!pointeursSurInterface.has(pointeurJoueurI)):
 			pointeursSurInterface.append(pointeurJoueurI) 
+		# On affiche le bouton de capacité uniquement si l'unité possède une capacité active
+		menuCapacitesActives.visible = (unitAssociated.capacities.size() > 0)
 	conteneurMenus.visible = visibilite
 	%DeleteUnitBtn.visible = (TurnManager.turn == 0 && unitAssociated.player.isGamePlayer)	#Hide the Delete button outside the preparation turn
 
@@ -67,8 +70,7 @@ func _on_menu_stats_pressed():
 	noeudsTempInfosStats.add_child(infosUnit)
 	
 
-func recuSelectionCapa(capaciteActivee : activeCapacite, pointeurJoueurI : pointeurJoueur):
-	print(capaciteActivee)
+func recuSelectionCapa(capaciteActivee : AbstractCapacity, pointeurJoueurI : pointeurJoueur):
 	pointeurJoueurI.capaActives(capaciteActivee, unitAssociated)
 	pass
 

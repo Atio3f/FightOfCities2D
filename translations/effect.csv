@@ -18,3 +18,5 @@ EFFECT_NAME_PENETRATION_PHYSICAL,Pas fait,Physical Penetration
 EFFECT_DESCRIPTION_PENETRATION_PHYSICAL,Pas fait,Physical attacks ignore !VA! DR.
 EFFECT_NAME_PENETRATION_MAGICAL,Pas fait,Magical Penetration
 EFFECT_DESCRIPTION_PENETRATION_MAGICAL,Pas fait,Magical attacks ignore !VA! MR.
+EFFECT_NAME_ORANGUTAN,Déchet,Déchet
+EFFECT_DESCRIPTION_ORANGUTAN,"Lorsqu’il consomme une banane, vous gagnez !VA! Peau de Banane. ","When eat a banana, you gain !VA! Banana Peel."

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://c8bx5rfkwtdon"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_qmswv"]
+
+[resource]
+script = ExtResource("1_qmswv")
+id = "set1:Orangutan"
+imgPath = "Monkey"
+hpBase = 36
+drBase = 4
+mrBase = 2
+grade = 1
+potential = 1
+wisdomBase = 1
+powerBase = 22
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 4
+metadata/_custom_type_script = "uid://chjck7svelps7"
