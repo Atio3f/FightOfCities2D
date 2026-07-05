@@ -36,8 +36,18 @@ var avgPrice: int #Price on shops, items can be sell from 40% of this value
 func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	pass
 
+func applyEffectOnTile(playerAssociated: AbstractPlayer, tileTargeted: AbstractTile) -> void:
+	pass
+
+# Define called functions to avoid calling canBeUsedOnTile on every tile when using an item that can only affect units
+static func getTargetType() -> ItemTargets.itemTargets:
+	return ItemTargets.itemTargets.UNIT
+
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unitTargeted: AbstractUnit, orbCost: int) -> bool:
 	return orbCost <= playerUsing.orbs
+
+static func canBeUsedOnTile(playerUsing: AbstractPlayer, tileTargeted: AbstractTile, orbCost: int) -> bool:
+	return false
 
 #Check when entering inventory
 static func canBeUsedOnInventory(playerUsing: AbstractPlayer, orbCost: int) -> bool:
@@ -54,6 +64,16 @@ static func useItem(playerUsing: AbstractPlayer, orbCost: int, item: AbstractIte
 	if playerUsing.isGamePlayer : 
 		for trinket: AbstractTrinket in playerUsing.trinkets :
 			trinket.onItemUsed(playerUsing, item, isMalus, unitTargeted)
+	return true
+
+static func useItemOnTile(playerUsing: AbstractPlayer, orbCost: int, item: AbstractItem, tileTargeted: AbstractTile) -> bool:
+	playerUsing.orbs -= orbCost
+	item.applyEffectOnTile(playerUsing, tileTargeted)
+	
+	if playerUsing.isGamePlayer: 
+		for trinket: AbstractTrinket in playerUsing.trinkets:
+			trinket.onItemUsed(playerUsing, item, false, null)
+			
 	return true
 
 static func getId() -> String:

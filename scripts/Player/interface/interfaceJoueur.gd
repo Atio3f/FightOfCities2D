@@ -45,3 +45,8 @@ func _on_menu_placement_card_pressed():
 	var menuPlacementCartes : interfacePlacementCards = placementCartes.instantiate()
 	menuPlacementCartes.setInterface(coords, load("res://nodes/interface/unitPlacementInterface.tscn")) #Fonction dans placementCartes au lancement
 	%noeudsTemp.add_child(menuPlacementCartes)
+
+@onready var menuConsommables = preload("res://scenes/popUps/unite/unitItemsInterface.tscn")
+# TODO Changer le nom de la classe d'interface item ou en créer une baqse commune
+func _on_menu_sorts_pressed():
+	push_error("UNIMPLEMENTED menuConsommables ne convient ppas actuellement") 

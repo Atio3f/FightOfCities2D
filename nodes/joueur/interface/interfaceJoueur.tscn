@@ -83,4 +83,5 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuSorts" to="." method="_on_menu_sorts_pressed"]
 [connection signal="pressed" from="GestionnairePossibilite/ConteneurMenus/Rangee 2/MenuPlacementCard" to="." method="_on_menu_placement_card_pressed"]

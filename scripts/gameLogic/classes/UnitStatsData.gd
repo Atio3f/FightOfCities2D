@@ -1,3 +1,4 @@
+## Define an unit base stats 
 extends Resource
 class_name UnitStats
 

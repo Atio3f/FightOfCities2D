@@ -26,14 +26,25 @@ func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Uni
 		%ItemBtn.disabled = true
 	else :
 		# Disable ItemBtn if card isn't playeable
-		var isDisabled: bool
+		var isDisabled: bool = true
+		# Using item on an unit
 		if unit != null :
 			isDisabled = !ItemDb.ITEMS[itemId].canBeUsedOnUnit(player, unit)
 			%ItemBtn.disabled = isDisabled
 			if !isDisabled :
 				activation_item.connect(inventoryInterface.closeInterface)
+		# Using item from inventory or on an empty tile
 		else :
-			isDisabled = player.cardCanBePlayedInventory(itemId)
+			var item: AbstractItem = ItemDb.ITEMS[itemId].new()
+			match item.getTargetType():
+				ItemTargets.itemTargets.PLAYER:
+					isDisabled = !item.canBeUsedOnInventory(player, item.orbCost)
+					pass
+				ItemTargets.itemTargets.TILE:
+					isDisabled = !item.canBeUsedOnTile(player, null, item.orbCost)
+					pass
+				_:
+					isDisabled = true
 			%ItemBtn.disabled = isDisabled
 
 

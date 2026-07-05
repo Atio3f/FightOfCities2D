@@ -53,13 +53,10 @@ func _on_menu_capacites_actives_focus_entered() -> void:
 
 #Affichage des capacités actives de l'unité
 func _on_menu_capacites_actives_pressed() -> void:
-	if (true):
 	#if (pointeursSurInterface.size() == 1) :
-		var capaAct : menuCapa = capaActives.instantiate()
-		
-		
-		capaAct.capaActivesUnite(unitAssociated, self, GameManager.getMainPlayer().playerPointer, true)
-		noeudsTempInfosStats.add_child(capaAct)
+	var capaAct : menuCapa = capaActives.instantiate()
+	capaAct.capaActivesUnite(unitAssociated, GameManager.getMainPlayer())
+	noeudsTempInfosStats.add_child(capaAct)
 
 #Affichage des infos de l'unité
 func _on_menu_stats_pressed():
@@ -70,9 +67,6 @@ func _on_menu_stats_pressed():
 	noeudsTempInfosStats.add_child(infosUnit)
 	
 
-func recuSelectionCapa(capaciteActivee : AbstractCapacity, pointeurJoueurI : pointeurJoueur):
-	pointeurJoueurI.capaActives(capaciteActivee, unitAssociated)
-	pass
 
 
 ##Signal envoyé par le menu des Consommables

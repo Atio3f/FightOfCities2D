@@ -7,6 +7,7 @@ const ITEMS := {
 	"set1:FairyMiracle": preload("res://Ressources/items/magicalBeasts/FairyMiracle.gd"),
 	"set1:BananaPeel": preload("res://Ressources/items/monkeys/BananaPeel.gd"),
 	"set1:Banana": preload("res://Ressources/items/monkeys/Banana.gd"),
+	"set1:AssaultDroneMonkeyDeployment": preload("res://Ressources/items/monkeys/AssaultDroneMonkeyDeployment.gd"),
 }
 
 var items: Dictionary = {}

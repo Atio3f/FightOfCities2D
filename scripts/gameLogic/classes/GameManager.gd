@@ -133,7 +133,7 @@ func createPlayer(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool)
 static func unitCanBePlacedOnTile(player: AbstractPlayer, tile: AbstractTile, weight: int = 1) -> bool :
 	return tile != null and !tile.hasUnitOn() and player.maxWeight >= player.weight + weight
 
-#Pour les tests on a besoin d'être sûr du type de case
+# Pour les tests on a besoin d'être sûr du type de case
 func placeUnit(storedUnitData: StoredUnit, player: AbstractPlayer, tile: AbstractTile) -> AbstractUnit:#pê pas besoin de renvoyer l'unité produite
 	var u := sceneUnit.instantiate()
 	var unit : AbstractUnit = u as AbstractUnit
