@@ -1,14 +1,14 @@
 extends MarginContainer
 class_name ItemDisplay
 
-signal activation_item(inventoryInterface: UnitItemsInterface)
+signal activation_item(inventoryInterface: Control)
 var associatedId: String
 var playerStocked: AbstractPlayer
 var unitStocked: AbstractUnit # Stock unit when inventory is open from an unit
 
 ## Display item on inventory
 # inventoryInterface is the interface where is displayed this item Btn
-func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: UnitItemsInterface, unit: AbstractUnit = null) -> void :
+func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Control, unit: AbstractUnit = null) -> void :
 	%PreviewItem.visible = false
 	%NameItem.visible = false
 	associatedId = itemId
@@ -29,7 +29,12 @@ func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Uni
 		var isDisabled: bool = true
 		# Using item on an unit
 		if unit != null :
-			isDisabled = !ItemDb.ITEMS[itemId].canBeUsedOnUnit(player, unit)
+			var itemInstance: AbstractItem = ItemDb.ITEMS[itemId].new()
+			if itemInstance is AbstractEquipment:
+				isDisabled = !unit.canEquipEquipment(itemInstance)
+			else:
+				isDisabled = !ItemDb.ITEMS[itemId].canBeUsedOnUnit(player, unit)
+			itemInstance.queue_free()
 			%ItemBtn.disabled = isDisabled
 			if !isDisabled :
 				activation_item.connect(inventoryInterface.closeInterface)
@@ -62,7 +67,12 @@ func _on_item_btn_button_up():
 	# Use directly on an unit
 	print(unitStocked != null)
 	if unitStocked != null:
-		GameManager.useItemOnUnits(associatedId, playerStocked, [unitStocked])
+		var itemInstance: AbstractItem = ItemDb.ITEMS[associatedId].new()
+		if itemInstance is AbstractEquipment:
+			GameManager.equipEquipmentOnUnit(associatedId, playerStocked, unitStocked)
+		else:
+			GameManager.useItemOnUnits(associatedId, playerStocked, [unitStocked])
+		itemInstance.queue_free()
 		activation_item.emit()
 	# When needing to select target or simply have 
 	else :

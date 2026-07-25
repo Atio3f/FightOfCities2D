@@ -37,8 +37,8 @@ var xp: int		#Current xp
 var player: AbstractPlayer
 var team: TeamsColor.TeamsColor #Team Color, get from player you control him
 var effects: Array[AbstractEffect] = []
-var equipments: Array[AbstractEquipment] = []
-var equipmentLimit: int = 3	#Global limit on the number of equipments that an unit can have, some units will have a worse or better limit
+var equipment: AbstractEquipment = null
+var equipmentLimit: int = 1	# Global limit on the number of equipments that an unit can have, some units will have a worse or better limit, for the moment we don't use it
 var tags: Array[Tags.tags] = []
 var capacities: Array[AbstractCapacity] = []
 var tile: AbstractTile	#Keep the tile where is the unit
@@ -483,17 +483,41 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 		#return
 
 ##Check if an equipment can be equip on this unit
-func canEquipEquipment(equipment: AbstractEquipment) -> bool :
-	if equipmentLimit == equipments.size() : return false
-	if equipment.equipmentType >= 10 : return true	#EquipmentType >= 10 are others which can have multiple equiped at the same time
-	for _equipment : AbstractEquipment in equipments:
-		if _equipment.equipmentType == equipment.equipmentType :
-			return false
-	return true	#If no equipment on unit have the same type and unit still have place, we can equip it
+func canEquipEquipment(newEquipment: AbstractEquipment) -> bool :
+	return equipmentLimit > 0 && newEquipment.canBeEquippedBy(self) # Can always equip, just replace it. Except if unit has 0 on equipmentLimit or if it's an equipment that can't be equip on this unit
 
 ## Use to equip an equipment, need to use the method from AbstractPlayer which check if we can equip it (canEquipEquipment())
-func equipEquipment(equipment: AbstractEquipment) -> void :
-	equipments.append(equipment)
+func equipEquipment(newEquipment: AbstractEquipment) -> void :
+	# If unit already has an equipment, remove it and add it to the hand
+	if self.equipment != null:
+		self.equipment.onUnequip()
+		player.hand.equipmentsStock.append(self.equipment.getId())
+		
+	# Equip new one
+	self.equipment = newEquipment
+	self.equipment.onEquip(self)
+
+## Modify unit stats according to the equipment modifiers
+func addStatModifiers(modifiers: Dictionary, isAdding: bool) -> void:
+	var multiplier: int = 1 if isAdding else -1 # Check if we add or remove
+	
+	for statName: String in modifiers:
+		var amount: int = modifiers[statName] * multiplier
+		match statName:
+			"hpMax":
+				set("hpMax", get("hpMax") + amount)
+				set("hpActual", get("hpActual") + amount)
+			"speed":
+				set("speed", get("speed") + amount)
+				set("speedRemaining", get("speedRemaining") + amount)
+			"atkPerTurn":
+				set("atkPerTurn", get("atkPerTurn") + amount)
+				set("atkRemaining", get("atkRemaining") + amount)
+			"potentialCost":
+				assert(false, "potentialCost should not be modified by equipment. Else need to be implemented")
+				pass # Should not happen
+			_: 
+				set(statName, get(statName) + amount)
 
 ## Modify unit stat on statModifiers param
 func modifyStat(statName: String, amt: int) -> void :

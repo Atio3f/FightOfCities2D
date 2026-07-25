@@ -154,9 +154,14 @@ func useCard(idCard: String, targets: Array) -> void :
 		instance.queue_free()
 	hand.useCard(idCard)
 
-# Pour ajouter une carte à la main du joueur
+## Pour ajouter une carte à la main du joueur
+## If the item is an equipment, add it to the equipments stock, else add it to the cards list
 func addCard(idCard: String) -> void:
-	hand.addCard(idCard)
+	# Séparation objet/équipement effectuée ici et non depuis PlayerHand car accéder aux autoloads depuis un Node orphelin peut corrompre la résolution GDScript en Godot 4
+	if ItemDb.ITEMS.has(idCard) and ItemDb.ITEMS[idCard].get("IS_EQUIPMENT") == true: 
+		hand.equipmentsStock.append(idCard)
+	else:
+		hand.addCard(idCard)
 
 ## Add a new unit to the player, used to getting all units on start of campaign or when player recruits a new unit on AbstractReward, return true if the reward is held by some effects
 func gainUnitCard(storedUnitData: StoredUnit, reward: AbstractReward = null) -> bool:
@@ -193,11 +198,15 @@ func gainGold(amt: int) -> void:
 		else : gold += amt
 
 ## To add an equipment to an unit
-func addEquipment(idEquipment: String) -> void:
-	if hand.cards.has(idEquipment) :
-		#Check if the equipment can be equipped
-		#Add equipment to unit
-		pass
+func equipEquipmentToUnit(idEquipment: String, unit: AbstractUnit) -> void:
+	if hand.equipmentsStock.has(idEquipment):
+		var equipment: AbstractEquipment = ItemDb.ITEMS[idEquipment].new()
+		equipment.playerAssociated = self
+		if unit.canEquipEquipment(equipment):
+			hand.useEquipment(idEquipment)
+			unit.equipEquipment(equipment)
+		else:
+			equipment.queue_free()
 
 ## Add the trinket to the interface
 func setTrinket(trinket: AbstractTrinket) -> void :

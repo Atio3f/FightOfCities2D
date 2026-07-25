@@ -1,15 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0xoj357iuq7c"]
+[gd_scene load_steps=12 format=3 uid="uid://c0xoj357iuq7c"]
 
 [ext_resource type="Script" uid="uid://oixsn6bpuivb" path="res://scripts/gameLogic/classes/AbstractUnit.gd" id="1_ion6h"]
 [ext_resource type="Texture2D" uid="uid://dt0lsyyf44bb6" path="res://assets/sprites/contourSelectionUnite(512x512).png" id="4_nrxwr"]
 [ext_resource type="Texture2D" uid="uid://chg76tk7ttdti" path="res://assets/sprites/units/Monkey.png" id="5_jkama"]
 [ext_resource type="Script" uid="uid://c0mjucwye5ul6" path="res://scripts/unites/general/GestionCapacites.gd" id="6_figlw"]
 [ext_resource type="PackedScene" uid="uid://27awq5ull731" path="res://nodes/Unite/interfaceUnite.tscn" id="6_ujj46"]
+[ext_resource type="Script" uid="uid://b6xrvoavavhgf" path="res://scripts/unites/general/interface/EquipmentSlot.gd" id="7_eqslot"]
+[ext_resource type="LabelSettings" uid="uid://cwcfxluc5evt" path="res://Ressources/themes/tooltip_theme.tres" id="7_odnor"]
 
 [sub_resource type="Curve2D" id="Curve2D_nrxwr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeksa"]
 size = Vector2(32, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nrxwr"]
+size = Vector2(105, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqslot"]
+size = Vector2(105, 105)
 
 [node name="Unite" type="Path2D"]
 position = Vector2(60, 60)
@@ -73,6 +81,42 @@ z_index = -1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnitElements/ZoneOccupe"]
 scale = Vector2(0.92, 0.92)
 shape = SubResource("RectangleShape2D_xeksa")
+
+[node name="EquipmentSlot" type="Sprite2D" parent="UnitElements"]
+position = Vector2(225, 195)
+texture = SubResource("PlaceholderTexture2D_nrxwr")
+region_rect = Rect2(-0.5, -2, 105, 109)
+script = ExtResource("7_eqslot")
+
+[node name="HoverArea" type="Area2D" parent="UnitElements/EquipmentSlot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnitElements/EquipmentSlot/HoverArea"]
+shape = SubResource("RectangleShape2D_eqslot")
+
+[node name="TooltipLabel" type="Label" parent="UnitElements/EquipmentSlot"]
+visible = false
+offset_left = -85.0
+offset_top = -199.0
+offset_right = 900.0
+offset_bottom = -34.0
+text = "Équipement Vide
+sdqf"
+label_settings = ExtResource("7_odnor")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UnitElements/EquipmentSlot"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.5
+offset_top = -52.5
+offset_right = -52.5
+offset_bottom = -52.5
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0823529, 0, 0, 1)
+border_width = 14.0
+editor_only = false
 
 [node name="NoeudsTemp" type="Node2D" parent="."]
 

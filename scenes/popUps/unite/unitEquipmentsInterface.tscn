@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://dce8h1k2bas1b"]
+
+[ext_resource type="Script" uid="uid://cftkkpcflx7pl" path="res://scripts/unites/general/interface/unitEquipmentsInterface.gd" id="1_7p4on"]
+[ext_resource type="PackedScene" uid="uid://dv1w0medjt16" path="res://nodes/Unite/interfaceUnite/fond_gris.tscn" id="2_ht1u6"]
+
+[node name="unitEquipmentsInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_7p4on")
+
+[node name="FondGrise" parent="." instance=ExtResource("2_ht1u6")]
+z_index = -1
+layout_mode = 1
+
+[node name="UI" type="Panel" parent="."]
+editor_description = "Sert à visualiser comment ça rend(parece que y'a des probs avec le popUp"
+visibility_layer = 4
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -200.0
+offset_right = 199.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="FlowContainer" type="FlowContainer" parent="UI"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ItemList" type="GridContainer" parent="UI/FlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 18
+theme_override_constants/v_separation = 25
+columns = 5

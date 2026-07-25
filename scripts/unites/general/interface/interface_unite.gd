@@ -9,6 +9,7 @@ extends Control
 @onready var infosUnites = preload("res://scenes/popUps/unite/interfaceInfosUnite.tscn")
 @onready var capaActives = preload("res://scenes/popUps/unite/interfaceCapaActivesUnites.tscn")
 @onready var menuConsommables = preload("res://scenes/popUps/unite/unitItemsInterface.tscn")
+@onready var menuEquipements = preload("res://scenes/popUps/unite/unitEquipmentsInterface.tscn")
 @onready var noeudsTempInfosStats : CanvasLayer = $"../../NoeudsTemp/InterfaceInfosStats"	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
 @onready var menuCapacitesActives = $"PossibilityManager/ConteneurMenus/Rangee 2/MenuCapacitesActives"
@@ -40,7 +41,10 @@ func apercuMenusUnite(entiteAssociee : Node2D, pointeurJoueurI : pointeurJoueur,
 		# On affiche le bouton de capacité uniquement si l'unité possède une capacité active
 		menuCapacitesActives.visible = (unitAssociated.capacities.size() > 0)
 	conteneurMenus.visible = visibilite
-	%DeleteUnitBtn.visible = (TurnManager.turn == 0 && unitAssociated.player.isGamePlayer)	#Hide the Delete button outside the preparation turn
+	# Hide the Delete and equipments buttons outside the preparation turn
+	var isPreparationTurn: bool = (TurnManager.turn == 0 && unitAssociated.player.isGamePlayer)
+	%DeleteUnitBtn.visible = isPreparationTurn
+	%MenuEquipmentsBtn.visible = isPreparationTurn
 
 
 
@@ -69,7 +73,7 @@ func _on_menu_stats_pressed():
 
 
 
-##Signal envoyé par le menu des Consommables
+## Signal envoyé par le menu des Consommables
 func _on_menu_consommables_pressed():
 	print("ff") # TODO Check pq ça marche pas quand unité case au dessus
 	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
@@ -78,10 +82,17 @@ func _on_menu_consommables_pressed():
 	menuConso.showItems(unitAssociated, GameManager.getMainPlayer())
 	noeudsTempInfosStats.add_child(menuConso)
 
-##Delete the unit if used during the preparation turn
+## Delete the unit if used during the preparation turn
 func _on_delete_unit_btn_pressed():
 	if !unitAssociated.player.isGamePlayer : return#Avoid crashes
 	#Add its tile on the placement tiles
 	unitAssociated.player.playerPointer.draw_placeable_cells([unitAssociated.tile.getCoords()])
 	#Add the unit to the player inventory and remove it
 	unitAssociated.placeOnInventory()
+
+## Open the equipment menu for the unit
+func _on_menu_equipments_pressed():
+	if !unitAssociated.player.isGamePlayer : return#Avoid crashes
+	var menuEquip : UnitEquipmentsInterface = menuEquipements.instantiate()
+	menuEquip.showEquipments(unitAssociated, GameManager.getMainPlayer())
+	noeudsTempInfosStats.add_child(menuEquip)

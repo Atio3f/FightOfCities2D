@@ -184,6 +184,10 @@ static func fight(unitAttacking: AbstractUnit, unitAttacked: AbstractUnit) -> vo
 static func useItemOnUnits(itemId: String, player: AbstractPlayer, units: Array[AbstractUnit]) -> void:
 	player.useCard(itemId, units)
 
+## Equip an equipment on a unit
+static func equipEquipmentOnUnit(equipmentId: String, player: AbstractPlayer, unit: AbstractUnit) -> void:
+	player.equipEquipmentToUnit(equipmentId, unit)
+
 static func generateMap(width: int, length: int) -> void :
 	MapManager.initMap( width, length)
 	if getMainPlayer() != null : getMainPlayer().fixCameraLimit(length, width)	#Update camera limit
