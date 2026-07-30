@@ -33,6 +33,7 @@
 		"set1:BananaPeel",
 		"set1:Banana",
 		"set1:Banana",
+		"set1:LaserBladeMonkey"
 	],
 	"startingTrinkets": [
 		"set1:OrbCrate",
@@ -90,6 +91,7 @@
 			],
 			"rewards": [
 				"reward:unitMonkey",
+				"reward:basicEquipments",
 				"reward:bonus",
 			],
 			"nextMission": "map2"

@@ -35,6 +35,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
+[node name="EquipedItemContainer" type="AspectRatioContainer" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+stretch_mode = 1
+
 [node name="FlowContainer" type="FlowContainer" parent="UI"]
 layout_direction = 1
 layout_mode = 1

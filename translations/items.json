@@ -1,10 +1,4 @@
 {
-	"set1:BrambleGauntlet": {
-		"id": "set1:BrambleGauntlet",
-		"name": "ITEM_NAME_BRAMBLE_GAUNTLET",
-		"description": "ITEM_DESC_BRAMBLE_GAUNTLET",
-		"img": "res://assets/sprites/items/BrambleGauntlet.png"
-	},
 	"set1:VitalLink": {
 		"id": "set1:VitalLink",
 		"name": "ITEM_NAME_VITAL_LINK",
@@ -40,6 +34,41 @@
 		"name": "ITEM_NAME_ASSAULT_DRONE_MONKEY_DEPLOYMENT",
 		"description": "ITEM_DESC_ASSAULT_DRONE_MONKEY_DEPLOYMENT",
 		"img": "res://assets/sprites/items/VitalLink.png"
-	}
-	
+	},
+	"set1:BrambleGauntlet": {
+		"id": "set1:BrambleGauntlet",
+		"name": "ITEM_NAME_BRAMBLE_GAUNTLET",
+		"description": "ITEM_DESC_BRAMBLE_GAUNTLET",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
+	"set1:LaserBladeMonkey": {
+		"id": "set1:LaserBladeMonkey",
+		"name": "ITEM_NAME_LASER_BLADE_MONKEY",
+		"description": "ITEM_DESC_LASER_BLADE_MONKEY",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:CoolCapMonkey": {
+		"id": "set1:CoolCapMonkey",
+		"name": "ITEM_NAME_COOL_CAP_MONKEY",
+		"description": "ITEM_DESC_COOL_CAP_MONKEY",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
+	"set1:MoonStone": {
+		"id": "set1:MoonStone",
+		"name": "ITEM_NAME_MOON_STONE",
+		"description": "ITEM_DESC_MOON_STONE",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
+	"set1:SwagBananaBag": {
+		"id": "set1:SwagBananaBag",
+		"name": "ITEM_NAME_SWAG_BANANA_BAG",
+		"description": "ITEM_DESC_SWAG_BANANA_BAG",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
+	"set1:MudCharm": {
+		"id": "set1:MudCharm",
+		"name": "ITEM_NAME_MUD_CHARM",
+		"description": "ITEM_DESC_MUD_CHARM",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
 }

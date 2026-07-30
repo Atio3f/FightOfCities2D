@@ -63,6 +63,8 @@ func obtainReward(player: AbstractPlayer, number: int) -> bool :
 				return false
 		RewardTypes.rewardTypes.ITEM :
 			GameManager.getMainPlayer().addCard(reward["idReward"])
+		RewardTypes.rewardTypes.EQUIPMENT:
+			GameManager.getMainPlayer().addCard(reward["idReward"])
 		RewardTypes.rewardTypes.TRINKET :
 			GameManager.addTrinket(GameManager.getMainPlayer(), reward["idReward"])
 		RewardTypes.rewardTypes.GOLD :

@@ -10,46 +10,31 @@ var _player: AbstractPlayer
 func showEquipments(unit: AbstractUnit, player: AbstractPlayer) -> void:
 	self.unit = unit
 	_player = player
-
-	## Display equipment currently on unit
-	_addEquipmentSlot(unit.equipment.getId() if unit.equipment != null else "", true)
+	## Display equipment currently on unit or empty slot to place on top
+	if unit.equipment != null:
+		_addEquippedSlot(unit.equipment.getId())
+	else:
+		_addEmptySlot()
 
 	## Iterate equipments from player hand
 	for idEquip: String in player.hand.equipmentsStock:
-		_addEquipmentSlot(idEquip, false)
+		_addStockSlot(idEquip)
 
 
-## Create and add equipment button to the list
-## equippedOnUnit : true if it's the equipment currently worn by the unit
-func _addEquipmentSlot(idEquip: String, equippedOnUnit: bool) -> void:
+## Display the currently equipped item in EquipedItemContainer, click to unequip
+func _addEquippedSlot(idEquip: String) -> void:
 	var btn: ItemDisplay = equipBtnScene.instantiate()
-	%ItemList.add_child(btn)
+	%EquipedItemContainer.add_child(btn)
 
 	## Display item (handles image + name + description)
 	btn.toggleItems(idEquip, _player, self, self.unit)
 
-	## Override button behavior for equipments
-	if equippedOnUnit:
-		_setupEquippedSlot(btn, idEquip)
-	else:
-		_setupStockSlot(btn, idEquip)
-
-
-## Configure un slot représentant l'équipement actuellement porté
-## Permet de le déséquiper (remet l'équipement dans le stock)
-func _setupEquippedSlot(btn: ItemDisplay, idEquip: String) -> void:
-	var itemBtn: Button = btn.get_node("%ItemBtn")
-
-	# Slot vide : désactivé si aucun équipement n'est porté
-	if idEquip == "":
-		itemBtn.disabled = true
-		if btn.has_node("%NameItem"):
-			btn.get_node("%NameItem").text = "[ Vide ]"
-		return
-
 	# Marqueur visuel : équipement actuellement porté
+	## TODO Plus logique de le mettre dans Item Display nan ?
 	if btn.has_node("%NameItem"):
-		btn.get_node("%NameItem").text = "[Équipé] " + btn.get_node("%NameItem").text
+		btn.get_node("%NameItem").text = btn.get_node("%NameItem").text + "(Équipé)"
+
+	var itemBtn: Button = btn.get_node("%ItemBtn")
 
 	# Clic → déséquiper : remet l'équipement dans le stock du joueur
 	itemBtn.button_up.connect(func():
@@ -62,11 +47,27 @@ func _setupEquippedSlot(btn: ItemDisplay, idEquip: String) -> void:
 	)
 
 
-## Configure un slot représentant un équipement disponible dans le stock
-## Permet de l'équiper sur l'unité
-func _setupStockSlot(btn: ItemDisplay, idEquip: String) -> void:
-	var itemBtn: Button = btn.get_node("%ItemBtn")
+## Display empty equipment slot placeholder
+func _addEmptySlot() -> void:
+	var label: Label = Label.new()
+	label.text = "Emplacement d'équipement vide"
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	%EquipedItemContainer.add_child(label)
 
+
+## Display an equipment from the player's stock in ItemList, click to equip
+func _addStockSlot(idEquip: String) -> void:
+	var btn: ItemDisplay = equipBtnScene.instantiate()
+	%ItemList.add_child(btn)
+
+	## Display item (handles image + name + description)
+	btn.toggleItems(idEquip, _player, self, self.unit)
+
+	var itemBtn: Button = btn.get_node("%ItemBtn")
+	
 	# Vérification : peut-on équiper cet équipement sur cette unité ?
 	if not ItemDb.ITEMS.has(idEquip):
 		itemBtn.disabled = true

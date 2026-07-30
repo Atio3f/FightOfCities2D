@@ -59,8 +59,9 @@ func _onUnitSelected(unitData: StoredUnit) -> void:
 		parentReward.confirmBonusSelection()
 	self.queue_free() # Remove this interface
 
+
 ## Hide interface and return to select bonus to get
-func _onTopLeftBtn_pressed() -> void:
+func _on_return_btn_pressed() -> void:
 	# Cancel bonus selection and delete this interface
 	bonusId = ""
 	if parentReward :

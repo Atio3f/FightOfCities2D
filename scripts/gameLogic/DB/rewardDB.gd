@@ -2,10 +2,16 @@ extends Node
 
 
 const REWARDS := {
+	## Units reward
 	"reward:unitMonkey" : preload("res://Ressources/rewards/UnitMonkeyReward.gd"),
 	"reward:magicalBeast" : preload("res://Ressources/rewards/MagicalBeastReward.gd"),
+	## Trinkets reward
 	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd"),
+	## Items rewards
 	"reward:classicBanana": preload("res://Ressources/rewards/ClassicBananaReward.gd"),
+	## Equipments rewards
+	"reward:basicEquipments": preload("res://Ressources/rewards/BasicEquipmentsReward.gd"),
+	## Other rewards
 	"reward:gold" : preload("res://Ressources/rewards/GoldReward.gd"),
 	"reward:bonus" : preload("res://Ressources/rewards/UpgradeReward.gd"),
 }
@@ -43,4 +49,12 @@ const REWARDS_DICO := {
 	## ITEMS
 	"set1:Banana": {"title": "Banana", "desc": "TODO", "idReward": "set1:Banana", "rewardType": RewardTypes.rewardTypes.ITEM},
 	"set1:BananaPeel": {"title": "Banana Peel", "desc": "TODO", "idReward": "set1:BananaPeel", "rewardType": RewardTypes.rewardTypes.ITEM},
+
+	## EQUIPMENTS
+	"set1:BrambleGauntlet": {"title": "Bramble Gauntlet", "desc": "TODO", "idReward": "set1:BrambleGauntlet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:LaserBladeMonkey": {"title": "Laser Blade Monkey", "desc": "TODO", "idReward": "set1:LaserBladeMonkey", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:CoolCapMonkey": {"title": "Cool Cap Monkey", "desc": "TODO", "idReward": "set1:CoolCapMonkey", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:MoonStone": {"title": "Moon Stone", "desc": "TODO", "idReward": "set1:MoonStone", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:SwagBananaBag": {"title": "Swag Banana Bag", "desc": "TODO", "idReward": "set1:SwagBananaBag", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:MudCharm": {"title": "Mud Charm", "desc": "TODO", "idReward": "set1:MudCharm", "rewardType": RewardTypes.rewardTypes.EQUIPMENT}
 }

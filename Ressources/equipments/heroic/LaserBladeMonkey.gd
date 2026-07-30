@@ -1,2 +1,0 @@
-extends AbstractEquipment
-class_name LaserBladeMonkey

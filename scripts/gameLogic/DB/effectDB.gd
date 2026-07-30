@@ -22,4 +22,6 @@ const EFFECTS := {
 	"UpgradeScoutEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeScoutEffect.gd"),
 	"UpgradeBloodyEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeBloodyEffect.gd"),
 	"UpgradeAgilityEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeAgilityEffect.gd"),
+	## KEYWORD EFFECTS
+	"set1:RegenerationEffect": preload("res://Ressources/effects/RegenerationEffect.gd"),
 }
