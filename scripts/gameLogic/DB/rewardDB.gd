@@ -56,5 +56,7 @@ const REWARDS_DICO := {
 	"set1:CoolCapMonkey": {"title": "Cool Cap Monkey", "desc": "TODO", "idReward": "set1:CoolCapMonkey", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 	"set1:MoonStone": {"title": "Moon Stone", "desc": "TODO", "idReward": "set1:MoonStone", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 	"set1:SwagBananaBag": {"title": "Swag Banana Bag", "desc": "TODO", "idReward": "set1:SwagBananaBag", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:MudCharm": {"title": "Mud Charm", "desc": "TODO", "idReward": "set1:MudCharm", "rewardType": RewardTypes.rewardTypes.EQUIPMENT}
+	"set1:MudCharm": {"title": "Mud Charm", "desc": "TODO", "idReward": "set1:MudCharm", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:WarAxe": {"title": "War Axe", "desc": "TODO", "idReward": "set1:WarAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:WoodlandDoll": {"	title": "Woodland Doll", "desc": "TODO", "idReward": "set1:WoodlandDoll", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 }

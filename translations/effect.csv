@@ -20,3 +20,11 @@ EFFECT_NAME_PENETRATION_MAGICAL,Pas fait,Magical Penetration
 EFFECT_DESCRIPTION_PENETRATION_MAGICAL,Pas fait,Magical attacks ignore !VA! MR.
 EFFECT_NAME_ORANGUTAN,Déchet,Déchet
 EFFECT_DESCRIPTION_ORANGUTAN,"Lorsqu’il consomme une banane, vous gagnez !VA! Peau de Banane. ","When eat a banana, you gain !VA! Banana Peel."
+EFFECT_NAME_REGENERATION,Régénération,Regeneration
+EFFECT_DESCRIPTION_REGENERATION,,"At the start of your turn, heal !VA! HP."
+EFFECT_NAME_POISON,Poison,Poison
+EFFECT_DESCRIPTION_POISON,Pas fait,"At the start of your turn, take !VA! poison damage"
+EFFECT_NAME_FREEZE,Gel,Freeze
+EFFECT_DESCRIPTION_FREEZE,Pas fait,Magical attacks ignore !VA! MR.
+EFFECT_NAME_THORNS,Épines,Thorns
+EFFECT_DESCRIPTION_THORNS,Pas fait,Deals !VA! pure damage back to melee attackers

@@ -6,7 +6,7 @@ const idItem = "set1:CoolCapMonkey"
 const img = ""
 
 func getStatModifiers() -> Dictionary:
-	return {"hpMax": 5, "dr": 1, "speed": 1}
+	return {"hpMax": 7, "dr": 1, "speed": 1}
 
 func canBeEquippedBy(unit: AbstractUnit) -> bool:
 	return unit.tags.has(Tags.tags.MONKEY)

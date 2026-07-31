@@ -24,4 +24,9 @@ const EFFECTS := {
 	"UpgradeAgilityEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeAgilityEffect.gd"),
 	## KEYWORD EFFECTS
 	"set1:RegenerationEffect": preload("res://Ressources/effects/RegenerationEffect.gd"),
+	"set1:FreezeEffect": preload("res://Ressources/effects/keywordEffects/FreezeEffect.gd"),
+	"set1:PoisonEffect": preload("res://Ressources/effects/keywordEffects/PoisonEffect.gd"),
+	"set1:ThornsEffect": preload("res://Ressources/effects/keywordEffects/ThornsEffect.gd"),
+	## ITEM EFFECTS
+	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),
 }

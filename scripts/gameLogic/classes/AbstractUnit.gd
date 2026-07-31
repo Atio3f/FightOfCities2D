@@ -386,6 +386,10 @@ func onDeath(unit: AbstractUnit = null) -> void:
 ## Remove the unit from active units and its tile and hide it, will be called by onDeath method and the delete button on interface.
 ## Param checkWin served to avoid check win when we remove units at the end of a map
 func removeSelf(checkWin: bool) -> void:
+	# Unequip equipment if exists, we add it to the player hand 
+	if self.equipment != null && player.isGamePlayer:
+		self.equipment.onUnequip()
+		player.hand.equipmentsStock.append(self.equipment.getId())
 	player.removeUnit(self)
 	tile.unitOn = null	#Free the tile
 	if TurnManager.turn != 0 && checkWin: GameManager.checkWin()	#Check if win/lose after removing the unit

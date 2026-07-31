@@ -8,6 +8,8 @@ const ITEMS := {
 	"set1:MoonStone": preload("res://Ressources/equipments/cosmos/MoonStone.gd"),
 	"set1:SwagBananaBag": preload("res://Ressources/equipments/monkeys/SwagBananaBag.gd"),
 	"set1:MudCharm": preload("res://Ressources/equipments/cosmos/MudCharm.gd"),
+	"set1:WarAxe": preload("res://Ressources/equipments/bulls/WarAxe.gd"),
+	"set1:WoodlandDoll": preload("res://Ressources/equipments/magicalBeasts/WoodlandDoll.gd"),
 	## ITEMS
 	"set1:VitalLink" : preload("res://Ressources/items/magicalBeasts/VitalLink.gd"),
 	"set1:MagicalCoconut": preload("res://Ressources/items/others/farmsLoot/MagicalCoconut.gd"),

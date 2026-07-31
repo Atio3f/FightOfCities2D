@@ -1,4 +1,24 @@
 {
+	"set1:RegenerationEffect": {
+		"id": "set1:RegenerationEffect",
+		"name": "EFFECT_NAME_REGENERATION",
+		"description": "EFFECT_DESCRIPTION_REGENERATION"
+	},
+	"set1:ThornsEffect": {
+		"id": "set1:ThornsEffect",
+		"name": "EFFECT_NAME_THORNS",
+		"description": "EFFECT_DESCRIPTION_THORNS"
+	},
+	"set1:FreezeEffect": {
+		"id": "set1:FreezeEffect",
+		"name": "EFFECT_NAME_FREEZE",
+		"description": "EFFECT_DESCRIPTION_FREEZE"
+	},
+	"set1:PoisonEffect": {
+		"id": "set1:PoisonEffect",
+		"name": "EFFECT_NAME_POISON",
+		"description": "EFFECT_DESCRIPTION_POISON"
+	},
 	"set1:GodMonkeySpeedEffect": {
 		"id": "set1:GodMonkeySpeedEffect",
 		"name": "EFFECT_NAME_GOD_MONKEY_SPEED",

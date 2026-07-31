@@ -6,7 +6,7 @@ const idItem = "set1:SwagBananaBag"
 const img = ""
 
 func getStatModifiers() -> Dictionary:
-	return {"mr": 1}
+	return {"mr": 2}
 
 func canBeEquippedBy(unit: AbstractUnit) -> bool:
 	return true

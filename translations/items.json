@@ -71,4 +71,16 @@
 		"description": "ITEM_DESC_MUD_CHARM",
 		"img": "res://assets/sprites/items/BrambleGauntlet.png"
 	},
+	"set1:WarAxe": {
+		"id": "set1:WarAxe",
+		"name": "ITEM_NAME_WAR_AXE",
+		"description": "ITEM_DESC_WAR_AXE",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
+	"set1:WoodlandDoll": {
+		"id": "set1:WoodlandDoll",
+		"name": "ITEM_NAME_WOODLAND_DOLL",
+		"description": "ITEM_DESC_WOODLAND_DOLL",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
 }
