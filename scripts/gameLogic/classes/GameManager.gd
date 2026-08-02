@@ -101,6 +101,29 @@ static func getRandomUnits(nbrUnits: int = 1, teamsToExclude: Array[TeamsColor.T
 	validUnits.shuffle() 
 	return validUnits.slice(0, min(nbrUnits, validUnits.size())) # Return selected units
 
+## Get units within range (Manhattan distance) from an origin tile
+## Allows excluding teams
+## Use minDistance == 1 to exclude unit from center tile
+static func getUnitsInRange(originTile: AbstractTile, minDistance: int, maxDistance: int, teamsToExclude: Array[TeamsColor.TeamsColor] = []) -> Array[AbstractUnit]:
+	var unitsInRange: Array[AbstractUnit] = []
+	if originTile == null:
+		return unitsInRange
+	
+	var originCoords: Vector2i = originTile.getCoords()
+	for unit: AbstractUnit in getAllUnits():
+		if not is_instance_valid(unit) or unit.isDead or unit.tile == null:
+			continue
+		if unit.player != null and unit.player.team in teamsToExclude:
+			continue
+		
+		# Check distance
+		var unitCoords: Vector2i = unit.tile.getCoords()
+		var dist: int = abs(unitCoords.x - originCoords.x) + abs(unitCoords.y - originCoords.y)
+		if dist <= maxDistance && dist >= minDistance:
+			unitsInRange.append(unit)
+			
+	return unitsInRange
+
 static func getPlayers() -> Array[AbstractPlayer]:
 	return players
 

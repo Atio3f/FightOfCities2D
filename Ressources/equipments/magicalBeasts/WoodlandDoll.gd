@@ -8,7 +8,7 @@ func _init():
 	value_A = 2
 
 func getStatModifiers() -> Dictionary:
-	return {"hpMax": 5}
+	return {"hpMax": 7}
 
 func canBeEquippedBy(unit: AbstractUnit) -> bool:
 	return true
@@ -24,6 +24,6 @@ func onEquip(unit: AbstractUnit) -> void :
 
 func onUnequip() -> void :
 	var effect = ThornsEffect.new(unitAssociated, -1, -value_A)
-	self.unitAssociated.removeEffect(effect)
+	self.unitAssociated.addEffect(effect)
 
 	super.onUnequip()

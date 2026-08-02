@@ -1,4 +1,4 @@
-extends AbstractUnit
+extends AbstractMC
 class_name MonkeyMC
 
 const STATS: UnitStats = preload("res://Ressources/units/mainCharacters/monkeys/MonkeyMC.tres")

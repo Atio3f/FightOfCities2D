@@ -11,6 +11,6 @@ func setData(_additionalData: String) -> void :
 		## UNCOMMON
 		"set1:SwagBananaBag": Rarities.EQUIP_UNCOMMON,
 		## RARE
-		"set1:WoodlandDoll": Rarities.EQUIP_RARE
+		"set1:WoodlandDoll": Rarities.EQUIP_RARE, "set1:BouquetOfLies": Rarities.EQUIP_RARE,
 	}
 	initWeight()

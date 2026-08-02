@@ -45,6 +45,8 @@ static func createFromUnit(unit: AbstractUnit) -> StoredUnit:
 	# Get permanent effects that need to be keep, we will call all effects and some of them will added data on markersEffects dico
 	# storedUnitData.markersEffects = unit.getPermanentsEffects()
 	
+	#if unit is AbstractMC:
+	#	storedUnitData.livesRemaining = unit.livesRemaining
 	return storedUnitData
 
 ## Apply data on load
@@ -54,17 +56,24 @@ func applyToUnit(unit: AbstractUnit) -> void:
 	unit.statModifiers = self.statModifiers.duplicate()
 	unit.markersEffects = self.markersEffects.duplicate()
 	
+	#if unit is AbstractMC:
+	#	unit.livesRemaining = self.livesRemaining
+	
 	## Recalculate statModifiers with new permanentUpgrades
 	unit.applyStatModifiers() # Apply stat changes from upgrades
 
 	# Apply all permanent upgrades to the unit
 	for upgradeId: String in permanentUpgrades:
 		unit.activatePermanentUpgrade(upgradeId)
+	
+	# Re-equip item if present
+	#if self.equipmentId != "" and ItemDb.ITEMS.has(self.equipmentId):
+	#	var eq: AbstractEquipment = ItemDb.ITEMS[self.equipmentId].new()
+	#	eq.playerAssociated = unit.player
+	#	unit.equipEquipment(eq)
 
 ## Add a permanent upgrade and its stat changes to the model, used on upgrade reward interface and when collecting units from json
 func addPermanentUpgrade(upgradeId: String) -> void:
-	#permanentUpgrades.append(upgradeId)
-	
 	var modifiers = UpgradeDB.get_stat_modifiers(upgradeId)
 	
 	## Add a default cost of 1 if the cost isn't present
@@ -84,6 +93,7 @@ func modifyStat(statName: String, amt: int) -> void :
 func saveStoredUnit() -> Dictionary:
 	return {
 		"id": id,
+		#"livesRemaining": livesRemaining,
 		"permanentUpgrades": permanentUpgrades,
 		"markersEffects": markersEffects,
 		"modifiers": statModifiers
@@ -94,8 +104,9 @@ static func loadStoredUnit(data: Dictionary) -> StoredUnit:
 	var idUnit: String = data.get("id", "")
 	if (idUnit == "") :
 		push_warning("Unit have not be recovered bc its id was empty")
-		return
+		return null
 	var storage = StoredUnit.new(idUnit)
+	#storage.livesRemaining = data.get("livesRemaining", 0)
 	storage.permanentUpgrades.assign(data.get("permanentUpgrades", []))
 	storage.markersEffects = data.get("markersEffects", {})
 	# Check if data contains info about upgrades to add on unitData

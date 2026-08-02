@@ -25,7 +25,13 @@ ITEM_NAME_MUD_CHARM,Gadoue porte bonheur,Mud Charm
 ITEM_DESC_MUD_CHARM,Début du tour : Soigne !VA!,Start of turn : Heal !VA!
 ITEM_NAME_WAR_AXE,Hache guerrière,War Axe
 ITEM_DESC_WAR_AXE,+3 P. Kill : +5 PV Temp,+3 P. Kill : +5 HP Temp
-ITEM_NAME_WOODLAND_DOLL,Woodland Doll,Woodland Doll
-ITEM_DESC_WOODLAND_DOLL,+5 PV. Renvoie 2 dégâts bruts pour les attaques de mêlée,+5 HP. Attackers take 2 pure damage on contact
+ITEM_NAME_WOODLAND_DOLL,Poupée sylvestre,Woodland Doll
+ITEM_DESC_WOODLAND_DOLL,+7 PV. Renvoie 2 dégâts bruts pour les attaques de mêlée,+7 HP. Attackers take 2 pure damage on contact
 ITEM_NAME_FUSED_EQUIPMENT,Equipements fusionnés,Fused equipments
 ITEM_DESC_FUSED_EQUIPMENT,La fusion de 2 équipements. La description devrait être la somme des 2 et non celle ci,Fusion of 2 equipments. Description should be sum of both equipments not this one
+ITEM_NAME_ICY_BREEZE,Brise glaciale,Icy Breeze
+ITEM_DESC_ICY_BREEZE,TOUTES les unités (les vôtres aussi) perdent 3 V pour 1 tour. Gèle un adversaire au hasard,ALL units lose 3 V for 1 turn. Freeze a random enemy
+ITEM_NAME_BOUQUET_OF_LIES,Bouquet mensonger,Bouquet of lies
+ITEM_DESC_BOUQUET_OF_LIES,"+5 PV, +2 MR, -2 P Convertit les dégâts infligés en poison à hauteur de !VA!% (arrondi au supérieur)","'+5 HP, +2 MR, -2 P. Converts !VA!% damage dealt into poison (rounded up)"
+ITEM_NAME_TEMPTATION_POISON,Poison de la tentation,Temptation Poison
+ITEM_DESC_TEMPTATION_POISON,Applique Poison 6 - 1 pour chaque 4 S de la cible,Apply Poison 6 – 1 for each 4 S from target

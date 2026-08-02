@@ -427,6 +427,14 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	for capacity: AbstractCapacity in capacities:
 		capacity.onStartOfTurn(turnNumber, turnColor)
 
+func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
+	if(turnColor == self.team and tile != null):
+		tile.onEndOfTurn(self)
+	for effect: AbstractEffect in effects:
+		effect.onEndOfTurn(turnNumber, turnColor)
+	for capacity: AbstractCapacity in capacities:
+		capacity.onEndOfTurn(turnNumber, turnColor)
+
 #Manage all cases where an unit gain xp
 #func gainXp(action: ActionTypes.actionTypes, infos: Dictionary = {})-> void:
 	#match action:
@@ -611,46 +619,26 @@ func registerUnit() -> Dictionary :
 		"effects": [],  # Une liste d'effets
 		"capacities": [] # Une liste de capacités
 	}
+	# For main characters
+	if "livesRemaining" in self:
+		unitData["livesRemaining"] = self.livesRemaining
 	for effect: AbstractEffect in effects:
 		unitData["effects"].append(effect.registerEffect())
 	for capacity: AbstractCapacity in capacities:
 		unitData["capacities"].append(capacity.registerCapacity())
 	return unitData
-	
-##Pareil que dans AbstractPlayer il faudra sûrement changer l'emplacement de cette fonction
-#static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> AbstractUnit :
-	##Create a unit with all elements associated, need to add some things !!! like playerAssociated
-	#if UnitDb.UNITS.has(data.className):
-		##Pas faisable car pas même nbr de param + inutile
-		##var unit = UnitDb.UNITS[data.className].new(data.id, player, data.hpBase, data.powerBase, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
-		#var unit = AbstractUnit.new(data.id, data.imgPath, player, data.grade, data.hpBase, data.powerBase, data.damageType, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
-		#unit.initStats(data.uid, data.hpMax, data.hpActual, data.hpTemp, data.power, data.speed, data.speedRemaining, data.atkPerTurn, data.atkRemaining, data.dr, data.mr, data.wisdom, data.level, data.xp)
-		#unit.tile = data.tile
-		#for tag: int in data.tags:
-			#unit.tags.append(tag)
-		#
-		#for movementType: int in data.movementTypes:
-			#unit.movementTypes.append(data.movementTypes)
-		#unit.actualMovementTypes = data.actualMovementTypes
-		#unit.isDead = data.isDead
-		#for effectData in data.effects:
-			#unit.effects.append(AbstractEffect.recoverEffect(effectData, unit))
-		#return unit
-	#else :
-		#push_error("UNIT CLASS NOT FIND")
-		#return null#Maybe create a unit via ?
-	
-	
+
 ## Default method called when unit is collected by the player, return true if the reward is held by some effects
 static func onObtained(unitData: StoredUnit, player: AbstractPlayer, reward: AbstractReward = null) -> bool :
 	return false
 
 static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary :
 	if UnitDb.UNITS.has(data["id"]):
-		#var unit = AbstractUnit.new(data.id, data.imgPath, player, data.grade, data.hpBase, data.powerBase, data.damageType, data.atkPerTurnBase, data.range, data.speedBase, data.drBase, data.mrBase, data.potential, data.wisdomBase)
 		var tile: AbstractTile = MapManager.getTileAt(Vector2i(data["tileCoords"]["x"], data["tileCoords"]["y"]))
 		var unit = Global.gameManager.createUnit(data["id"], player, tile)
 		unit.initStats(data["uid"], data["hpMax"], data["hpActual"], data["hpTemp"], data["power"], data["speed"], data["speedRemaining"], data["atkPerTurn"], data["atkRemaining"], data["dr"], data["mr"], data["wisdom"], data["level"])
+		if "livesRemaining" in unit and data.has("livesRemaining"):
+			unit.set("livesRemaining", data["livesRemaining"])
 		unit.tile = tile
 		unit.position = MapManager.calculate_map_position(tile.getCoords())
 		tile.unitOn = unit #Place unit on tile

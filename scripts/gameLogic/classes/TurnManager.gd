@@ -15,14 +15,21 @@ static func createTeams(teamsColor: Dictionary) -> void :
 
 ## Manage all events when a new turn occured, is missing the ennemies movement
 static func nextTurn() -> void:
-	var nextTurn := teams[(turn+1) % teams.size()]
+	var endingTeam := actualTurn()
+	if turn != 0:
+		for unit : AbstractUnit in GameManager.getAllUnits() :
+			unit.onEndOfTurn(turn, endingTeam)
+		for trinket: AbstractTrinket in GameManager.getMainPlayer().trinkets :
+			trinket.onEndOfTurn(turn, endingTeam)
+
 	turn += 1
+	var currentTurnColor := actualTurn()
 	#Appel de toutes les unités pour appliquer les effets en envoyant le tour actuel et le tour à venir
 	for unit : AbstractUnit in GameManager.getAllUnits() :
-		unit.onStartOfTurn(turn, nextTurn)
+		unit.onStartOfTurn(turn, currentTurnColor)
 	#Iterate through trinket to proc their effect
 	for trinket: AbstractTrinket in GameManager.getMainPlayer().trinkets :
-		trinket.onStartOfTurn(turn, nextTurn)
+		trinket.onStartOfTurn(turn, currentTurnColor)
 	#Clear placement tiles on first turn
 	if turn == 1 :
 		GameManager.getMainPlayer().playerPointer.clear_placeable_cells()
@@ -35,7 +42,7 @@ static func nextTurn() -> void:
 static func actualTurn() -> TeamsColor.TeamsColor :
 	if teams.size() == 0 : return TeamsColor.TeamsColor.EMPTY
 	if turn == 0 : return TeamsColor.TeamsColor.EMPTY
-	return teams[turn % teams.size()]
+	return teams[(turn - 1) % teams.size()]
 
 ## Reset the TurnManager at the end of each map
 static func reset() -> void :

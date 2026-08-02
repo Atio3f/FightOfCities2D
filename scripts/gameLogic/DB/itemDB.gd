@@ -10,6 +10,7 @@ const ITEMS := {
 	"set1:MudCharm": preload("res://Ressources/equipments/cosmos/MudCharm.gd"),
 	"set1:WarAxe": preload("res://Ressources/equipments/bulls/WarAxe.gd"),
 	"set1:WoodlandDoll": preload("res://Ressources/equipments/magicalBeasts/WoodlandDoll.gd"),
+	"set1:BouquetOfLies": preload("res://Ressources/equipments/magicalBeasts/BouquetOfLies.gd"),
 	## ITEMS
 	"set1:VitalLink" : preload("res://Ressources/items/magicalBeasts/VitalLink.gd"),
 	"set1:MagicalCoconut": preload("res://Ressources/items/others/farmsLoot/MagicalCoconut.gd"),
@@ -17,6 +18,8 @@ const ITEMS := {
 	"set1:BananaPeel": preload("res://Ressources/items/monkeys/BananaPeel.gd"),
 	"set1:Banana": preload("res://Ressources/items/monkeys/Banana.gd"),
 	"set1:AssaultDroneMonkeyDeployment": preload("res://Ressources/items/monkeys/AssaultDroneMonkeyDeployment.gd"),
+	"set1:IcyBreeze": preload("res://Ressources/items/magicalBeasts/IcyBreeze.gd"),
+	"set1:TemptationPoison": preload("res://Ressources/items/magicalBeasts/TemptationPoison.gd"),
 }
 
 # Don't forget to add to items.json to have the item register everywhere

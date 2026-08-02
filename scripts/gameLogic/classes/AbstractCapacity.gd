@@ -66,6 +66,9 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 		if currentCooldown > 0:
 			currentCooldown -= 1
 
+func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
+	pass
+
 func getDescription() -> String:
 	if !Global.effectsStrings["en"].has(id) : return "DESCRIPTION NOT FOUND"
 	return Global.effectsStrings["en"][id]["DESCRIPTION"]

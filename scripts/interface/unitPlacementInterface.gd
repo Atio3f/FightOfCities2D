@@ -13,7 +13,7 @@ func setUnitPreview(unit: AbstractUnit, storedUnitData: StoredUnit, coords: Vect
 	if unit.STATS.imgPath != null and unit.STATS.imgPath != "" :
 		%BtnUnit.icon = load(unit.getImagePath()+"_p.png")
 
-##Add a preview text on top
+## Add a preview text on top
 func getPreviewText(unit:AbstractUnit, name: String) -> String :
 	var finalText : String = name + "\nG"+ str(unit.STATS.grade)
 	return finalText

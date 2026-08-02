@@ -29,4 +29,5 @@ const EFFECTS := {
 	"set1:ThornsEffect": preload("res://Ressources/effects/keywordEffects/ThornsEffect.gd"),
 	## ITEM EFFECTS
 	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),
+	"set1:BouquetOfLiesEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BouquetOfLiesEffect.gd"),
 }

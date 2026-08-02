@@ -92,17 +92,21 @@ func onHeal(unitHealing: AbstractUnit, unitHealed: AbstractUnit, healValue: int)
 func onHealed(unitHealing: AbstractUnit, unitHealed: AbstractUnit, healValue: int) -> int :
 	return healValue
 
-##Activate when an unit of the player killed an other
+## Activate when an unit of the player killed an other
 func onKill(unitKilling: AbstractUnit, unitKilled: AbstractUnit) -> void :
 	pass
 
-##Activate when an unit of the player dies from an other
+## Activate when an unit of the player dies from an other
 func onDeath(unitKilling: AbstractUnit, unitKilled: AbstractUnit) -> void:
 	pass
 
 
-##Activate at the start of turn
+## Activate at the start of turn
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
+	pass
+
+## Activate at the end of turn
+func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	pass
 
 

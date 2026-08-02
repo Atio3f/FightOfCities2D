@@ -24,16 +24,16 @@
 		"set1:AssaultDroneMonkeyDeployment",
 		"set1:VitalLink",
 		"set1:MagicalCoconut",
-		"set1:MagicalCoconut",
-		"set1:MagicalCoconut",
-		"set1:MagicalCoconut",
 		"set1:FairyMiracle",
 		"set1:BananaPeel",
 		"set1:BananaPeel",
 		"set1:BananaPeel",
 		"set1:Banana",
 		"set1:Banana",
-		"set1:LaserBladeMonkey"
+		"set1:IcyBreeze",
+		"set1:TemptationPoison",
+		"set1:LaserBladeMonkey",
+		"set1:BouquetOfLies"
 	],
 	"startingTrinkets": [
 		"set1:OrbCrate",

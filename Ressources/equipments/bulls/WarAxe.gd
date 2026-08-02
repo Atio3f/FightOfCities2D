@@ -24,6 +24,6 @@ func onEquip(unit: AbstractUnit) -> void :
 	
 func onUnequip() -> void :
 	var effect = WarAxeEffect.new(unitAssociated, -1, -value_A)
-	self.unitAssociated.removeEffect(effect)
+	self.unitAssociated.addEffect(effect)
 
 	super.onUnequip()

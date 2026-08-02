@@ -7,8 +7,8 @@ const idItem = "set1:GiftedRecruit"
 const img = "res://assets/sprites/trinkets/ArtOfWar"
 const NBR_UPGRADES = 2
 
-func _init(playerAssociated: AbstractPlayer) -> void:
-	super.initialize(idItem, img, Rarities.TRINKET_COMMON, playerAssociated, NBR_UPGRADES)
+func _init(player: AbstractPlayer) -> void:
+	super.initialize(idItem, img, Rarities.TRINKET_COMMON, player, NBR_UPGRADES)
 
 ## Activate when you gain an unit
 func onUnitGained(unitData: StoredUnit) -> StoredUnit :

@@ -11,5 +11,5 @@ func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int =
 ## Reflects damage to melee attackers (range == 1) after taking damage
 func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int:
 	if unit != null && !visualisation && unit.range == 1:
-		unit.onDamageTaken(unitAssociated, value_A, DamageTypes.DamageTypes.PHYSICAL, false)
+		unit.onDamageTaken(unitAssociated, value_A, DamageTypes.DamageTypes.PURE, false)
 	return damage

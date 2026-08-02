@@ -24,6 +24,6 @@ func onEquip(unit: AbstractUnit) -> void :
 	
 func onUnequip() -> void :
 	var regen = RegenerationEffect.new(unitAssociated, -1, -value_A)
-	self.unitAssociated.removeEffect(regen)
+	self.unitAssociated.addEffect(regen)
 
 	super.onUnequip()

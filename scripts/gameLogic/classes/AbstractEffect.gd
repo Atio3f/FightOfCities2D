@@ -110,7 +110,10 @@ func onLevelUp(level: int) -> void :
 	pass
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
-	if remainingTurns != -1 && turnColor == unitAssociated.team : remainingTurns -= 1 # Only decreases remainingTurns on unitAssociated turn
+	pass
+
+func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
+	if remainingTurns != -1 && turnColor == unitAssociated.team : remainingTurns -= 1 # Only decreases remainingTurns on unitAssociated turn end
 	if remainingTurns == 0 : onEffectEnd()
 
 func getDescription() -> String:

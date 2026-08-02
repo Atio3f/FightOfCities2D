@@ -8,6 +8,7 @@ const REWARDS := {
 	## Trinkets reward
 	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd"),
 	## Items rewards
+	"reward:basicItems": preload("res://Ressources/rewards/BasicItemsReward.gd"),
 	"reward:classicBanana": preload("res://Ressources/rewards/ClassicBananaReward.gd"),
 	## Equipments rewards
 	"reward:basicEquipments": preload("res://Ressources/rewards/BasicEquipmentsReward.gd"),
@@ -28,6 +29,7 @@ const REWARDS_DICO := {
 	"UpgradeBloodyEffect": {"title": "Bonus bloody", "desc": "Unit have developed an insatiable bloody hunger",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeHiddenPotentialEffect": {"title": "Bonus hidden potential", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeTestEffect": {"title": "Bonus test", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeSneakyEffect": {"title": "Bonus sneaky", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	
 	## UNITS
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT},
@@ -49,6 +51,8 @@ const REWARDS_DICO := {
 	## ITEMS
 	"set1:Banana": {"title": "Banana", "desc": "TODO", "idReward": "set1:Banana", "rewardType": RewardTypes.rewardTypes.ITEM},
 	"set1:BananaPeel": {"title": "Banana Peel", "desc": "TODO", "idReward": "set1:BananaPeel", "rewardType": RewardTypes.rewardTypes.ITEM},
+	"set1:IcyBreeze": {"title": "Icy Breeze", "desc": "TODO", "idReward": "set1:IcyBreeze", "rewardType": RewardTypes.rewardTypes.ITEM},
+	"set1:TemptationPoison": {"title": "Temptation Poison", "desc": "TODO", "idReward": "set1:TemptationPoison", "rewardType": RewardTypes.rewardTypes.ITEM},
 
 	## EQUIPMENTS
 	"set1:BrambleGauntlet": {"title": "Bramble Gauntlet", "desc": "TODO", "idReward": "set1:BrambleGauntlet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
@@ -58,5 +62,6 @@ const REWARDS_DICO := {
 	"set1:SwagBananaBag": {"title": "Swag Banana Bag", "desc": "TODO", "idReward": "set1:SwagBananaBag", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 	"set1:MudCharm": {"title": "Mud Charm", "desc": "TODO", "idReward": "set1:MudCharm", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 	"set1:WarAxe": {"title": "War Axe", "desc": "TODO", "idReward": "set1:WarAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:WoodlandDoll": {"	title": "Woodland Doll", "desc": "TODO", "idReward": "set1:WoodlandDoll", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:WoodlandDoll": {"title": "Woodland Doll", "desc": "TODO", "idReward": "set1:WoodlandDoll", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:BouquetOfLies": {"title": "Bouquet of Lies", "desc": "TODO", "idReward": "set1:BouquetOfLies", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 }

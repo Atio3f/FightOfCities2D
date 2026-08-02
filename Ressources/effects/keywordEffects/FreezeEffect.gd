@@ -16,9 +16,9 @@ func onEffectApplied(firstTime: bool, oldEffect: AbstractEffect = null) -> void:
 		unitAssociated.speedRemaining = 0
 		unitAssociated.atkRemaining = 0
 
-## When a freeze is merged (unit already has freeze effect - active or immune), deal damage instead
+## When a freeze is merged (unit already has freeze effect - active or immune), deal pure damage instead
 func mergeEffect(effectToMerge: AbstractEffect) -> void:
-	unitAssociated.onDamageTaken(null, REFREEZE_DAMAGE, DamageTypes.DamageTypes.ICE, false)
+	unitAssociated.onDamageTaken(null, REFREEZE_DAMAGE, DamageTypes.DamageTypes.PURE, false)
 	# Don't call super - don't accumulate values or turns
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
@@ -26,6 +26,7 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if counter == 0 and turnColor == unitAssociated.team:
 		unitAssociated.speedRemaining = 0
 		unitAssociated.atkRemaining = 0
+		counter = 1 # Avoid getting freeze 2 turns
 	super.onStartOfTurn(turnNumber, turnColor)
 
 ## When freeze expires, become immune instead of fully removing the effect
