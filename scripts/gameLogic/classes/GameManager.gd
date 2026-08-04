@@ -9,6 +9,7 @@ static var sceneUnit: PackedScene = preload("res://nodes/Unite/unite.tscn")
 var mapManager: MapManager
 static var campaign: AbstractCampaign	#Campaign, will be add by the main_menu
 static var currentGoals: Array[AbstractGoal] = [] #All goals for the active mission
+static var isGameActive: bool = false # Indicates if a game is ongoing, true until main menu or defeat
 #var turnManager: TurnManager
 
 var nodePlayers: Node
@@ -271,11 +272,13 @@ static func checkWin() -> void :
 		endMap(true)
 	elif isLosing :
 		endMap(false)
-	getMainPlayer().addWeight(0)	#Update interface
+	if getMainPlayer():
+		getMainPlayer().addWeight(0)	#Update interface
 
 ## Function used to clean the board, show dialogs and when the win have been obtained go to the next map
 # victoryStatus is true if player have win and false if not
 static func endMap(victoryStatus: bool) -> void :
+	isGameActive = false
 	#TODO Add rewards from each goal
 	## Remove current goals and associated interface
 	for goal: AbstractGoal in currentGoals :
@@ -403,7 +406,7 @@ static func getSave(save: String) -> Dictionary:
 	return data
 
 static func loadSave(save: Dictionary) -> void :
-	Global.change_gameM_instance()	#Add the gameManager singleton to Global
+	Global.change_gameM_instance(null, true)	#Add the gameManager singleton to Global
 	if save["saveName"] : file_name = save["saveName"]
 	TurnManager.recoverTurnManager(save["turnData"])
 	MapManager.recoverMap(save["mapData"])
@@ -428,6 +431,7 @@ static func loadSave(save: Dictionary) -> void :
 	print(playersDico)
 	#Hide Meta Interface -> no check here bc save will be done after charging the map for each fight
 	GameManager.getMainPlayer().toggleCombatUI()
+	GameManager.isGameActive = true
 
 ## Load goals for the actual mission
 # Use on the loadSave to replace goals and on the startNextMission from AbstractCampaign to place goals for the actual mission

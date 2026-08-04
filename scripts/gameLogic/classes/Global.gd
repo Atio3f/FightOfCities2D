@@ -44,20 +44,24 @@ func colorSelector(couleurEq : String) -> Color :
 		return Color.hex(0xf7f7f740)  # Blanc par défaut
 
 ## Change the only instance of gameManager, like a singleton
-func change_gameM_instance(campaignNode: AbstractCampaign = null) -> void :
-	var mainPlayer: AbstractPlayer
+func change_gameM_instance(campaignNode: AbstractCampaign = null, is_loading_save: bool = false) -> void :
 	var gameM: GameManager = GameManager.new()
 	gameM.name = "GameManager"
 	get_tree().root.add_child(gameM)
-	get_tree().root.remove_child(Global.gameManager)
+	# Clear old gameManager
+	if Global.gameManager:
+		get_tree().root.remove_child(Global.gameManager)
+		Global.gameManager.queue_free()
+	
+	GameManager.players.clear()
+	GameManager.mainPlayer = null
+	
 	if campaignNode != null : 
-		gameM.campaign = campaignNode	#Setup campaign
-	##Remove old gameManager if there is one
-	if gameManager :
-		mainPlayer = gameManager.mainPlayer	#Transfer main player node to the next scene
-		gameManager.queue_free()
-	else :
-		mainPlayer = gameM.createPlayer(TeamsColor.TeamsColor.GREEN, "ATIO", true)	#Create the main player if 
+		gameM.campaign = campaignNode	# Setup campaign
+	
+	if campaignNode != null and not is_loading_save:
+		gameM.createPlayer(TeamsColor.TeamsColor.GREEN, "ATIO", true) # Create the main player if not loading save and campaign is starting
+		
 	Global.gameManager = gameM
 	change_mapM_instance()
 

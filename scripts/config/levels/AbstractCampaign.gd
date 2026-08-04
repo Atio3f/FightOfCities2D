@@ -83,6 +83,7 @@ func startNextMission() -> void :
 			GameManager.loadDialogs(dataMap.get("dialogs").get("start")) # TODO Find if we keep other dialogs type from here
 		#Hide Meta Interface
 		GameManager.getMainPlayer().toggleCombatUI()
+		GameManager.isGameActive = true
 	file.close()
 	GameManager.savingGame()
 

@@ -15,6 +15,8 @@ static func createTeams(teamsColor: Dictionary) -> void :
 
 ## Manage all events when a new turn occured, is missing the ennemies movement
 static func nextTurn() -> void:
+	if not GameManager.isGameActive:
+		return
 	var endingTeam := actualTurn()
 	if turn != 0:
 		for unit : AbstractUnit in GameManager.getAllUnits() :
