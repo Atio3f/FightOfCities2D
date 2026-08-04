@@ -119,150 +119,19 @@ func smoothyPosition() -> void:
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: AbstractUnit) -> Dictionary:
-	var tileOnCoords: Vector2i = unit.tile.getCoords()
-	##Add adjacents tiles if the unit can't move and have full speed because its max speed is inferior to adjacent tiles 
-	if unit.speed == unit.speedRemaining :
-		var cells: Dictionary = _dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes, unit)
-		#print(cells)
-		for direction in DIRECTIONS:
-			var coords: Vector2i = tileOnCoords + direction
-			if !cells.has(coords) && MapManager.getTileAt(coords) != null && !(MapManager.getTileAt(coords).hasUnitOn()):
-				cells[coords] = unit.speed
-		
-		return cells
-	else :
-		return _dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes, unit)
+	return GridUtils.get_walkable_cells(unit)
 
 ## Return an array of cells a given unit can attack using dijkstra's and flood fill algorithm
 func get_attackable_cells(unit: AbstractUnit) -> Array[Vector2i]:
-	
-	var attackable_cells : Array[Vector2i] = []
-	var real_walkable_cells = get_walkable_cells(unit)
-	
-	## iterate through every single cell and find their partners based on attack range(stat range)
-	for curr_cell in real_walkable_cells:
-		for curr_range in range(1, unit.range + 1):
-			for cell: Vector2i in _flood_fill(curr_cell, unit.range):
-				if !attackable_cells.has(cell) : attackable_cells.append(cell)	#Avoid doblons
-	
-	return attackable_cells.filter(func(i): return i not in real_walkable_cells)
+	return GridUtils.get_attackable_cells(unit)
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
 func _flood_fill(cell: Vector2i, max_distance: int) -> Array[Vector2i]:
-	var full_array : Array[Vector2i] = []	
-	var wall_array : Array[Vector2i] = []
-	var stack := [cell]
-	while not stack.size() == 0:
-		var current = stack.pop_back()
-		if not MapManager.is_within_bounds(current):
-			continue
-		if current in full_array:
-			continue
-
-		var difference: Vector2i = (current - cell).abs()
-		var distance := int(difference.x + difference.y)
-		if distance > max_distance:
-			continue
-
-		full_array.append(current)
-		for direction in DIRECTIONS:
-			var coordinates: Vector2i = current + direction
-			
-			###Sert à poser des cases infranchissables à faire plus tard si l'on en a besoin
-			## This detects the impassable objects we define in the TileSet based on the Atlas ID
-			## If you don't want units to attack over walls and only around them comment out this line and put 'continue'
-			#if map.get_cell_source_id(0, coordinates) == OBSTACLE_ATLAS_ID:
-				#wall_array.append(coordinates)
-				#continue
-			
-			#if is_occupied(coordinates):
-			#	continue
-			if coordinates in full_array:
-				continue
-			# Minor optimization: If this neighbor is already queued
-			#	to be checked, we don't need to queue it again
-			if coordinates in stack:
-				continue
-			
-			stack.append(coordinates)
-	## Filter out all the walls and return attackable cells
-	return full_array	#Was full_array.filter(func(i): return i not in wall_array) before but not useful without
+	return GridUtils.flood_fill(cell, max_distance)
 
 ## Generates a list of walkable cells based on unit movement value and tile movement cost
-func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, movementType : MovementTypes.movementTypes, unit: AbstractUnit = null) -> Dictionary:	#movementType servira à influer sur les déplacements possibles(ex: vole change le coût de toutes les tuiles à 2)
-	print("DIJKSTRA")
-	var curr_unit = unit
-	#moveable_cells est maintenant un dictionnaire avec comme clé les coords d'une case et en valeur le coût de déplacement vers cette case
-	var movable_cells = {cell : 0} #Cellule où se trouve l'unité a un coût de 0 du coup
-	var visited = [] # 2d array that keeps track of which cells we've already looked at while running the algorithm
-	var distances = [] # shows distance to each cell, might be useful. can omit if you want to
-	var previous = [] #2d array that shows you which cell you have to take to get there to get the shortest path. can omit if you want to
-	## the previous array can be used to recontruct the path alogrithm found to the previous node you were at
-	## Refresh the cost of each tile to get the true values based on the movement type of unit
-	refreshMap(movementType)
-	## iterate over width and height of the grid
-	for y in range(MapManager.width):
-		visited.append([])
-		distances.append([])
-		previous.append([])
-		for x in range(MapManager.length):
-			visited[y].append(false)
-			distances[y].append(MAX_VALUE)
-			previous[y].append(null)
-	
-	## Make new queue
-	var queue = PriorityQueue.new()
-	
-	queue.push(cell, 0) #starting cell
-	#print(distances[cell.y][cell.x])
-	distances[cell.y][cell.x] = 0
-	var tile_cost
-	var distance_to_node
-	var occupied_cells = []
-	 
-	## While there is still a node in the queue, we'll keep looping
-	while not queue.is_empty():
-		var current = queue.pop() #take out the front node
-		visited[current.value.y][current.value.x] = true #mark front node as visited
-		
-		for direction in  DIRECTIONS:
-			var coordinates = current.value + direction #Go through all four neighbors of current node
-			var coordinatesI : Vector2i = coordinates	#On crée une copie de coordinates mais en Vector2i pour parcourir le dictionnaire _units plus tard
-			if MapManager.is_within_bounds(coordinates):
-				if visited[coordinates.y][coordinates.x]:
-					continue
-				else:
-					
-					if ( _movement_costs[coordinates.y].size() > coordinates.x ):	#Vérification que la case a une tuile
-						tile_cost = _movement_costs[coordinates.y][coordinates.x]
-					
-						if movementType == MovementTypes.movementTypes.FLYING:
-							distance_to_node = current.priority + 2 #le coût de la case est toujours égal à 2 pour une unité volante
-						else :
-							distance_to_node = current.priority + tile_cost #calculate tile cost normally
-					
-						## Check to see if tile is occupied by opposite team or is waiting
-						## the "or _units[coordinates].is_wait" is the line that you will use to calculate 
-						## Actual attack range for display on hover/walk
-						#print(is_occupied(coordinatesI)) b
-						if is_occupied(coordinatesI):
-							var unitI: AbstractUnit = MapManager.getTileAt(coordinatesI).unitOn
-							if curr_unit != null && curr_unit.team != unitI.team: #Remove this line if you want to make possible to travel also ennemies 
-								distance_to_node = current.priority + MAX_VALUE #Mark enemy tile as impassable
-							## remove this if you want attack ranges to be seen past units that are waiting METTRE elif si le if du dessus est décommentée
-							elif unitI.is_wait and attackable_check:
-								occupied_cells.append(coordinates)
-						
-						visited[coordinates.y][coordinates.x] = true
-						distances[coordinates.y][coordinates.x] = distance_to_node
-					else :
-						distance_to_node = null
-				if distance_to_node != null and distance_to_node <= max_distance and !occupied_cells.has(coordinatesI): #check if node is actually reachable by our unit and not occuped
-					previous[coordinates.y][coordinates.x] = current.value #mark tile we used to get here
-					movable_cells[coordinates] = distance_to_node #attach new node we are looking at as reachable
-					queue.push(coordinates, distance_to_node) #use distance as priority
-	
-	return movable_cells
+func _dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, movementType : MovementTypes.movementTypes, unit: AbstractUnit = null) -> Dictionary:
+	return GridUtils.dijkstra(cell, max_distance, attackable_check, movementType, unit)
 
 
 #Récupère la tuile à l'emplacement rentré en paramètre
@@ -324,7 +193,6 @@ func _hover_display(cell: Vector2i) -> void :
 	if(curr_unit.atkRemaining > 0) :
 		visuActions.draw_attackable_cells(_attackable_cells)
 	visuActions.draw_walkable_cells(_walkable_cells, curr_unit.team)
-	print(Time.get_ticks_msec() - time)
 
 
 ## Selects or moves a unit based on where the cursor is.
@@ -381,7 +249,7 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 ## Sets it as the `pointeurSelec.Selection` and draws its walkable cells and interactive move path. 
 func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void:
 	
-	print("_select_unit")
+	#print("_select_unit")
 	#print(cell)
 	#print(Global._units)
 	var tileOn: AbstractTile = MapManager.getTileAt(cell)
@@ -447,7 +315,7 @@ func _move_active_unit(new_cell: Vector2i) -> void:
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing. But keep the active unit to get infos if needed before _clear_active_unit
 func _deselect_active_unit() -> void:
-	print("deselect")
+	#print("deselect")
 	
 	Selection.deselectionneSelf(self)
 	visuActions.clearNumbers()
@@ -460,7 +328,7 @@ func _deselect_active_unit() -> void:
 ## Clears the reference to the pointeurSelec.Selection and the corresponding walkable cells.
 func _clear_active_unit() -> void:
 	interfaceJoueurI.apercuMenusJoueur(self, false)	#On efface l'aperçu du menu du joueur
-	print("_clear_active_unit()")
+	#print("_clear_active_unit()")
 	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null
 	capaciteActuelle = null	#On verra plus tard si ça pose pas de problème

@@ -10,5 +10,5 @@ func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int =
 
 func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
 	#Check melee attack or not, nullify damage if it is
-	if unit.tile.getCoords().distance_squared_to(unitAssociated.tile.getCoords()) <= 1 : return damage * (100 - value_A) / 100
+	if unit != null && unit.tile.getCoords().distance_squared_to(unitAssociated.tile.getCoords()) <= 1 : return damage * (100 - value_A) / 100
 	else : return damage

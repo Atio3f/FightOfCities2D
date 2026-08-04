@@ -30,6 +30,13 @@ static func nextTurn() -> void:
 	#Iterate through trinket to proc their effect
 	for trinket: AbstractTrinket in GameManager.getMainPlayer().trinkets :
 		trinket.onStartOfTurn(turn, currentTurnColor)
+		
+	# Start enemy logic (utility AI) if actual player is an enemy
+	var active_player = GameManager.getPlayer(currentTurnColor)
+	if active_player != null and not active_player.isGamePlayer:
+		var ai = active_player.get_node_or_null("AIController")
+		if ai != null:
+			ai.start_turn()
 	#Clear placement tiles on first turn
 	if turn == 1 :
 		GameManager.getMainPlayer().playerPointer.clear_placeable_cells()

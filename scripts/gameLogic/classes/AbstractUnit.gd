@@ -127,12 +127,12 @@ func initializeStats(stats: UnitStats, playerAssociated: AbstractPlayer, idDead:
 	self.range = stats.attackRange
 	self.atkPerTurnBase = stats.atkPerTurnBase
 	self.atkPerTurn = stats.atkPerTurnBase
-	self.atkRemaining = 0 
+	self.atkRemaining = self.atkPerTurn
 	
 	# Speed
 	self.speedBase = stats.speedBase
 	self.speed = stats.speedBase
-	self.speedRemaining = 0
+	self.speedRemaining = self.speed
 
 func initStats(uid: String, hpMax: int, hpActual: int, hpTemp: int, power: int, speed: int, speedRemaining: int, atkPerTurn: int, atkRemaining: int, dr: int, mr: int, wisdom: int, level: int):
 	self.uid = uid
@@ -418,8 +418,6 @@ func activatePermanentUpgrade(permanentUpgradeId: String) -> void:
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if(turnColor == self.team):
-		speedRemaining = speed
-		atkRemaining = atkPerTurn
 		tile.onStartOfTurn(self)
 	#Est-ce qu'on bloquerait pas ça à seulement le tour du joueur avec le if?
 	for effect: AbstractEffect in effects:
@@ -434,6 +432,11 @@ func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 		effect.onEndOfTurn(turnNumber, turnColor)
 	for capacity: AbstractCapacity in capacities:
 		capacity.onEndOfTurn(turnNumber, turnColor)
+		
+	# Give back speed and attack per turn at the end of the turn for the player to see reachable cells
+	if turnColor == self.team:
+		speedRemaining = speed
+		atkRemaining = atkPerTurn
 
 #Manage all cases where an unit gain xp
 #func gainXp(action: ActionTypes.actionTypes, infos: Dictionary = {})-> void:

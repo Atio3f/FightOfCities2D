@@ -10,6 +10,10 @@ func _init(unit: AbstractUnit, remainingTurns: int, value_A: int, value_B: int =
 
 ## Reflects damage to melee attackers (range == 1) after taking damage
 func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int:
-	if unit != null && !visualisation && unit.range == 1:
-		unit.onDamageTaken(unitAssociated, value_A, DamageTypes.DamageTypes.PURE, false)
+	# Ignore THORNS damage to prevent infinite loops between two units with Thorns or reflect effects
+	if unit != null && unit.range == 1 && damageType != DamageTypes.DamageTypes.THORNS:
+		if visualisation :
+			pass
+		else :
+			unit.onDamageTaken(unitAssociated, value_A, DamageTypes.DamageTypes.THORNS, false)
 	return damage

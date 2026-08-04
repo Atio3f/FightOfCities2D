@@ -40,7 +40,11 @@ func initialize(team: TeamsColor.TeamsColor, name: String, isGamePlayer: bool):
 		playerPointer = $Pointeur_Selection
 		metaInterface = %MetaUI
 	else : 
-		pass#$Actions.player = self#Will contains the AI
+		# Add AI Controller to enemy players to allow them to play
+		var ai_controller = AIController.new()
+		ai_controller.name = "AIController"
+		add_child(ai_controller)
+		ai_controller.setup(self)
 	weight = 0
 
 
