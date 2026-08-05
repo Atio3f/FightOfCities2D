@@ -3,9 +3,9 @@ class_name BouquetOfLies
 
 const idItem = "set1:BouquetOfLies"
 const img = ""
-const CONVERT_RATIO = 70
+const CONVERT_RATIO = 50
 const RICOCHETS = 2
-const RICOCHET_CONVERT_RATIO = 30
+const RICOCHET_CONVERT_RATIO = 25
 const LOST_HP_MAX_PER_HIT = 5
 
 func _init():

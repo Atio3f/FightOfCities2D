@@ -29,6 +29,11 @@
 		"name": "EFFECT_NAME_GOD_MONKEY_HEAL",
 		"description": "EFFECT_DESCRIPTION_GOD_MONKEY_HEAL"
 	},
+	"set1:GodMonkeyMinionEffect": {
+		"id": "set1:GodMonkeyMinionEffect",
+		"name": "EFFECT_NAME_GOD_MONKEY_MINION",
+		"description": "EFFECT_DESCRIPTION_GOD_MONKEY_MINION"
+	},
 	"set1:KnightMonkeyEffect": {
 		"id": "set1:KnightMonkeyEffect",
 		"name": "EFFECT_NAME_KNIGHT_MONKEY",
@@ -93,5 +98,70 @@
 		"id": "UpgradePromotion",
 		"name": "EFFECT_NAME_UPGRADE_PROMOTION",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_PROMOTION"
+	},
+	"UpgradeBloodyEffect": {
+		"id": "UpgradeBloodyEffect",
+		"name": "EFFECT_NAME_UPGRADE_BLOODY",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_BLOODY"
+	},
+	"UpgradeHiddenPotentialEffect": {
+		"id": "UpgradeHiddenPotentialEffect",
+		"name": "EFFECT_NAME_UPGRADE_HIDDEN_POTENTIAL",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_HIDDEN_POTENTIAL"
+	},
+	"UpgradeSneakyEffect": {
+		"id": "UpgradeSneakyEffect",
+		"name": "EFFECT_NAME_UPGRADE_SNEAKY",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_SNEAKY"
+	},
+	"set1:PowerPlusEffect": {
+		"id": "set1:PowerPlusEffect",
+		"name": "EFFECT_NAME_POWER_PLUS",
+		"description": "EFFECT_DESCRIPTION_POWER_PLUS"
+	},
+	"set1:SpeedPlusEffect": {
+		"id": "set1:SpeedPlusEffect",
+		"name": "EFFECT_NAME_SPEED_PLUS",
+		"description": "EFFECT_DESCRIPTION_SPEED_PLUS"
+	},
+	"set1:WarAxeEffect": {
+		"id": "set1:WarAxeEffect",
+		"name": "EFFECT_NAME_WAR_AXE",
+		"description": "EFFECT_DESCRIPTION_WAR_AXE"
+	},
+	"set1:BouquetOfLiesEffect": {
+		"id": "set1:BouquetOfLiesEffect",
+		"name": "EFFECT_NAME_BOUQUET_OF_LIES",
+		"description": "EFFECT_DESCRIPTION_BOUQUET_OF_LIES"
+	},
+	"set1:BrambleGauntletEffect": {
+		"id": "set1:BrambleGauntletEffect",
+		"name": "EFFECT_NAME_BRAMBLE_GAUNTLET",
+		"description": "EFFECT_DESCRIPTION_BRAMBLE_GAUNTLET"
+	},
+	"set1:BurnEffect": {
+		"id": "set1:BurnEffect",
+		"name": "EFFECT_NAME_BURN",
+		"description": "EFFECT_DESCRIPTION_BURN"
+	},
+	"set1:BerserkerBullEffect": {
+		"id": "set1:BerserkerBullEffect",
+		"name": "EFFECT_NAME_BERSERKER_BULL",
+		"description": "EFFECT_DESCRIPTION_BERSERKER_BULL"
+	},
+	"set1:IroncladBullEffect": {
+		"id": "set1:IroncladBullEffect",
+		"name": "EFFECT_NAME_IRONCLAD_BULL",
+		"description": "EFFECT_DESCRIPTION_IRONCLAD_BULL"
+	},
+	"set1:CADOEffect": {
+		"id": "set1:CADOEffect",
+		"name": "EFFECT_NAME_CADO",
+		"description": "EFFECT_DESCRIPTION_CADO"
+	},
+	"set1:StarvingShadowEffect": {
+		"id": "set1:StarvingShadowEffect",
+		"name": "EFFECT_NAME_STARVING_SHADOW",
+		"description": "EFFECT_DESCRIPTION_STARVING_SHADOW"
 	}
 }

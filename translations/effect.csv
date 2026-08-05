@@ -1,3 +1,4 @@
+key,fr,en
 EFFECT_NAME_GOD_MONKEY_SPEED,Dieu Monkey,God Monkey
 EFFECT_DESCRIPTION_GOD_MONKEY_SPEED,Gagne !VA! V pour chacun de vos Monkeys.(+!C!),Gain !VA! Speed for each of your Monkeys.(Currently +!C!)
 EFFECT_NAME_GOD_MONKEY_HEAL,,Heal on Forest
@@ -28,3 +29,15 @@ EFFECT_NAME_FREEZE,Gel,Freeze
 EFFECT_DESCRIPTION_FREEZE,Pas fait,Magical attacks ignore !VA! MR.
 EFFECT_NAME_THORNS,Épines,Thorns
 EFFECT_DESCRIPTION_THORNS,Pas fait,Deals !VA! pure damage back to melee attackers
+EFFECT_NAME_POWER_PLUS,Bonus de puissance,Power Bonus
+EFFECT_DESCRIPTION_POWER_PLUS,+!VA! Puissance,+!VA! Power
+EFFECT_NAME_SPEED_PLUS,Bonus de vitesse,Speed Bonus
+EFFECT_DESCRIPTION_SPEED_PLUS,+!VA! Vitesse,+!VA! Speed
+EFFECT_NAME_WAR_AXE,Hache de guerre,Kill on Shield
+EFFECT_DESCRIPTION_WAR_AXE,Kill: +!VA! PV Temp,Kill: +!VA! HP Temp
+EFFECT_NAME_BOUQUET_OF_LIES,Roses ricochets,Ricochets roses
+EFFECT_DESCRIPTION_BOUQUET_OF_LIES,Pas fait,"Instead of damage, attacks apply poison at a !VA! ratio. Apply !VC!% poison to !VB! other enemies at 2 tiles or less from target"
+EFFECT_NAME_BRAMBLE_GAUNTLET,Gantelet de ronces,Bramble Gauntlet
+EFFECT_DESCRIPTION_THORNS,Pas fait,Melee attacks deals !VA! more damage and reduces enemy speed by !VB ! for !VC! turns
+EFFECT_NAME_BURN,Brûlure,Burn
+EFFECT_DESCRIPTION_POWER_PLUS,Pas fait,"At the start of your turn, take 5 damage"

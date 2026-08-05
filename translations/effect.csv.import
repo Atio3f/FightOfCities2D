@@ -6,10 +6,10 @@ uid="uid://qbbm2ag8qesc"
 
 [deps]
 
-files=["res://translations/effect.Dieu Monkey.translation", "res://translations/effect.God Monkey.translation"]
+files=["res://translations/effect.fr.translation", "res://translations/effect.en.translation"]
 
 source_file="res://translations/effect.csv"
-dest_files=["res://translations/effect.Dieu Monkey.translation", "res://translations/effect.God Monkey.translation"]
+dest_files=["res://translations/effect.fr.translation", "res://translations/effect.en.translation"]
 
 [params]
 

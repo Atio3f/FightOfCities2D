@@ -32,6 +32,6 @@ ITEM_DESC_FUSED_EQUIPMENT,La fusion de 2 équipements. La description devrait ê
 ITEM_NAME_ICY_BREEZE,Brise glaciale,Icy Breeze
 ITEM_DESC_ICY_BREEZE,TOUTES les unités (les vôtres aussi) perdent 3 V pour 1 tour. Gèle un adversaire au hasard,ALL units lose 3 V for 1 turn. Freeze a random enemy
 ITEM_NAME_BOUQUET_OF_LIES,Bouquet mensonger,Bouquet of lies
-ITEM_DESC_BOUQUET_OF_LIES,"+5 PV, +2 MR, -2 P Convertit les dégâts infligés en poison à hauteur de !VA!% (arrondi au supérieur)","'+5 HP, +2 MR, -2 P. Converts !VA!% damage dealt into poison (rounded up)"
+ITEM_DESC_BOUQUET_OF_LIES,"+5 PV, +2 MR, -2 P Convertit les dégâts infligés en poison à hauteur de !VA!% (arrondi au supérieur)","+5 HP, +2 MR, -2 P. Converts !VA!% damage dealt into poison (rounded up)"
 ITEM_NAME_TEMPTATION_POISON,Poison de la tentation,Temptation Poison
 ITEM_DESC_TEMPTATION_POISON,Applique Poison 6 - 1 pour chaque 4 S de la cible,Apply Poison 6 – 1 for each 4 S from target

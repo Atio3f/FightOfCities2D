@@ -42,7 +42,7 @@ func displayUnits() -> void:
 		
 
 		# Connect button to the upgrade selection if unit haven't already reach potential limit or if upgrade cost 0
-		if usedPotential < finalPotential  || usedPotential <= 0:
+		if usedPotential < finalPotential  || (usedPotential <= 0 && basePotential != 0):
 			btn.pressed.connect(func(): _onUnitSelected(storedUnit))
 		else :
 			btn.disabled = true # Disable button if unit has reached its max potential

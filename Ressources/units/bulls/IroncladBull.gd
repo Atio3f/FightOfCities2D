@@ -1,7 +1,6 @@
 extends AbstractUnit
 class_name IroncladBull
 
-const POTENTIAL = 3 # Maybe 4?
 const DR_VALUE = 3
 
 const STATS: UnitStats = preload("res://Ressources/units/bulls/IroncladBull.tres")
