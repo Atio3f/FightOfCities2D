@@ -15,6 +15,7 @@ const MONKEY_HEAL_BUFF = 1
 func _init() -> void:
 	tags.append(Tags.tags.FOOD)
 	tags.append(Tags.tags.BANANA)
+	super()
 
 func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	# Add buffs to unit

@@ -13,6 +13,7 @@ func _init():
 	value_B = RICOCHETS
 	value_C = RICOCHET_CONVERT_RATIO
 	counter = LOST_HP_MAX_PER_HIT
+	super()
 
 func getStatModifiers() -> Dictionary:
 	return {"mr": 1, "power": -2}

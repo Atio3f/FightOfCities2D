@@ -6,6 +6,7 @@ const img = ""
 
 func _init():
 	value_A = 5
+	super()
 
 func getStatModifiers() -> Dictionary:
 	return {"power": 3}

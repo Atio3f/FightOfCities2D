@@ -33,7 +33,7 @@ func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Con
 			if itemInstance is AbstractEquipment:
 				isDisabled = !unit.canEquipEquipment(itemInstance)
 			else:
-				isDisabled = !ItemDb.ITEMS[itemId].canBeUsedOnUnit(player, unit)
+				isDisabled = !itemInstance.canBeUsedOnUnit(player, unit, itemInstance.orbCost)
 			itemInstance.queue_free()
 			%ItemBtn.disabled = isDisabled
 			if !isDisabled :

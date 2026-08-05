@@ -2,7 +2,10 @@
 	"mainCharacter": "set1:MonkeyMC",
 	"startingAllies": [
 		{
-			"id": "set1:Monkey"
+			"id": "set1:Monkey",
+			"permanentUpgrades": [
+				"UpgradePromotionEffect"
+			],
 		},
 		{
 			"id": "set1:Monkey",
@@ -18,16 +21,24 @@
 		}
 	],
 	"startingItems": [
+		"set1:AssaultDroneMonkeyDeployment",
+		"set1:VitalLink",
+		"set1:MagicalCoconut",
 		"set1:FairyMiracle",
+		"set1:BananaPeel",
+		"set1:BananaPeel",
 		"set1:BananaPeel",
 		"set1:Banana",
 		"set1:Banana",
+		"set1:IcyBreeze",
 		"set1:TemptationPoison",
 		"set1:LaserBladeMonkey",
 		"set1:BouquetOfLies"
 	],
 	"startingTrinkets": [
-		"set1:ArtOfWar"
+		"set1:OrbCrate",
+		"set1:ArtOfWar",
+		"set1:GiftedRecruit"
 	],
 	"startingOrbs": 2,
 	"startingMaxOrbs": 5,
@@ -40,6 +51,9 @@
 			"enemies": [
 				{
 					"id": "set1:Bull",
+					"permanentUpgrades": [
+						"UpgradeScoutEffect"
+					],
 					"coords": [5, 7]
 				}
 			],
@@ -122,8 +136,7 @@
 				}
 			],
 			"rewards": [
-				"reward:magicalBeast",
-				"reward:basicItems"
+				"reward:magicalBeast"
 			],
 			"nextMission": "map3"
 		},
@@ -167,55 +180,7 @@
 				}
 			],
 			"rewards": [
-				"reward:trinketBoss",
-				"reward:basicEquipments"
-			],
-			"nextMission": "map4"
-		},
-		"map4": {
-			"size": {
-				"width": 8,
-				"length": 8
-			},
-			"enemies": [
-				{
-					"id": "set1:Bull",
-					"permanentUpgrades": [
-						"UpgradeHiddenPotentialEffect",
-						"UpgradeHiddenPotentialEffect",
-						"UpgradePromotionEffect",
-						"UpgradeBloodyEffect",
-						"UpgradeAgilityEffect"
-					],
-					"coords": [4, 6]
-				}
-			],
-			"placementTiles": [
-				[4, 1],
-				[4, 2],
-				[5, 2],
-				[2, 4],
-				[5, 4]
-			],
-			"dialogs": {
-				"start": [],
-				"win": [],
-				"lose": []
-			},
-			"goals": [
-				{
-					"className": "KillAllGoal",
-					"isPrimary": true,
-					"isCompleted": false,
-					"reward": "None",
-					"colorsToKill": [1],
-					"killsAtStart": 1,
-					"killsRemaining": 1
-				}
-			],
-			"rewards": [
-				"reward:unitMonkey",
-				"reward:bonus"
+				"reward:trinketBoss"
 			],
 			"nextMission": "map5"
 		},

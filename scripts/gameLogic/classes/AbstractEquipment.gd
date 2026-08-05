@@ -6,8 +6,10 @@ static var IS_EQUIPMENT: bool = true
 
 static var rarity: RarityData # All data about equipment rarity
 
-
 var counter2: int #Can be used to increment a value, will be used to increment a value
+
+func _init() -> void:
+	super()
 
 ## Returns the equipment modifiers, redefine on subclass to add modifiers list
 func getStatModifiers() -> Dictionary:

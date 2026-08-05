@@ -39,10 +39,7 @@ func _addEquippedSlot(idEquip: String) -> void:
 	# Clic → déséquiper : remet l'équipement dans le stock du joueur
 	itemBtn.button_up.connect(func():
 		if unit.equipment != null:
-			var unequippedId: String = unit.equipment.getId()
-			unit.equipment.onUnequip()
-			unit.equipment = null
-			_player.hand.equipmentsStock.append(unequippedId)
+			unit.unequipEquipment()
 			closeInterface()
 	)
 

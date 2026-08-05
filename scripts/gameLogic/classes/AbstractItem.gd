@@ -2,7 +2,7 @@ extends Node
 class_name AbstractItem
 
 static var id: String
-var nameItem: String
+var nameItem: String = "UNDEFINED"
 var imgPath: String = ""
 var playerAssociated: AbstractPlayer
 var unitAssociated: AbstractUnit = null
@@ -17,6 +17,25 @@ var value_C: int
 var counter: int #Can be used to increment a value 
 
 var avgPrice: int #Price on shops, items can be sell from 40% of this value
+func _init() -> void:
+	var item_id: String = "UNDEFINED"
+	
+	var script = self.get_script()
+	if script != null and script.has_method("getId"):
+		item_id = script.call("getId")
+	elif self.has_method("getId"):
+		item_id = self.call("getId")
+		
+	if item_id != "UNDEFINED":
+		var tree = Engine.get_main_loop() as SceneTree
+		if tree != null and tree.root != null:
+			var itemDbNode = tree.root.get_node_or_null("ItemDb")
+			if itemDbNode != null:
+				var data: Dictionary = itemDbNode.getItem(item_id)
+				if data.has("name"):
+					self.nameItem = tr(data["name"])
+				if data.has("img"):
+					self.imgPath = data["img"]
 
 #_init sera rarement appelé car généralement on va directement appliquer l'effet de l'objet dans les enfants de cette classe
 #func _init(id: String, imgPath: String, playerAssociated: AbstractPlayer, orbsCost: int, equipable: bool, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):
@@ -80,7 +99,10 @@ static func getId() -> String:
 	return "UNDEFINED"
 
 func getImagePath() -> String :
-	return "res://assets/sprites/items/"+imgPath
+	return imgPath
+
+func getName() -> String :
+	return nameItem
 
 func getDescription() -> String:
 	if !Global.effectsStrings["en"].has(id) : return "DESCRIPTION NOT FOUND"

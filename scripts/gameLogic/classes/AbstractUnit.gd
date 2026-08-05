@@ -69,6 +69,7 @@ signal signalFinMouvement
 #CHECK SI ILS SERVENT
 @onready var _path_follow: PathFollow2D = $UnitElements
 @onready var sprite : Sprite2D = $UnitElements/UnitSprite
+@onready var equipmentSlot : EquipmentSlot = $UnitElements/EquipmentSlot
 @onready var interfaceUnite : interfaceUnite = $UnitElements/InterfaceUnite	#La barre de vie affichée est changée lorsque l'unité perd ou gagne des pv ou pv max
 @onready var noeudsTempIndic : Node2D = $NoeudsTemp/IndicDegats	#Sert au stockage de tous les noeuds qui disparaissent(ex  popUpDegats)
 
@@ -501,16 +502,29 @@ func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 func canEquipEquipment(newEquipment: AbstractEquipment) -> bool :
 	return equipmentLimit > 0 && newEquipment.canBeEquippedBy(self) # Can always equip, just replace it. Except if unit has 0 on equipmentLimit or if it's an equipment that can't be equip on this unit
 
+func unequipEquipment() -> void:
+	if self.equipment != null:
+		self.equipment.onUnequip()
+		if player != null and player.hand != null:
+			player.hand.equipmentsStock.append(self.equipment.getId())
+		self.equipment = null
+		
+	if equipmentSlot != null:
+		equipmentSlot.clear()
+		
+
 ## Use to equip an equipment, need to use the method from AbstractPlayer which check if we can equip it (canEquipEquipment())
 func equipEquipment(newEquipment: AbstractEquipment) -> void :
 	# If unit already has an equipment, remove it and add it to the hand
-	if self.equipment != null:
-		self.equipment.onUnequip()
-		player.hand.equipmentsStock.append(self.equipment.getId())
+	unequipEquipment()
 		
 	# Equip new one
 	self.equipment = newEquipment
 	self.equipment.onEquip(self)
+	
+	if equipmentSlot != null:
+		equipmentSlot.updateEquipment(self.equipment)
+
 
 ## Modify unit stats according to the equipment modifiers
 func addStatModifiers(modifiers: Dictionary, isAdding: bool) -> void:
