@@ -21,25 +21,31 @@ func draw_walkable_cells(cells: Dictionary, equipeUnite : TeamsColor.TeamsColor)
 	#clear()
 	#print(cells)
 	print("--------------")
+	var isEnemy = equipeUnite != GameManager.getMainPlayer().team
 	var keyCell : Vector2i
 	var tile: AbstractTile
+	
 	for cell in cells:
 		#On récupère la clé de cells(-> clé = coords case; valeur associée à la clé = coût case)
 		keyCell = cell
 		tile = MapManager.getTileAt(keyCell)
-		if tile.hasUnitOn() :
-			if tile.unitOn.team == equipeUnite :
-				erase_cell(keyCell)
-			else:
-				set_cell(keyCell, 3, Vector2i(0,0))
-			
-				
+		
+		if isEnemy:
+			# Color the movement zone as danger zone for enemies, like in Fire Emblem for visibility
+			set_cell(keyCell, 3, Vector2i(0,0))
 		else:
-			set_cell(keyCell, 2, Vector2i(0,0))
-			var test = preload(number).instantiate()
-			test.position = Vector2.ZERO
-			self.add_child(test)
-			test.creation(keyCell, cells[cell])
+			# Affichage classique bleu pour les alliés
+			if tile.hasUnitOn() :
+				if tile.unitOn.team == equipeUnite :
+					erase_cell(keyCell)
+				else:
+					set_cell(keyCell, 3, Vector2i(0,0))
+			else:
+				set_cell(keyCell, 2, Vector2i(0,0))
+				var test = preload(number).instantiate()
+				test.position = Vector2.ZERO
+				self.add_child(test)
+				test.creation(keyCell, cells[cell])
 			
 			
 

@@ -39,6 +39,10 @@ func evaluate_best_action(unit: AbstractUnit) -> Dictionary:
 	var walkable_cells = GridUtils.get_walkable_cells(unit)
 	
 	for cell in walkable_cells.keys():
+		# On ne peut pas terminer son déplacement sur une case déjà occupée par un allié (ou ennemi)
+		if GridUtils.is_occupied(cell) and cell != unit.tile.getCoords():
+			continue
+			
 		var targets = []
 		# On cherche les cibles depuis la case "cell" simulée
 		for target_cell in GridUtils.flood_fill(cell, unit.range):
@@ -100,6 +104,7 @@ func score_move(unit: AbstractUnit, destination: Vector2i) -> float:
 	return max(0.0, 50.0 - nearest_enemy_dist)
 
 func execute_action(action: Dictionary) -> void:
+	await get_tree().create_timer(0.1).timeout
 	var unit: AbstractUnit = action.unit
 	var destination: Vector2i = action.move_to
 	var tile_dest = MapManager.getTileAt(destination)
@@ -130,6 +135,7 @@ func execute_action(action: Dictionary) -> void:
 	process_next_unit()
 
 func end_turn() -> void:
+	await get_tree().create_timer(0.25).timeout
 	is_playing = false
 	print("AI Turn ended")
 	# On informe le TurnManager que notre tour est fini
