@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_snm5y")
 id = "set1:CADO"
-imgPath = "Monkey"
+imgPath = "CADO"
 hpBase = 32
 drBase = 1
 mrBase = 1

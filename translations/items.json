@@ -15,7 +15,7 @@
 		"id": "set1:FairyMiracle",
 		"name": "ITEM_NAME_FAIRY_MIRACLE",
 		"description": "ITEM_DESC_FAIRY_MIRACLE",
-		"img": "res://assets/sprites/items/VitalLink.png"
+		"img": "res://assets/sprites/items/FairyMiracle.png"
 	},
 	"set1:BananaPeel": {
 		"id": "set1:BananaPeel",
@@ -57,19 +57,19 @@
 		"id": "set1:LaserBladeMonkey",
 		"name": "ITEM_NAME_LASER_BLADE_MONKEY",
 		"description": "ITEM_DESC_LASER_BLADE_MONKEY",
-		"img": "res://assets/sprites/items/VitalLink.png"
+		"img": "res://assets/sprites/items/LaserBladeMonkey.png"
 	},
 	"set1:CoolCapMonkey": {
 		"id": "set1:CoolCapMonkey",
 		"name": "ITEM_NAME_COOL_CAP_MONKEY",
 		"description": "ITEM_DESC_COOL_CAP_MONKEY",
-		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+		"img": "res://assets/sprites/items/CoolCapMonkey.png"
 	},
 	"set1:MoonStone": {
 		"id": "set1:MoonStone",
 		"name": "ITEM_NAME_MOON_STONE",
 		"description": "ITEM_DESC_MOON_STONE",
-		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+		"img": "res://assets/sprites/items/CoolCapMonkey.png"
 	},
 	"set1:SwagBananaBag": {
 		"id": "set1:SwagBananaBag",
@@ -87,7 +87,7 @@
 		"id": "set1:WarAxe",
 		"name": "ITEM_NAME_WAR_AXE",
 		"description": "ITEM_DESC_WAR_AXE",
-		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+		"img": "res://assets/sprites/items/WarAxe.png"
 	},
 	"set1:WoodlandDoll": {
 		"id": "set1:WoodlandDoll",
@@ -99,6 +99,6 @@
 		"id": "set1:BouquetOfLies",
 		"name": "ITEM_NAME_BOUQUET_OF_LIES",
 		"description": "ITEM_DESC_BOUQUET_OF_LIES",
-		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+		"img": "res://assets/sprites/items/WarAxe.png"
 	},
 }

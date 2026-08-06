@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_an2wp")
 id = "set1:BlueMushroom"
-imgPath = "Monkey"
+imgPath = "BlueMushroom"
 hpBase = 28
 drBase = 0
 mrBase = 5

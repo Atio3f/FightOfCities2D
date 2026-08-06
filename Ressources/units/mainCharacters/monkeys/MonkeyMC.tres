@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ga5uh")
 id = "set1:MonkeyMC"
-imgPath = "Monkey"
+imgPath = "MonkeyMC"
 hpBase = 37
 drBase = 4
 mrBase = 1

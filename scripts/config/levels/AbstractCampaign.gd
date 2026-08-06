@@ -85,7 +85,7 @@ func startNextMission() -> void :
 		GameManager.getMainPlayer().toggleCombatUI()
 		GameManager.isGameActive = true
 	file.close()
-	GameManager.savingGame()
+	#GameManager.savingGame()
 
 func checkWin() -> bool :
 	var isWinning: bool = true

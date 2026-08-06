@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_llkey")
 id = "set1:StarvingShadow"
-imgPath = "Monkey"
+imgPath = "StarvingShadow"
 hpBase = 60
 drBase = 7
 mrBase = 3

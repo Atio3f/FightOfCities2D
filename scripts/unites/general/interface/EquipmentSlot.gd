@@ -5,6 +5,7 @@ extends TextureRect
 
 func _ready() -> void:
 	tooltip_label.visible = false
+	self.visible = false
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
 	

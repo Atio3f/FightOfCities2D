@@ -37,7 +37,7 @@ func _input(_event) -> void:
 				Global.gameManager.placeUnit(StoredUnit.new("set1:Monkey"), player, actualTile)
 			if Input.is_action_just_pressed("save_test") : 
 				print("save_test start")
-				GameManager.savingGame()
+				#GameManager.savingGame()
 				print("save_test end")
 			if Input.is_action_just_pressed("delete_save_test") : 
 				print("delete_save_test start")
