@@ -45,23 +45,23 @@ const REWARDS_DICO := {
 	## TRINKETS
 	"set1:OrbCrate": {"title": "Orb Crate", "desc": "Some orbs on a box.", "idReward": "set1:OrbCrate", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:ArtOfWar": {"title": "Art Of War", "desc": "Learn the tactic's basics.", "idReward": "set1:ArtOfWar", "rewardType": RewardTypes.rewardTypes.TRINKET},
-	"set1:PunchingBallMonkey": {"title": "Punching Ball Monkey", "desc": "TODO", "idReward": "set1:PunchingBallMonkey", "rewardType": RewardTypes.rewardTypes.TRINKET},
-	"set1:MonkeySoap": {"title": "Monkey Soap", "desc": "TODO", "idReward": "set1:MonkeySoap", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	"set1:PunchingBallMonkey": {"title": "Punching Ball Monkey", "desc": "Train weakest units", "idReward": "set1:PunchingBallMonkey", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	"set1:MonkeySoap": {"title": "Monkey Soap", "desc": "Clean Monkeys fur to strengthen it", "idReward": "set1:MonkeySoap", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	
 	## ITEMS
-	"set1:Banana": {"title": "Banana", "desc": "TODO", "idReward": "set1:Banana", "rewardType": RewardTypes.rewardTypes.ITEM},
-	"set1:BananaPeel": {"title": "Banana Peel", "desc": "TODO", "idReward": "set1:BananaPeel", "rewardType": RewardTypes.rewardTypes.ITEM},
-	"set1:IcyBreeze": {"title": "Icy Breeze", "desc": "TODO", "idReward": "set1:IcyBreeze", "rewardType": RewardTypes.rewardTypes.ITEM},
-	"set1:TemptationPoison": {"title": "Temptation Poison", "desc": "TODO", "idReward": "set1:TemptationPoison", "rewardType": RewardTypes.rewardTypes.ITEM},
+	"set1:Banana": {"title": "Banana", "desc": "Good to eat", "idReward": "set1:Banana", "rewardType": RewardTypes.rewardTypes.ITEM},
+	"set1:BananaPeel": {"title": "Banana Peel", "desc": "Once placed by a wise Monkey, falling is always the end", "idReward": "set1:BananaPeel", "rewardType": RewardTypes.rewardTypes.ITEM},
+	"set1:IcyBreeze": {"title": "Icy Breeze", "desc": "Slow ALL units and randomly freeze", "idReward": "set1:IcyBreeze", "rewardType": RewardTypes.rewardTypes.ITEM},
+	"set1:TemptationPoison": {"title": "Temptation Poison", "desc": "Poison an unit, more effective on a dumb target", "idReward": "set1:TemptationPoison", "rewardType": RewardTypes.rewardTypes.ITEM},
 
 	## EQUIPMENTS
-	"set1:BrambleGauntlet": {"title": "Bramble Gauntlet", "desc": "TODO", "idReward": "set1:BrambleGauntlet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:LaserBladeMonkey": {"title": "Laser Blade Monkey", "desc": "TODO", "idReward": "set1:LaserBladeMonkey", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:CoolCapMonkey": {"title": "Cool Cap Monkey", "desc": "TODO", "idReward": "set1:CoolCapMonkey", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:MoonStone": {"title": "Moon Stone", "desc": "TODO", "idReward": "set1:MoonStone", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:SwagBananaBag": {"title": "Swag Banana Bag", "desc": "TODO", "idReward": "set1:SwagBananaBag", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:MudCharm": {"title": "Mud Charm", "desc": "TODO", "idReward": "set1:MudCharm", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:WarAxe": {"title": "War Axe", "desc": "TODO", "idReward": "set1:WarAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:WoodlandDoll": {"title": "Woodland Doll", "desc": "TODO", "idReward": "set1:WoodlandDoll", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
-	"set1:BouquetOfLies": {"title": "Bouquet of Lies", "desc": "TODO", "idReward": "set1:BouquetOfLies", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:BrambleGauntlet": {"title": "Bramble Gauntlet", "desc": "It spikes on contact !", "idReward": "set1:BrambleGauntlet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:LaserBladeMonkey": {"title": "Laser Blade Monkey", "desc": "Blade reserved to Monkeys idk why", "idReward": "set1:LaserBladeMonkey", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:CoolCapMonkey": {"title": "Cool Cap Monkey", "desc": "Most popular cap for 4 generations", "idReward": "set1:CoolCapMonkey", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:MoonStone": {"title": "Moon Stone", "desc": "A good charm against magical threats", "idReward": "set1:MoonStone", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:SwagBananaBag": {"title": "Swag Banana Bag", "desc": "Serve to stock banana", "idReward": "set1:SwagBananaBag", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:MudCharm": {"title": "Mud Charm", "desc": "Be nature, heal with time", "idReward": "set1:MudCharm", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:WarAxe": {"title": "War Axe", "desc": "Power", "idReward": "set1:WarAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:WoodlandDoll": {"title": "Woodland Doll", "desc": "Reflects damage", "idReward": "set1:WoodlandDoll", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:BouquetOfLies": {"title": "Bouquet of Lies", "desc": "A bouquet of flowers, roses bounce off enemies", "idReward": "set1:BouquetOfLies", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 }
