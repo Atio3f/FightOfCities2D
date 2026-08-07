@@ -90,7 +90,7 @@ func _input(event) -> void:
 		pass
 	else:
 		if event.is_action_pressed("rightclick"):
-			cursorPressed(positionSouris, "rightclick")
+			cursorPressed(positionSouris, "rightClick")
 		else :
 			if aSelectionne : 
 				if event.is_action_pressed("leftClick"):
@@ -200,7 +200,7 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 	if %MetaUI.visible : return
 	#print(typeClick)
 	if not Selection:
-		if(typeClick == "rightclick") :
+		if(typeClick == "rightClick") :
 			menuOpen = true
 			visuActions.clearNumbers()
 			
@@ -210,8 +210,37 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 		
 	elif Selection.is_selected:
 		var cellI : Vector2i = cell
+		
+		# Allow to open the placement menu even if a unit is already selected
+		if TurnManager.turn == 0 and cellI in get_placeables_cells():
+			var tileOnPrep: AbstractTile = MapManager.getTileAt(cellI)
+			if tileOnPrep != null and not tileOnPrep.hasUnitOn():
+				_deselect_active_unit()
+				_clear_active_unit()
+				menuOpen = true
+				_select_unit(cellI, true, typeClick)
+				return
+				
+		# Open or close the menu if we click on the unit's tile (or if we right click)
+		if (!attaqueEnAttente) and (typeClick == "rightClick" or cellI == Selection.tile.getCoords()):
+			if not menuOpen:
+				menuOpen = true
+				visuActions.clearNumbers()
+				_unit_path.stop()
+				Selection.selectionneSelf(self, true)
+			else:
+				menuOpen = false
+				Selection.selectionneSelf(self, false)
+				# Draw again the attackable/walkable cells since the menu is closed
+				if Selection.atkRemaining > 0:
+					visuActions.draw_attackable_cells(_attackable_cells)
+				visuActions.draw_walkable_cells(_walkable_cells, Selection.team)
+				_unit_path.initialize(_walkable_cells)
+			return
+		
 		#Can't move or attack with an unit outside its turn
 		if Selection.team != TurnManager.actualTurn() : return
+		
 		if(!menuOpen):
 			#print(_walkable_cells)
 			#print(cell in _walkable_cells)
@@ -253,11 +282,11 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 	#print(cell)
 	#print(Global._units)
 	var tileOn: AbstractTile = MapManager.getTileAt(cell)
+	# Ouvre l'interface du joueur si il n'y a pas d'unité à cette case
 	if tileOn != null && !tileOn.hasUnitOn() :
-		#print(cell)
+		print(typeClick)
 		#print(Global._units)
-		#print("NON")
-		if typeClick == "rightclick":		#Ouvre l'interface du joueur si il n'y a pas d'unité à cette case
+		if typeClick == "rightClick" or typeClick == "leftClick":
 			interfaceJoueurI.apercuMenusJoueur(self, true)
 			
 	else :

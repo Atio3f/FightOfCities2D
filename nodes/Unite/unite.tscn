@@ -80,10 +80,10 @@ scale = Vector2(0.92, 0.92)
 shape = SubResource("RectangleShape2D_xeksa")
 
 [node name="EquipmentSlot" type="TextureRect" parent="UnitElements"]
-offset_left = 146.5
-offset_top = 142.5
-offset_right = 266.5
-offset_bottom = 262.5
+offset_left = 116.5
+offset_top = 110.5
+offset_right = 308.5
+offset_bottom = 302.5
 texture = SubResource("PlaceholderTexture2D_nrxwr")
 expand_mode = 1
 stretch_mode = 5

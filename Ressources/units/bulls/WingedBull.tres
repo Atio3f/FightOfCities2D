@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_3mmrs")
 id = "set1:WingedBull"
-imgPath = "Bull"
+imgPath = "WingedBull"
 hpBase = 40
 drBase = 3
 mrBase = 4

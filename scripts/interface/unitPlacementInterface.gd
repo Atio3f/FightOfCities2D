@@ -19,6 +19,8 @@ func getPreviewText(unit:AbstractUnit, name: String) -> String :
 	return finalText
 
 func _on_btn_unit_button_up():
+	if %BtnUnit.disabled: return # Avoid double click
+	%BtnUnit.disabled = true
 	#Check if we're on a preparation turn
 	if TurnManager.turn == 0:
 		Global.gameManager.placeUnit(storedUnitData, player, MapManager.getTileAt(coords))

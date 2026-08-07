@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_r4ves")
 id = "set1:QueenMonkey"
-imgPath = "Monkey"
+imgPath = "QueenMonkey"
 hpBase = 21
 drBase = 0
 mrBase = 0

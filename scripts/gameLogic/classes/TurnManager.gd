@@ -39,7 +39,7 @@ static func nextTurn() -> void:
 		var ai = active_player.get_node_or_null("AIController")
 		if ai != null:
 			ai.start_turn()
-	#Clear placement tiles on first turn
+	# Clear placement tiles on first turn
 	if turn == 1 :
 		GameManager.getMainPlayer().playerPointer.clear_placeable_cells()
 	else :
