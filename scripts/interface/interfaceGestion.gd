@@ -32,8 +32,10 @@ func updateInterface() -> void:
 		%LabelCouleurTour.text = "Tour %s" % [TurnManager.turn]
 		if TurnManager.actualTurn() == mainPlayer.team :
 			%LabelActionsRestantes.text = "A vous de jouer"
+			bouttonFinTour.disabled = false
 		else :
 			%LabelActionsRestantes.text = "Au tour de "+ str(TurnManager.actualTurn())
+			bouttonFinTour.disabled = true
 
 func setActionsRest(actions : int) -> void:
 	labelActionsRest.text = "Actions " + str(actions) + "/3"
@@ -92,9 +94,10 @@ func _on_mouse_exited() -> void:
 	sourisOnInterface = true
 	print("mouseExited")
 
-#Fonction pour réaliser la fin du tour
+# Fonction pour réaliser la fin du tour
 func _on_button_fin_tour_pressed() -> void:
 	setActionsRest(3)
+	bouttonFinTour.disabled = true
 	TurnManager.nextTurn()
 	updateInterface()
 	if mainPlayer.playerPointer.Selection :

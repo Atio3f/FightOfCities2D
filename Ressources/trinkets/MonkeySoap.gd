@@ -4,7 +4,7 @@ extends AbstractTrinket
 # All Monkeys gain 2 DR
 # Ce nouveau savon aide les Monkey à rendre leur pelage plus épais
 const idItem = "set1:MonkeySoap"
-const img = "res://assets/sprites/trinkets/ArtOfWar"
+const img = "res://assets/sprites/trinkets/MonkeySoap"
 const DR_GAIN = 2
 
 func _init(playerAssociated: AbstractPlayer) -> void:

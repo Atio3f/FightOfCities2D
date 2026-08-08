@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvrsetidfgesw"
-path="res://.godot/imported/BananaRecipes(32x32).png-8d0972cc067683ad9cccb0f44d2bc498.ctex"
+uid="uid://dasoypgrtuu8d"
+path="res://.godot/imported/BananaRecipes_p.png-7b89f5d110476961b790e6d8535b636e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/trinkets/BananaRecipes(32x32).png"
-dest_files=["res://.godot/imported/BananaRecipes(32x32).png-8d0972cc067683ad9cccb0f44d2bc498.ctex"]
+source_file="res://assets/sprites/trinkets/BananaRecipes_p.png"
+dest_files=["res://.godot/imported/BananaRecipes_p.png-7b89f5d110476961b790e6d8535b636e.ctex"]
 
 [params]
 

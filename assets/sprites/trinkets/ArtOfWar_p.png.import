@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc2oylvi2vkj1"
-path="res://.godot/imported/OrbCrate(32x32).png-ff8e923e8e10457e21403a13bd716af9.ctex"
+uid="uid://b23m8s1iawgiq"
+path="res://.godot/imported/ArtOfWar_p.png-e2148110abdab3732062614b700f98e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/trinkets/OrbCrate(32x32).png"
-dest_files=["res://.godot/imported/OrbCrate(32x32).png-ff8e923e8e10457e21403a13bd716af9.ctex"]
+source_file="res://assets/sprites/trinkets/ArtOfWar_p.png"
+dest_files=["res://.godot/imported/ArtOfWar_p.png-e2148110abdab3732062614b700f98e5.ctex"]
 
 [params]
 

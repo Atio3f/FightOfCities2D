@@ -45,6 +45,10 @@ static func nextTurn() -> void:
 	else :
 		if !GameManager.currentGoals.is_empty() : GameManager.checkWin()	#Check if someone won at the start of each turn, but only if there is still some objectives (avoid double check that cause crash or bad result)
 	#Animation du bouton et actualisation de l'interface
+	# Reactivate end turn button on player turn
+	var mainPlayer = GameManager.getMainPlayer()
+	if mainPlayer and mainPlayer.has_node("Actions"):
+		mainPlayer.get_node("Actions").combatUI.updateInterface()
 
 ## Return the actual color of team this turn
 ## 0 is the preparation turn

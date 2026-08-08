@@ -86,7 +86,7 @@ func score_attack(unit: AbstractUnit, destination: Vector2i, target: AbstractUni
 	
 	# Fatality Bonus: if simulated remaining HP is 0 or less
 	if infoDamagesTaked.has("hpActual") and infoDamagesTaked["hpActual"] <= 0:
-		score += 50.0
+		score += 60.0
 		
 	# Un score d'attaque doit toujours surpasser un mouvement simple
 	return score + 100.0
@@ -131,12 +131,12 @@ func execute_action(action: Dictionary) -> void:
 		# Visual feedback
 		#await get_tree().create_timer(0.5).timeout
 		
-	# Passe à la suite
+	# Go to next unit
 	process_next_unit()
 
 func end_turn() -> void:
 	await get_tree().create_timer(0.25).timeout
 	is_playing = false
 	print("AI Turn ended")
-	# On informe le TurnManager que notre tour est fini
+	# Inform TurnManager that our turn is finished
 	TurnManager.nextTurn()

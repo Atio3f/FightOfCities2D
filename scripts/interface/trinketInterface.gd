@@ -11,7 +11,7 @@ func _ready() -> void:
 func setTrinket(trinket: AbstractTrinket) -> void :
 	self.id = trinket.id
 	%Preview.text = getPreviewText(trinket)
-	%SpriteTrinket.texture = load(trinket.imgPath+"(32x32).png")
+	%SpriteTrinket.texture = load(trinket.imgPath+"_p.png")
 	
 	trinket.trinket_state_changed.connect(update_visuals)
 	update_visuals(trinket.isActive, trinket.isDisable)
