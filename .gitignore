@@ -20,3 +20,4 @@ mono_crash.*.json
 .geminiignore
 *.tmp
 diffs.txt
+/export

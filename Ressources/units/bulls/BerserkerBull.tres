@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_86mtn")
 id = "set1:BerserkerBull"
-imgPath = "Bull"
+imgPath = "BerserkerBull"
 hpBase = 50
 drBase = 0
 mrBase = 0
