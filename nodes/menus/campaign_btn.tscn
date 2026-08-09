@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bo3yxhn0i2spy"]
 
-[ext_resource type="Texture2D" uid="uid://cj2dxi38ccfhy" path="res://assets/sprites/units/Monkey_p.png" id="1_ehi0a"]
+[ext_resource type="Texture2D" uid="uid://boihmxqw3jfv" path="res://assets/sprites/units/MonkeyMC_p.png" id="1_ehi0a"]
 
 [node name="MonkeysCampaignBtn" type="Button"]
 anchors_preset = 8
