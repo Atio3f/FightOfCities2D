@@ -40,10 +40,16 @@ var capaciteActuelle : AbstractCapacity = null
 var caseAttaque : Vector2
 var attaqueEnAttente : bool = false
 
+var showDangerZone: bool = false # Danger zone with 'K' key, like in Fire Emblem shows all the cells enemies can attack
+var dangerZoneOverlay: UnitOverlay
+
 #func _process(delta):
 	#print(menuOpen)
 
 func _ready() -> void:
+	dangerZoneOverlay = visuActions.duplicate()
+	add_child(dangerZoneOverlay)
+	dangerZoneOverlay.clearNumbers()
 	
 	refreshMap()
 	
@@ -106,6 +112,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			_deselect_active_unit()
 		_clear_active_unit()	#N'est pas inclus dans le if pour permettre la fermeture de l'interface d'utilisateur également
 	
+	if event.is_action_pressed("show_danger_zone") and not event.echo:
+		toggleDangerZone()
+	
 
 #Permet de centrer les coords du curseur au centre d'une case NE SERVIRA PROBABLEMENT PLUS
 func smoothyPosition() -> void:	
@@ -115,6 +124,29 @@ func smoothyPosition() -> void:
 																	#correspondante
 	positionSouris = Vector2i(positionSouris.x + 256, positionSouris.y + 256)#On ajoute 256 à x et y pour se retrouver au centre de la case(ou 8 si on était sur du 16x16)
 
+func toggleDangerZone() -> void:
+	showDangerZone = !showDangerZone
+	dangerZoneOverlay.clearNumbers()
+	if showDangerZone:
+		var allEnemyAttackableCells: Array[Vector2i] = []
+		var mainPlayerTeam = GameManager.getMainPlayer().team
+		var allUnits = GameManager.getAllUnits()
+		
+		for unit in allUnits:
+			if unit.team != mainPlayerTeam and !unit.isDead:
+				# Walkable cells for enemy
+				var w_cells = GridUtils.get_walkable_cells(unit)
+				for cell in w_cells.keys():
+					if not cell in allEnemyAttackableCells:
+						allEnemyAttackableCells.append(cell)
+				
+				# Attackable cells
+				var a_cells = GridUtils.get_attackable_cells(unit)
+				for cell in a_cells:
+					if not cell in allEnemyAttackableCells:
+						allEnemyAttackableCells.append(cell)
+		
+		dangerZoneOverlay.draw_danger_zone(allEnemyAttackableCells)
 
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
@@ -200,9 +232,10 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 	if %MetaUI.visible : return
 	#print(typeClick)
 	if not Selection:
-		if(typeClick == "rightClick") :
+		if typeClick == "rightClick" or TurnManager.turn == 0:
 			menuOpen = true
-			visuActions.clearNumbers()
+			if TurnManager.turn != 0:
+				visuActions.clearNumbers()
 			
 		#else :	#Potentiellement inutile !
 			#menuOpen = false
@@ -225,16 +258,18 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 		if (!attaqueEnAttente) and (typeClick == "rightClick" or cellI == Selection.tile.getCoords()):
 			if not menuOpen:
 				menuOpen = true
-				visuActions.clearNumbers()
+				if TurnManager.turn != 0:
+					visuActions.clearNumbers()
 				_unit_path.stop()
 				Selection.selectionneSelf(self, true)
 			else:
 				menuOpen = false
 				Selection.selectionneSelf(self, false)
 				# Draw again the attackable/walkable cells since the menu is closed
-				if Selection.atkRemaining > 0:
-					visuActions.draw_attackable_cells(_attackable_cells)
-				visuActions.draw_walkable_cells(_walkable_cells, Selection.team)
+				if TurnManager.turn != 0:
+					if Selection.atkRemaining > 0:
+						visuActions.draw_attackable_cells(_attackable_cells)
+					visuActions.draw_walkable_cells(_walkable_cells, Selection.team)
 				_unit_path.initialize(_walkable_cells)
 			return
 		
@@ -299,11 +334,12 @@ func _select_unit(cell: Vector2i, ouvrirMenu : bool, typeClick : String) -> void
 			_attackable_cells = get_attackable_cells(Selection)
 		
 		## Draw out the walkable and attackable cells now
-		if(!menuOpen && Selection != null):
-			if(Selection.atkRemaining > 0) :
+		if (!menuOpen or TurnManager.turn == 0) and Selection != null:
+			if Selection.atkRemaining > 0:
 				visuActions.draw_attackable_cells(_attackable_cells)
 			visuActions.draw_walkable_cells(_walkable_cells, Selection.team)
-		#var keysWalkableCells = _walkable_cells.keys()
+			
+		if not menuOpen and Selection != null:
 			_unit_path.initialize(_walkable_cells)
 		
 	

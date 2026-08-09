@@ -57,6 +57,7 @@ func _on_menu_capacites_actives_focus_entered() -> void:
 
 #Affichage des capacités actives de l'unité
 func _on_menu_capacites_actives_pressed() -> void:
+	conteneurMenus.visible = false
 	#if (pointeursSurInterface.size() == 1) :
 	var capaAct : menuCapa = capaActives.instantiate()
 	capaAct.capaActivesUnite(unitAssociated, GameManager.getMainPlayer())
@@ -64,6 +65,7 @@ func _on_menu_capacites_actives_pressed() -> void:
 
 #Affichage des infos de l'unité
 func _on_menu_stats_pressed():
+	conteneurMenus.visible = false
 	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
 	var infosUnit : interfaceInfosUnite = infosUnites.instantiate()
@@ -75,7 +77,7 @@ func _on_menu_stats_pressed():
 
 ## Signal envoyé par le menu des Consommables
 func _on_menu_consommables_pressed():
-	print("ff") # TODO Check pq ça marche pas quand unité case au dessus
+	conteneurMenus.visible = false
 	#if (pointeursSurInterface.size() == 1) :	#Si il y a + d'un pointeur sur l'interface ça va être 
 												#compliqué à gérer je ferai plus tard
 	var menuConso : UnitItemsInterface = menuConsommables.instantiate()
@@ -92,6 +94,7 @@ func _on_delete_unit_btn_pressed():
 
 ## Open the equipment menu for the unit
 func _on_menu_equipments_pressed():
+	conteneurMenus.visible = false
 	if !unitAssociated.player.isGamePlayer : return#Avoid crashes
 	var menuEquip : UnitEquipmentsInterface = menuEquipements.instantiate()
 	menuEquip.showEquipments(unitAssociated, GameManager.getMainPlayer())

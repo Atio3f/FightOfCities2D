@@ -135,7 +135,8 @@ func execute_action(action: Dictionary) -> void:
 	process_next_unit()
 
 func end_turn() -> void:
-	await get_tree().create_timer(0.25).timeout
+	if GameManager.isGameActive :
+		await get_tree().create_timer(0.25).timeout
 	is_playing = false
 	print("AI Turn ended")
 	# Inform TurnManager that our turn is finished

@@ -13,6 +13,10 @@ func setup(_bonusId: String, _parentReward: AbstractReward = null) -> void:
 func displayUnits() -> void:
 	var unitsStock = GameManager.getMainPlayer().hand.getUnitsStocked()
 	
+	var upgradeStats = UpgradeDB.get_stat_modifiers(bonusId)
+	var upgradePotentialCost = upgradeStats.get("potentialCost", 999)
+	assert(upgradePotentialCost != 999, "Upgrade potential cost not found")
+	
 	for storedUnit: StoredUnit in unitsStock:
 		var btn = Button.new()
 		
@@ -40,9 +44,8 @@ func displayUnits() -> void:
 		# Display remaining potential on button
 		btn.text = tr(unitName) + "\n Remaining potential : " + str(usedPotential) + "/"+ str(finalPotential) 
 		
-
 		# Connect button to the upgrade selection if unit haven't already reach potential limit or if upgrade cost 0
-		if usedPotential < finalPotential  || (usedPotential <= 0 && basePotential != 0):
+		if (usedPotential + upgradePotentialCost) <= finalPotential || (upgradePotentialCost <= 0 && basePotential != 0):
 			btn.pressed.connect(func(): _onUnitSelected(storedUnit))
 		else :
 			btn.disabled = true # Disable button if unit has reached its max potential

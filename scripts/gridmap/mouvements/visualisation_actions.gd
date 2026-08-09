@@ -54,6 +54,10 @@ func draw_attackable_cells(cells: Array) -> void:
 	for cell in cells:
 		set_cell(cell, 3, Vector2i(0,0))
 		
+func draw_danger_zone(cells: Array) -> void:
+	for cell in cells:
+		set_cell(cell, 5, Vector2i(0,0))
+		
 
 #Permet de retirer les nombres affichant les coûts de déplacement(2) et l'aperçu des cases d'attaque et de déplacement(1) 
 func clearNumbers() -> void :
