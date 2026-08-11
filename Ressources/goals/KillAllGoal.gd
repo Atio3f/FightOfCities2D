@@ -32,7 +32,7 @@ func updateObjective() -> void :
 	super.updateObjective()
 
 func getDisplayObjectiveTitle() -> String :
-	return "Kill ALL enemies"
+	return tr("GOAL_TITLE_KILL_ALL")
 
 
 func getDisplayObjectiveStatus() -> String :

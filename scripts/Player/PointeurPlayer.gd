@@ -126,6 +126,9 @@ func smoothyPosition() -> void:
 
 func toggleDangerZone() -> void:
 	showDangerZone = !showDangerZone
+	updateDangerZone()
+
+func updateDangerZone() -> void:
 	dangerZoneOverlay.clearNumbers()
 	if showDangerZone:
 		var allEnemyAttackableCells: Array[Vector2i] = []

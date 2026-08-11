@@ -164,6 +164,9 @@ func _process(delta: float) -> void:
 func deplacement(newTile: AbstractTile) -> void:
 	self.onMovement(newTile)
 	#position = MapManager.calculate_map_position(newTile.getCoords())#Work but looks like tp sadly
+	## Update danger zone
+	if GameManager.getMainPlayer() and GameManager.getMainPlayer().playerPointer:
+		GameManager.getMainPlayer().playerPointer.updateDangerZone()
 
 ## Starts walking along the `path`.
 ## `path` is an array of grid coordinates that the function converts to map coordinates.
@@ -395,6 +398,9 @@ func removeSelf(checkWin: bool) -> void:
 	tile.unitOn = null	#Free the tile
 	if TurnManager.turn != 0 && checkWin: GameManager.checkWin()	#Check if win/lose after removing the unit
 	queue_free()
+	## Update danger zone
+	if GameManager.getMainPlayer() and GameManager.getMainPlayer().playerPointer:
+		GameManager.getMainPlayer().playerPointer.updateDangerZone()
 
 func placeOnInventory() -> void:
 	# On crée le snapshot de l'unité

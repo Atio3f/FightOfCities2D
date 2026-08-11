@@ -20,25 +20,25 @@ func _ready() -> void :
 func updateInterface() -> void:
 	#We check if we are during the preparation turn
 	if TurnManager.turn == 0 :
-		%LabelEndTurn.text = "START BATTLE"
-		%LabelCouleurTour.text = "Weight %s/%s" % [mainPlayer.weight, mainPlayer.maxWeight]	#We show the weight remaining of the player during preparation turn
+		%LabelEndTurn.text = tr("UI_BUTTON_START_BATTLE")
+		%LabelCouleurTour.text = tr("UI_LABEL_TEAM_WEIGHT") % [mainPlayer.weight, mainPlayer.maxWeight]	#We show the weight remaining of the player during preparation turn
 		%ButtonFinTour.disabled = (mainPlayer.getUnits().size() == 0)	#We can't go outside preparation turn without units on board
 		%MaxUnitLabel.visible = true
 		%MaxUnitLabel.text = "%s / %s" % [mainPlayer.units.size(), mainPlayer.maxUnits]
 	else :
 		%MaxUnitLabel.visible = false
-		%LabelEndTurn.text = "END OF TURN"
+		%LabelEndTurn.text = tr("UI_BUTTON_END_TURN")
 		setActionsRest(3)
-		%LabelCouleurTour.text = "Tour %s" % [TurnManager.turn]
+		%LabelCouleurTour.text = tr("UI_LABEL_TURN_NUMBER") % [TurnManager.turn]
 		if TurnManager.actualTurn() == mainPlayer.team :
-			%LabelActionsRestantes.text = "A vous de jouer"
+			%LabelActionsRestantes.text = tr("UI_LABEL_REMAINING_ACTIONS")
 			bouttonFinTour.disabled = false
 		else :
-			%LabelActionsRestantes.text = "Au tour de "+ str(TurnManager.actualTurn())
+			%LabelActionsRestantes.text = tr("UI_LABEL_WHICH_PLAYER_TURN") % [str(TurnManager.actualTurn())]
 			bouttonFinTour.disabled = true
 
 func setActionsRest(actions : int) -> void:
-	labelActionsRest.text = "Actions " + str(actions) + "/3"
+	labelActionsRest.text = "Actions %s/3" % [str(actions)]
 	actionsRest = actions
 
 ## Add goal on interface
