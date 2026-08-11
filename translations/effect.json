@@ -84,18 +84,18 @@
 		"name": "EFFECT_NAME_UPGRADE_TEST",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_TEST"
 	},
-	"UpgradeAgility": {
-		"id": "UpgradeAgility",
+	"UpgradeAgilityEffect": {
+		"id": "UpgradeAgilityEffect",
 		"name": "EFFECT_NAME_UPGRADE_AGILITY",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_AGILITY"
 	},
-	"UpgradeScout": {
-		"id": "UpgradeScout",
+	"UpgradeScoutEffect": {
+		"id": "UpgradeScoutEffect",
 		"name": "EFFECT_NAME_UPGRADE_SCOUT",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_SCOUT"
 	},
-	"UpgradePromotion": {
-		"id": "UpgradePromotion",
+	"UpgradePromotionEffect": {
+		"id": "UpgradePromotionEffect",
 		"name": "EFFECT_NAME_UPGRADE_PROMOTION",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_PROMOTION"
 	},

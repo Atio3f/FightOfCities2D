@@ -31,3 +31,30 @@ const EFFECTS := {
 	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),
 	"set1:BouquetOfLiesEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BouquetOfLiesEffect.gd"),
 }
+
+var effects_data: Dictionary = {}
+
+func _ready():
+	load_effects_from_file("res://translations/effect.json")
+
+func load_effects_from_file(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		push_error("File not found : " + path)
+		return
+	var file = FileAccess.open(path, FileAccess.READ)
+	var content = file.get_as_text()
+	var json = JSON.parse_string(content)
+	
+	if json:
+		effects_data = json
+	else:
+		push_error("Syntax error in effect json file")
+
+func getEffectData(effect_id: String) -> Dictionary:
+	if effects_data.has(effect_id):
+		var effect_data : Dictionary = {}
+		effect_data.assign(effects_data[effect_id])
+		return effect_data
+	else:
+		push_error("Effect id not found : " + effect_id)
+		return {}
