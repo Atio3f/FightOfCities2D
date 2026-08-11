@@ -9,5 +9,5 @@ func _init(unit: AbstractUnit, remainingTurns: int, value_A: int = 0, value_B: i
 
 func onDamageDealed(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, _visualisation: bool) -> int :
 	if (unit.getPositionType() == MovementTypes.positionCategories.FLYING) :
-		damage = damage * value_A
+		damage = damage * (100 + value_A) / 100	# value_A = 200 <=> +200% damage
 	return damage

@@ -22,6 +22,8 @@ const EFFECTS := {
 	"UpgradeScoutEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeScoutEffect.gd"),
 	"UpgradeBloodyEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeBloodyEffect.gd"),
 	"UpgradeAgilityEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeAgilityEffect.gd"),
+	"UpgradeGlassCanonEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeGlassCanonEffect.gd"),
+	"UpgradeMultitaskingEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeMultitaskingEffect.gd"),
 	## KEYWORD EFFECTS
 	"set1:RegenerationEffect": preload("res://Ressources/effects/RegenerationEffect.gd"),
 	"set1:FreezeEffect": preload("res://Ressources/effects/keywordEffects/FreezeEffect.gd"),

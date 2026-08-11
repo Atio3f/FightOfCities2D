@@ -163,5 +163,15 @@
 		"id": "set1:StarvingShadowEffect",
 		"name": "EFFECT_NAME_STARVING_SHADOW",
 		"description": "EFFECT_DESCRIPTION_STARVING_SHADOW"
+	},
+	"set1:GlassCanonEffect": {
+		"id": "set1:GlassCanonEffect",
+		"name": "EFFECT_NAME_GLASS_CANON",
+		"description": "EFFECT_DESCRIPTION_GLASS_CANON"
+	},
+	"UpgradeMultitaskingEffect": {
+		"id": "UpgradeMultitaskingEffect",
+		"name": "EFFECT_NAME_UPGRADE_MULTITASKING",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_MULTITASKING"
 	}
 }

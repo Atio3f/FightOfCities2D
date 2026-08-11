@@ -63,5 +63,21 @@
 			"potentialCost": 1
 		},
 		"is_dynamic": true
+	},
+	"UpgradeGlassCanonEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"hpMax": -5,
+			"power": 6,
+			"speed": 1
+		},
+		"is_dynamic": false
+	},
+	"UpgradeMultitaskingEffect": {
+		"stats": {
+			"potentialCost": 3,
+			"atkPerTurn": 1
+		},
+		"is_dynamic": false
 	}
 }

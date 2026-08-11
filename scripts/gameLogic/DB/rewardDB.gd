@@ -30,6 +30,8 @@ const REWARDS_DICO := {
 	"UpgradeHiddenPotentialEffect": {"title": "Bonus hidden potential", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeTestEffect": {"title": "Bonus test", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeSneakyEffect": {"title": "Bonus sneaky", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeGlassCanonEffect": {"title": "Bonus Glass Canon", "desc": "Less hp for more damage. What a great deal !",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeMultitaskingEffect": {"title": "Bonus Multitasking", "desc": "Attack one more time each turn",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	
 	## UNITS
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT},
