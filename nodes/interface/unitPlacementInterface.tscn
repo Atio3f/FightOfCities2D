@@ -37,4 +37,18 @@ G1"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="EquipmentIcon" type="TextureRect" parent="BtnUnit"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [connection signal="button_up" from="BtnUnit" to="." method="_on_btn_unit_button_up"]

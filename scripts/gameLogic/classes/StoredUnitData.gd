@@ -17,6 +17,7 @@ class_name StoredUnit
 @export_group("Upgrades")
 @export var permanentUpgrades: Array[String] = [] # List permanent upgrades
 @export var markersEffects: Dictionary = {}   # Stock all permanents parts on some effects, exemple with Starving Shadow : hpMax needs to be reduced permanently and not just for one level so we need to stock maxHp value and its current max hp 
+@export var equipmentsData: Array[Dictionary] = [] # Stock equipments data
 
 # --- MODIFICATEURS DE STATS (pas utile pour le moment) ---
 # Servira pê pour les bonus des évènements ou pour le personnage principal à voir
@@ -45,6 +46,10 @@ static func createFromUnit(unit: AbstractUnit) -> StoredUnit:
 	# Get permanent effects that need to be keep, we will call all effects and some of them will added data on markersEffects dico
 	# storedUnitData.markersEffects = unit.getPermanentsEffects()
 	
+	if unit.equipment != null:
+		storedUnitData.equipmentsData.append({
+			"id": unit.equipment.getId()
+		})
 	#if unit is AbstractMC:
 	#	storedUnitData.livesRemaining = unit.livesRemaining
 	return storedUnitData
@@ -71,6 +76,14 @@ func applyToUnit(unit: AbstractUnit) -> void:
 	#	var eq: AbstractEquipment = ItemDb.ITEMS[self.equipmentId].new()
 	#	eq.playerAssociated = unit.player
 	#	unit.equipEquipment(eq)
+	for eqData in self.equipmentsData:
+		if eqData.has("id"):
+			var eqId = eqData["id"]
+			var itemDbNode = Engine.get_main_loop().root.get_node_or_null("ItemDb")
+			if itemDbNode != null and itemDbNode.ITEMS.has(eqId):
+				var eq = itemDbNode.ITEMS[eqId].new()
+				eq.playerAssociated = unit.player
+				unit.equipEquipment(eq)
 
 ## Add a permanent upgrade and its stat changes to the model, used on upgrade reward interface and when collecting units from json
 func addPermanentUpgrade(upgradeId: String) -> void:
@@ -96,7 +109,8 @@ func saveStoredUnit() -> Dictionary:
 		#"livesRemaining": livesRemaining,
 		"permanentUpgrades": permanentUpgrades,
 		"markersEffects": markersEffects,
-		"modifiers": statModifiers
+		"modifiers": statModifiers,
+		"equipmentsData": equipmentsData
 	}
 
 ## DESERIALIZATION (Load a Json)
@@ -109,6 +123,10 @@ static func loadStoredUnit(data: Dictionary) -> StoredUnit:
 	#storage.livesRemaining = data.get("livesRemaining", 0)
 	storage.permanentUpgrades.assign(data.get("permanentUpgrades", []))
 	storage.markersEffects = data.get("markersEffects", {})
+	var loadedEquipments = data.get("equipmentsData", [])
+	for eq in loadedEquipments:
+		storage.equipmentsData.append(eq)
+	
 	# Check if data contains info about upgrades to add on unitData
 	if data.has("markersEffects") :
 		storage.statModifiers = data.get("modifiers", {})

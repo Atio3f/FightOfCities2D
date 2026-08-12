@@ -12,6 +12,16 @@ func setUnitPreview(unit: AbstractUnit, storedUnitData: StoredUnit, coords: Vect
 	%Preview.text = getPreviewText(unit, tr(unitData["name"]))
 	if unit.STATS.imgPath != null and unit.STATS.imgPath != "" :
 		%BtnUnit.icon = load(unit.getImagePath()+"_p.png")
+		
+	if storedUnitData.equipmentsData.size() > 0:
+		var eqId = storedUnitData.equipmentsData[0].get("id", "")
+		var itemDbNode = Engine.get_main_loop().root.get_node_or_null("ItemDb")
+		if itemDbNode != null and itemDbNode.ITEMS.has(eqId):
+			var eqInstance = itemDbNode.ITEMS[eqId].new()
+			%EquipmentIcon.texture = load(eqInstance.getImagePath())
+			%EquipmentIcon.show()
+	else:
+		%EquipmentIcon.hide()
 
 ## Add a preview text on top
 func getPreviewText(unit:AbstractUnit, name: String) -> String :

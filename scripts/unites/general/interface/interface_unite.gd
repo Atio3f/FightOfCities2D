@@ -87,9 +87,14 @@ func _on_menu_consommables_pressed():
 ## Delete the unit if used during the preparation turn
 func _on_delete_unit_btn_pressed():
 	if !unitAssociated.player.isGamePlayer : return#Avoid crashes
-	#Add its tile on the placement tiles
+	
+	# Clear the pointer display (movement and attacks tiles)
+	unitAssociated.player.playerPointer._deselect_active_unit()
+	unitAssociated.player.playerPointer._clear_active_unit()
+	
+	# Add its tile on the placement tiles
 	unitAssociated.player.playerPointer.draw_placeable_cells([unitAssociated.tile.getCoords()])
-	#Add the unit to the player inventory and remove it
+	# Add the unit to the player inventory and remove it
 	unitAssociated.placeOnInventory()
 
 ## Open the equipment menu for the unit
