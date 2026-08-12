@@ -57,6 +57,14 @@
 					"coords": [5, 7]
 				}
 			],
+			"delayedUnits": [
+				{
+					"id": "set1:Bull",
+					"coords": [7, 7],
+					"turn": 2,
+					"teamColor": 1
+				}
+			],
 			"placementTiles": [
 				[4, 3],
 				[2, 4],

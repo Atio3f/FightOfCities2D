@@ -36,6 +36,9 @@ static func nextTurn() -> void:
 	# Start enemy logic (utility AI) if actual player is an enemy
 	var active_player = GameManager.getPlayer(currentTurnColor)
 	if active_player != null and not active_player.isGamePlayer:
+		var currentRound = turn / max(1, teams.size())
+		GameManager.checkDelayedUnits(currentRound)
+		
 		var ai = active_player.get_node_or_null("AIController")
 		if ai != null:
 			ai.start_turn()

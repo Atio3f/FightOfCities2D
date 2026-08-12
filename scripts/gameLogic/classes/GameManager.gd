@@ -9,9 +9,8 @@ static var sceneUnit: PackedScene = preload("res://nodes/Unite/unite.tscn")
 var mapManager: MapManager
 static var campaign: AbstractCampaign	#Campaign, will be add by the main_menu
 static var currentGoals: Array[AbstractGoal] = [] #All goals for the active mission
+static var currentDelayedUnits: Array = [] # Units to spawn at specific turns
 static var isGameActive: bool = false # Indicates if a game is ongoing, true until main menu or defeat
-#var turnManager: TurnManager
-
 var nodePlayers: Node
 var nodeStorage: Node
 
@@ -261,6 +260,44 @@ static func checkGoals() -> void :
 	for goal: AbstractGoal in currentGoals :
 		goal.updateObjective()
 
+## Check for delayed units to spawn
+static func checkDelayedUnits(currentRound: int) -> void:
+	var remainingUnits: Array = []
+	for delayedUnit: Dictionary in currentDelayedUnits:
+		if delayedUnit.get("turn", 0) <= currentRound:
+			var targetCoords = Vector2i(delayedUnit["coords"][0], delayedUnit["coords"][1])
+			var tile: AbstractTile = findFreeTileAround(targetCoords, 2)
+			
+			if tile:
+				var unitData: StoredUnit = StoredUnit.loadStoredUnit(delayedUnit)
+				var teamStr = delayedUnit.get("teamColor", TeamsColor.TeamsColor.RED)
+				var team = teamStr as TeamsColor.TeamsColor if typeof(teamStr) == TYPE_INT else TeamsColor.TeamsColor.RED
+				
+				# Place unit
+				var newUnit = Global.gameManager.placeUnit(unitData, getPlayer(team), tile)
+				
+				# Summon sickness: unit spawned can't use its abilities during the round it's spawned
+				newUnit.speedRemaining = 0
+				newUnit.atkRemaining = 0
+			else:
+				# If target Tile and adjacents occupied, we wait
+				remainingUnits.append(delayedUnit)
+		else:
+			remainingUnits.append(delayedUnit)
+			
+	currentDelayedUnits = remainingUnits
+
+## Find a free tile around a center coordinate up to maxRadius
+static func findFreeTileAround(center: Vector2i, maxRadius: int = 2) -> AbstractTile:
+	for radius in range(0, maxRadius + 1):
+		for x in range(-radius, radius + 1):
+			for y in range(-radius, radius + 1):
+				if abs(x) + abs(y) == radius:
+					var tile = MapManager.getTileAt(center + Vector2i(x, y))
+					if tile and not tile.hasUnitOn():
+						return tile
+	return null
+
 
 ## Function called to check if the player have win or lose
 static func checkWin() -> void :
@@ -312,7 +349,8 @@ static func savingGame() -> void :
 		"mapData": MapManager.registerMap(),
 		"players": [],
 		"campaign": campaign.saveCampaignProgress(),
-		"goals": []#currentGoals.map(func(element: AbstractGoal): element.registerGoal())
+		"goals": [],#currentGoals.map(func(element: AbstractGoal): element.registerGoal())
+		"delayedUnits": currentDelayedUnits
 	}
 	for goal: AbstractGoal in currentGoals :
 		gameData.goals.append(goal.registerGoal())
@@ -424,6 +462,10 @@ static func loadSave(save: Dictionary) -> void :
 	#if campaign.progress != campaign.nextMission : campaign.startNextMission()# progress != nextMission bc this could cause ennemi duplication or other probs
 	### Recover goals from current mission
 	loadGoals(save["goals"])
+	if save.has("delayedUnits"):
+		currentDelayedUnits = save["delayedUnits"]
+	else:
+		currentDelayedUnits = []
 	print(GameManager.players)
 	print(save)
 	#print(save["players"])
