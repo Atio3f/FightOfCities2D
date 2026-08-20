@@ -3,7 +3,7 @@ class_name BrambleGauntlet
 
 const idItem = "set1:BrambleGauntlet"
 const img = ""
-const DAMAGE_BONUS = 2
+const DAMAGE_BONUS = 4
 const SPEED_MALUS = -3
 const SPEED_MALUS_DURATION = 2
 

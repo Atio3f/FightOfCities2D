@@ -51,3 +51,5 @@ EFFECT_NAME_CADO,Chasseur de rapaces,Bird Hunter
 EFFECT_DESCRIPTION_CADO,Inflige +!VA! dégâts aux unités volantes,Deal +!VA! damage to flying units
 EFFECT_NAME_STARVING_SHADOW,Âme affamée,Hungry soul
 EFFECT_DESCRIPTION_STARVING_SHADOW,"Au début de votre tour, perd !VA! PV Max. Kill: Récupère les PV Max perdus","At the start of your turn, lose !VA! Max HP. Kill : Recover Max HP lost"
+EFFECT_NAME_ATLAS_LION,Roi de la savane,Savana King
+EFFECT_DESCRIPTION_ATLAS,+!VA!% de dégâts infligés par rang de plus par rapport à l'unité attaquée,+!VA!% damage dealed per rank compared to the targeted unit

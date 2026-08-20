@@ -101,7 +101,7 @@ func targetsAvailable(idCard: String) -> Array :
 
 func removeUnit(unit: AbstractUnit) -> void:
 	units.erase(unit)
-	addWeight(-(unit.grade + unit.statModifiers.get("grade", 0))) 
+	addWeight(-(unit.grade)) 
 
 ##Add max weight to the player
 func addMaxWeight(amt: int) -> void:

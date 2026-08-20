@@ -1,6 +1,6 @@
 key,fr,en
 ITEM_NAME_BRAMBLE_GAUNTLET,Gantelet de ronces,Bramble Gauntlet
-ITEM_DESC_BRAMBLE_GAUNTLET,Augmente les dégâts des attaques de contact de 2 et réduit la vitesse de la cible de 3 pendant 2 tours,Increases contact damage by 2 and reduce target speed by 3 for 2 turns
+ITEM_DESC_BRAMBLE_GAUNTLET,Augmente les dégâts des attaques de contact de 4 et réduit la vitesse de la cible de 3 pendant 2 tours,Increases contact damage by 4 and reduce target speed by 3 for 2 turns
 ITEM_NAME_VITAL_LINK,Lien Vital,Vital Link
 ITEM_DESC_VITAL_LINK,Soigne 10 pv à une unité dans une forêt (15 si c’est une Magical Beast),"Heal unit on forest for 10, or 15 if Magical Beast"
 ITEM_NAME_MAGICAL_COCONUT,Noix de coco magique,Magical Coconut

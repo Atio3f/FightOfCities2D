@@ -165,7 +165,7 @@ func placeUnit(storedUnitData: StoredUnit, player: AbstractPlayer, tile: Abstrac
 	UnitDb.UNITS[storedUnitData.id].initialize(unit, player)
 	storedUnitData.applyToUnit(unit) # TODO Vérifier si c'est assez pour appliquer les effets
 	unit.onPlacement(tile)
-	player.addWeight(unit.grade + unit.statModifiers.get("grade", 0))	#POTENTIELLEMENT A CHANGER DE PLACE SI ON NE DOIT PAS TJRS CHANGER LE POIDS
+	player.addWeight(unit.grade)	#POTENTIELLEMENT A CHANGER DE PLACE SI ON NE DOIT PAS TJRS CHANGER LE POIDS
 	return unit
 
 ## Use on recoverUnit to get the unit without weight change or onPlacement call

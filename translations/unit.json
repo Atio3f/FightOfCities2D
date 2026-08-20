@@ -50,4 +50,7 @@
 	"set1:AssaultDroneMonkey" : {
 		"name": "UNIT_NAME_ASSAULT_DRONE_MONKEY"
 	},
+	"set1:AtlasLion" : {
+		"name": "UNIT_NAME_ATLAS_LION"
+	},
 }

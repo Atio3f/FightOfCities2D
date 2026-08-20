@@ -21,9 +21,6 @@ func setInterface(coords: Vector2i, unitPlacementIScene: PackedScene) -> void :
 		unitPlacementI = unitPlacementIScene.instantiate()	#Get the scene which shows the unit infos
 		unitPlacementI.setUnitPreview(unit, unitData, coords)	#Add infos and coords to the scene
 		%UnitsToPlace.add_child(unitPlacementI)
-		#Disable the button if player haven't enough weight or have max units reached to place it
-		if !GameManager.unitCanBePlacedOnTile(p, MapManager.getTileAt(coords), stats.grade) or not p.maxUnits > p.units.size():
-			unitPlacementI.disableBtn()
 
 ###Delete all children
 func clear() -> void:

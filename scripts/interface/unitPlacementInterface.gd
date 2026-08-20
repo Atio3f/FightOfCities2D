@@ -9,7 +9,10 @@ func setUnitPreview(unit: AbstractUnit, storedUnitData: StoredUnit, coords: Vect
 	self.storedUnitData = storedUnitData # Could be optimized by refering first param by storedUnitData instead of unit in the function, problem is that we need grade on other class
 	self.coords = coords
 	var unitData: Dictionary = UnitDb.getUnit(storedUnitData.id)
-	%Preview.text = getPreviewText(unit, tr(unitData["name"]))
+	var stats = UnitDb.getUnitStats(storedUnitData.id)
+	var weight: int = stats.grade + storedUnitData.statModifiers.get("grade", 0)
+	
+	%Preview.text = getPreviewText(tr(unitData["name"]), weight)
 	if unit.STATS.imgPath != null and unit.STATS.imgPath != "" :
 		%BtnUnit.icon = load(unit.getImagePath()+"_p.png")
 		
@@ -23,9 +26,12 @@ func setUnitPreview(unit: AbstractUnit, storedUnitData: StoredUnit, coords: Vect
 	else:
 		%EquipmentIcon.hide()
 
+	# Disable the button if player haven't enough weight or have max units reached to place it
+	if !GameManager.unitCanBePlacedOnTile(player, MapManager.getTileAt(coords), weight) or not player.maxUnits > player.units.size():
+		disableBtn()
+
 ## Add a preview text on top
-func getPreviewText(unit:AbstractUnit, name: String) -> String :
-	var weight: int = unit.STATS.grade + storedUnitData.statModifiers.get("grade", 0)
+func getPreviewText(name: String, weight: int) -> String :
 	var finalText : String = name + "\nWeight "+ str(weight)
 	return finalText
 
