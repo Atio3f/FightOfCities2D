@@ -43,6 +43,8 @@ const REWARDS_DICO := {
 	"set1:TemporalSnail": {"title": "Temporal Snail", "desc": "A Snail who can rewrite reality itself.", "idReward": "set1:TemporalSnail", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:Banâne": {"title": "Banâne", "desc": "Best friend of Monkeys. Probably smarter than a lot of creatures.", "idReward": "set1:Banâne", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:Orangutan": {"title": "Orangutan", "desc": "Il n’est peut être pas très fut fut mais vous pouvez toujours compter sur lui en cas de pépins.", "idReward": "set1:Orangutan", "rewardType": RewardTypes.rewardTypes.UNIT},
+	"set1:ArcherMonkey": {"title": "Archer Monkey", "desc": "Efficace contre les unités aériennes.", "idReward": "set1:ArcherMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},
+	"set1:SniperMonkey": {"title": "Sniper Monkey", "desc": "Une portée absurde et un tir précis en font un bon sniper", "idReward": "set1:SniperMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},
 	
 	## TRINKETS
 	"set1:OrbCrate": {"title": "Orb Crate", "desc": "Some orbs on a box.", "idReward": "set1:OrbCrate", "rewardType": RewardTypes.rewardTypes.TRINKET},

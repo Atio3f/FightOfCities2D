@@ -26,8 +26,6 @@ func capaActivesUnite(uniteAssociee : AbstractUnit, player : AbstractPlayer) -> 
 		%ListeCapaDispos.add_child(boutonCapa)
 		#%ContainerCapa.add_child(labelCapa)
 		boutonCapa.placement(self, joueur, capaciteI)
-		boutonCapa.disabled = capaciteI.currentCooldown != 0
-		print( capaciteI.currentCooldown)
 		#%LabelCapacites.text += "%d" % [uniteAssociee.capacites[capacite]]
 	
 

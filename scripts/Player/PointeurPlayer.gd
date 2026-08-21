@@ -447,11 +447,6 @@ func declenchementCapaActive(case : Vector2i) -> void :
 		print("DECLENCHEMENT CAPACITE : " + capaciteActuelle.nameCapacity)
 		capaciteActuelle.onActivation(tile, targets)
 		
-		# Update uses and cooldown
-		if capaciteActuelle.usesRemaining > 0:
-			capaciteActuelle.usesRemaining -= 1
-		capaciteActuelle.currentCooldown = capaciteActuelle.cooldown
-		
 		# Reset unit state
 		_deselect_active_unit()
 		_clear_active_unit()

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bgy3a3xgdr4fj"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_gxdwy"]
+
+[resource]
+script = ExtResource("1_gxdwy")
+id = "set1:SniperMonkey"
+imgPath = "SniperMonkey"
+hpBase = 23
+drBase = 1
+mrBase = 2
+grade = 3
+potential = 3
+wisdomBase = 13
+powerBase = 11
+damageType = 0
+attackRange = 4
+atkPerTurnBase = 1
+speedBase = 1
+metadata/_custom_type_script = "uid://chjck7svelps7"

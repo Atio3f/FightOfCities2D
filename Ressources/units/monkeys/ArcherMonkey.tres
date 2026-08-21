@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bw1wx0i2fhqan"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_w82rp"]
+
+[resource]
+script = ExtResource("1_w82rp")
+id = "set1:ArcherMonkey"
+imgPath = "ArcherMonkey"
+hpBase = 29
+drBase = 1
+mrBase = 3
+grade = 1
+potential = 3
+wisdomBase = 10
+powerBase = 12
+damageType = 0
+attackRange = 3
+atkPerTurnBase = 1
+speedBase = 2
+metadata/_custom_type_script = "uid://chjck7svelps7"

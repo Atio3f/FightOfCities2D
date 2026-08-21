@@ -53,4 +53,10 @@
 	"set1:AtlasLion" : {
 		"name": "UNIT_NAME_ATLAS_LION"
 	},
+	"set1:ArcherMonkey" : {
+		"name": "UNIT_NAME_ARCHER_MONKEY"
+	},
+	"set1:SniperMonkey" : {
+		"name": "UNIT_NAME_SNIPER_MONKEY"
+	},
 }

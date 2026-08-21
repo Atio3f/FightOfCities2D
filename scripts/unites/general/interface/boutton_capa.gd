@@ -16,10 +16,8 @@ func placement(interface : Control, pointeurJ : Node2D, capaciteI : AbstractCapa
 		
 	if capaciteI.currentCooldown > 0:
 		text += " (CD: %d)" % capaciteI.currentCooldown
-		disabled = true
-	elif capaciteI.usesRemaining == 0:
-		disabled = true
-	
+		
+	disabled = not capaciteI.isUsable()
 	capaciteAssociee = capaciteI
 	menuCapaI = interface
 	pointeurJoueurI = pointeurJ
