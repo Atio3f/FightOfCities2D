@@ -8,6 +8,7 @@ const TRINKETS := {
 	"set1:MonkeySoap" : preload("uid://c4k4vrodr3acy"),
 	"set1:HRDiploma" : preload("uid://gvchaddnwdkw"),
 	"set1:GiftedRecruit" : preload("uid://28ddg4daxwy7"),
+	"set1:LocalHero" : preload("uid://dtlaebebwafdd"),
 }
 
 

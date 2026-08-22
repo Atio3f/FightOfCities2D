@@ -17,6 +17,9 @@ func display(metaUI: MetaUI) -> void :
 		%RewardList.add_child(interfaceReward)
 		index += 1
 	reward_interface_closed.connect(metaUI.onRewardInterfaceClosed)
+	
+	if not reward.isSkippable:
+		$SkipBtnMargin.hide()
 
 ##Close the interface
 func closeRewardInterface() -> void :

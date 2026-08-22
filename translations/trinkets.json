@@ -40,5 +40,11 @@
 		"name": "TRINKET_NAME_GIFTED_RECRUIT",
 		"description": "TRINKET_DESC_GIFTED_RECRUIT",
 		"preview": "TRINKET_PREVIEW_GIFTED_RECRUIT"
+	},
+	"set1:LocalHero": {
+		"id": "set1:LocalHero",
+		"name": "TRINKET_NAME_LOCAL_HERO",
+		"description": "TRINKET_DESC_LOCAL_HERO",
+		"preview": "TRINKET_PREVIEW_LOCAL_HERO"
 	}
 }

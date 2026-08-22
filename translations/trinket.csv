@@ -20,3 +20,6 @@ TRINKET_PREVIEW_HR_DIPLOMA,Recrues : + !VA ! PV Max,Recruits : + !VA ! HP M
 TRINKET_NAME_GIFTED_RECRUIT,Diplôme de RH,HR Diploma
 TRINKET_DESC_GIFTED_RECRUIT,Votre prochaine recrue gagne 2 améliorations permanentes aléatoires,Next recruit gain 2 randoms upgrades
 TRINKET_PREVIEW_GIFTED_RECRUIT,Prochaine recrue : + 2 améliorations permanentes aléatoires,Next recruit : + 2 random permanent upgrades
+TRINKET_NAME_LOCAL_HERO,Héros local,Local Hero
+TRINKET_DESC_LOCAL_HERO,"A l'obtention, gagnez +!VA! Unités Max et !VB! Poids bonus.","On Obtain, gain +!VA! Max Units and !VB! Weight."
+TRINKET_PREVIEW_LOCAL_HERO,Obtention : +!VA! Unités Max & +!VB! Poids.,Obtain : +!VA! Max Units +!VB! Weight.

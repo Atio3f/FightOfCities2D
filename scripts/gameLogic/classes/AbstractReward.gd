@@ -7,6 +7,7 @@ var rewardsAvailable: Dictionary = {}#List of items obtainable from the reward, 
 var totalWeight: int = 0	#Total weight of all items on rewardsAvailable
 var rewards: Array[String] = []	#Rewards list for the returned screen reward
 var rewardsNumber: int = 3	#Number of rewards on rewards list
+var isSkippable: bool = true
 
 # Use to set a data value, the corresponding param will be define on the recover function
 func setData(_additionalData: String) -> void :
@@ -66,7 +67,7 @@ func obtainReward(player: AbstractPlayer, number: int) -> bool :
 		RewardTypes.rewardTypes.EQUIPMENT:
 			GameManager.getMainPlayer().addCard(reward["idReward"])
 		RewardTypes.rewardTypes.TRINKET :
-			GameManager.addTrinket(GameManager.getMainPlayer(), reward["idReward"])
+			GameManager.obtainTrinket(GameManager.getMainPlayer(), reward["idReward"])
 		RewardTypes.rewardTypes.GOLD :
 			GameManager.getMainPlayer().gainGold(totalWeight)
 		RewardTypes.rewardTypes.ORB :

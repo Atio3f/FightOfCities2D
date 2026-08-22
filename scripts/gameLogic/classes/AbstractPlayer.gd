@@ -103,6 +103,12 @@ func removeUnit(unit: AbstractUnit) -> void:
 	units.erase(unit)
 	addWeight(-(unit.grade)) 
 
+##Add max units count to the player
+func addMaxUnits(amt: int) -> void:
+	maxUnits += amt
+	if $Actions :
+		$Actions.combatUI.updateInterface()
+
 ##Add max weight to the player
 func addMaxWeight(amt: int) -> void:
 	maxWeight += amt

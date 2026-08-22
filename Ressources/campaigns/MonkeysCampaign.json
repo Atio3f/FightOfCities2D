@@ -264,6 +264,80 @@
 			"rewards": [
 				"reward:trinketBoss",
 				"reward:unitMonkey",
+				"reward:localHero"
+			],
+			"nextMission": "map6"
+		},
+		"map6": {
+			"size": {
+				"width": 15,
+				"length": 20
+			},
+			"enemies": [
+				{
+					"id": "set1:AtlasLion",
+					"coords": [15, 13]
+				},
+				{
+					"id": "set1:BlueMushroom",
+					"coords": [13, 13]
+				},
+				{
+					"id": "set1:BlueMushroom",
+					"coords": [12, 11]
+				},
+			],
+			"delayedUnits": [
+				{
+					"id": "set1:BlueMushroom",
+					"coords": [4, 7],
+					"turn": 2,
+					"teamColor": 1
+				},
+				{
+					"id": "set1:BlueMushroom",
+					"coords": [6, 3],
+					"turn": 2,
+					"teamColor": 1
+				},
+				{
+					"id": "set1:BlueMushroom",
+					"coords": [16, 9],
+					"turn": 4,
+					"teamColor": 1
+				},
+				{
+					"id": "set1:BlueMushroom",
+					"coords": [7, 2],
+					"turn": 4,
+					"teamColor": 1
+				}
+			],
+			"placementTiles": [
+				[4, 9],
+				[5, 9],
+				[4, 8],
+				[13, 4],
+				[14, 5],
+				[15, 4],
+			],
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": ["monkeysCampaign:lose"]
+			},
+			"goals": [
+				{
+					"className": "SurviveTurnsGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"turnsToSurvive": 7
+				}
+			],
+			"rewards": [
+				"reward:unitMonkey",
+				"reward:bonus",
 			],
 			"nextMission": "map1"
 		},

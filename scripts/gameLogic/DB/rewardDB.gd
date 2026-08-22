@@ -7,6 +7,7 @@ const REWARDS := {
 	"reward:magicalBeast" : preload("res://Ressources/rewards/MagicalBeastReward.gd"),
 	## Trinkets reward
 	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd"),
+	"reward:localHero" : preload("res://Ressources/rewards/LocalHeroReward.gd"),
 	## Items rewards
 	"reward:basicItems": preload("res://Ressources/rewards/BasicItemsReward.gd"),
 	"reward:classicBanana": preload("res://Ressources/rewards/ClassicBananaReward.gd"),
@@ -51,6 +52,8 @@ const REWARDS_DICO := {
 	"set1:ArtOfWar": {"title": "Art Of War", "desc": "Learn the tactic's basics.", "idReward": "set1:ArtOfWar", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:PunchingBallMonkey": {"title": "Punching Ball Monkey", "desc": "Train weakest units", "idReward": "set1:PunchingBallMonkey", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:MonkeySoap": {"title": "Monkey Soap", "desc": "Clean Monkeys fur to strengthen it", "idReward": "set1:MonkeySoap", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	## BOSS TRINKETS
+	"set1:LocalHero": {"title": "Local Hero", "desc": "You've proven yourself in these battles", "idReward": "set1:LocalHero", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	
 	## ITEMS
 	"set1:Banana": {"title": "Banana", "desc": "Good to eat", "idReward": "set1:Banana", "rewardType": RewardTypes.rewardTypes.ITEM},
