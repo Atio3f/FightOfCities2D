@@ -1,0 +1,19 @@
+extends AbstractEffect
+class_name UpgradeBloodGiftEffect
+
+const idEffect = "UpgradeBloodGiftEffect"
+const img = ""
+
+
+func _init(unit: AbstractUnit):
+	super._init(idEffect, img, unit, remainingTurns, 0, true, 0, 0, 0, 0)
+	hideEffect = true
+
+
+func onEffectEnd() -> void:
+	unitAssociated.effects.erase(self)
+	self.queue_free()
+
+
+func registerEffect() -> Dictionary:
+	return {} # Pas besoin d'enregistrer les effets permanents comme ça, on les récupère avec la liste enregistrée des bonus

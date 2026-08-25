@@ -20,7 +20,7 @@
 	"UpgradeTestEffect": {
 		"stats": {
 			"potentialCost": 1,
-			"speed": 4
+			"hpMax": 9
 		},
 		"is_dynamic": false
 	},
@@ -42,6 +42,21 @@
 		"stats": {
 			"potentialCost": -1,
 			"hpMax": 2
+		},
+		"is_dynamic": false
+	},
+	"UpgradeMultitaskingEffect": {
+		"stats": {
+			"potentialCost": 3,
+			"atkPerTurn": 1
+		},
+		"is_dynamic": false
+	},
+	"UpgradeBloodGiftEffect": {
+		"stats": {
+			"potentialCost": -1,
+			"hpMax": -5,
+			"power": 1
 		},
 		"is_dynamic": false
 	},
@@ -73,10 +88,13 @@
 		},
 		"is_dynamic": false
 	},
-	"UpgradeMultitaskingEffect": {
+	"UpgradeCrossfitDudeEffect": {
 		"stats": {
-			"potentialCost": 3,
-			"atkPerTurn": 1
+			"potentialCost": 2,
+			"hpMax": 7,
+			"dr": 1,
+			"power": 4,
+			"speed": 2
 		},
 		"is_dynamic": false
 	}

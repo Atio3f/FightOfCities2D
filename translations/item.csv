@@ -35,3 +35,9 @@ ITEM_NAME_BOUQUET_OF_LIES,Bouquet mensonger,Bouquet of lies
 ITEM_DESC_BOUQUET_OF_LIES,"+5 PV, +2 MR, -2 P Convertit les dégâts infligés en poison à hauteur de !VA!% (arrondi au supérieur)","+5 HP, +2 MR, -2 P. Converts !VA!% damage dealt into poison (rounded up). Ricochet on !VB! other enemies."
 ITEM_NAME_TEMPTATION_POISON,Poison de la tentation,Temptation Poison
 ITEM_DESC_TEMPTATION_POISON,Applique Poison 6 - 1 pour chaque 4 S de la cible,Apply Poison 6 – 1 for each 4 S from target
+ITEM_NAME_FORCE_MONKEY_SWEATER,Pull FORCE MONKEY,FORCE MONKEY Sweater
+ITEM_DESC_FORCE_M0NKEY_SWEATER,+ PV. +2 P à TOUS vos Monkey,+5 HP. +2 P to ALL your Monkeys
+ITEM_NAME_DEMON_AXE,Hache démone,Demon Axe
+ITEM_DESC_DEMON_AXE,"+7 P, -3 DR","+7 P, -3 DR"
+ITEM_NAME_HARPY_BARDICHE,Bardiche Harpie,Harpy Bardiche
+ITEM_DESC_HARPY_BARDICHE,-1 P. +50% dégâts sur les unités volantes,-1 P. +50% damage on flying units

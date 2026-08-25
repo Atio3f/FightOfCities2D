@@ -29,10 +29,12 @@ const REWARDS_DICO := {
 	"UpgradeScoutEffect": {"title": "Bonus scout", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeBloodyEffect": {"title": "Bonus bloody", "desc": "Unit have developed an insatiable bloody hunger",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeHiddenPotentialEffect": {"title": "Bonus hidden potential", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
-	"UpgradeTestEffect": {"title": "Bonus test", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeBloodGiftEffect": {"title": "Bonus potential in exchange of life", "desc": "+1 Potential, -5 HP, +1 P",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeTestEffect": {"title": "Bonus test", "desc": "+9 HP",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeSneakyEffect": {"title": "Bonus sneaky", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeGlassCanonEffect": {"title": "Bonus Glass Canon", "desc": "Less hp for more damage. What a great deal !",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeMultitaskingEffect": {"title": "Bonus Multitasking", "desc": "Attack one more time each turn",  "rewardType": RewardTypes.rewardTypes.BONUS},
+	"UpgradeCrossfitDudeEffect": {"title": "Bonus Crossfit training", "desc": "Takes time to develop a hybrid body",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	
 	## UNITS
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT},
@@ -71,4 +73,7 @@ const REWARDS_DICO := {
 	"set1:WarAxe": {"title": "War Axe", "desc": "Power", "idReward": "set1:WarAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 	"set1:WoodlandDoll": {"title": "Woodland Doll", "desc": "Reflects damage", "idReward": "set1:WoodlandDoll", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 	"set1:BouquetOfLies": {"title": "Bouquet of Lies", "desc": "A bouquet of flowers, roses bounce off enemies", "idReward": "set1:BouquetOfLies", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:ForceMonkeySweater": {"title": "FORCE MONKEY Sweater", "desc": "Boost all Monkeys when equip", "idReward": "set1:ForceMonkeySweater", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:DemonAxe": {"title": "Demon Axe", "desc": "Tradeoff defense for more damage", "idReward": "set1:DemonAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
+	"set1:HarpyBardiche": {"title": "Harpy Bardiche", "desc": "Kill Kill Kill that flying thing", "idReward": "set1:HarpyBardiche", "rewardType": RewardTypes.rewardTypes.EQUIPMENT},
 }

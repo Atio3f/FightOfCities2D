@@ -101,4 +101,22 @@
 		"description": "ITEM_DESC_BOUQUET_OF_LIES",
 		"img": "res://assets/sprites/items/WarAxe.png"
 	},
+	"set1:ForceMonkeySweater": {
+		"id": "set1:ForceMonkeySweater",
+		"name": "ITEM_NAME_FORCE_MONKEY_SWEATER",
+		"description": "ITEM_DESC_FORCE_M0NKEY_SWEATER",
+		"img": "res://assets/sprites/items/ForceMonkeySweater.png"
+	},
+	"set1:DemonAxe": {
+		"id": "set1:DemonAxe",
+		"name": "ITEM_NAME_DEMON_AXE",
+		"description": "ITEM_DESC_DEMON_AXE",
+		"img": "res://assets/sprites/items/DemonAxe.png"
+	},
+	"set1:HarpyBardiche": {
+		"id": "set1:HarpyBardiche",
+		"name": "ITEM_NAME_HARPY_BARDICHE",
+		"description": "ITEM_DESC_HARPY_BARDICHE",
+		"img": "res://assets/sprites/items/HarpyBardiche.png"
+	},
 }

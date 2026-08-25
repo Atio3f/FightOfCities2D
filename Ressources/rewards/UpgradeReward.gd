@@ -12,14 +12,16 @@ func setData(_additionalData: String = "") -> void :
 	# et leur RarityData
 	rewardsAvailable = {
 		"UpgradeAgilityEffect": Rarities.BONUS_COMMON,
-		"UpgradePromotionEffect": Rarities.BONUS_COMMON,
+		"UpgradeTestEffect": Rarities.BONUS_COMMON,
 		"UpgradeScoutEffect": Rarities.BONUS_COMMON,
 		"UpgradeBloodyEffect": Rarities.BONUS_COMMON,
 		"UpgradeGlassCanonEffect": Rarities.BONUS_COMMON,
+		"UpgradeCrossfitDudeEffect": Rarities.BONUS_COMMON,
 		"UpgradeSneakyEffect": Rarities.BONUS_UNCOMMON,
+		"UpgradePromotionEffect": Rarities.BONUS_UNCOMMON, # C'était commun à la base jsp faudra voir
 		"UpgradeHiddenPotentialEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeMultitaskingEffect": Rarities.BONUS_UNCOMMON,
-		"UpgradeTestEffect": Rarities.BONUS_COMMON
+		"UpgradeBloodGiftEffect": Rarities.BONUS_UNCOMMON,
 	}
 	
 	# Calc probabilities
