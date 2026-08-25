@@ -394,6 +394,7 @@ func removeSelf(checkWin: bool) -> void:
 	if self.equipment != null && player.isGamePlayer:
 		self.equipment.onUnequip()
 		player.hand.equipmentsStock.append(self.equipment.getId())
+		self.equipment.queue_free()
 	player.removeUnit(self)
 	tile.unitOn = null	#Free the tile
 	if TurnManager.turn != 0 && checkWin: GameManager.checkWin()	#Check if win/lose after removing the unit
@@ -407,6 +408,13 @@ func placeOnInventory() -> void:
 	var storedData: StoredUnit = StoredUnit.createFromUnit(self)
 	# On l'envoie à la main du joueur
 	player.addUnitCard(storedData)
+
+	# Avoid duplication of equipment if unit survives
+	if self.equipment != null:
+		var eq = self.equipment
+		self.equipment = null
+		eq.queue_free()
+		
 	# On se supprime du terrain (sans checkWin car c'est une fin de map normale)
 	removeSelf(false)
 
@@ -513,6 +521,7 @@ func unequipEquipment() -> void:
 		self.equipment.onUnequip()
 		if player != null and player.hand != null:
 			player.hand.equipmentsStock.append(self.equipment.getId())
+		self.equipment.queue_free()
 		self.equipment = null
 		
 	if equipmentSlot != null:
