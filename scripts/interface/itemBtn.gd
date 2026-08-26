@@ -8,7 +8,7 @@ var unitStocked: AbstractUnit # Stock unit when inventory is open from an unit
 
 ## Display item on inventory
 # inventoryInterface is the interface where is displayed this item Btn
-func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Control, unit: AbstractUnit = null) -> void :
+func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Control, unit: AbstractUnit = null, equippedUnitImgPath: String = "") -> void :
 	%PreviewItem.visible = false
 	%NameItem.visible = false
 	associatedId = itemId
@@ -21,6 +21,12 @@ func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Con
 		%ItemBtn.icon = load(itemData["img"])
 	else :
 		%ItemBtn.icon = load("res://assets/sprites/items/BrambleGauntlet.png")
+		
+	if equippedUnitImgPath != "":
+		%EquippedUnitIcon.texture = load(equippedUnitImgPath + "_p.png")
+		%EquippedUnitIcon.visible = true
+	else:
+		%EquippedUnitIcon.visible = false
 	
 	if(!ItemDb.ITEMS.has(itemId)) :
 		%ItemBtn.disabled = true

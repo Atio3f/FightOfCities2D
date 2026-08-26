@@ -218,6 +218,43 @@ func equipEquipmentToUnit(idEquipment: String, unit: AbstractUnit) -> void:
 		else:
 			equipment.queue_free()
 
+## Transfer an equipment from a source (active unit or stored unit) to a target unit.
+## If unit already has an equipment, it is swapped to the source.
+## Used when equipping/unequipping equipment in unitEquipmentsInterface
+func transferEquipment(idEquipment: String, targetUnit: AbstractUnit, sourceActiveUnit: AbstractUnit = null, sourceStoredUnit: StoredUnit = null) -> void:
+	# Check if target can equip the new equipment
+	if not ItemDb.ITEMS.has(idEquipment): return
+	var tempEq: AbstractEquipment = ItemDb.ITEMS[idEquipment].new()
+	var canEquip: bool = targetUnit.canEquipEquipment(tempEq)
+	tempEq.queue_free()
+	if not canEquip: return
+	
+	var targetOldEqId: String = ""
+	if targetUnit.equipment != null:
+		targetOldEqId = targetUnit.equipment.getId()
+		
+	# Remove from source and put in stock
+	if sourceActiveUnit != null:
+		sourceActiveUnit.unequipEquipment()
+	elif sourceStoredUnit != null:
+		for i in range(sourceStoredUnit.equipmentsData.size()):
+			if sourceStoredUnit.equipmentsData[i].get("id") == idEquipment:
+				sourceStoredUnit.equipmentsData.remove_at(i)
+				hand.equipmentsStock.append(idEquipment)
+				break
+				
+	# Equip on target (put target's old equipment into stock)
+	equipEquipmentToUnit(idEquipment, targetUnit)
+	
+	# If target had an equipment, give it to the source
+	if targetOldEqId != "":
+		if sourceActiveUnit != null:
+			equipEquipmentToUnit(targetOldEqId, sourceActiveUnit)
+		elif sourceStoredUnit != null:
+			if hand.equipmentsStock.has(targetOldEqId):
+				hand.equipmentsStock.erase(targetOldEqId)
+				sourceStoredUnit.equipmentsData.append({"id": targetOldEqId})
+
 ## Add the trinket to the interface
 func setTrinket(trinket: AbstractTrinket) -> void :
 	if isGamePlayer :

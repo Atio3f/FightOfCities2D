@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_3kcx6")
 id = "set1:AtlasLion"
-imgPath = "BlueMushroom"
+imgPath = "AtlasLion"
 hpBase = 48
 drBase = 4
 mrBase = 2

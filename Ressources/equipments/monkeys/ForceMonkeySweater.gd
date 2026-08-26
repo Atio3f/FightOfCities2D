@@ -7,7 +7,7 @@ const img = ""
 var _equipped_effect: MonkeyEffect = null # Serves to remove the effect when unequipping
 
 func getStatModifiers() -> Dictionary:
-	return {"pvMax": 5}
+	return {"hpMax": 5}
 
 func canBeEquippedBy(unit: AbstractUnit) -> bool:
 	return unit.tags.has(Tags.tags.MONKEY)

@@ -208,8 +208,12 @@ static func useItemOnUnits(itemId: String, player: AbstractPlayer, units: Array[
 	player.useCard(itemId, units)
 
 ## Equip an equipment on a unit
-static func equipEquipmentOnUnit(equipmentId: String, player: AbstractPlayer, unit: AbstractUnit) -> void:
-	player.equipEquipmentToUnit(equipmentId, unit)
+## Used when equipping/unequipping equipment in unitEquipmentsInterface
+static func equipEquipmentOnUnit(equipmentId: String, player: AbstractPlayer, unit: AbstractUnit, sourceActiveUnit: AbstractUnit = null, sourceStoredUnit: StoredUnit = null) -> void:
+	if sourceActiveUnit != null or sourceStoredUnit != null:
+		player.transferEquipment(equipmentId, unit, sourceActiveUnit, sourceStoredUnit)
+	else:
+		player.equipEquipmentToUnit(equipmentId, unit)
 
 static func generateMap(width: int, length: int) -> void :
 	MapManager.initMap( width, length)

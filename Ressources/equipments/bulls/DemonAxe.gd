@@ -1,7 +1,7 @@
 extends AbstractEquipment
 class_name DemonAxe
 
-const idItem = "set1:WarAxe"
+const idItem = "set1:DemonAxe"
 const img = ""
 
 func _init():
