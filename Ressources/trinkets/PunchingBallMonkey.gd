@@ -4,7 +4,7 @@ extends AbstractTrinket
 # All units with less than ${POWER_THRESHOLD} power base gain ${POWER_GAIN} Power
 # Le tout dernier punching ball inventé par les Monkey pour renforcer leurs membres les plus faibles
 const idItem = "set1:PunchingBallMonkey"
-const img = "res://assets/sprites/trinkets/ArtOfWar"
+const img = "res://assets/sprites/trinkets/PunchingBallMonkey"
 const POWER_GAIN = 3
 const POWER_THRESHOLD = 8 # Max power base to gain buff from this
 

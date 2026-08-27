@@ -51,9 +51,13 @@ const REWARDS_DICO := {
 	
 	## TRINKETS
 	"set1:OrbCrate": {"title": "Orb Crate", "desc": "Some orbs on a box.", "idReward": "set1:OrbCrate", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	"set1:FairyBenediction": {"title": "Fairy Benediction", "desc": "Heal 2 random wounded units every turn", "idReward": "set1:FairyBenediction", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:ArtOfWar": {"title": "Art Of War", "desc": "Learn the tactic's basics.", "idReward": "set1:ArtOfWar", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:PunchingBallMonkey": {"title": "Punching Ball Monkey", "desc": "Train weakest units", "idReward": "set1:PunchingBallMonkey", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	"set1:MonkeySoap": {"title": "Monkey Soap", "desc": "Clean Monkeys fur to strengthen it", "idReward": "set1:MonkeySoap", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	"set1:BananaRecipes": {"title": "Banana Recipes", "desc": "Give some bananas and increases heal value on bananas", "idReward": "set1:BananaRecipes", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	"set1:HRDiploma": {"title": "HR Diploma", "desc": "New recruits should be better now. Right ?", "idReward": "set1:HRDiploma", "rewardType": RewardTypes.rewardTypes.TRINKET},
+	"set1:WarBanner": {"title": "War Banner", "desc": "Rally your units with this banner. Make them a little bit stronger.", "idReward": "set1:WarBanner", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	## BOSS TRINKETS
 	"set1:LocalHero": {"title": "Local Hero", "desc": "You've proven yourself in these battles", "idReward": "set1:LocalHero", "rewardType": RewardTypes.rewardTypes.TRINKET},
 	

@@ -46,5 +46,17 @@
 		"name": "TRINKET_NAME_LOCAL_HERO",
 		"description": "TRINKET_DESC_LOCAL_HERO",
 		"preview": "TRINKET_PREVIEW_LOCAL_HERO"
-	}
+	},
+	"set1:WarBanner": {
+		"id": "set1:WarBanner",
+		"name": "TRINKET_NAME_WAR_BANNER",
+		"description": "TRINKET_DESC_WAR_BANNER",
+		"preview": "TRINKET_PREVIEW_WAR_BANNER"
+	},
+	"set1:FairyBenediction": {
+		"id": "set1:FairyBenediction",
+		"name": "TRINKET_NAME_FAIRY_BENEDICTION",
+		"description": "TRINKET_DESC_FAIRY_BENEDICTION",
+		"preview": "TRINKET_PREVIEW_FAIRY_BENEDICTION"
+	},
 }

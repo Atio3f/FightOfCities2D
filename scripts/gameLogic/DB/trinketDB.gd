@@ -2,6 +2,7 @@ extends Node
 
 const TRINKETS := {
 	"set1:OrbCrate" : preload("uid://0ssld8jniod5"),
+	"set1:FairyBenediction" : preload("uid://daitmkbjk08v5"),
 	"set1:ArtOfWar" : preload("uid://cvqc2xp146dk5"),
 	"set1:BananaRecipes" : preload("uid://buo20ymbvg7g0"),
 	"set1:PunchingBallMonkey" : preload("uid://dvqdqovu87md7"),
@@ -9,6 +10,7 @@ const TRINKETS := {
 	"set1:HRDiploma" : preload("uid://gvchaddnwdkw"),
 	"set1:GiftedRecruit" : preload("uid://28ddg4daxwy7"),
 	"set1:LocalHero" : preload("uid://dtlaebebwafdd"),
+	"set1:WarBanner" : preload("uid://b33fvcogcajoc"),
 }
 
 

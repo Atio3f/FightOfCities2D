@@ -5,7 +5,7 @@
 			"hpMax": 10,
 			"dr": 2,
 			"mr": 1,
-			"power": 1,
+			"power": 2,
 			"grade": 1
 		},
 		"is_dynamic": false
