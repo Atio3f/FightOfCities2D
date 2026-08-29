@@ -28,6 +28,7 @@ offset_right = 480.0
 offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_dk80o")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
@@ -72,7 +73,7 @@ anchor_left = -0.00195313
 anchor_right = -0.00195313
 offset_right = 512.0
 offset_bottom = 512.0
-mouse_filter = 1
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ConteneurMenus" type="FlowContainer" parent="PossibilityManager"]

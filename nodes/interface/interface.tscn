@@ -115,51 +115,45 @@ anchor_right = 0.667969
 anchor_bottom = 0.761364
 grow_horizontal = 2
 grow_vertical = 2
-text = "Actions 3/3"
+text = "A vous de jouer"
 label_settings = SubResource("LabelSettings_d73ns")
 
-[node name="bouttonFinTour" type="TextureRect" parent="."]
+[node name="bouttonFinTour" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.828125
+anchor_left = 0.810764
 anchor_top = 0.882716
 anchor_right = 1.0
 anchor_bottom = 0.942901
 grow_horizontal = 0
-mouse_filter = 0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureBackground" type="TextureRect" parent="bouttonFinTour"]
+layout_mode = 2
 texture = ExtResource("1_btko8")
 expand_mode = 5
-metadata/_edit_use_anchors_ = true
 
 [node name="ButtonFinTour" type="Button" parent="bouttonFinTour"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
 action_mode = 0
 
-[node name="LabelEndTurn" type="Label" parent="bouttonFinTour/ButtonFinTour"]
+[node name="MarginContainer" type="MarginContainer" parent="bouttonFinTour"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="LabelEndTurn" type="Label" parent="bouttonFinTour/MarginContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -89.5
-offset_top = -19.5
-offset_right = 89.5
-offset_bottom = 19.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "FIN DU TOUR"
 label_settings = SubResource("LabelSettings_1x52l")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GoalsPanel" type="GridContainer" parent="."]
 unique_name_in_owner = true

@@ -21,7 +21,7 @@ func _init(campaignName: String) -> void:
 
 func setupCampaign(difficulty: int, campaignFile: String) -> void :
 	self.difficulty = difficulty
-	self.nextMission = "map1"
+	self.nextMission = "map7"
 	self.campaignFile = campaignFile
 	#Get all informations from the campaign on its file
 	var file : FileAccess = FileAccess.open(self.campaignFile, FileAccess.READ)
@@ -48,7 +48,7 @@ func startNextMission() -> void :
 		var dataMap : Dictionary = dataMaps.get(nextMission)
 		progress = nextMission
 		## Generate map
-		GameManager.generateMap(dataMap["size"]["width"], dataMap["size"]["length"])
+		GameManager.generateMap(dataMap["size"]["width"], dataMap["size"]["length"], dataMap.get("terrainGen", "genMapDefault"))
 		## Reset TurnManager
 		TurnManager.reset()
 		## Add opponents and allies players

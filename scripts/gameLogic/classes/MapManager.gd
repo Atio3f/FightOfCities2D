@@ -6,10 +6,15 @@ static var tiles: Array = []	#All tiles stocked
 static var activeTiles: Dictionary = {}	#Tiles actually on the visible map
 static var length: int	#x
 static var width: int	#y
-#clé nom case, valeur =  poids de la case
-const genMapDefault = {"set1:ForestTile": 100, "set1:PlainTile": 83, "set1:SwampTile": 11, "set1:LakeTile": 25, "set1:DesertTile": 5, "set1:MountainTile": 19, "set1:SakuraForestTile": 7, "set1:DeepWaterTile": 2, "set1:TropicalForestTile": 2}
-#J'ai pas encore fait les autres cases
-const genMapTEST = {"set1:ForestTile": 100, "set1:LakeTile": 25}
+
+# const genMapAll = {"set1:ForestTile": 100, "set1:PlainTile": 83, "set1:SwampTile": 11, "set1:LakeTile": 25, "set1:DesertTile": 5, "set1:MountainTile": 19, "set1:SakuraForestTile": 7, "set1:DeepWaterTile": 2, "set1:TropicalForestTile": 2}
+# Configurations de génération de la map
+const MAP_CONFIGS: Dictionary = {
+	"genMapDefault": preload("res://Ressources/terrain/genMapDefault.tres"),
+	"genMapMountains": preload("res://Ressources/terrain/genMapMountains.tres"),
+	"genMapTEST": preload("res://Ressources/terrain/genMapTEST.tres")
+}
+
 static var sceneTerrain: PackedScene = preload("res://nodes/tilemaps/terrain512x512.tscn")
 static var instanceTerrain
 static var terrain : Terrain	#We get the script
@@ -42,21 +47,21 @@ static func resetMap() -> void :
 	if terrain :
 		terrain.resetTerrain()
 
-#pê rajouter un param mapType dans le futur pour avoir différentes générations de
-#map pour le moment j'en met une par défaut ici 
-static func initMap(_width: int, _length: int) -> void :
+# mapConfig decide of which type of tiles is generated
+static func initMap(_width: int, _length: int, mapConfig: String = "genMapDefault") -> void :
 	resetMap() # Reset actual map generation and all tiles to clean up terrain
 	width = _width
 	length = _length
+	var mapGenerationConfig: MapGenerationConfig = MAP_CONFIGS[mapConfig]
 	var genMaxValue: int = 0
-	for weight: int in genMapDefault.values() :
+	for weight: int in mapGenerationConfig.tileWeights.values() :
 		genMaxValue += weight
 	var i : int = 0
 	var j : int = 0
 	var tile: AbstractTile
 	while i < _length :
 		while j < _width :
-			tile = pickTile(genMaxValue, i, j, genMapDefault)
+			tile = pickTile(genMaxValue, i, j, mapGenerationConfig.tileWeights)
 			placeTile(tile, Vector2i(i, j))
 			j += 1
 		i += 1

@@ -28,7 +28,6 @@ func updateInterface() -> void:
 	else :
 		%MaxUnitLabel.visible = false
 		%LabelEndTurn.text = tr("UI_BUTTON_END_TURN")
-		setActionsRest(3)
 		%LabelCouleurTour.text = tr("UI_LABEL_TURN_NUMBER") % [TurnManager.turn]
 		if TurnManager.actualTurn() == mainPlayer.team :
 			%LabelActionsRestantes.text = tr("UI_LABEL_REMAINING_ACTIONS")
@@ -36,10 +35,6 @@ func updateInterface() -> void:
 		else :
 			%LabelActionsRestantes.text = tr("UI_LABEL_WHICH_PLAYER_TURN") % [str(TurnManager.actualTurn())]
 			bouttonFinTour.disabled = true
-
-func setActionsRest(actions : int) -> void:
-	labelActionsRest.text = "Actions %s/3" % [str(actions)]
-	actionsRest = actions
 
 ## Add goal on interface
 func addGoalInterface(goal: AbstractGoal) -> void :
@@ -96,7 +91,6 @@ func _on_mouse_exited() -> void:
 
 # Fonction pour réaliser la fin du tour
 func _on_button_fin_tour_pressed() -> void:
-	setActionsRest(3)
 	bouttonFinTour.disabled = true
 	TurnManager.nextTurn()
 	updateInterface()

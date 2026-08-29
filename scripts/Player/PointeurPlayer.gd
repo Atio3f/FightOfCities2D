@@ -79,33 +79,6 @@ func _reinitialize() -> void:
 	#return warning
 
 
-func _input(event) -> void:
-	#Inutile gérer par Movement maintenant
-	if event is InputEventMouseMotion:
-		#var newPosition : Vector2i =  Vector2i(scene.get_global_mouse_position())/cellSize
-		#
-		##smoothyPosition()#Fonction qui centre les coords du curseur au centre d'une case
-		#caseSelec.global_position = getMiddleMouseCell()					#On place caseSelec sur la case où se trouve la souris
-		#if newPosition == positionSouris : 
-			#positionSouris = newPosition			#On récupère la position de la souris par rapport au grillage et on divise par la taille des cellules
-		##print(positionSouris)
-		#print(positionSouris)
-		#test = get_tile_data_at(positionSouris)				#Marche beaucoup mieux
-		#if(test) :
-			#print(test.get_custom_data("vitesseRequise"))
-		pass
-	else:
-		if event.is_action_pressed("rightclick"):
-			cursorPressed(positionSouris, "rightClick")
-		else :
-			if aSelectionne : 
-				if event.is_action_pressed("leftClick"):
-					cursorPressed(positionSouris, "leftClick")
-			else : 
-				if event.is_action_pressed("leftClick"):
-					cursorPressed(positionSouris, "leftClick")
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if Selection :	#On ne déselectionne l'unité uniquement si il y en a une de sélectionner pour éviter des problèmes
@@ -114,6 +87,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("show_danger_zone") and not event.echo:
 		toggleDangerZone()
+		
+	if event.is_action_pressed("rightclick"):
+		cursorPressed(positionSouris, "rightClick")
+	elif event.is_action_pressed("leftClick"):
+		cursorPressed(positionSouris, "leftClick")
 	
 
 #Permet de centrer les coords du curseur au centre d'une case NE SERVIRA PROBABLEMENT PLUS

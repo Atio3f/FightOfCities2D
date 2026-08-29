@@ -59,4 +59,7 @@
 	"set1:SniperMonkey" : {
 		"name": "UNIT_NAME_SNIPER_MONKEY"
 	},
+	"set1:UnyieldingBear" : {
+		"name": "UNIT_NAME_UNYIELDING_BEAR"
+	},
 }

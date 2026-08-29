@@ -215,8 +215,8 @@ static func equipEquipmentOnUnit(equipmentId: String, player: AbstractPlayer, un
 	else:
 		player.equipEquipmentToUnit(equipmentId, unit)
 
-static func generateMap(width: int, length: int) -> void :
-	MapManager.initMap( width, length)
+static func generateMap(width: int, length: int, mapConfig: String) -> void :
+	MapManager.initMap( width, length, mapConfig)
 	if getMainPlayer() != null : getMainPlayer().fixCameraLimit(length, width)	#Update camera limit
 	return
 

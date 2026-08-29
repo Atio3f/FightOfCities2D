@@ -33,6 +33,7 @@ rotates = false
 loop = false
 
 [node name="InterfaceUnite" parent="UnitElements" instance=ExtResource("6_ujj46")]
+z_index = 100
 z_as_relative = false
 anchors_preset = 8
 anchor_left = 0.5

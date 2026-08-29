@@ -26,7 +26,6 @@ func _input(_event) -> void:
 			#nvlUnite.vitesseRestante = nvlUnite.V	#On initialise la vitesseRestante après avoir placer l'unité pour éviter que sa valeur soit rechangé entre temps. Normalement sa vitesseRestante doit être de 0 avec les règles de base
 			#
 			##print(pointeurSouris.get_tile_data_at(pointeurSouris.positionSouris))
-			#combatUI.setActionsRest(combatUI.actionsRest - 1)
 			##print(combatUI.actionsRest)
 		#print("POINTEUR COORDS" + str(pointeurSouris.positionSouris) + " RESULT : "+ str(MapManager.getTileAt(pointeurSouris.positionSouris)))
 		var actualTile: AbstractTile = MapManager.getTileAt(pointeurSouris.positionSouris)

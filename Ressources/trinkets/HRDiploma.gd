@@ -5,7 +5,7 @@ extends AbstractTrinket
 # Un diplôme avec des cartes de divination pour mieux choisir ses recrues
 const idItem = "set1:HRDiploma"
 const img = "res://assets/sprites/trinkets/ArtOfWar"
-const HP_GAIN = 6
+const HP_GAIN = 7
 
 func _init(playerAssociated: AbstractPlayer) -> void:
 	super.initialize(idItem, img, Rarities.TRINKET_COMMON, playerAssociated, HP_GAIN)

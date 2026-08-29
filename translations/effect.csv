@@ -52,4 +52,8 @@ EFFECT_DESCRIPTION_CADO,Inflige +!VA!% dégâts aux unités volantes,Deal +!VA!
 EFFECT_NAME_STARVING_SHADOW,Âme affamée,Hungry soul
 EFFECT_DESCRIPTION_STARVING_SHADOW,"Au début de votre tour, perd !VA! PV Max. Kill: Récupère les PV Max perdus","At the start of your turn, lose !VA! Max HP. Kill : Recover Max HP lost"
 EFFECT_NAME_ATLAS_LION,Roi de la savane,Savana King
-EFFECT_DESCRIPTION_ATLAS,+!VA!% de dégâts infligés par rang de plus par rapport à l'unité attaquée,+!VA!% damage dealed per rank compared to the targeted unit
+EFFECT_DESCRIPTION_ATLAS_LION,+!VA!% de dégâts infligés par rang de plus par rapport à l'unité attaquée,+!VA!% damage dealed per rank compared to the targeted unit
+EFFECT_NAME_DR_PLUS,Bonus de réduction de dégâts,Damage Reduction Bonus
+EFFECT_DESCRIPTION_SPEED_PLUS,+!VA! DR,+!VA! DR
+EFFECT_NAME_UNYIELDING_BEAR,Inébranlable,Steadfast
+EFFECT_DESCRIPTION_UNYIELDING_BEAR,+!VA! DR ce tour à chaque attaque subie,+!VA! DR this turn when attacked
