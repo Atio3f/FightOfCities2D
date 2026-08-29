@@ -109,6 +109,8 @@ func execute_action(action: Dictionary) -> void:
 	var destination: Vector2i = action.move_to
 	var tile_dest = MapManager.getTileAt(destination)
 	
+	var did_something: bool = false
+	
 	# Move if needed
 	if unit.tile.getCoords() != destination:
 		var walkable = GridUtils.get_walkable_cells(unit)
@@ -118,6 +120,7 @@ func execute_action(action: Dictionary) -> void:
 		unit.walk_along(path)
 		unit.deplacement(tile_dest)
 		unit.speedRemaining -= walkable[destination]
+		did_something = true
 		
 		# Wait end of movement animation
 		if unit.has_signal("signalFinMouvement"):
@@ -127,9 +130,15 @@ func execute_action(action: Dictionary) -> void:
 			
 	# Attaque
 	if action.type == "ATTACK" and action.target != null and unit.atkRemaining > 0:
-		GameManager.fight(unit, action.target)
-		# Visual feedback
-		#await get_tree().create_timer(0.5).timeout
+		if is_instance_valid(action.target) and not action.target.isDead:
+			GameManager.fight(unit, action.target)
+			did_something = true
+			# Visual feedback
+			#await get_tree().create_timer(0.5).timeout
+		
+	# If the unit performed an action and can still act, put it back at the front of the queue
+	if did_something and is_instance_valid(unit) and not unit.isDead and (unit.atkRemaining > 0 or unit.speedRemaining > 0):
+		units_to_process.push_front(unit)
 		
 	# Go to next unit
 	process_next_unit()
