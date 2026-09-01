@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MapGenerationConfig" load_steps=2 format=3 uid="uid://bm0si7jvky1o6"]
+
+[ext_resource type="Script" uid="uid://cwll6akt6gjwv" path="res://scripts/gameLogic/classes/MapGenerationConfig.gd" id="1_iocgr"]
+
+[resource]
+script = ExtResource("1_iocgr")
+tileWeights = {
+"set1:ForestTile": 10,
+"set1:LakeTile": 15,
+"set1:MountainTile": 100
+}

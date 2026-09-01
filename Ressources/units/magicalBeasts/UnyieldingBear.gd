@@ -8,5 +8,5 @@ static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.tags.append(Tags.tags.MAGICAL_BEAST)
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]
 	unit.actualMovementTypes = MovementTypes.movementTypes.WALK
-	var effect: AbstractEffect = UnyieldingBearEffect.new(unit, -1, 1)
+	var effect: AbstractEffect = UnyieldingBearEffect.new(unit, -1, 2)
 	unit.effects.append(effect)

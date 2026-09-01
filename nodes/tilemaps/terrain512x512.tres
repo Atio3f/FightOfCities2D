@@ -35,6 +35,10 @@ texture_region_size = Vector2i(512, 512)
 3:1/0/custom_data_1 = "desert"
 4:1/0 = 0
 4:1/0/custom_data_0 = 5
+4:1/0/custom_data_1 = "tropicalForest"
+5:0/0 = 0
+5:0/0/custom_data_0 = 2
+5:0/0/custom_data_1 = "volcanicRocks"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwrqn"]
 texture = ExtResource("2_bnefq")

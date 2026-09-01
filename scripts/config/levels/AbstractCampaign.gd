@@ -21,7 +21,7 @@ func _init(campaignName: String) -> void:
 
 func setupCampaign(difficulty: int, campaignFile: String) -> void :
 	self.difficulty = difficulty
-	self.nextMission = "map7"
+	self.nextMission = "map1"
 	self.campaignFile = campaignFile
 	#Get all informations from the campaign on its file
 	var file : FileAccess = FileAccess.open(self.campaignFile, FileAccess.READ)
