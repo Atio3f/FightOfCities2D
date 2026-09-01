@@ -97,3 +97,8 @@ func _on_button_fin_tour_pressed() -> void:
 	if mainPlayer.playerPointer.Selection :
 		mainPlayer.playerPointer._deselect_active_unit()
 	mainPlayer.playerPointer._clear_active_unit()
+
+func _on_help_button_pressed() -> void:
+	var help_menu = $HelpMenu
+	if help_menu:
+		help_menu.visible = not help_menu.visible

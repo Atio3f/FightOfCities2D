@@ -1,0 +1,159 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq5b1helpmenu"]
+
+[ext_resource type="Script" uid="uid://t2iwmkutb2ov" path="res://scripts/interface/menu_aide.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b4cgkquia40u" path="res://assets/interface/unite/UIuniteInfosStats(512x512).png" id="2_tex"]
+
+[node name="HelpMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.117647, 0.117647, 0.941176)
+
+[node name="ListContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBox" type="VBoxContainer" parent="ListContainer"]
+layout_mode = 2
+
+[node name="HBoxTop" type="HBoxContainer" parent="ListContainer/VBox"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="ListContainer/VBox/HBoxTop"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Fermer"
+
+[node name="ListTitle" type="Label" parent="ListContainer/VBox/HBoxTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Aides et Tutoriels"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="ListContainer/VBox/HBoxTop"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="ListContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HelpList" type="VBoxContainer" parent="ListContainer/VBox/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailsContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBox" type="VBoxContainer" parent="DetailsContainer"]
+layout_mode = 2
+
+[node name="HBoxTop" type="HBoxContainer" parent="DetailsContainer/VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="DetailsContainer/VBox/HBoxTop"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Retour"
+
+[node name="HelpTitle" type="Label" parent="DetailsContainer/VBox/HBoxTop"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Titre de l'aide"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="DetailsContainer/VBox/HBoxTop"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DetailsContainer/VBox"]
+layout_mode = 2
+
+[node name="HelpIcon" type="TextureRect" parent="DetailsContainer/VBox/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("2_tex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HelpDescription" type="RichTextLabel" parent="DetailsContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description détaillée de l'aide."
+fit_content = true
+
+[node name="HBoxBottom" type="HBoxContainer" parent="DetailsContainer/VBox"]
+layout_mode = 2
+
+[node name="PreviousButton" type="Button" parent="DetailsContainer/VBox/HBoxBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "< Précédent"
+
+[node name="Spacer1" type="Control" parent="DetailsContainer/VBox/HBoxBottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PageLabel" type="Label" parent="DetailsContainer/VBox/HBoxBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "1/1"
+horizontal_alignment = 2
+
+[node name="Spacer2" type="Control" parent="DetailsContainer/VBox/HBoxBottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="Button" parent="DetailsContainer/VBox/HBoxBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Suivant >"
+
+[connection signal="pressed" from="ListContainer/VBox/HBoxTop/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="DetailsContainer/VBox/HBoxTop/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="DetailsContainer/VBox/HBoxBottom/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="DetailsContainer/VBox/HBoxBottom/NextButton" to="." method="_on_next_button_pressed"]

@@ -1,6 +1,8 @@
 extends Node
 #S'occupe de tout charger et d'enregistrer les joueurs dans la partie
 
+signal unlock_help(help_id: String)
+
 var effectsStrings := {}
 var parameters: ParamPlayer = preload("res://Ressources/old/player/joueur1/paramJoueur1.tres")
 var unitOn : Node2D
