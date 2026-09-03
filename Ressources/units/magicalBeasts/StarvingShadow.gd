@@ -9,4 +9,4 @@ static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]
 	unit.actualMovementTypes = MovementTypes.movementTypes.WALK
 	var effect: AbstractEffect = StarvingShadowEffect.new(unit, -1, 4)
-	unit.effects.append(effect)
+	unit.addEffect(effect)

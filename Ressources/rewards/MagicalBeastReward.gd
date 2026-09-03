@@ -5,6 +5,7 @@ class_name MagicalBeastReward
 func setData(_additionalData: String) -> void :
 	rewardsAvailable = {
 		"set1:BlueMushroom": Rarities.UNIT_COMMON, "set1:UnyieldingBear": Rarities.UNIT_COMMON,
+		"set1:Fripouille": Rarities.UNIT_COMMON,
 		"set1:Banâne": Rarities.UNIT_UNCOMMON, 
 		"set1:TemporalSnail": Rarities.UNIT_LEGENDARY
 		}

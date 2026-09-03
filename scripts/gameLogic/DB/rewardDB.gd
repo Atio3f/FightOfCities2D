@@ -49,6 +49,7 @@ const REWARDS_DICO := {
 	"set1:ArcherMonkey": {"title": "Archer Monkey", "desc": "Efficace contre les unités aériennes.", "idReward": "set1:ArcherMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:SniperMonkey": {"title": "Sniper Monkey", "desc": "Une portée absurde et un tir précis en font un bon sniper", "idReward": "set1:SniperMonkey", "rewardType": RewardTypes.rewardTypes.UNIT},
 	"set1:UnyieldingBear": {"title": "Unyielding Bear", "desc": "Les attaques subies le renforcent", "idReward": "set1:UnyieldingBear", "rewardType": RewardTypes.rewardTypes.UNIT},
+	"set1:Fripouille": {"title": "Fripouille", "desc": "Démarre le combat avec des bonus de stat", "idReward": "set1:Fripouille", "rewardType": RewardTypes.rewardTypes.UNIT},
 	
 	## TRINKETS
 	"set1:OrbCrate": {"title": "Orb Crate", "desc": "Some orbs on a box.", "idReward": "set1:OrbCrate", "rewardType": RewardTypes.rewardTypes.TRINKET},

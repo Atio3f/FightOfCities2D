@@ -33,6 +33,7 @@ const EFFECTS := {
 	"set1:ThornsEffect": preload("res://Ressources/effects/keywordEffects/ThornsEffect.gd"),
 	"set1:SpeedPlusEffect": preload("res://Ressources/effects/SpeedPlusEffect.gd"),
 	"set1:DRPlusEffect": preload("res://Ressources/effects/DRPlusEffect.gd"),
+	"set1:MRPlusEffect": preload("res://Ressources/effects/MRPlusEffect.gd"),
 	## ITEM EFFECTS
 	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),
 	"set1:BouquetOfLiesEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BouquetOfLiesEffect.gd"),

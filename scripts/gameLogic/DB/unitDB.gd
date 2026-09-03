@@ -26,6 +26,7 @@ const UNITS := {
 	"set1:ArcherMonkey": preload("res://Ressources/units/monkeys/ArcherMonkey.gd"),
 	"set1:SniperMonkey": preload("res://Ressources/units/monkeys/SniperMonkey.gd"),
 	"set1:UnyieldingBear": preload("res://Ressources/units/magicalBeasts/UnyieldingBear.gd"),
+	"set1:Fripouille": preload("res://Ressources/units/magicalBeasts/Fripouille.gd"),
 }
 
 

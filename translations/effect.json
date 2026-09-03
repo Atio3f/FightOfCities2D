@@ -124,6 +124,16 @@
 		"name": "EFFECT_NAME_SPEED_PLUS",
 		"description": "EFFECT_DESCRIPTION_SPEED_PLUS"
 	},
+	"set1:DRPlusEffect": {
+		"id": "set1:DRPlusEffect",
+		"name": "EFFECT_NAME_DR_PLUS",
+		"description": "EFFECT_DESCRIPTION_DR_PLUS"
+	},
+	"set1:MRPlusEffect": {
+		"id": "set1:MRPlusEffect",
+		"name": "EFFECT_NAME_MR_PLUS",
+		"description": "EFFECT_DESCRIPTION_MR_PLUS"
+	},
 	"set1:WarAxeEffect": {
 		"id": "set1:WarAxeEffect",
 		"name": "EFFECT_NAME_WAR_AXE",

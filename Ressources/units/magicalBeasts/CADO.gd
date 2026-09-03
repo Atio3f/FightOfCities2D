@@ -11,4 +11,4 @@ static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]
 	unit.actualMovementTypes = MovementTypes.movementTypes.WALK
 	var effect: AbstractEffect = CADOEffect.new(unit, -1, DMG_MULTIPLIER_FLYING)
-	unit.effects.append(effect)
+	unit.addEffect(effect)

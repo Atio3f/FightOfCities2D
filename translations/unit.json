@@ -62,4 +62,7 @@
 	"set1:UnyieldingBear" : {
 		"name": "UNIT_NAME_UNYIELDING_BEAR"
 	},
+	"set1:Fripouille" : {
+		"name": "UNIT_NAME_FRIPOUILLE"
+	},
 }

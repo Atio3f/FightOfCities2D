@@ -205,7 +205,7 @@ func getPower() -> int:
 func addEffect(effect: AbstractEffect) -> void:
 	var rank: int = 0
 	var inserted: bool = false
-	for _effect: AbstractEffect in effects :
+	for _effect: AbstractEffect in effects.duplicate():
 		if(_effect.id == effect.id):
 			if(!_effect.stackable):
 				effects.insert(rank + 1, effect)
@@ -237,16 +237,16 @@ func onPlacement(tile: AbstractTile) -> void:
 	self.position = MapManager.calculate_map_position(tile.getCoords())
 	#print("onPlacement : "+ str(tile.getCoords()) + " COORDS FINALES:" + str(tile.getCoords() * MapManager.cellSize + Vector2i(MapManager._half_cell_size, MapManager._half_cell_size)))
 	GameManager.whenUnitPlace(self)
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onPlacement(tile)
 	tile.onUnitIn(self)
 
 func onCardPlay(player: AbstractPlayer) -> void:
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onCardPlay(player)
 
 func onUnitPlace(unit: AbstractUnit) -> void:
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onUnitPlace(unit)
 
 #Tile is the actual tile after the movement
@@ -256,13 +256,13 @@ func onMovement(tile: AbstractTile) -> void:
 	self.tile = tile
 	#Place the unit on its new tile
 	tile.onUnitIn(self)
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onMovement()
 	for trinket: AbstractTrinket in player.trinkets :
 		trinket.onMovement(self)
 
 func onItemUsed(player: AbstractPlayer, item: AbstractItem, isMalus: bool) -> void:
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onItemUsed(player, item, isMalus)
 
 ## Return final damage taken, visualisation serve if we need to see damage dealed before the action
@@ -276,12 +276,12 @@ func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.Dama
 		_:
 			damageReduction = 0
 	damage = 0 if (damageReduction > damage) else (damage - damageReduction)	
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		damage = effect.onDamageTaken(unit, damage, damageType, visualisation)
 	for trinket: AbstractTrinket in player.trinkets :
 		damage = trinket.onDamageTaken(unit, self, damage, damageType, visualisation)
 	if unit != null:
-		for effect: AbstractEffect in unit.effects:
+		for effect: AbstractEffect in unit.effects.duplicate():
 			damage = effect.onDamageDealedAfterReduction(self, damage, damageType, visualisation)
 		if unit.player != null:
 			for trinket: AbstractTrinket in unit.player.trinkets :
@@ -322,7 +322,7 @@ func checkUnitDeath(infoDamagesTaked: Dictionary, unitAttacking: AbstractUnit = 
 ## Return final damage taken
 func onDamageDealed(unit: AbstractUnit, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
 	var damage: int = getPower()
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		damage = effect.onDamageDealed(unit, damage, damageType, visualisation)
 	for trinket: AbstractTrinket in player.trinkets :
 		damage = trinket.onDamageDealed(self, unit, damage, damageType, visualisation)
@@ -337,7 +337,7 @@ func loseHp(damage: int) -> Dictionary:
 func getLoseHp(damage: int) -> Dictionary:
 	var hpLoses: Dictionary = {}
 	hpLoses["damage"] = damage
-	for effect: AbstractEffect in effects :
+	for effect: AbstractEffect in effects.duplicate():
 		effect.loseHp(hpLoses)
 	if damage < hpTemp :
 		hpLoses["hpTemp"] = hpTemp - damage
@@ -349,14 +349,14 @@ func getLoseHp(damage: int) -> Dictionary:
 	return hpLoses
 
 func onHeal(unitHealed: AbstractUnit, healValue: int) -> int :
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		healValue = effect.onHeal(unitHealed, healValue)
 	for trinket: AbstractTrinket in player.trinkets:
 		healValue = trinket.onHeal(self, unitHealed, healValue)
 	return healValue
 
 func onHealed(unitHealing: AbstractUnit, healValue: int) -> int :
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		healValue = effect.onHealed(unitHealing, healValue)
 	for trinket: AbstractTrinket in player.trinkets:
 		healValue = trinket.onHealed(unitHealing, self, healValue)
@@ -373,14 +373,14 @@ func gainHpTemp(hpTempAmt: int) -> void :
 
 func onKill(unitKilled: AbstractUnit) -> void :
 	#gainXp(ActionTypes.actionTypes.KILL, {"maxHp":unitKilled.hpMax})
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onKill(unitKilled)
 	for trinket: AbstractTrinket in player.trinkets:
 		trinket.onKill(self, unitKilled)
 
 ## Some trinkets and effects will need to check if we're on a placement turn to avoid errors
 func onDeath(unit: AbstractUnit = null) -> void:
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onDeath(unit)
 	for trinket: AbstractTrinket in player.trinkets:
 		trinket.onDeath(unit, self)
@@ -427,7 +427,7 @@ func activatePermanentUpgrade(permanentUpgradeId: String) -> void:
 		push_warning("Effet permanent introuvable dans la base de données : " + permanentUpgradeId)
 
 #func onLevelUp() -> void :
-	#for effect: AbstractEffect in effects:
+	#for effect: AbstractEffect in effects.duplicate():
 		#effect.onLevelUp(level)
 	#calculateLevel()#Allow to gain multiple levels if you got enough xp
 
@@ -435,7 +435,7 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if(turnColor == self.team):
 		tile.onStartOfTurn(self)
 	#Est-ce qu'on bloquerait pas ça à seulement le tour du joueur avec le if?
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onStartOfTurn(turnNumber, turnColor)
 	for capacity: AbstractCapacity in capacities:
 		capacity.onStartOfTurn(turnNumber, turnColor)
@@ -443,7 +443,7 @@ func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 	if(turnColor == self.team and tile != null):
 		tile.onEndOfTurn(self)
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		effect.onEndOfTurn(turnNumber, turnColor)
 	for capacity: AbstractCapacity in capacities:
 		capacity.onEndOfTurn(turnNumber, turnColor)
@@ -654,7 +654,7 @@ func registerUnit() -> Dictionary :
 	# For main characters
 	if "livesRemaining" in self:
 		unitData["livesRemaining"] = self.livesRemaining
-	for effect: AbstractEffect in effects:
+	for effect: AbstractEffect in effects.duplicate():
 		unitData["effects"].append(effect.registerEffect())
 	for capacity: AbstractCapacity in capacities:
 		unitData["capacities"].append(capacity.registerCapacity())

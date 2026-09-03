@@ -54,6 +54,8 @@ EFFECT_DESCRIPTION_STARVING_SHADOW,"Au début de votre tour, perd !VA! PV Max. K
 EFFECT_NAME_ATLAS_LION,Roi de la savane,Savana King
 EFFECT_DESCRIPTION_ATLAS_LION,+!VA!% de dégâts infligés par rang de plus par rapport à l'unité attaquée,+!VA!% damage dealed per rank compared to the targeted unit
 EFFECT_NAME_DR_PLUS,Bonus de réduction de dégâts,Damage Reduction Bonus
-EFFECT_DESCRIPTION_SPEED_PLUS,+!VA! DR,+!VA! DR
+EFFECT_DESCRIPTION_DR_PLUS,+!VA! DR,+!VA! DR
 EFFECT_NAME_UNYIELDING_BEAR,Inébranlable,Steadfast
 EFFECT_DESCRIPTION_UNYIELDING_BEAR,+!VA! DR ce tour à chaque attaque subie,+!VA! DR this turn when attacked
+EFFECT_NAME_MR_PLUS,Bonus de réduction de dégâts magiques,Magical Damage Reduction Bonus
+EFFECT_DESCRIPTION_MR_PLUS,+!VA! MR,+!VA! MR
