@@ -188,5 +188,10 @@
 		"id": "AtlasLionEffect",
 		"name": "EFFECT_NAME_ATLAS_LION",
 		"description": "EFFECT_DESCRIPTION_ATLAS_LION"
-	}
+	},
+	"UnyieldingBearEffect": {
+		"id": "UnyieldingBearEffect",
+		"name": "EFFECT_NAME_UNYIELDING_BEAR",
+		"description": "EFFECT_DESCRIPTION_UNYIELDING_BEAR"
+	},
 }

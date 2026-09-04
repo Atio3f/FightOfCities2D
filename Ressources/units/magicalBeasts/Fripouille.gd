@@ -4,7 +4,7 @@ class_name Fripouille
 # Chat Adorant Dégager les Oiseaux 
 const STATS: UnitStats = preload("res://Ressources/units/magicalBeasts/Fripouille.tres")
 const DURATION: int = 3
-const START_BONUS_AMT: int = 5 ## Bonus stats on first 3 turns
+const START_BONUS_AMT: int = 7 ## Bonus stats on first DURATION (3) turns
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(STATS, playerAssociated)

@@ -6,6 +6,16 @@ var rewardNbr: int
 
 static var BG_COLOR := "1414145e"
 
+# Define base path to get icons for each reward type
+const ICON_BASE_PATHS = {
+	RewardTypes.rewardTypes.UNIT: "res://assets/sprites/units/",
+	RewardTypes.rewardTypes.TRINKET: "res://assets/sprites/trinkets/",
+	RewardTypes.rewardTypes.EQUIPMENT: "res://assets/sprites/items/",
+	RewardTypes.rewardTypes.ITEM: "res://assets/sprites/items/",
+	RewardTypes.rewardTypes.BONUS: "res://assets/sprites/upgrades/",
+	RewardTypes.rewardTypes.GOLD: "res://assets/sprites/interface/icons/"
+}
+
 ## Nbr is the place on rewards
 # TODO Pq c'est rewards et non reward ?
 func generate(rewards: AbstractReward, nbr: int) -> void :
@@ -13,7 +23,14 @@ func generate(rewards: AbstractReward, nbr: int) -> void :
 	var reward: Dictionary = RewardDb.REWARDS_DICO[rewardId]
 	self.rewardNbr = nbr
 	self.rewards = rewards
-	#Missing icon reward
+	
+	if reward.has("icon_name") and reward["icon_name"] != "":
+		var base_path = ICON_BASE_PATHS.get(reward["rewardType"], "res://assets/sprites/interface/icons/")
+		var full_path = base_path + reward["icon_name"]
+		self.icon = load(full_path)
+	else:
+		self.icon = load("res://assets/sprites/units/Monkey_p.png")
+		
 	%DescReward.visible = false
 	%TitleReward.text = reward["title"]
 	%DescReward.text = reward["desc"]
