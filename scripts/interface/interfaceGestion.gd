@@ -28,7 +28,7 @@ func updateInterface() -> void:
 	else :
 		%MaxUnitLabel.visible = false
 		%LabelEndTurn.text = tr("UI_BUTTON_END_TURN")
-		%LabelCouleurTour.text = tr("UI_LABEL_TURN_NUMBER") % [TurnManager.turn]
+		%LabelCouleurTour.text = tr("UI_LABEL_TURN_NUMBER") % [TurnManager.turn / TurnManager.teams.size() + 1]
 		if TurnManager.actualTurn() == mainPlayer.team :
 			%LabelActionsRestantes.text = tr("UI_LABEL_REMAINING_ACTIONS")
 			bouttonFinTour.disabled = false
