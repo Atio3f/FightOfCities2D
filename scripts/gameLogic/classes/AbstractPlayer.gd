@@ -206,6 +206,8 @@ func gainGold(amt: int) -> void:
 	else :
 		if amt + gold < 0 : gold = 0
 		else : gold += amt
+	if isGamePlayer:
+		Global.update_gold.emit(gold)
 
 ## To add an equipment to an unit
 func equipEquipmentToUnit(idEquipment: String, unit: AbstractUnit) -> void:

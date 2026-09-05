@@ -1,6 +1,6 @@
 extends AbstractEffect
 class_name BurnEffect
-
+# Pas sûr que l'effet soit bon en terme d'effet, faudra se décider avec Bleed
 const idEffect = "set1:BurnEffect"
 const img = ""
 

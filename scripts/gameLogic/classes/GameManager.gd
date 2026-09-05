@@ -47,6 +47,7 @@ func loadGame() -> bool :
 func configPlayer(player: AbstractPlayer) -> void:
 	player.maxOrbs = campaign.startingMaxOrbs
 	player.orbs = campaign.startingOrbs
+	player.gainGold(campaign.startingGold)
 	##Add starting trinkets
 	for trinketId: String in campaign.startingTrinkets:
 		addTrinket(player, trinketId)

@@ -9,33 +9,33 @@ enum raritiesTrinkets {
 }
 
 # --- CONFIGS UNIT REWARDS ---
-var UNIT_COMMON := RarityData.new("COMMON", 18, TYPE_UNIT, RARITY_COLORS["COMMON"])
-var UNIT_UNCOMMON := RarityData.new("UNCOMMON", 12, TYPE_UNIT, RARITY_COLORS["UNCOMMON"])
-var UNIT_RARE := RarityData.new("RARE", 6, TYPE_UNIT, RARITY_COLORS["RARE"])
-var UNIT_LEGENDARY := RarityData.new("LEGENDARY", 3, TYPE_UNIT, RARITY_COLORS["LEGENDARY"])
-var UNIT_HEROIC := RarityData.new("HEROIC", 10, TYPE_UNIT, RARITY_COLORS["HEROIC"])
-var UNIT_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_UNIT, RARITY_COLORS["SPECIAL"])
+var UNIT_COMMON := RarityData.new("COMMON", 18, TYPE_UNIT, RARITY_COLORS["COMMON"], 110)
+var UNIT_UNCOMMON := RarityData.new("UNCOMMON", 12, TYPE_UNIT, RARITY_COLORS["UNCOMMON"], 145)
+var UNIT_RARE := RarityData.new("RARE", 6, TYPE_UNIT, RARITY_COLORS["RARE"], 200)
+var UNIT_LEGENDARY := RarityData.new("LEGENDARY", 3, TYPE_UNIT, RARITY_COLORS["LEGENDARY"], 250)
+var UNIT_HEROIC := RarityData.new("HEROIC", 10, TYPE_UNIT, RARITY_COLORS["HEROIC"], 333)
+var UNIT_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_UNIT, RARITY_COLORS["SPECIAL"], 0)
 
 # --- CONFIGS ITEM REWARDS ---
-var ITEM_COMMON := RarityData.new("COMMON", 17, TYPE_ITEM, RARITY_COLORS["COMMON"])
-var ITEM_UNCOMMON := RarityData.new("UNCOMMON", 11, TYPE_ITEM, RARITY_COLORS["UNCOMMON"])
-var ITEM_RARE := RarityData.new("RARE", 4, TYPE_ITEM, RARITY_COLORS["RARE"]) # Unusual item to found
-var ITEM_SPECIAL := RarityData.new("SPECIAL", 12, TYPE_ITEM, RARITY_COLORS["SPECIAL"])
+var ITEM_COMMON := RarityData.new("COMMON", 17, TYPE_ITEM, RARITY_COLORS["COMMON"], 20)
+var ITEM_UNCOMMON := RarityData.new("UNCOMMON", 11, TYPE_ITEM, RARITY_COLORS["UNCOMMON"], 35)
+var ITEM_RARE := RarityData.new("RARE", 4, TYPE_ITEM, RARITY_COLORS["RARE"], 60) # Unusual item to found
+var ITEM_SPECIAL := RarityData.new("SPECIAL", 12, TYPE_ITEM, RARITY_COLORS["SPECIAL"], 0)
 
 # --- CONFIGS EQUIPMENT REWARDS ---
-var EQUIP_COMMON := RarityData.new("COMMON", 13, TYPE_EQUIPMENT, RARITY_COLORS["COMMON"]) #Can be found everywhere and cheap
-var EQUIP_UNCOMMON := RarityData.new("UNCOMMON", 7, TYPE_EQUIPMENT, RARITY_COLORS["UNCOMMON"]) #Can be found everywhere but cost a little bit
-var EQUIP_RARE := RarityData.new("RARE", 7, TYPE_EQUIPMENT, RARITY_COLORS["RARE"]) #Can be found on elite battles or some events but will cost a lot
-var EQUIP_MYTHIC := RarityData.new("MYTHIC", 10, TYPE_EQUIPMENT, RARITY_COLORS["MYTHIC"]) #Can be found on elite/boss battles or some events, each item is unique to a battle/mob
-var EQUIP_HEROIC := RarityData.new("HEROIC", 100, TYPE_EQUIPMENT, RARITY_COLORS["HEROIC"]) #Can only be equipped on the hero, found at the end of each arc
-var EQUIP_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_EQUIPMENT, RARITY_COLORS["SPECIAL"]) #Can be generate by an unit or find on a specific event
+var EQUIP_COMMON := RarityData.new("COMMON", 13, TYPE_EQUIPMENT, RARITY_COLORS["COMMON"], 40) #Can be found everywhere and cheap
+var EQUIP_UNCOMMON := RarityData.new("UNCOMMON", 7, TYPE_EQUIPMENT, RARITY_COLORS["UNCOMMON"], 75) #Can be found everywhere but cost a little bit
+var EQUIP_RARE := RarityData.new("RARE", 7, TYPE_EQUIPMENT, RARITY_COLORS["RARE"], 115) #Can be found on elite battles or some events but will cost a lot
+var EQUIP_MYTHIC := RarityData.new("MYTHIC", 10, TYPE_EQUIPMENT, RARITY_COLORS["MYTHIC"], 333) #Can be found on elite/boss battles or some events, each item is unique to a battle/mob
+var EQUIP_HEROIC := RarityData.new("HEROIC", 100, TYPE_EQUIPMENT, RARITY_COLORS["HEROIC"], 0) #Can only be equipped on the hero, found at the end of each arc
+var EQUIP_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_EQUIPMENT, RARITY_COLORS["SPECIAL"], 0) #Can be generate by an unit or find on a specific event
 
 # --- CONFIGS TRINKET REWARDS ---
-var TRINKET_COMMON := RarityData.new("COMMON", 15, TYPE_TRINKET, RARITY_COLORS["COMMON"]) #Cheap, versatiles
-var TRINKET_UNCOMMON := RarityData.new("UNCOMMON", 9, TYPE_TRINKET, RARITY_COLORS["UNCOMMON"]) #Cost a little, versatiles?
-var TRINKET_RARE := RarityData.new("RARE", 3, TYPE_TRINKET, RARITY_COLORS["RARE"]) #Cost a lot, generally will influence your gameplay
-var TRINKET_ANCIENT := RarityData.new("ANCIENT", 1, TYPE_TRINKET, RARITY_COLORS["ANCIENT"])
-var TRINKET_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_TRINKET, RARITY_COLORS["SPECIAL"]) #Can be found on events
+var TRINKET_COMMON := RarityData.new("COMMON", 15, TYPE_TRINKET, RARITY_COLORS["COMMON"], 150) #Cheap, versatiles
+var TRINKET_UNCOMMON := RarityData.new("UNCOMMON", 9, TYPE_TRINKET, RARITY_COLORS["UNCOMMON"], 195) #Cost a little, versatiles?
+var TRINKET_RARE := RarityData.new("RARE", 3, TYPE_TRINKET, RARITY_COLORS["RARE"], 260) #Cost a lot, generally will influence your gameplay
+var TRINKET_ANCIENT := RarityData.new("ANCIENT", 1, TYPE_TRINKET, RARITY_COLORS["ANCIENT"], 300)
+var TRINKET_SPECIAL := RarityData.new("SPECIAL", 0, TYPE_TRINKET, RARITY_COLORS["SPECIAL"], 333) #Can be found on events
 
 
 # --- CONFIGS GOLD REWARDS ---

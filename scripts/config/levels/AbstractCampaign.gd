@@ -9,10 +9,12 @@ var startingItems: Array	#Array with all items id on the starting team
 var startingTrinkets: Array	#Array with all trinkets id on the starting team 
 var startingOrbs: int #Number of orbs at the start of the campaign
 var startingMaxOrbs: int #Max orbs at the start of the campaign
+var startingGold: int # Gold at the start of the campaign
 
 var difficulty: int	#Ascension like system, start at 0 and will go up to 5
 var progress: String = ""	#Actual level on the campaign
 var dataMaps: Dictionary = {}	#Data with all maps
+var dataShops: Dictionary = {}	#Data with all shops
 var nextMission: String	#Next mission to be played, useful with reward interface
 
 func _init(campaignName: String) -> void:
@@ -34,6 +36,7 @@ func setupCampaign(difficulty: int, campaignFile: String) -> void :
 		startingTrinkets = data.get("startingTrinkets", [])
 		startingOrbs = data.get("startingOrbs", 0)
 		startingMaxOrbs = data.get("startingMaxOrbs", 0)
+		startingGold = data.get("startingGold", 37)
 	else :
 		push_error("FILE FOR CAMPAIGN"+campaignFile+" NOT FOUND")
 	file.close()
@@ -44,51 +47,79 @@ func startNextMission() -> void :
 	if file :
 		var content : String = file.get_as_text()
 		var data: Dictionary = JSON.parse_string(content)
-		dataMaps = data.get("maps")
-		var dataMap : Dictionary = dataMaps.get(nextMission)
-		progress = nextMission
-		## Generate map
-		GameManager.generateMap(dataMap["size"]["width"], dataMap["size"]["length"], dataMap.get("terrainGen", "genMapDefault"))
-		## Reset TurnManager
-		TurnManager.reset()
-		## Add opponents and allies players
-		var player: AbstractPlayer = Global.gameManager.createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
-		#ça sera comme ça plus tard mais pour le moment on va juste créer un adversaire rouge et lui donner les troupes
-		#for ennemi: Dictionary in dataMap.get("ennemies"):
-			#var player: AbstractPlayer = Global.gameManager.createPlayer()
-		## Setup all ennemis/allies(will be on the players loop)
-		var tile: AbstractTile
-		for enemiesDico: Dictionary in dataMap.get("enemies"):
-			tile = MapManager.getTileAt(Vector2i(enemiesDico["coords"][0], enemiesDico["coords"][1]))
-			var unitData: StoredUnit = StoredUnit.loadStoredUnit(enemiesDico)
-			Global.gameManager.placeUnit(unitData, player, tile)
+		dataMaps = data.get("maps", {})
+		dataShops = data.get("shops", {})
 		
-		## Add the placement tiles and the placement area, where the player will be able to place units
-		var placementTiles : Array[Vector2i]
-		if dataMap.get("placementArea") : #A voir pour retirer placementArea pas très cool à voir une zone pleine
-			var pAreaData: Dictionary = dataMap.get("placementArea")
-			for x in range(pAreaData["left"], pAreaData["right"]) :
-				for y in range(pAreaData["top"], pAreaData["bottom"]) :
-					placementTiles.append(Vector2i(x, y))
-		for coordArray: Array in dataMap.get("placementTiles"):
-			placementTiles.append(Vector2i(coordArray[0], coordArray[1]))
-		# Draw tiles
-		GameManager.drawPlaceablesTiles(placementTiles)
-		
-		## Add goals if its a fight
-		if dataMap.get("goals") :
-			GameManager.loadGoals(dataMap.get("goals"))
-		## Add delayed units
-		if dataMap.get("delayedUnits"):
-			GameManager.currentDelayedUnits = dataMap.get("delayedUnits").duplicate(true)
-		else:
-			GameManager.currentDelayedUnits = []
-		## Add goals if there are on the mission
-		if dataMap.get("dialogs") && dataMap.get("dialogs").get("start") :
-			GameManager.loadDialogs(dataMap.get("dialogs").get("start")) # TODO Find if we keep other dialogs type from here
-		#Hide Meta Interface
-		GameManager.getMainPlayer().toggleCombatUI()
-		GameManager.isGameActive = true
+		if dataMaps.has(nextMission):
+			var dataMap : Dictionary = dataMaps.get(nextMission)
+			progress = nextMission
+			## Generate map
+			GameManager.generateMap(dataMap["size"]["width"], dataMap["size"]["length"], dataMap.get("terrainGen", "genMapDefault"))
+			## Reset TurnManager
+			TurnManager.reset()
+			## Add opponents and allies players
+			var player: AbstractPlayer = Global.gameManager.createPlayer(TeamsColor.TeamsColor.RED, "Ennemi", false)
+			#ça sera comme ça plus tard mais pour le moment on va juste créer un adversaire rouge et lui donner les troupes
+			#for ennemi: Dictionary in dataMap.get("ennemies"):
+				#var player: AbstractPlayer = Global.gameManager.createPlayer()
+			## Setup all ennemis/allies(will be on the players loop)
+			var tile: AbstractTile
+			for enemiesDico: Dictionary in dataMap.get("enemies"):
+				tile = MapManager.getTileAt(Vector2i(enemiesDico["coords"][0], enemiesDico["coords"][1]))
+				var unitData: StoredUnit = StoredUnit.loadStoredUnit(enemiesDico)
+				Global.gameManager.placeUnit(unitData, player, tile)
+			
+			## Add the placement tiles and the placement area, where the player will be able to place units
+			var placementTiles : Array[Vector2i]
+			if dataMap.get("placementArea") : #A voir pour retirer placementArea pas très cool à voir une zone pleine
+				var pAreaData: Dictionary = dataMap.get("placementArea")
+				for x in range(pAreaData["left"], pAreaData["right"]) :
+					for y in range(pAreaData["top"], pAreaData["bottom"]) :
+						placementTiles.append(Vector2i(x, y))
+			for coordArray: Array in dataMap.get("placementTiles"):
+				placementTiles.append(Vector2i(coordArray[0], coordArray[1]))
+			# Draw tiles
+			GameManager.drawPlaceablesTiles(placementTiles)
+			
+			## Add goals if its a fight
+			if dataMap.get("goals") :
+				GameManager.loadGoals(dataMap.get("goals"))
+			## Add delayed units
+			if dataMap.get("delayedUnits"):
+				GameManager.currentDelayedUnits = dataMap.get("delayedUnits").duplicate(true)
+			else:
+				GameManager.currentDelayedUnits = []
+			## Add goals if there are on the mission
+			if dataMap.get("dialogs") && dataMap.get("dialogs").get("start") :
+				GameManager.loadDialogs(dataMap.get("dialogs").get("start")) # TODO Find if we keep other dialogs type from here
+			#Hide Meta Interface
+			GameManager.getMainPlayer().toggleCombatUI()
+			GameManager.isGameActive = true
+			
+		elif dataShops.has(nextMission):
+			var dataShop: Dictionary = dataShops.get(nextMission)
+			progress = nextMission
+			
+			## Instance shop class
+			var shop_logic: AbstractShop
+			var shopType = dataShop.get("shopType", "")
+			if shopType == "MonkeyShop":
+				shop_logic = MonkeyShop.new()
+			else:
+				shop_logic = AbstractShop.new()
+				
+			shop_logic.generate_items()
+			
+			## Instance shop
+			var shop_scene_res = load("res://nodes/interface/Shop.tscn")
+			if shop_scene_res:
+				var shop_scene = shop_scene_res.instantiate()
+				shop_scene.setup(shop_logic, dataShop)
+				GameManager.getMainPlayer().metaInterface.placeInterface(shop_scene, true)
+				
+			MapManager.resetMap() # Clear terrain
+			GameManager.getMainPlayer().toggleMetaUI() # Hide combat UI, show Meta UI
+			GameManager.isGameActive = false # Not in combat
 	file.close()
 	#GameManager.savingGame()
 

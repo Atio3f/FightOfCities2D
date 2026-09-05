@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://rfbkx0b7abxh"]
+[gd_scene load_steps=15 format=3 uid="uid://rfbkx0b7abxh"]
 
 [ext_resource type="Script" uid="uid://crobcf7g1ay5d" path="res://scripts/gameLogic/classes/AbstractPlayer.gd" id="1_hu2d8"]
 [ext_resource type="Script" uid="uid://bpbcwy6rq5fjr" path="res://scripts/Player/PointeurPlayer.gd" id="3_pmukw"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://bimjotcaqyqe3" path="res://scripts/interface/outsideFights/meta_interface.gd" id="11_ocqqe"]
 [ext_resource type="PackedScene" uid="uid://vt2pgrwdeiji" path="res://nodes/interface/interface.tscn" id="11_p3gp3"]
 [ext_resource type="PackedScene" uid="uid://dn3hygwohims3" path="res://nodes/joueur/interface/interfaceJoueur.tscn" id="11_xhxfb"]
+[ext_resource type="Script" uid="uid://c5fpw1h1k7whw" path="res://scripts/interface/GoldCounter.gd" id="99_gold"]
+[ext_resource type="Texture2D" uid="uid://bt2538q7bl3fj" path="res://assets/sprites/BananaCoin.png" id="100_gold"]
 
 [node name="Player" type="Node"]
 script = ExtResource("1_hu2d8")
@@ -72,6 +74,31 @@ offset_left = -46.0
 offset_bottom = 23.0
 grow_horizontal = 0
 text = "144"
+
+[node name="GoldCounter" type="HBoxContainer" parent="CanvasInterfaceFixe"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 30.0
+offset_right = -10.0
+offset_bottom = 70.0
+grow_horizontal = 0
+alignment = 2
+script = ExtResource("99_gold")
+
+[node name="GoldLabel" type="Label" parent="CanvasInterfaceFixe/GoldCounter"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="Background" type="TextureRect" parent="CanvasInterfaceFixe/GoldCounter"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("100_gold")
+expand_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasInterfaceFixe"]
 anchors_preset = -1

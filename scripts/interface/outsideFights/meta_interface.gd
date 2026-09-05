@@ -39,7 +39,6 @@ func onRewardInterfaceClosed() -> void:
 	if interfaceQueue.is_empty() :
 		## If no interface in queue, we start next mission
 		GameManager.campaign.startNextMission()
-		$"../../..".toggleCombatUI()
 	else :
 		## If one or more interface is waiting in queue, we display the first one
 		var nextInterface = interfaceQueue.pop_front()

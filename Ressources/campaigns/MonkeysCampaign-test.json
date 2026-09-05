@@ -103,7 +103,7 @@
 				"reward:basicEquipments",
 				"reward:bonus",
 			],
-			"nextMission": "map2"
+			"nextMission": "shop1"
 		},
 		
 		"map2": {
@@ -240,7 +240,12 @@
 				"reward:unitMonkey",
 			],
 			"nextMission": "map1"
-		},
-		
+		}
+	},
+	"shops": {
+		"shop1": {
+			"shopType": "MonkeyShop",
+			"nextMission": "map2"
+		}
 	}
 }

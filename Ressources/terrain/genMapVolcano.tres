@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_iocgr")
 tileWeights = {
-"set1:ForestTile": 10,
-"set1:LakeTile": 15,
-"set1:MountainTile": 100
+"set1:VolcanicRocksTile": 100,
+"set1:MountainTile": 35,
+"set1:PlainTile": 20,
 }

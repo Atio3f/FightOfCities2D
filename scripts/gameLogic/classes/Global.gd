@@ -2,6 +2,7 @@ extends Node
 #S'occupe de tout charger et d'enregistrer les joueurs dans la partie
 
 signal unlock_help(help_id: String)
+signal update_gold(gold_amt: int)
 
 var effectsStrings := {}
 var parameters: ParamPlayer = preload("res://Ressources/old/player/joueur1/paramJoueur1.tres")
