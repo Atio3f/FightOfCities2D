@@ -150,6 +150,7 @@ func endMap(victoryStatus: bool) -> void:
 			var additionalData : String = "" # Indicate if the reward contains a precision for its data
 			if parts.size() > 2:
 				additionalData = parts[2]
+				rewardS = parts[0] + ":" + parts[1] # Remove additional data to get reward id
 			
 			reward = RewardDb.REWARDS[rewardS].new()
 			reward.setData(additionalData)

@@ -2,7 +2,7 @@ class_name LocalHero extends AbstractTrinket
 
 # 
 const idItem = "set1:LocalHero"
-const img = "res://assets/sprites/trinkets/ArtOfWar"
+const img = "res://assets/sprites/trinkets/WarBanner"
 const SLOT_GAIN = 1
 const WEIGHT_GAIN = 2
 

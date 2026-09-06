@@ -5,11 +5,11 @@ const idItem = "set1:WoodlandDoll"
 const img = ""
 
 func _init():
-	value_A = 2
+	value_A = 3
 	super()
 
 func getStatModifiers() -> Dictionary:
-	return {"hpMax": 7}
+	return {"hpMax": 9}
 
 func canBeEquippedBy(unit: AbstractUnit) -> bool:
 	return true

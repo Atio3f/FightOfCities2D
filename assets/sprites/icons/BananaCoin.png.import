@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bt2538q7bl3fj"
-path="res://.godot/imported/BananaCoin.png-fa8fb35061e4a6ca6f8d121e487bcecd.ctex"
+path="res://.godot/imported/BananaCoin.png-a46424fb15106c696f6cc9d4ca81a00e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/BananaCoin.png"
-dest_files=["res://.godot/imported/BananaCoin.png-fa8fb35061e4a6ca6f8d121e487bcecd.ctex"]
+source_file="res://assets/sprites/icons/BananaCoin.png"
+dest_files=["res://.godot/imported/BananaCoin.png-a46424fb15106c696f6cc9d4ca81a00e.ctex"]
 
 [params]
 

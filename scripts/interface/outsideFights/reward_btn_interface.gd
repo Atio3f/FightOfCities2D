@@ -13,7 +13,7 @@ const ICON_BASE_PATHS = {
 	RewardTypes.rewardTypes.EQUIPMENT: "res://assets/sprites/items/",
 	RewardTypes.rewardTypes.ITEM: "res://assets/sprites/items/",
 	RewardTypes.rewardTypes.BONUS: "res://assets/sprites/upgrades/",
-	RewardTypes.rewardTypes.GOLD: "res://assets/sprites/interface/icons/"
+	RewardTypes.rewardTypes.GOLD: "res://assets/sprites/icons/"
 }
 
 ## Nbr is the place on rewards

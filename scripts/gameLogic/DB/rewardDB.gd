@@ -20,7 +20,7 @@ const REWARDS := {
 
 #A CHANGER faudra que ça soit en fonction de la langue les desc et title, sûrement grâce à la valeur de rewardType
 var REWARDS_DICO := {
-	"gold": {"title": "Gold", "desc": "Gain a certain amount of gold",  "rewardType": RewardTypes.rewardTypes.GOLD},
+	"gold": {"title": "Gold", "desc": "Gain a certain amount of gold",  "rewardType": RewardTypes.rewardTypes.GOLD, "icon_name": "BananaCoin.png"},
 	
 	## UPGRADES
 	"bonus": {"title": "Bonus", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
@@ -85,4 +85,5 @@ var REWARDS_DICO := {
 	"set1:ForceMonkeySweater": {"title": "FORCE MONKEY Sweater", "desc": "Boost all Monkeys when equip", "idReward": "set1:ForceMonkeySweater", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "icon_name": "ForceMonkeySweater.png", "rarity": Rarities.EQUIP_RARE},
 	"set1:DemonAxe": {"title": "Demon Axe", "desc": "Tradeoff defense for more damage", "idReward": "set1:DemonAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "icon_name": "DemonAxe.png", "rarity": Rarities.EQUIP_UNCOMMON},
 	"set1:HarpyBardiche": {"title": "Harpy Bardiche", "desc": "Kill Kill Kill that flying thing", "idReward": "set1:HarpyBardiche", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "icon_name": "HarpyBardiche.png", "rarity": Rarities.EQUIP_COMMON},
+	"set1:DreadCloak": {"title": "Dread Cloak", "desc": "Scare ennemies, useful to steal Magical Resistance", "idReward": "set1:DreadCloak", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
 }

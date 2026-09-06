@@ -26,7 +26,7 @@ ITEM_DESC_MUD_CHARM,Début du tour : Soigne !VA!,Start of turn : Heal !VA!
 ITEM_NAME_WAR_AXE,Hache guerrière,War Axe
 ITEM_DESC_WAR_AXE,+3 P. Kill : +5 PV Temp,+3 P. Kill : +5 HP Temp
 ITEM_NAME_WOODLAND_DOLL,Poupée sylvestre,Woodland Doll
-ITEM_DESC_WOODLAND_DOLL,+7 PV. Renvoie 2 dégâts bruts pour les attaques de mêlée,+7 HP. Attackers take 2 pure damage on contact
+ITEM_DESC_WOODLAND_DOLL,+9 PV. Renvoie 3 dégâts bruts pour les attaques de mêlée,+9 HP. Attackers take 3 pure damage on contact
 ITEM_NAME_FUSED_EQUIPMENT,Equipements fusionnés,Fused equipments
 ITEM_DESC_FUSED_EQUIPMENT,La fusion de 2 équipements. La description devrait être la somme des 2 et non celle ci,Fusion of 2 equipments. Description should be sum of both equipments not this one
 ITEM_NAME_ICY_BREEZE,Brise glaciale,Icy Breeze
@@ -36,8 +36,10 @@ ITEM_DESC_BOUQUET_OF_LIES,"+5 PV, +2 MR, -2 P Convertit les dégâts infligés e
 ITEM_NAME_TEMPTATION_POISON,Poison de la tentation,Temptation Poison
 ITEM_DESC_TEMPTATION_POISON,Applique Poison 6 - 1 pour chaque 4 S de la cible,Apply Poison 6 – 1 for each 4 S from target
 ITEM_NAME_FORCE_MONKEY_SWEATER,Pull FORCE MONKEY,FORCE MONKEY Sweater
-ITEM_DESC_FORCE_M0NKEY_SWEATER,+ PV. +2 P à TOUS vos Monkey,+5 HP. +2 P to ALL your Monkeys
+ITEM_DESC_FORCE_M0NKEY_SWEATER,+5 PV. +2 P à TOUS vos Monkey,+5 HP. +2 P to ALL your Monkeys
 ITEM_NAME_DEMON_AXE,Hache démone,Demon Axe
 ITEM_DESC_DEMON_AXE,"+7 P, -3 DR","+7 P, -3 DR"
 ITEM_NAME_HARPY_BARDICHE,Bardiche Harpie,Harpy Bardiche
 ITEM_DESC_HARPY_BARDICHE,-1 P. +50% dégâts sur les unités volantes,-1 P. +50% damage on flying units
+ITEM_NAME_DREAD_CLOAK,Cape Effroi,Dread Cloak
+ITEM_DESC_DREAD_CLOAK,+4 PV et +1 P. Vole 1 MR à chaque attaque,+4 HP and +1 P. Steal 1 MR each attack

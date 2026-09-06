@@ -11,16 +11,34 @@ grow_vertical = 2
 color = Color(0.129412, 0.14902, 0.180392, 1)
 script = ExtResource("1_shopgd")
 
-[node name="LeaveButton" type="Button" parent="."]
+[node name="GoldLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -180.0
+offset_left = -200.0
 offset_top = 20.0
 offset_right = -20.0
-offset_bottom = 70.0
+offset_bottom = 60.0
 grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "0 Or"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LeaveButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -70.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "Continuer"
 
 [node name="ItemsContainer" type="GridContainer" parent="."]

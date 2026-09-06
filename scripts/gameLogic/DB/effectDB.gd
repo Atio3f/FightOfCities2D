@@ -17,7 +17,7 @@ const EFFECTS := {
 	"set1:CADOEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/CADOEffect.gd"),
 	"set1:StarvingShadowEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/StarvingShadowEffect.gd"),
 	"set1:AtlasLionEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/AtlasLionEffect.gd"),
-	"set1:UnyieldingBearEffect": preload("res://Ressources/effects/unitEffects/bears/UnyieldingBearEffect.gd"),
+	"set1:UnyieldingBearEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/UnyieldingBearEffect.gd"),
 	## UPGRADE EFFECTS
 	"UpgradeTestEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeTestEffect.gd"),
 	"UpgradePromotionEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradePromotionEffect.gd"),
@@ -35,8 +35,10 @@ const EFFECTS := {
 	"set1:DRPlusEffect": preload("res://Ressources/effects/DRPlusEffect.gd"),
 	"set1:MRPlusEffect": preload("res://Ressources/effects/MRPlusEffect.gd"),
 	## ITEM EFFECTS
+	"set1:BrambleGauntletEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BrambleGauntletEffect.gd"),
 	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),
 	"set1:BouquetOfLiesEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BouquetOfLiesEffect.gd"),
+	"set1:DreadCloak": preload("res://Ressources/effects/itemEffects/magicalBeasts/DreadCloakEffect.gd"),
 }
 
 var effects_data: Dictionary = {}

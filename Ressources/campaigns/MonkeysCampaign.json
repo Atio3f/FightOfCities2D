@@ -79,6 +79,7 @@
 				"reward:unitMonkey",
 				"reward:basicEquipments",
 				"reward:bonus",
+				"reward:gold:10"
 			],
 			"nextMission": "shop1"
 		},
@@ -168,7 +169,8 @@
 			],
 			"rewards": [
 				"reward:trinketBoss",
-				"reward:basicEquipments"
+				"reward:basicEquipments",
+				"reward:gold:35",
 			],
 			"nextMission": "map4"
 		},
@@ -215,7 +217,8 @@
 			],
 			"rewards": [
 				"reward:unitMonkey",
-				"reward:bonus"
+				"reward:bonus",
+				"reward:gold:45"
 			],
 			"nextMission": "map5"
 		},
@@ -264,7 +267,8 @@
 			"rewards": [
 				"reward:trinketBoss",
 				"reward:unitMonkey",
-				"reward:localHero"
+				"reward:localHero",
+				"reward:gold:100"
 			],
 			"nextMission": "map6"
 		},
@@ -338,8 +342,9 @@
 			"rewards": [
 				"reward:unitMonkey",
 				"reward:bonus",
+				"reward:gold:30"
 			],
-			"nextMission": "map1"
+			"nextMission": "shop2"
 		},
 		"map7": {
 			"size": {
@@ -401,6 +406,10 @@
 		"shop1": {
 			"shopType": "MonkeyShop",
 			"nextMission": "map2"
+		},
+		"shop2": {
+			"shopType": "MonkeyShop",
+			"nextMission": "map7"
 		}
 	}
 }

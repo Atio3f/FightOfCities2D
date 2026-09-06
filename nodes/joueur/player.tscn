@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://vt2pgrwdeiji" path="res://nodes/interface/interface.tscn" id="11_p3gp3"]
 [ext_resource type="PackedScene" uid="uid://dn3hygwohims3" path="res://nodes/joueur/interface/interfaceJoueur.tscn" id="11_xhxfb"]
 [ext_resource type="Script" uid="uid://c5fpw1h1k7whw" path="res://scripts/interface/GoldCounter.gd" id="99_gold"]
-[ext_resource type="Texture2D" uid="uid://bt2538q7bl3fj" path="res://assets/sprites/BananaCoin.png" id="100_gold"]
+[ext_resource type="Texture2D" uid="uid://bt2538q7bl3fj" path="res://assets/sprites/icons/BananaCoin.png" id="100_gold"]
 
 [node name="Player" type="Node"]
 script = ExtResource("1_hu2d8")

@@ -59,3 +59,5 @@ EFFECT_NAME_UNYIELDING_BEAR,Inébranlable,Steadfast
 EFFECT_DESCRIPTION_UNYIELDING_BEAR,+!VA! DR ce tour à chaque attaque subie,+!VA! DR this turn when attacked
 EFFECT_NAME_MR_PLUS,Bonus de réduction de dégâts magiques,Magical Damage Reduction Bonus
 EFFECT_DESCRIPTION_MR_PLUS,+!VA! MR,+!VA! MR
+EFFECT_NAME_DREAD_CLOAK,Frappe effrayante,Scary hit
+EFFECT_DESCRIPTION_DREAD_CLOAK,Steal !VA! MR when attacking,Steal !VA! MR when attacking

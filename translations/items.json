@@ -119,4 +119,10 @@
 		"description": "ITEM_DESC_HARPY_BARDICHE",
 		"img": "res://assets/sprites/items/HarpyBardiche.png"
 	},
+	"set1:DreadCloak": {
+		"id": "set1:DreadCloak",
+		"name": "ITEM_NAME_DREAD_CLOAK",
+		"description": "ITEM_DESC_DREAD_CLOAK",
+		"img": "res://assets/sprites/items/BrambleGauntlet.png"
+	},
 }

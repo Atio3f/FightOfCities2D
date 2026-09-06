@@ -14,6 +14,7 @@ const ITEMS := {
 	"set1:ForceMonkeySweater": preload("res://Ressources/equipments/monkeys/ForceMonkeySweater.gd"),
 	"set1:DemonAxe": preload("res://Ressources/equipments/bulls/DemonAxe.gd"),
 	"set1:HarpyBardiche": preload("res://Ressources/equipments/bulls/HarpyBardiche.gd"),
+	"set1:DreadCloak": preload("res://Ressources/equipments/magicalBeasts/DreadCloak.gd"),
 	## ITEMS
 	"set1:VitalLink" : preload("res://Ressources/items/magicalBeasts/VitalLink.gd"),
 	"set1:MagicalCoconut": preload("res://Ressources/items/others/farmsLoot/MagicalCoconut.gd"),

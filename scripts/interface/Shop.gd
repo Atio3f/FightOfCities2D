@@ -14,9 +14,18 @@ func display(metaUI: MetaUI) -> void:
 	pass
 
 func _ready() -> void:
-	# Si un noeud LeaveButton existe, on connecte le signal
+	# Connect leave button
 	if has_node("LeaveButton"):
 		get_node("LeaveButton").pressed.connect(_on_leave_button_pressed)
+		
+	# Connect gold signal
+	Global.update_gold.connect(_on_update_gold)
+	if GameManager.getMainPlayer():
+		_on_update_gold(GameManager.getMainPlayer().gold)
+
+func _on_update_gold(gold_amount: int) -> void:
+	if has_node("GoldLabel"):
+		get_node("GoldLabel").text = str(gold_amount) + " Or"
 
 func setup(logic: AbstractShop, data: Dictionary) -> void:
 	shop_logic = logic

@@ -179,19 +179,24 @@
 		"name": "EFFECT_NAME_GLASS_CANON",
 		"description": "EFFECT_DESCRIPTION_GLASS_CANON"
 	},
-	"UpgradeMultitaskingEffect": {
+	"set1:UpgradeMultitaskingEffect": {
 		"id": "UpgradeMultitaskingEffect",
 		"name": "EFFECT_NAME_UPGRADE_MULTITASKING",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_MULTITASKING"
 	},
-	"AtlasLionEffect": {
+	"set1:AtlasLionEffect": {
 		"id": "AtlasLionEffect",
 		"name": "EFFECT_NAME_ATLAS_LION",
 		"description": "EFFECT_DESCRIPTION_ATLAS_LION"
 	},
-	"UnyieldingBearEffect": {
+	"set1:UnyieldingBearEffect": {
 		"id": "UnyieldingBearEffect",
 		"name": "EFFECT_NAME_UNYIELDING_BEAR",
 		"description": "EFFECT_DESCRIPTION_UNYIELDING_BEAR"
+	},
+	"set1:DreadCloakEffect": {
+		"id": "DreadCloakEffect",
+		"name": "EFFECT_NAME_DREAD_CLOAK",
+		"description": "EFFECT_DESCRIPTION_DREAD_CLOAK"
 	},
 }
