@@ -180,23 +180,38 @@
 		"description": "EFFECT_DESCRIPTION_GLASS_CANON"
 	},
 	"set1:UpgradeMultitaskingEffect": {
-		"id": "UpgradeMultitaskingEffect",
+		"id": "set1:UpgradeMultitaskingEffect",
 		"name": "EFFECT_NAME_UPGRADE_MULTITASKING",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_MULTITASKING"
 	},
 	"set1:AtlasLionEffect": {
-		"id": "AtlasLionEffect",
+		"id": "set1:AtlasLionEffect",
 		"name": "EFFECT_NAME_ATLAS_LION",
 		"description": "EFFECT_DESCRIPTION_ATLAS_LION"
 	},
 	"set1:UnyieldingBearEffect": {
-		"id": "UnyieldingBearEffect",
+		"id": "set1:UnyieldingBearEffect",
 		"name": "EFFECT_NAME_UNYIELDING_BEAR",
 		"description": "EFFECT_DESCRIPTION_UNYIELDING_BEAR"
 	},
 	"set1:DreadCloakEffect": {
-		"id": "DreadCloakEffect",
+		"id": "set1:DreadCloakEffect",
 		"name": "EFFECT_NAME_DREAD_CLOAK",
 		"description": "EFFECT_DESCRIPTION_DREAD_CLOAK"
+	},
+	"set1:UpgradeCursedEffect": {
+		"id": "set1:UpgradeCursedEffect",
+		"name": "EFFECT_NAME_UPGRADE_CURSED",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_CURSED"
+	},
+	"set1:CurseEffect": {
+		"id": "set1:CurseEffect",
+		"name": "EFFECT_NAME_CURSE",
+		"description": "EFFECT_DESCRIPTION_CURSE"
+	},
+	"set1:UpgradeFragileffect": {
+		"id": "set1:UpgradeFragileffect",
+		"name": "EFFECT_NAME_UPGRADE_FRAGILE",
+		"description": "EFFECT_DESCRIPTION_UPGRADE_FRAGILE"
 	},
 }

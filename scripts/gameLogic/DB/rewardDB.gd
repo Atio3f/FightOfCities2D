@@ -28,13 +28,15 @@ var REWARDS_DICO := {
 	"UpgradePromotionEffect": {"title": "Bonus promotion", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
 	"UpgradeScoutEffect": {"title": "Bonus scout", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
 	"UpgradeBloodyEffect": {"title": "Bonus bloody", "desc": "Unit have developed an insatiable bloody hunger",  "rewardType": RewardTypes.rewardTypes.BONUS, "icon_name": "BloodyUpgrade.png", "rarity": Rarities.BONUS_COMMON},
-	"UpgradeHiddenPotentialEffect": {"title": "Bonus hidden potential", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
-	"UpgradeBloodGiftEffect": {"title": "Bonus potential in exchange of life", "desc": "+1 Potential, -5 HP, +1 P",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
+	"UpgradeHiddenPotentialEffect": {"title": "Bonus Hidden Potential", "desc": "+1 Potential",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_RARE},
+	"UpgradeBloodGiftEffect": {"title": "Bonus Blood Gift", "desc": "+1 Potential, -5 HP, +1 P",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
 	"UpgradeTestEffect": {"title": "Bonus test", "desc": "+9 HP",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
 	"UpgradeSneakyEffect": {"title": "Bonus sneaky", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
 	"UpgradeGlassCanonEffect": {"title": "Bonus Glass Canon", "desc": "Less hp for more damage. What a great deal !",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
 	"UpgradeMultitaskingEffect": {"title": "Bonus Multitasking", "desc": "Attack one more time each turn",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
 	"UpgradeCrossfitDudeEffect": {"title": "Bonus Crossfit training", "desc": "Takes time to develop a hybrid body",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
+	"UpgradeCursedEffect": {"title": "Bonus Self Curse", "desc": "Fragilize yourself to curse a random enemy each turn",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_RARE},
+	"UpgradeFragileEffect": {"title": "Bonus Fragile", "desc": "+5 P and +1 V, lose 1 DR on each hit taken",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
 	
 	## UNITS
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Monkey_p.png", "rarity": Rarities.UNIT_COMMON},

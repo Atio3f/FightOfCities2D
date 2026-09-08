@@ -1,0 +1,27 @@
+{
+	"DEPLACEMENT": {
+		"menu_icon": "res://assets/interface/unite/UIuniteInfosStats(512x512).png",
+		"pages": [
+			"res://assets/interface/unite/UIuniteInfosStats(512x512).png"
+		]
+	},
+	"COMBAT": {
+		"menu_icon": "res://assets/interface/unite/UIuniteInfosStats(512x512).png",
+		"pages": [
+			"res://assets/interface/unite/UIuniteInfosStats(512x512).png",
+			"res://assets/interface/unite/UIuniteInfosStats(512x512).png"
+		]
+	},
+	"PLACE_UNIT": {
+		"menu_icon": "res://assets/interface/unite/UIuniteInfosStats(512x512).png",
+		"pages": [
+			"res://assets/interface/unite/UIuniteInfosStats(512x512).png"
+		]
+	},
+	"EQUIP_ITEM": {
+		"menu_icon": "res://assets/interface/unite/UIuniteInfosStats(512x512).png",
+		"pages": [
+			"res://assets/interface/unite/UIuniteInfosStats(512x512).png"
+		]
+	}
+}

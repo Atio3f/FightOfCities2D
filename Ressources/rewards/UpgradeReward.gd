@@ -19,9 +19,11 @@ func setData(_additionalData: String = "") -> void :
 		"UpgradeCrossfitDudeEffect": Rarities.BONUS_COMMON,
 		"UpgradeSneakyEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradePromotionEffect": Rarities.BONUS_UNCOMMON, # C'était commun à la base jsp faudra voir
-		"UpgradeHiddenPotentialEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeMultitaskingEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeBloodGiftEffect": Rarities.BONUS_UNCOMMON,
+		"UpgradeFragileEffect": Rarities.BONUS_UNCOMMON,
+		"UpgradeHiddenPotentialEffect": Rarities.BONUS_RARE,
+		"UpgradeCursedEffect": Rarities.BONUS_RARE,
 	}
 	
 	# Calc probabilities

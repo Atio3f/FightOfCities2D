@@ -98,5 +98,19 @@
 		},
 		"is_dynamic": false
 	},
-	
+	"UpgradeCursedEffect": {
+		"stats": {
+			"potentialCost": 2,
+			"hpMax": -8,
+		},
+		"is_dynamic": true
+	},
+	"UpgradeFragileEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"power": 5,
+			"speed": 1,
+		},
+		"is_dynamic": true
+	},
 }

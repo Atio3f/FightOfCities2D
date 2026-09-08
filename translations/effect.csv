@@ -61,3 +61,5 @@ EFFECT_NAME_MR_PLUS,Bonus de réduction de dégâts magiques,Magical Damage Redu
 EFFECT_DESCRIPTION_MR_PLUS,+!VA! MR,+!VA! MR
 EFFECT_NAME_DREAD_CLOAK,Frappe effrayante,Scary hit
 EFFECT_DESCRIPTION_DREAD_CLOAK,Steal !VA! MR when attacking,Steal !VA! MR when attacking
+EFFECT_NAME_CURSE,Malédiction,Scary hit
+EFFECT_DESCRIPTION_CURSE,Subissez le double de dégâts de toute source,Take double damage from every source

@@ -14,27 +14,14 @@ extends Control
 
 # Dictionary associating the help ID to its information and pages
 # Description texts will use keys like HELP_DESC_COMBAT_0, HELP_DESC_COMBAT_1...
-var helps_data = {
-	"DEPLACEMENT": {
-		"menu_icon": preload("res://assets/interface/unite/UIuniteInfosStats(512x512).png"),
-		"pages": [
-			preload("res://assets/interface/unite/UIuniteInfosStats(512x512).png") # Page 1 (index 0)
-		]
-	},
-	"COMBAT": {
-		"menu_icon": preload("res://assets/interface/unite/UIuniteInfosStats(512x512).png"),
-		"pages": [
-			preload("res://assets/interface/unite/UIuniteInfosStats(512x512).png"), # Page 1 (index 0)
-			preload("res://assets/interface/unite/UIuniteInfosStats(512x512).png")  # Page 2 (index 1)
-		]
-	}
-}
+var helps_data = {}
 
 var unlocked_helps: Array[String] = []
 var current_help: String = ""
 var current_page: int = 0
 
 func _ready():
+	load_helps_from_file("res://translations/help.json")
 	visible = false
 	
 	# Ensure it opens on the list view when made visible
@@ -45,6 +32,22 @@ func _ready():
 	# Pre-unlocked helps for testing
 	_on_help_unlocked("DEPLACEMENT")
 	_on_help_unlocked("COMBAT")
+	_on_help_unlocked("PLACE_UNIT")
+	_on_help_unlocked("EQUIP_ITEM")
+
+func load_helps_from_file(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		push_error("File not found : " + path)
+		return
+
+	var file = FileAccess.open(path, FileAccess.READ)
+	var content = file.get_as_text()
+	var json = JSON.parse_string(content)
+	
+	if json:
+		helps_data = json
+	else:
+		push_error("Erreur de syntaxe JSON dans le fichier Help.")
 
 func _on_visibility_changed():
 	if visible:
@@ -76,7 +79,9 @@ func refresh_list():
 		btn.text = tr("HELP_TITLE_" + help_id) 
 		
 		if helps_data.has(help_id) and helps_data[help_id].has("menu_icon"):
-			btn.icon = helps_data[help_id]["menu_icon"]
+			var icon_path = helps_data[help_id]["menu_icon"]
+			if icon_path != "":
+				btn.icon = load(icon_path)
 			
 		btn.expand_icon = true
 		btn.custom_minimum_size = Vector2(0, 70)
@@ -107,7 +112,9 @@ func update_page():
 	
 	# Load page image
 	if nb_pages > 0 and current_page < nb_pages:
-		help_icon.texture = helps_data[current_help]["pages"][current_page]
+		var page_path = helps_data[current_help]["pages"][current_page]
+		if page_path != "":
+			help_icon.texture = load(page_path)
 		
 	# Update pagination UI
 	page_label.text = str(current_page + 1) + " / " + str(max(1, nb_pages))
