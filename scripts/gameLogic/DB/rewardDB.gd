@@ -5,6 +5,7 @@ const REWARDS := {
 	## Units reward
 	"reward:unitMonkey" : preload("res://Ressources/rewards/UnitMonkeyReward.gd"),
 	"reward:magicalBeast" : preload("res://Ressources/rewards/MagicalBeastReward.gd"),
+	"reward:unitBull" : preload("res://Ressources/rewards/UnitBullReward.gd"),
 	## Trinkets reward
 	"reward:trinketBoss" : preload("res://Ressources/rewards/TrinketBossReward.gd"),
 	"reward:localHero" : preload("res://Ressources/rewards/LocalHeroReward.gd"),
@@ -36,7 +37,7 @@ var REWARDS_DICO := {
 	"UpgradeMultitaskingEffect": {"title": "Bonus Multitasking", "desc": "Attack one more time each turn",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
 	"UpgradeCrossfitDudeEffect": {"title": "Bonus Crossfit training", "desc": "Takes time to develop a hybrid body",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
 	"UpgradeCursedEffect": {"title": "Bonus Self Curse", "desc": "Fragilize yourself to curse a random enemy each turn",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_RARE},
-	"UpgradeFragileEffect": {"title": "Bonus Fragile", "desc": "+5 P and +1 V, lose 1 DR on each hit taken",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
+	"UpgradeFragileEffect": {"title": "Bonus Fragile", "desc": "+5 P and +1 V, lose 2 DR on each hit taken",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
 	
 	## UNITS
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Monkey_p.png", "rarity": Rarities.UNIT_COMMON},
@@ -52,6 +53,10 @@ var REWARDS_DICO := {
 	"set1:SniperMonkey": {"title": "Sniper Monkey", "desc": "Une portée absurde et un tir précis en font un bon sniper", "idReward": "set1:SniperMonkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "SniperMonkey_p.png", "rarity": Rarities.UNIT_RARE},
 	"set1:UnyieldingBear": {"title": "Unyielding Bear", "desc": "Les attaques subies le renforcent", "idReward": "set1:UnyieldingBear", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "UnyieldingBear_p.png", "rarity": Rarities.UNIT_COMMON},
 	"set1:Fripouille": {"title": "Fripouille", "desc": "Démarre le combat avec des bonus de stat", "idReward": "set1:Fripouille", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Fripouille_p.png", "rarity": Rarities.UNIT_COMMON},
+	### UNITS BULL
+	"set1:Bull": {"title": "Bull", "desc": "Un Taureau basique, puissant et colérique", "idReward": "set1:Bull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Bull_p.png", "rarity": Rarities.UNIT_COMMON},
+	"set1:WingedBull": {"title": "Winged Bull", "desc": "Un Taureau plus sage doté d'ailes pour voler", "idReward": "set1:WingedBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "WingedBull_p.png", "rarity": Rarities.UNIT_UNCOMMON},
+	"set1:BerserkerBull": {"title": "Berserker Bull", "desc": "Ce barbare se lance tout entier au combat, x2 aux dégâts subis et infligés", "idReward": "set1:BerserkerBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "BerserkerBull_p.png", "rarity": Rarities.UNIT_RARE},
 	
 	## TRINKETS
 	"set1:OrbCrate": {"title": "Orb Crate", "desc": "Some orbs on a box.", "idReward": "set1:OrbCrate", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "OrbCrate_p.png", "rarity": Rarities.TRINKET_COMMON},
@@ -88,4 +93,5 @@ var REWARDS_DICO := {
 	"set1:DemonAxe": {"title": "Demon Axe", "desc": "Tradeoff defense for more damage", "idReward": "set1:DemonAxe", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "icon_name": "DemonAxe.png", "rarity": Rarities.EQUIP_UNCOMMON},
 	"set1:HarpyBardiche": {"title": "Harpy Bardiche", "desc": "Kill Kill Kill that flying thing", "idReward": "set1:HarpyBardiche", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "icon_name": "HarpyBardiche.png", "rarity": Rarities.EQUIP_COMMON},
 	"set1:DreadCloak": {"title": "Dread Cloak", "desc": "Scare ennemies, useful to steal Magical Resistance", "idReward": "set1:DreadCloak", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
+	"set1:VampiricFangs": {"title": "Vampiric Fangs", "desc": "Grants LifeSteal", "idReward": "set1:VampiricFangs", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
 }

@@ -210,8 +210,13 @@
 		"description": "EFFECT_DESCRIPTION_CURSE"
 	},
 	"set1:UpgradeFragileffect": {
-		"id": "set1:UpgradeFragileffect",
+		"id": "set1:UpgradeFragileEffect",
 		"name": "EFFECT_NAME_UPGRADE_FRAGILE",
 		"description": "EFFECT_DESCRIPTION_UPGRADE_FRAGILE"
+	},
+	"set1:LifeStealEffect": {
+		"id": "set1:LifeStealEffect",
+		"name": "EFFECT_NAME_LIFE_STEAL",
+		"description": "EFFECT_DESCRIPTION_LIFE_STEAL"
 	},
 }

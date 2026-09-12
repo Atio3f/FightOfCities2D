@@ -125,4 +125,10 @@
 		"description": "ITEM_DESC_DREAD_CLOAK",
 		"img": "res://assets/sprites/items/BrambleGauntlet.png"
 	},
+	"set1:VampiricFangs": {
+		"id": "set1:VampiricFangs",
+		"name": "ITEM_NAME_VAMPIRIC_FANGS",
+		"description": "ITEM_DESC_VAMPIRIC_FANGS",
+		"img": "res://assets/sprites/items/VampiricFangs.png"
+	},
 }

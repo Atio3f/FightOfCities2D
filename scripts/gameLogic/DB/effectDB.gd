@@ -34,6 +34,7 @@ const EFFECTS := {
 	"set1:PoisonEffect": preload("res://Ressources/effects/keywordEffects/PoisonEffect.gd"),
 	"set1:ThornsEffect": preload("res://Ressources/effects/keywordEffects/ThornsEffect.gd"),
 	"set1:CurseEffect": preload("res://Ressources/effects/keywordEffects/CurseEffect.gd"),
+	"set1:LifeStealEffect": preload("res://Ressources/effects/keywordEffects/LifeStealEffect.gd"),
 	"set1:SpeedPlusEffect": preload("res://Ressources/effects/SpeedPlusEffect.gd"),
 	"set1:DRPlusEffect": preload("res://Ressources/effects/DRPlusEffect.gd"),
 	"set1:MRPlusEffect": preload("res://Ressources/effects/MRPlusEffect.gd"),

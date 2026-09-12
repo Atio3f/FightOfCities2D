@@ -2,7 +2,7 @@
 	"mainCharacter": "set1:MonkeyMC",
 	"startingAllies": [
 		{
-			"id": "set1:Monkey"
+			"id": "set1:Fripouille",
 		},
 		{
 			"id": "set1:Monkey",
@@ -31,8 +31,10 @@
 	],
 	"startingOrbs": 2,
 	"startingMaxOrbs": 5,
+	"startingGold": 37,
 	"maps":{
 		"map1": {
+			"title": "Première rencontre",
 			"size": {
 				"width": 12,
 				"length": 9
@@ -347,6 +349,7 @@
 			"nextMission": "shop2"
 		},
 		"map7": {
+			"title": "Bataille à la montagne",
 			"size": {
 				"width": 11,
 				"length": 14
@@ -396,6 +399,110 @@
 			],
 			"rewards": [
 				"reward:magicalBeast",
+				"reward:bonus",
+				"reward:bonus"
+			],
+			"nextMission": "map10"
+		},
+		"map8": {
+			"title": "Les chats et la souris",
+			"size": {
+				"width": 21,
+				"length": 17
+			},
+			"enemies": [
+				{
+					"id": "set1:Fripouille",
+					"coords": [18, 11]
+				},
+				{
+					"id": "set1:Fripouille",
+					"coords": [15, 15]
+				},
+				{
+					"id": "set1:Fripouille",
+					"coords": [14, 14]
+				},
+				{
+					"id": "set1:Fripouille",
+					"coords": [9, 16],
+					"permanentUpgrades": [
+						
+					]
+				},
+			],
+			"placementTiles": [
+				[5, 2],
+				[6, 2],
+				[6, 3],
+				[8, 2],
+				[9, 3],
+				[9, 5]
+			],
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": ["monkeysCampaign:lose"]
+			},
+			"goals": [
+				{
+					"className": "KillAllGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"colorsToKill": [1],
+					"killsAtStart": 4,
+					"killsRemaining": 4
+				}
+			],
+			"rewards": [
+				"reward:magicalBeast",
+				"reward:bonus",
+				"reward:bonus"
+			],
+			"nextMission": "map10"
+		},
+		"map10": {
+			"title": "Confrontation avec le Taureau Crétois",
+			"size": {
+				"width": 9,
+				"length": 9
+			},
+			"terrainGen" : "genMapCretanBullBossArea",
+			"enemies": [
+				{
+					"id": "set1:CretanBull",
+					"coords": [4, 4]
+				},
+			],
+			"placementTiles": [
+				[1, 3],
+				[3, 1],
+				[5, 1],
+				[3, 7],
+				[5, 7],
+				[7, 4]
+			],
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": ["monkeysCampaign:lose"]
+			},
+			"goals": [
+				{
+					"className": "KillAllGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"colorsToKill": [1],
+					"killsAtStart": 1,
+					"killsRemaining": 1
+				}
+			],
+			"rewards": [
+				"reward:unitBull",
+				"reward:unitMonkey",
+				"reward:bonus",
 				"reward:bonus",
 				"reward:bonus"
 			],

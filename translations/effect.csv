@@ -63,3 +63,5 @@ EFFECT_NAME_DREAD_CLOAK,Frappe effrayante,Scary hit
 EFFECT_DESCRIPTION_DREAD_CLOAK,Steal !VA! MR when attacking,Steal !VA! MR when attacking
 EFFECT_NAME_CURSE,Malédiction,Scary hit
 EFFECT_DESCRIPTION_CURSE,Subissez le double de dégâts de toute source,Take double damage from every source
+EFFECT_NAME_LIFE_STEAL,Drain de vie,Life Steal
+EFFECT_DESCRIPTION_LIFE_STEAL,Se soigne à hauteur de !VA!% des dégâts infligés,Heal !VA!% of damage dealed

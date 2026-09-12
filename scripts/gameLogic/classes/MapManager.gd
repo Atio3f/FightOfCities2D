@@ -12,7 +12,9 @@ static var width: int	#y
 const MAP_CONFIGS: Dictionary = {
 	"genMapDefault": preload("res://Ressources/terrain/genMapDefault.tres"),
 	"genMapMountains": preload("res://Ressources/terrain/genMapMountains.tres"),
-	"genMapTEST": preload("res://Ressources/terrain/genMapTEST.tres")
+	"genMapTEST": preload("res://Ressources/terrain/genMapTEST.tres"),
+	"genMapVolcano": preload("res://Ressources/terrain/genMapVolcano.tres"),
+	"genMapCretanBullBossArea": preload("res://Ressources/terrain/genMapCretanBullBossArea.tres"),
 }
 
 static var sceneTerrain: PackedScene = preload("res://nodes/tilemaps/terrain512x512.tscn")

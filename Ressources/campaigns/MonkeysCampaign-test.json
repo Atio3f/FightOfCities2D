@@ -42,8 +42,10 @@
 	],
 	"startingOrbs": 2,
 	"startingMaxOrbs": 5,
+	"startingGold": 37,
 	"maps":{
 		"map1": {
+			"title": "Première rencontre",
 			"size": {
 				"width": 12,
 				"length": 9

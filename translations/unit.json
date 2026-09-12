@@ -65,4 +65,7 @@
 	"set1:Fripouille" : {
 		"name": "UNIT_NAME_FRIPOUILLE"
 	},
+	"set1:CretanBull" : {
+		"name": "UNIT_NAME_CRETAN_BULL"
+	},
 }

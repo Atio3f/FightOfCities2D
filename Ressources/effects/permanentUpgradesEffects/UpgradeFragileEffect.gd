@@ -3,7 +3,7 @@ class_name UpgradeFragileEffect
 
 const idEffect = "UpgradeFragileEffect"
 const img = ""
-const DR_LOSE = 1
+const DR_LOSE = 2
 # Lose value_A DR when attacked
 func _init(unit: AbstractUnit):
 	super._init(idEffect, img, unit, remainingTurns, 1, true, DR_LOSE, 0, 0, 0)
@@ -11,7 +11,8 @@ func _init(unit: AbstractUnit):
 
 func onDamageTaken(unit: AbstractUnit, damage: int, damageType: DamageTypes.DamageTypes, visualisation: bool) -> int :
 	var result = super.onDamageTaken(unit, damage, damageType, visualisation)
-	if !visualisation : unitAssociated.dr -= value_A
+	if !visualisation : 
+		unitAssociated.dr -= value_A
 	return result
 
 

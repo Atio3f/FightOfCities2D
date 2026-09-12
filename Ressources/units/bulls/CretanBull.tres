@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://b3ief74quddtf"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_7ffpu"]
+
+[resource]
+script = ExtResource("1_7ffpu")
+id = "set1:CretanBull"
+imgPath = "CretanBull"
+hpBase = 90
+drBase = 7
+mrBase = 4
+grade = 3
+potential = 0
+wisdomBase = 1
+powerBase = 25
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 7
+metadata/_custom_type_script = "uid://chjck7svelps7"
