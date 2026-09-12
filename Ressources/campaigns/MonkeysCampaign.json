@@ -407,28 +407,30 @@
 		"map8": {
 			"title": "Les chats et la souris",
 			"size": {
-				"width": 21,
-				"length": 17
+				"width": 18,
+				"length": 21
 			},
+			"terrainGen": "genMapBullMonkeyPlainsLimit",
 			"enemies": [
 				{
 					"id": "set1:Fripouille",
-					"coords": [18, 11]
+					"coords": [16, 10]
 				},
 				{
 					"id": "set1:Fripouille",
-					"coords": [15, 15]
+					"coords": [13, 13]
 				},
 				{
 					"id": "set1:Fripouille",
-					"coords": [14, 14]
+					"coords": [12, 13]
 				},
 				{
 					"id": "set1:Fripouille",
-					"coords": [9, 16],
-					"permanentUpgrades": [
-						
-					]
+					"coords": [8, 14]
+				},
+				{
+					"id": "set1:Fripouille",
+					"coords": [4, 4]
 				},
 			],
 			"placementTiles": [
@@ -456,8 +458,8 @@
 				}
 			],
 			"rewards": [
-				"reward:magicalBeast",
-				"reward:bonus",
+				"reward:unitMonkey",
+				"reward:basicItems",
 				"reward:bonus"
 			],
 			"nextMission": "map10"

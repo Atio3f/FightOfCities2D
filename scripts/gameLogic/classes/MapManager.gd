@@ -14,6 +14,7 @@ const MAP_CONFIGS: Dictionary = {
 	"genMapMountains": preload("res://Ressources/terrain/genMapMountains.tres"),
 	"genMapTEST": preload("res://Ressources/terrain/genMapTEST.tres"),
 	"genMapVolcano": preload("res://Ressources/terrain/genMapVolcano.tres"),
+	"genMapBullMonkeyPlainsLimit": preload("res://Ressources/terrain/genMapBullMonkeyPlainsLimit.tres"),
 	"genMapCretanBullBossArea": preload("res://Ressources/terrain/genMapCretanBullBossArea.tres"),
 }
 
