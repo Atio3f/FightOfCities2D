@@ -28,6 +28,9 @@ const UNITS := {
 	"set1:UnyieldingBear": preload("res://Ressources/units/magicalBeasts/UnyieldingBear.gd"),
 	"set1:Fripouille": preload("res://Ressources/units/magicalBeasts/Fripouille.gd"),
 	"set1:CretanBull": preload("res://Ressources/units/bulls/CretanBull.gd"),
+	"set1:HornedMonkBull": preload("res://Ressources/units/bulls/HornedMonkBull.gd"),
+	"set1:SentinelBull": preload("res://Ressources/units/bulls/SentinelBull.gd"),
+	"set1:GreenRoot": preload("res://Ressources/units/magicalBeasts/GreenRoot.gd"),
 }
 
 

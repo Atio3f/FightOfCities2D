@@ -104,7 +104,6 @@ func initializeStats(stats: UnitStats, playerAssociated: AbstractPlayer, idDead:
 	self.isDead = isDead
 
 	# --- Apply Unit Stats Resource ---
-	self.grade = stats.grade
 	
 	# Effective HP Stats
 	self.hpBase = stats.hpBase
@@ -116,10 +115,12 @@ func initializeStats(stats: UnitStats, playerAssociated: AbstractPlayer, idDead:
 	self.mrBase = stats.mrBase
 	self.mr = stats.mrBase
 	
-		# Progress Stats
+	# Progress Stats
+	self.grade = stats.grade
 	self.wisdomBase = stats.wisdomBase
 	self.wisdom = stats.wisdomBase
 	self.potential = stats.potential
+	self.equipmentLimit = stats.equipmentLimit
 	
 	# Offensive stats
 	self.powerBase = stats.powerBase

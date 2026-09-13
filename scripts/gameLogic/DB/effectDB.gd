@@ -5,7 +5,6 @@ const EFFECTS := {
 	## UNITS EFFECTS
 	# MONKEYS
 	"set1:MonkeyEffect": preload("res://Ressources/effects/unitEffects/monkeys/MonkeyEffect.gd"),
-	"set1:BerserkerBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/BerserkerBullEffect.gd"),
 	"set1:KnightMonkeyEffect": preload("res://Ressources/effects/unitEffects/monkeys/KnightMonkeyEffect.gd"),	
 	"set1:GodMonkeySpeedEffect": preload("res://Ressources/effects/unitEffects/monkeys/GodMonkeySpeedEffect.gd"),
 	"set1:GodMonkeyMinionEffect": preload("res://Ressources/effects/unitEffects/monkeys/GodMonkeyMinionEffect.gd"),
@@ -18,6 +17,10 @@ const EFFECTS := {
 	"set1:StarvingShadowEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/StarvingShadowEffect.gd"),
 	"set1:AtlasLionEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/AtlasLionEffect.gd"),
 	"set1:UnyieldingBearEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/UnyieldingBearEffect.gd"),
+	# BULLS
+	"set1:BerserkerBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/BerserkerBullEffect.gd"),
+	"set1:HornedMonkBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/HornedMonkBullEffect.gd"),
+	"set1:SentinelBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/SentinelBullEffect.gd"),
 	## UPGRADE EFFECTS
 	"UpgradeTestEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeTestEffect.gd"),
 	"UpgradePromotionEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradePromotionEffect.gd"),

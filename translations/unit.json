@@ -68,4 +68,13 @@
 	"set1:CretanBull" : {
 		"name": "UNIT_NAME_CRETAN_BULL"
 	},
+	"set1:HornedMonkBull" : {
+		"name": "UNIT_NAME_HORNED_MONK_BULL"
+	},
+	"set1:SentinelBull" : {
+		"name": "UNIT_NAME_SENTINEL_BULL"
+	},
+	"set1:GreenRoot" : {
+		"name": "UNIT_NAME_GREEN_ROOT"
+	},
 }

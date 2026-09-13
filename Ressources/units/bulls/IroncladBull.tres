@@ -12,6 +12,7 @@ mrBase = 0
 grade = 1
 potential = 3
 wisdomBase = 2
+equipmentLimit = 1
 powerBase = 21
 damageType = 0
 attackRange = 1

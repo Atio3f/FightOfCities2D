@@ -57,6 +57,8 @@ var REWARDS_DICO := {
 	"set1:Bull": {"title": "Bull", "desc": "Un Taureau basique, puissant et colérique", "idReward": "set1:Bull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Bull_p.png", "rarity": Rarities.UNIT_COMMON},
 	"set1:WingedBull": {"title": "Winged Bull", "desc": "Un Taureau plus sage doté d'ailes pour voler", "idReward": "set1:WingedBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "WingedBull_p.png", "rarity": Rarities.UNIT_UNCOMMON},
 	"set1:BerserkerBull": {"title": "Berserker Bull", "desc": "Ce barbare se lance tout entier au combat, x2 aux dégâts subis et infligés", "idReward": "set1:BerserkerBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "BerserkerBull_p.png", "rarity": Rarities.UNIT_RARE},
+	"set1:HornedMonkBull": {"title": "Horned Monk Bull", "desc": "Un Taureau qui a choisi une voie plus noble que ces congénères sanglants. Réduit la puissance des unités qu'il attaque", "idReward": "set1:HornedMonkBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "HornedMonkBull_p.png", "rarity": Rarities.UNIT_COMMON},
+	"set1:SentinelBull": {"title": "Sentinel Bull", "desc": "Un Taureau en armure armée d'une lance, peu puissant au contact", "idReward": "set1:SentinelBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "SentinelBull_p.png", "rarity": Rarities.UNIT_UNCOMMON},
 	
 	## TRINKETS
 	"set1:OrbCrate": {"title": "Orb Crate", "desc": "Some orbs on a box.", "idReward": "set1:OrbCrate", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "OrbCrate_p.png", "rarity": Rarities.TRINKET_COMMON},

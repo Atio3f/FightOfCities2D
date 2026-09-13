@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://0o2e8ynf137j"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_3wjjh"]
+
+[resource]
+script = ExtResource("1_3wjjh")
+id = "set1:HornedMonkBull"
+imgPath = "HornedMonkBull"
+hpBase = 42
+drBase = 3
+mrBase = 3
+grade = 1
+potential = 2
+wisdomBase = 2
+equipmentLimit = 0
+powerBase = 13
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 5
+metadata/_custom_type_script = "uid://chjck7svelps7"

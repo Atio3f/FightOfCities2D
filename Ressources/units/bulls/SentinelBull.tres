@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://cbeba0cvf78hh"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_mckv1"]
+
+[resource]
+script = ExtResource("1_mckv1")
+id = "set1:SentinelBull"
+imgPath = "SentinelBull"
+hpBase = 44
+drBase = 6
+mrBase = 2
+grade = 2
+potential = 3
+wisdomBase = 1
+equipmentLimit = 1
+powerBase = 6
+damageType = 0
+attackRange = 2
+atkPerTurnBase = 1
+speedBase = 1
+metadata/_custom_type_script = "uid://chjck7svelps7"

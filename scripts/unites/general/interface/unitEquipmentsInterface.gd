@@ -58,7 +58,7 @@ func _addEquippedSlot(idEquip: String) -> void:
 ## Display empty equipment slot placeholder
 func _addEmptySlot() -> void:
 	var label: Label = Label.new()
-	label.text = "Emplacement d'équipement vide"
+	label.text = "Emplacement d'équipement vide" if unit.equipmentLimit > 0 else "Ne peut rien équiper"
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL

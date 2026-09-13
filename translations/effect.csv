@@ -65,3 +65,7 @@ EFFECT_NAME_CURSE,Malédiction,Scary hit
 EFFECT_DESCRIPTION_CURSE,Subissez le double de dégâts de toute source,Take double damage from every source
 EFFECT_NAME_LIFE_STEAL,Drain de vie,Life Steal
 EFFECT_DESCRIPTION_LIFE_STEAL,Se soigne à hauteur de !VA!% des dégâts infligés,Heal !VA!% of damage dealed
+EFFECT_NAME_HORNED_MONK_BULL,Poings affaiblissants,Weakening Fists
+EFFECT_DESCRIPTION_HORNED_MONK_BULL,Les ennemis attaqués perdent !VA! P,Attacked units lose !VA! P
+EFFECT_NAME_SENTINEL_BULL,Lancier,Lancier
+EFFECT_DESCRIPTION_SENTINEL_BULL,+!VA! dégâts à 2 cases de la cible,+!VA! damage at 2 tiles from target

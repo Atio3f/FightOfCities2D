@@ -7,6 +7,7 @@
 		{
 			"id": "set1:Monkey",
 		},
+		},
 		{
 			"id": "set1:MonkeyMC",
 		},
@@ -402,7 +403,7 @@
 				"reward:bonus",
 				"reward:bonus"
 			],
-			"nextMission": "map10"
+			"nextMission": "map8"
 		},
 		"map8": {
 			"title": "Les chats et la souris",
@@ -440,6 +441,71 @@
 				[8, 2],
 				[9, 3],
 				[9, 5]
+			],
+			"dialogs": {
+				"start": [],
+				"win": [],
+				"lose": ["monkeysCampaign:lose"]
+			},
+			"goals": [
+				{
+					"className": "KillAllGoal",
+					"isPrimary": true,
+					"isCompleted": false,
+					"reward": "None",
+					"colorsToKill": [1],
+					"killsAtStart": 4,
+					"killsRemaining": 4
+				}
+			],
+			"rewards": [
+				"reward:unitMonkey",
+				"reward:basicItems",
+				"reward:bonus"
+			],
+			"nextMission": "map9"
+		},
+		"map9": {
+			"title": "Mur d'Avant-Poste (Outpost Wall)",
+			"description": "Tuer tous les ennemis : 2 lanciers(ligne avant avec 1 espace entre eux), 3 moines à cornes (1 la case derrière celle entre les lanciers et les 2 autres derrière les lanciers mais d'une case vers l'extérieur) et une racine verte derrière le moine central",
+			"size": {
+				"width": 9,
+				"length": 6
+			},
+			"specialMap": "BorderOutpostBull",
+			"enemies": [
+				{
+					"id": "set1:SentinelBull",
+					"coords": [2, 6]
+				},
+				{
+					"id": "set1:SentinelBull",
+					"coords": [4, 6]
+				},
+				{
+					"id": "set1:HornedMonkBull",
+					"coords": [1, 7]
+				},
+				{
+					"id": "set1:HornedMonkBull",
+					"coords": [3, 7]
+				},
+				{
+					"id": "set1:HornedMonkBull",
+					"coords": [5, 7]
+				},
+				{
+					"id": "set1:GreenRoot",
+					"coords": [3, 8]
+				},
+			],
+			"placementTiles": [
+				[1, 0],
+				[3, 0],
+				[5, 0],
+				[2, 1],
+				[2, 3],
+				[0, 2]
 			],
 			"dialogs": {
 				"start": [],

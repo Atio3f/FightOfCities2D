@@ -66,6 +66,7 @@ func startNextMission() -> void :
 			var tile: AbstractTile
 			for enemiesDico: Dictionary in dataMap.get("enemies"):
 				tile = MapManager.getTileAt(Vector2i(enemiesDico["coords"][0], enemiesDico["coords"][1]))
+				assert(tile, "Invalid coords : "+ str(enemiesDico["coords"][0]) +" "+ str(enemiesDico["coords"][1]))
 				var unitData: StoredUnit = StoredUnit.loadStoredUnit(enemiesDico)
 				Global.gameManager.placeUnit(unitData, player, tile)
 			

@@ -18,6 +18,7 @@ class_name UnitStats
 @export var grade: int = 1 ## Rarity of the unit, player is limited in term of grade value to place
 @export var potential: int = 1 ## How many permanent upgrades can a unit have
 @export var wisdomBase: int = 1 ## Influence number of permanent upgrades that can be applied to an unit (higher values increase 
+@export var equipmentLimit: int = 1 ## Influence how many equipments an unit can have, for the moment majority of units have 1 equipment and Horned Monk Bull is limited to 0
 
 # --- COMBAT ---
 @export_group("Combat Stats")
