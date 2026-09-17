@@ -352,6 +352,8 @@ func _move_active_unit(new_cell: Vector2i) -> void:
 		visuActions.draw_attackable_cells(_attackable_cells)
 		visuActions.draw_walkable_cells(attaqueEnAttenteCells, Selection.team)
 		attaqueEnAttente = false
+		# Attaquer automatiquement la cible. Elle est censée être à portée
+		GameManager.fight(Selection, target)
 
 	else :
 		_deselect_active_unit()
