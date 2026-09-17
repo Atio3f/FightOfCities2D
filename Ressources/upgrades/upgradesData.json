@@ -113,4 +113,22 @@
 		},
 		"is_dynamic": true
 	},
+	"UpgradeStealthilyEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"power": 1,
+			"aggro": -4
+		}
+	},
+	"UpgradeFortuneWheelEffect": {
+		"stats": {
+			"potentialCost": 1
+		}
+	},
+	"UpgradeWasteTreatmentEffect": {
+		"stats": {
+			"potentialCost": 1,
+			"wisdom": 1
+		}
+	}
 }

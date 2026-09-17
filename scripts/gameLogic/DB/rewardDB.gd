@@ -38,6 +38,9 @@ var REWARDS_DICO := {
 	"UpgradeCrossfitDudeEffect": {"title": "Bonus Crossfit training", "desc": "Takes time to develop a hybrid body",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
 	"UpgradeCursedEffect": {"title": "Bonus Self Curse", "desc": "Fragilize yourself to curse a random enemy each turn",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_RARE},
 	"UpgradeFragileEffect": {"title": "Bonus Fragile", "desc": "+5 P and +1 V, lose 2 DR on each hit taken",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
+	"UpgradeStealthilyEffect": {"title": "Bonus Pas de loup", "desc": "+1 P and -4 Aggro",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
+	"UpgradeFortuneWheelEffect": {"title": "Bonus Roue de la Fortune", "desc": "Au début de chaque combat, donne +2 DR, +3 P et +2 V à une de vos unités aléatoirement",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
+	"UpgradeWasteTreatmentEffect": {"title": "Bonus Retraitement des déchets", "desc": "+1 W. Soin de 6 lorsque vous utilisez un objet",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
 	
 	## UNITS
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Monkey_p.png", "rarity": Rarities.UNIT_COMMON},

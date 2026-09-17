@@ -31,6 +31,9 @@ const EFFECTS := {
 	"UpgradeMultitaskingEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeMultitaskingEffect.gd"),
 	"UpgradeCursedEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeCursedEffect.gd"),
 	"UpgradeFragileEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeFragileEffect.gd"),
+	"UpgradeStealthilyEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeStealthilyEffect.gd"),
+	"UpgradeFortuneWheelEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeFortuneWheelEffect.gd"),
+	"UpgradeWasteTreatmentEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeWasteTreatmentEffect.gd"),
 	## KEYWORD EFFECTS
 	"set1:RegenerationEffect": preload("res://Ressources/effects/RegenerationEffect.gd"),
 	"set1:FreezeEffect": preload("res://Ressources/effects/keywordEffects/FreezeEffect.gd"),

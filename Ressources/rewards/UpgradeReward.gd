@@ -17,11 +17,14 @@ func setData(_additionalData: String = "") -> void :
 		"UpgradeBloodyEffect": Rarities.BONUS_COMMON,
 		"UpgradeGlassCanonEffect": Rarities.BONUS_COMMON,
 		"UpgradeCrossfitDudeEffect": Rarities.BONUS_COMMON,
+		"UpgradeStealthilyEffect": Rarities.BONUS_COMMON,
+		"UpgradeWasteTreatmentEffect": Rarities.BONUS_COMMON,
 		"UpgradeSneakyEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradePromotionEffect": Rarities.BONUS_UNCOMMON, # C'était commun à la base jsp faudra voir
 		"UpgradeMultitaskingEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeBloodGiftEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeFragileEffect": Rarities.BONUS_UNCOMMON,
+		"UpgradeFortuneWheelEffect": Rarities.BONUS_UNCOMMON,
 		"UpgradeHiddenPotentialEffect": Rarities.BONUS_RARE,
 		"UpgradeCursedEffect": Rarities.BONUS_RARE,
 	}
