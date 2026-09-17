@@ -9,6 +9,7 @@ imgPath = "BerserkerBull"
 hpBase = 50
 drBase = 0
 mrBase = 0
+aggroBase = 0
 grade = 3
 potential = 2
 wisdomBase = 0

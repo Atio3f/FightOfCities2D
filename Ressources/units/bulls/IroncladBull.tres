@@ -9,6 +9,7 @@ imgPath = "Bull"
 hpBase = 48
 drBase = 8
 mrBase = 0
+aggroBase = 0
 grade = 1
 potential = 3
 wisdomBase = 2

@@ -131,4 +131,16 @@
 		"description": "ITEM_DESC_VAMPIRIC_FANGS",
 		"img": "res://assets/sprites/items/VampiricFangs.png"
 	},
+	"set1:HiddenCrown": {
+		"id": "set1:HiddenCrown",
+		"name": "ITEM_NAME_HIDDEN_CROWN",
+		"description": "ITEM_DESC_HIDDEN_CROWN",
+		"img": "res://assets/sprites/units/QueenMonkey.png"
+	},
+	"set1:ChallengeBoots": {
+		"id": "set1:ChallengeBoots",
+		"name": "ITEM_NAME_CHALLENGE_BOOTS",
+		"description": "ITEM_DESC_CHALLENGE_BOOTS",
+		"img": "res://assets/sprites/items/VampiricFangs.png"
+	},
 }

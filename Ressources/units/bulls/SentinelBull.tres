@@ -9,6 +9,7 @@ imgPath = "SentinelBull"
 hpBase = 44
 drBase = 6
 mrBase = 2
+aggroBase = 0
 grade = 2
 potential = 3
 wisdomBase = 1

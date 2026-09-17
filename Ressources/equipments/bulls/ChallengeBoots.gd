@@ -1,15 +1,15 @@
 extends AbstractEquipment
-class_name WoodlandDoll
+class_name ChallengeBoots
 
-const idItem = "set1:WoodlandDoll"
+const idItem = "set1:ChallengeBoots"
 const img = ""
+# These boots cause enemies to focus you
 
 func _init():
-	value_A = 3
 	super()
 
 func getStatModifiers() -> Dictionary:
-	return {"hpMax": 10}
+	return {"hpMax": 5, "dr": 2, "aggro": 3}
 
 func canBeEquippedBy(unit: AbstractUnit) -> bool:
 	return true
@@ -18,13 +18,7 @@ static func getId() -> String:
 	return idItem
 
 func onEquip(unit: AbstractUnit) -> void :
-	var effect = ThornsEffect.new(unit, -1, value_A)
-	unit.addEffect(effect)
-
 	super.onEquip(unit)
-
+	
 func onUnequip() -> void :
-	var effect = ThornsEffect.new(unitAssociated, -1, -value_A)
-	self.unitAssociated.addEffect(effect)
-
 	super.onUnequip()

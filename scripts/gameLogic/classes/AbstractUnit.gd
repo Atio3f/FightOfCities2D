@@ -30,6 +30,8 @@ var mrBase: int #Base value of damage reduction for the unit without any bonus o
 var potential: int #VALEUR DE 2 A 5 qui définit le niveau maximal atteignable par une unité, ne peut pas être modifié normalement 
 var wisdom: int	#METTRE DESC J'AI OUBLIE MDR mais c'est wisdom en tout cas
 var wisdomBase: int #Base value of wisdom for the unit without any bonus or change
+var aggro: int # Aggro value, a negative value will make unit less targetable by enemies, it influences AI models so they can still be targeted if aggro value doesn't compensate diff in AI score
+var aggroBase: int # Base value of aggro, influence calcs when enemies
 
 var level: int	#Current level
 var xp: int		#Current xp
@@ -114,6 +116,8 @@ func initializeStats(stats: UnitStats, playerAssociated: AbstractPlayer, idDead:
 	self.dr = stats.drBase
 	self.mrBase = stats.mrBase
 	self.mr = stats.mrBase
+	self.aggro = stats.aggroBase
+	self.aggroBase = stats.aggroBase
 	
 	# Progress Stats
 	self.grade = stats.grade

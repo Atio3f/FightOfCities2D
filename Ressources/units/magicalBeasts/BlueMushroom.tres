@@ -9,6 +9,7 @@ imgPath = "BlueMushroom"
 hpBase = 28
 drBase = 0
 mrBase = 5
+aggroBase = 0
 grade = 2
 potential = 3
 wisdomBase = 3

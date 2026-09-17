@@ -9,6 +9,7 @@ imgPath = "CADO"
 hpBase = 32
 drBase = 1
 mrBase = 1
+aggroBase = 0
 grade = 3
 potential = 2
 wisdomBase = 25

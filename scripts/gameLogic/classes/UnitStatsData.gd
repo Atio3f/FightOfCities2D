@@ -12,6 +12,7 @@ class_name UnitStats
 @export var hpBase: int = 28 ## Amount of HP
 @export var drBase: int = 0 ## Physical Damage Reduction
 @export var mrBase: int = 0 ## Magic Resistance
+@export var aggroBase: int = 0 ## Aggro Stat
 
 # --- PROGRESS STATS ---
 @export_group("Progress Stats")

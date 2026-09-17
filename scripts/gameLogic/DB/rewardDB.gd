@@ -96,4 +96,6 @@ var REWARDS_DICO := {
 	"set1:HarpyBardiche": {"title": "Harpy Bardiche", "desc": "Kill Kill Kill that flying thing", "idReward": "set1:HarpyBardiche", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "icon_name": "HarpyBardiche.png", "rarity": Rarities.EQUIP_COMMON},
 	"set1:DreadCloak": {"title": "Dread Cloak", "desc": "Scare ennemies, useful to steal Magical Resistance", "idReward": "set1:DreadCloak", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
 	"set1:VampiricFangs": {"title": "Vampiric Fangs", "desc": "Grants LifeSteal", "idReward": "set1:VampiricFangs", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
+	"set1:HiddenCrown": {"title": "Hidden Crown", "desc": "Help to control everything without getting targeted", "idReward": "set1:HiddenCrown", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
+	"set1:ChallengeBoots": {"title": "Challenge Boots", "desc": "These boots cause enemies to focus you", "idReward": "set1:ChallengeBoots", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
 }

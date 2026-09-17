@@ -9,6 +9,7 @@ imgPath = "StarvingShadow"
 hpBase = 60
 drBase = 7
 mrBase = 3
+aggroBase = 0
 grade = 3
 potential = 2
 wisdomBase = 0

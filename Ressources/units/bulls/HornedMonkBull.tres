@@ -9,6 +9,7 @@ imgPath = "HornedMonkBull"
 hpBase = 42
 drBase = 3
 mrBase = 3
+aggroBase = 0
 grade = 1
 potential = 2
 wisdomBase = 2

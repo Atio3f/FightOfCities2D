@@ -89,7 +89,7 @@ func score_attack(unit: AbstractUnit, destination: Vector2i, target: AbstractUni
 		score += 60.0
 		
 	# Un score d'attaque doit toujours surpasser un mouvement simple
-	return score + 100.0
+	return score + 100.0 + target.aggro # Add Aggro, check if need to be moved
 
 func score_move(unit: AbstractUnit, destination: Vector2i) -> float:
 	var nearest_enemy_dist = 9999

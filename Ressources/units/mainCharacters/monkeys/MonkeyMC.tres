@@ -9,6 +9,7 @@ imgPath = "MonkeyMC"
 hpBase = 41
 drBase = 4
 mrBase = 2
+aggroBase = 0
 grade = 0
 potential = 0
 wisdomBase = 13
