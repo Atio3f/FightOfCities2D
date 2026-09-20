@@ -4,6 +4,8 @@ class_name RewardBtnInterface
 var rewards: AbstractReward
 var rewardNbr: int
 
+var info_card_instance: UnitInfoCard = null
+
 static var BG_COLOR := "1414145e"
 
 # Define base path to get icons for each reward type
@@ -17,9 +19,15 @@ const ICON_BASE_PATHS = {
 }
 
 ## Nbr is the place on rewards
-# TODO Pq c'est rewards et non reward ?
 func generate(rewards: AbstractReward, nbr: int) -> void :
-	var rewardId: String = rewards.rewards[nbr]
+	var rewardData: Variant = rewards.rewards[nbr]
+	var rewardId: String = ""
+	
+	if typeof(rewardData) == TYPE_OBJECT and rewardData is StoredUnit:
+		rewardId = rewardData.id
+	else:
+		rewardId = rewardData as String
+		
 	var reward: Dictionary = RewardDb.REWARDS_DICO[rewardId]
 	self.rewardNbr = nbr
 	self.rewards = rewards
@@ -61,10 +69,43 @@ func generate(rewards: AbstractReward, nbr: int) -> void :
 
 func _on_mouse_entered():
 	%DescReward.visible = true
-
+	
+	var rewardData: Variant = rewards.rewards[rewardNbr]
+	var rewardId: String = ""
+	var storedUnit: StoredUnit = null
+	
+	if typeof(rewardData) == TYPE_OBJECT and rewardData is StoredUnit:
+		storedUnit = rewardData
+		rewardId = storedUnit.id
+	else:
+		rewardId = rewardData as String
+		
+	var reward: Dictionary = RewardDb.REWARDS_DICO[rewardId]
+	if reward.has("rewardType") and reward["rewardType"] == RewardTypes.rewardTypes.UNIT:
+		if not is_instance_valid(info_card_instance):
+			var scene = load("res://nodes/interface/UnitInfoCard.tscn")
+			if scene:
+				info_card_instance = scene.instantiate()
+				add_child(info_card_instance)
+				info_card_instance.top_level = true
+				info_card_instance.z_index = 10
+			else:
+				push_error("Failed to load UnitInfoCard.tscn")
+			
+		if is_instance_valid(info_card_instance):
+			# Create a new stored unit for each unit reward on list
+			
+			info_card_instance.setup_from_stored_unit(storedUnit)
+			info_card_instance.visible = true
+			
+			# Position to the right of the button
+			var global_pos = global_position
+			info_card_instance.global_position = Vector2(global_pos.x + size.x + 40, global_pos.y)
 
 func _on_mouse_exited():
 	%DescReward.visible = false
+	if is_instance_valid(info_card_instance):
+		info_card_instance.visible = false
 
 
 func _on_pressed():

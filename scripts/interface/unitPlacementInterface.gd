@@ -4,6 +4,13 @@ var storedUnitData: StoredUnit
 var player: AbstractPlayer = GameManager.getMainPlayer()
 var coords: Vector2i #Coords of the interface tile
 
+const UNIT_INFO_CARD_SCENE = preload("res://nodes/interface/UnitInfoCard.tscn")
+var info_card_instance: Node = null
+
+func _ready() -> void:
+	%BtnUnit.mouse_entered.connect(_on_btn_unit_mouse_entered)
+	%BtnUnit.mouse_exited.connect(_on_btn_unit_mouse_exited)
+
 ## Set the unit preview label and texture
 func setUnitPreview(unit: AbstractUnit, storedUnitData: StoredUnit, coords: Vector2i) -> void :
 	self.storedUnitData = storedUnitData # Could be optimized by refering first param by storedUnitData instead of unit in the function, problem is that we need grade on other class
@@ -52,3 +59,23 @@ func disableBtn() -> void:
 
 func deleteInterface() -> void:
 	player.playerPointer.interfaceJoueurI.clearInterface()
+
+func _on_btn_unit_mouse_entered() -> void:
+	if info_card_instance == null:
+		info_card_instance = UNIT_INFO_CARD_SCENE.instantiate()
+		# Add it to the tree (e.g. as a top-level UI child)
+		add_child(info_card_instance)
+		info_card_instance.top_level = true
+		
+		# Setup data
+		if storedUnitData != null:
+			info_card_instance.setup_from_stored_unit(storedUnitData, player)
+			
+		# Position to the right of the button
+		var global_pos = global_position
+		info_card_instance.global_position = Vector2(global_pos.x + size.x + 40, global_pos.y)
+
+func _on_btn_unit_mouse_exited() -> void:
+	if info_card_instance != null:
+		info_card_instance.queue_free()
+		info_card_instance = null

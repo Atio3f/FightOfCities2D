@@ -43,6 +43,9 @@ var attaqueEnAttente : bool = false
 var showDangerZone: bool = false # Danger zone with 'K' key, like in Fire Emblem shows all the cells enemies can attack
 var dangerZoneOverlay: UnitOverlay
 
+var hover_info_card = null
+const UNIT_INFO_CARD_SCENE = preload("res://nodes/interface/UnitInfoCard.tscn")
+
 #func _process(delta):
 	#print(menuOpen)
 
@@ -169,6 +172,8 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 	caseSelec.visible = tileOn != null	#Hide the pointeur if we're out of bounds
 	if(!menuOpen):
 		if Selection and Selection.is_selected:
+			if hover_info_card != null:
+				hover_info_card.visible = false
 			_unit_path.draw(Selection.tile.getCoords(), new_cell)
 			if Selection.atkRemaining > 0 and tileOn != null and tileOn.hasUnitOn() and Selection.team != tileOn.unitOn.team :
 				print("TARGET")
@@ -182,6 +187,8 @@ func pointeurHasMove(new_cell: Vector2i) -> void:
 			_walkable_cells.clear() # Clearing out the walkable cells
 			visuActions.clearNumbers() # This is what clears all the colored tiles on the grid
 			visuZoneCapa.clearNumbers() # Clear l'affichage de la zone de la capacité
+			if hover_info_card != null:
+				hover_info_card.visible = false
 		### A SUPPRIMER if Global._units.has(new_cell) and Selection == null:
 		if MapManager.getTileAt(new_cell) != null && MapManager.getTileAt(new_cell).hasUnitOn() and Selection == null:
 			_hover_display(new_cell)
@@ -206,6 +213,16 @@ func _hover_display(cell: Vector2i) -> void :
 	if(curr_unit.atkRemaining > 0) :
 		visuActions.draw_attackable_cells(_attackable_cells)
 	visuActions.draw_walkable_cells(_walkable_cells, curr_unit.team)
+	
+	# Display info card from unit on tile if unselected
+	if hover_info_card == null:
+		hover_info_card = UNIT_INFO_CARD_SCENE.instantiate()
+		%CombatUI.add_child(hover_info_card)
+		
+	hover_info_card.setup_from_unit(curr_unit)
+	hover_info_card.visible = true
+	# Place the card in the top right (assuming minimum width of 280)
+	hover_info_card.position = Vector2(get_viewport_rect().size.x - 280 - 20, 20)
 
 
 ## Selects or moves a unit based on where the cursor is.
@@ -376,6 +393,8 @@ func _deselect_active_unit() -> void:
 ## Clears the reference to the pointeurSelec.Selection and the corresponding walkable cells.
 func _clear_active_unit() -> void:
 	interfaceJoueurI.apercuMenusJoueur(self, false)	#On efface l'aperçu du menu du joueur
+	if hover_info_card != null:
+		hover_info_card.visible = false
 	#print("_clear_active_unit()")
 	menuOpen = false	#On retire le fait qu'un menu est ouvert
 	Selection = null

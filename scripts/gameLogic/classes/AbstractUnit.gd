@@ -617,7 +617,8 @@ func getPositionType() -> MovementTypes.positionCategories :
 
 
 func refreshSprite() -> void :
-	sprite.texture = load(getImagePath()+".png")
+	if sprite != null:
+		sprite.texture = load(getImagePath()+".png")
 
 func registerUnit() -> Dictionary :
 	var unitData := {

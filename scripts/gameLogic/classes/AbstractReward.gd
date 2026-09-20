@@ -5,7 +5,7 @@ var rewardInterface: PackedScene = preload("res://nodes/interface/metaUI/placeho
 #Reward screen scene variable
 var rewardsAvailable: Dictionary = {}#List of items obtainable from the reward, key is item id and value is item weight
 var totalWeight: int = 0	#Total weight of all items on rewardsAvailable
-var rewards: Array[String] = []	#Rewards list for the returned screen reward
+var rewards: Array[Variant] = []	#Rewards list for the returned screen reward
 var rewardsNumber: int = 3	#Number of rewards on rewards list
 var isSkippable: bool = true
 
@@ -31,14 +31,20 @@ func randomizeRewards() -> void:
 	print("REWARDS")
 	print(rewards)
 
-func pickReward() -> String :
+func pickReward() -> Variant :
 	var random = randi() % totalWeight
 	var current = 0
-	var tile: AbstractTile
 	
 	for rewardId in rewardsAvailable:
 		current += rewardsAvailable[rewardId].weight
 		if random < current:
+			var rewardInfo = RewardDb.REWARDS_DICO[rewardId]
+			# Instantiate a stored unit if the reward is a unit
+			if rewardInfo.has("rewardType") and rewardInfo["rewardType"] == RewardTypes.rewardTypes.UNIT:
+				var stored_unit = StoredUnit.new(rewardId)
+				# Example in future for upgrades
+				# if randf() < 0.10: stored_unit.permanentUpgrades.append("UpgradeTestEffect")
+				return stored_unit
 			return rewardId
 	return ""
 
@@ -53,13 +59,23 @@ func obtainReward(player: AbstractPlayer, number: int) -> bool :
 	if number == -1 : 
 		skipReward()
 		return true# Need a return to avoid going to the rest of function and getting the last element even with queue_free() in skipReward()
-	var rewardId: String = rewards[number]
+		
+	var rewardData: Variant = rewards[number]
+	var rewardId: String = ""
+	var storedUnit: StoredUnit = null
+	# Setup right data type to avoid errors on next function calls
+	if typeof(rewardData) == TYPE_OBJECT and rewardData is StoredUnit:
+		storedUnit = rewardData
+		rewardId = storedUnit.id
+	else:
+		rewardId = rewardData as String
+		
 	var reward: Dictionary = RewardDb.REWARDS_DICO[rewardId]
 	match reward["rewardType"] :
 		RewardTypes.rewardTypes.UNIT :
 			print("OBTAIN IT")
 			# Hold the reward if the unit needs to display an interface
-			var hold = GameManager.getMainPlayer().gainUnitCard(StoredUnit.new(reward["idReward"]), self)
+			var hold = GameManager.getMainPlayer().gainUnitCard(storedUnit, self)
 			if hold:
 				return false
 		RewardTypes.rewardTypes.ITEM :

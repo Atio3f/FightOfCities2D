@@ -11,7 +11,7 @@ signal reward_interface_closed
 func display(metaUI: MetaUI) -> void :
 	var interfaceReward: RewardBtnInterface
 	var index: int = 0
-	for rewardS: String in reward.rewards :
+	for rewardData: Variant in reward.rewards:
 		interfaceReward = interfaceRewardScene.instantiate()
 		interfaceReward.generate(reward, index)
 		%RewardList.add_child(interfaceReward)
