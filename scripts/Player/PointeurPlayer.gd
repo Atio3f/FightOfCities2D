@@ -221,8 +221,7 @@ func _hover_display(cell: Vector2i) -> void :
 		
 	hover_info_card.setup_from_unit(curr_unit)
 	hover_info_card.visible = true
-	# Place the card in the top right (assuming minimum width of 280)
-	hover_info_card.position = Vector2(get_viewport_rect().size.x - 280 - 20, 20)
+	hover_info_card.placementTopRight()
 
 
 ## Selects or moves a unit based on where the cursor is.

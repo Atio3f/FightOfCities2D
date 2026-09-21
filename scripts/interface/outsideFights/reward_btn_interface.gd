@@ -87,20 +87,14 @@ func _on_mouse_entered():
 			if scene:
 				info_card_instance = scene.instantiate()
 				add_child(info_card_instance)
-				info_card_instance.top_level = true
-				info_card_instance.z_index = 10
 			else:
 				push_error("Failed to load UnitInfoCard.tscn")
 			
 		if is_instance_valid(info_card_instance):
 			# Create a new stored unit for each unit reward on list
-			
 			info_card_instance.setup_from_stored_unit(storedUnit)
 			info_card_instance.visible = true
-			
-			# Position to the right of the button
-			var global_pos = global_position
-			info_card_instance.global_position = Vector2(global_pos.x + size.x + 40, global_pos.y)
+			info_card_instance.placementTopRight()
 
 func _on_mouse_exited():
 	%DescReward.visible = false

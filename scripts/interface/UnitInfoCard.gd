@@ -20,6 +20,36 @@ class_name UnitInfoCard
 @onready var effects_list: VBoxContainer = %EffectsList
 
 
+func _ready() -> void:
+	# Expand card size (would need maybe to be adjust on scene also)
+	custom_minimum_size = Vector2(400, 0)
+	
+	var style = get_theme_stylebox("panel").duplicate()
+	style.content_margin_left += 15
+	style.content_margin_bottom += 15
+	add_theme_stylebox_override("panel", style)
+
+
+## Place the card at the top right of the viewport
+## Basic placement for this card now
+func placementTopRight(margin_right: float = 0, margin_top: float = 0) -> void:
+	top_level = true # Detach the card from the parent's coordinate system (the whole screen becomes its reference)
+	z_index = 30    # Ensure that it displays on top of all other interfaces
+	set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	size = Vector2.ZERO # Force recalculation to min size
+	position = Vector2(get_viewport_rect().size.x - size.x - margin_right, margin_top)
+
+
+## Place the card to the right of a given UI control
+## should not be used
+func place_next_to(node: Control, offset_x: float = 25, offset_y: float = 0) -> void:
+	top_level = true
+	z_index = 10
+	size = Vector2.ZERO
+	var global_pos = node.global_position
+	global_position = Vector2(global_pos.x + node.size.x + offset_x, global_pos.y + offset_y)
+
+
 ## Init with unit ID (Show base stats)
 func setup_from_id(unit_id: String) -> void:
 	var unit_data = UnitDb.getUnit(unit_id)
@@ -137,6 +167,8 @@ func setup_from_unit(unit: AbstractUnit) -> void:
 		var label = Label.new()
 		label.text = effects_text
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		# Give it fixed width to make it wrap
+		label.custom_minimum_size = Vector2(380, 0)
 		effects_list.add_child(label)
 
 

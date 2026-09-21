@@ -63,17 +63,13 @@ func deleteInterface() -> void:
 func _on_btn_unit_mouse_entered() -> void:
 	if info_card_instance == null:
 		info_card_instance = UNIT_INFO_CARD_SCENE.instantiate()
-		# Add it to the tree (e.g. as a top-level UI child)
 		add_child(info_card_instance)
-		info_card_instance.top_level = true
 		
 		# Setup data
 		if storedUnitData != null:
 			info_card_instance.setup_from_stored_unit(storedUnitData, player)
 			
-		# Position to the right of the button
-		var global_pos = global_position
-		info_card_instance.global_position = Vector2(global_pos.x + size.x + 40, global_pos.y)
+		info_card_instance.placementTopRight()
 
 func _on_btn_unit_mouse_exited() -> void:
 	if info_card_instance != null:
