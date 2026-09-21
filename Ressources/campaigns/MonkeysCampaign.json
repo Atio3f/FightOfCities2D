@@ -2,7 +2,10 @@
 	"mainCharacter": "set1:MonkeyMC",
 	"startingAllies": [
 		{
-			"id": "set1:Fripouille",
+			"id": "set1:Monkey",
+			"permanentUpgrades": [
+				
+			]
 		},
 		{
 			"id": "set1:Monkey",
@@ -15,8 +18,8 @@
 			"id": "set1:CADO",
 		},
 		{
-			"id": "set1:StarvingShadow",
-		}
+			"id": "set1:Fripouille"
+		},
 	],
 	"startingItems": [
 		"set1:FairyMiracle",
@@ -28,7 +31,7 @@
 		"set1:WarAxe"
 	],
 	"startingTrinkets": [
-		"set1:ArtOfWar"
+		
 	],
 	"startingOrbs": 2,
 	"startingMaxOrbs": 5,
@@ -468,6 +471,7 @@
 		"map9": {
 			"title": "Mur d'Avant-Poste (Outpost Wall)",
 			"description": "Tuer tous les ennemis : 2 lanciers(ligne avant avec 1 espace entre eux), 3 moines à cornes (1 la case derrière celle entre les lanciers et les 2 autres derrière les lanciers mais d'une case vers l'extérieur) et une racine verte derrière le moine central",
+			"precision": "A la base il est censé y avoir aussi une Green Root en [3, 8] mais ça m'avait l'air trop compliqué. + les ennemis sont censés atteindre qu'on vienne vers eux",
 			"size": {
 				"width": 9,
 				"length": 6
@@ -493,10 +497,6 @@
 				{
 					"id": "set1:HornedMonkBull",
 					"coords": [5, 7]
-				},
-				{
-					"id": "set1:GreenRoot",
-					"coords": [3, 8]
 				},
 			],
 			"placementTiles": [

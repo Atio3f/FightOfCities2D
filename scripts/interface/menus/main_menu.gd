@@ -27,7 +27,8 @@ func _ready() -> void:
 		saveBtn.toggleSave(save, self)
 		%SavesList.add_child(saveBtn)
 		print(saveBtn.visible)
-	%ContinueBtn.visible = savesName.size() > 0
+	# TODO Uncommented when saves will be readded
+	# %ContinueBtn.visible = savesName.size() > 0
 
 #Show list of campaigns availables
 func _on_campaign_selection_btn_pressed():
