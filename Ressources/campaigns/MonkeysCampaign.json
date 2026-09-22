@@ -10,7 +10,6 @@
 		{
 			"id": "set1:Monkey",
 		},
-		},
 		{
 			"id": "set1:MonkeyMC",
 		},
@@ -26,7 +25,6 @@
 		"set1:BananaPeel",
 		"set1:Banana",
 		"set1:Banana",
-		"set1:TemptationPoison",
 		"set1:LaserBladeMonkey",
 		"set1:WarAxe"
 	],

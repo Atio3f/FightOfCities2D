@@ -8,6 +8,9 @@ const MAX_VALUE: int = 99999
 ## Helper function to find paths for movements
 static func get_walkable_cells(unit: AbstractUnit) -> Dictionary:
 	var tileOnCoords: Vector2i = unit.tile.getCoords()
+	if unit.speed <= 0 || unit.speedRemaining <= 0:
+		return {tileOnCoords: 0}
+
 	## Add adjacents tiles if the unit can't move and have full speed because its max speed is inferior to adjacent tiles 
 	if unit.speed == unit.speedRemaining :
 		var cells: Dictionary = dijkstra(tileOnCoords, unit.speedRemaining, false, unit.actualMovementTypes, unit)
@@ -83,8 +86,10 @@ static func dijkstra(cell: Vector2i, max_distance: int, attackable_check: bool, 
 	var previous = [] #2d array that shows you which cell you have to take to get there to get the shortest path. can omit if you want to
 	# the previous array can be used to recontruct the path alogrithm found to the previous node you were at
 	## Refresh the cost of each tile to get the true values based on the movement type of unit
-
 	var _movement_costs = MapManager.get_movement_costs(movementType)
+	
+	if max_distance <= 0 :
+		return {cell: 0}
 	
 	## iterate over width and height of the grid
 	for y in range(MapManager.width):

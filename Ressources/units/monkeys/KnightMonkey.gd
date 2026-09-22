@@ -5,7 +5,7 @@ const STATS: UnitStats = preload("res://Ressources/units/monkeys/KnightMonkey.tr
 
 static func initialize(unit: AbstractUnit, playerAssociated: AbstractPlayer):
 	unit.initializeStats(STATS, playerAssociated)
-	var effect1: AbstractEffect = KnightMonkeyEffect.new(unit, -1, 3)
+	var effect1: AbstractEffect = KnightMonkeyEffect.new(unit, -1, 5)
 	unit.addEffect(effect1)
 	unit.tags.append(Tags.tags.MONKEY)
 	unit.movementTypes = [MovementTypes.movementTypes.WALK]
