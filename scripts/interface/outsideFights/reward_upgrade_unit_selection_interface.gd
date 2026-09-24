@@ -3,6 +3,7 @@ class_name BonusUnitSelectionInterface
 
 var bonusId: String
 var parentReward: AbstractReward
+var info_card_instance: Node = null
 
 # On configure l'interface quand on l'instancie
 func setup(_bonusId: String, _parentReward: AbstractReward = null) -> void:
@@ -49,7 +50,30 @@ func displayUnits() -> void:
 			btn.pressed.connect(func(): _onUnitSelected(storedUnit))
 		else :
 			btn.disabled = true # Disable button if unit has reached its max potential
+			
+		## Hover preview for the unit info card
+		btn.mouse_entered.connect(func(): _on_btn_mouse_entered(storedUnit))
+		btn.mouse_exited.connect(_on_btn_mouse_exited)
+		
 		%UnitsList.add_child(btn)
+		
+func _on_btn_mouse_entered(storedUnit: StoredUnit) -> void:
+	if not is_instance_valid(info_card_instance):
+		var scene = load("res://nodes/interface/UnitInfoCard.tscn")
+		if scene:
+			info_card_instance = scene.instantiate()
+			add_child(info_card_instance)
+		else:
+			push_error("Failed to load UnitInfoCard.tscn")
+			
+	if is_instance_valid(info_card_instance):
+		info_card_instance.setup_from_stored_unit(storedUnit)
+		info_card_instance.visible = true
+		info_card_instance.placementTopRight()
+
+func _on_btn_mouse_exited() -> void:
+	if is_instance_valid(info_card_instance):
+		info_card_instance.visible = false
 
 func _onUnitSelected(unitData: StoredUnit) -> void:
 	# Add bonus and apply stats change 
