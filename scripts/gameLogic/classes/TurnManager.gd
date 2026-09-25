@@ -15,13 +15,14 @@ static func createTeams(teamsColor: Dictionary) -> void :
 
 ## Manage all events when a new turn occured, is missing the ennemies movement
 static func nextTurn() -> void:
-	if not GameManager.isGameActive:
+	var main_player: AbstractPlayer = GameManager.getMainPlayer()
+	if not GameManager.isGameActive || main_player.getUnits().size() == 0:
 		return
 	var endingTeam := actualTurn()
 	if turn != 0:
 		for unit : AbstractUnit in GameManager.getAllUnits() :
 			unit.onEndOfTurn(turn, endingTeam)
-		for trinket: AbstractTrinket in GameManager.getMainPlayer().trinkets :
+		for trinket: AbstractTrinket in main_player.trinkets :
 			trinket.onEndOfTurn(turn, endingTeam)
 
 	turn += 1
@@ -30,7 +31,7 @@ static func nextTurn() -> void:
 	for unit : AbstractUnit in GameManager.getAllUnits() :
 		unit.onStartOfTurn(turn, currentTurnColor)
 	#Iterate through trinket to proc their effect
-	for trinket: AbstractTrinket in GameManager.getMainPlayer().trinkets :
+	for trinket: AbstractTrinket in main_player.trinkets :
 		trinket.onStartOfTurn(turn, currentTurnColor)
 		
 	# Start enemy logic (utility AI) if actual player is an enemy
@@ -44,14 +45,13 @@ static func nextTurn() -> void:
 			ai.start_turn()
 	# Clear placement tiles on first turn
 	if turn == 1 :
-		GameManager.getMainPlayer().playerPointer.clear_placeable_cells()
+		main_player.playerPointer.clear_placeable_cells()
 	else :
 		if !GameManager.currentGoals.is_empty() : GameManager.checkWin()	#Check if someone won at the start of each turn, but only if there is still some objectives (avoid double check that cause crash or bad result)
 	#Animation du bouton et actualisation de l'interface
 	# Reactivate end turn button on player turn
-	var mainPlayer = GameManager.getMainPlayer()
-	if mainPlayer and mainPlayer.has_node("Actions"):
-		mainPlayer.get_node("Actions").combatUI.updateInterface()
+	if main_player and main_player.has_node("Actions"):
+		main_player.get_node("Actions").combatUI.updateInterface()
 
 ## Return the actual color of team this turn
 ## 0 is the preparation turn

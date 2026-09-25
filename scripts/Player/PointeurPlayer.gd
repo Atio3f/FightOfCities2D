@@ -9,7 +9,7 @@ var positionSouris : Vector2i
 var menuOpen : bool = false		#Permettra de savoir si un menu est ouvert, initialisé à false
 @onready var caseSelec : Sprite2D = $CaseSelecJ1
 @onready var caseTarget : Sprite2D = $CaseTargetJ1
-@onready var position_cam : Camera2D = $"../Movement"
+@onready var position_cam : CameraPlayer = $"../Movement"
 @onready var terrain: Terrain = $"../../../Map/Terrain512x512"
 @onready var scene := $"../.."			#On récupère la scène pour pouvoir plus tard récup les coord du curseur de la souris
 @onready var map := $"../../../Map"
@@ -45,6 +45,9 @@ var dangerZoneOverlay: UnitOverlay
 
 var hover_info_card = null
 const UNIT_INFO_CARD_SCENE = preload("res://nodes/interface/UnitInfoCard.tscn")
+
+var can_pass_turn: bool = true
+
 
 #func _process(delta):
 	#print(menuOpen)
@@ -90,7 +93,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("show_danger_zone") and not event.echo:
 		toggleDangerZone()
+	if event.is_action_released("pass_turn") and not event.echo and can_pass_turn:
+		can_pass_turn = false
+		TurnManager.nextTurn()
+		GameManager.getMainPlayer().updateInterface()
+		if Selection :
+			_deselect_active_unit()
+		_clear_active_unit()
 		
+		await get_tree().create_timer(0.5).timeout
+		can_pass_turn = true
+	
+	if event.is_action("zoom_in"):
+		position_cam.zoom_in()
+	
+	if event.is_action("zoom_out"):
+		position_cam.zoom_out()
+	
 	if event.is_action_pressed("rightclick"):
 		cursorPressed(positionSouris, "rightClick")
 	elif event.is_action_pressed("leftClick"):

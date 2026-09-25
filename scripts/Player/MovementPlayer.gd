@@ -1,3 +1,4 @@
+class_name CameraPlayer
 extends Camera2D
 
 @onready var Souris = $"../Pointeur_Selection"
@@ -48,7 +49,12 @@ func _physics_process(delta: float) -> void:
 		Souris.positionSouris = newPositionSouris
 		caseSelec.global_position = Souris.getMiddleMouseCell()
 		Souris.pointeurHasMove(Souris.positionSouris)
+## Camera Zoom Sensibility
+const sensibility_zoom_cam: float = 0.01
+## Zoom avant camera, called with zoom_in action
+func zoom_in() -> void:
+	if zoom.x < 1.65 : zoom = zoom * (1 +sensibility_zoom_cam)
 
-
-	
-	
+## Zoom arrière camera, called with zoom_out action
+func zoom_out() -> void:
+	if zoom.x > 0.05 : zoom = zoom * (1 - sensibility_zoom_cam)

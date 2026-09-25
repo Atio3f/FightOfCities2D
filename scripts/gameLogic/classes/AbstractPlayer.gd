@@ -99,6 +99,11 @@ func targetsAvailable(idCard: String) -> Array :
 			targets.append(player)
 	return targets
 
+## Manage calls to updateInterface in Actions node
+func updateInterface() -> void:
+	if has_node('Actions'):
+		$Actions.combatUI.updateInterface()
+
 func removeUnit(unit: AbstractUnit) -> void:
 	units.erase(unit)
 	addWeight(-(unit.grade)) 
@@ -106,14 +111,12 @@ func removeUnit(unit: AbstractUnit) -> void:
 ##Add max units count to the player
 func addMaxUnits(amt: int) -> void:
 	maxUnits += amt
-	if $Actions :
-		$Actions.combatUI.updateInterface()
+	updateInterface()
 
 ##Add max weight to the player
 func addMaxWeight(amt: int) -> void:
 	maxWeight += amt
-	if $Actions :
-		$Actions.combatUI.updateInterface()
+	updateInterface()
 
 ##Add weight to the player, usually when an unit dies or is spawned
 func addWeight(amt: int) -> void:
@@ -123,8 +126,7 @@ func addWeight(amt: int) -> void:
 	else :
 		if amt + weight < 0 : weight = 0
 		else : weight += amt 
-	if has_node("Actions") :
-		$Actions.combatUI.updateInterface()
+	updateInterface()
 
 func cardPlayable(idCard: String) -> Array :
 	if !hand.getHand().has(idCard) :
