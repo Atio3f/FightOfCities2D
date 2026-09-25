@@ -77,4 +77,7 @@
 	"set1:GreenRoot" : {
 		"name": "UNIT_NAME_GREEN_ROOT"
 	},
+	"set1:PeasantMonkey" : {
+		"name": "UNIT_NAME_PEASANT_MONKEY"
+	}
 }

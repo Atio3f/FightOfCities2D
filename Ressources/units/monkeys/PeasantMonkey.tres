@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://clsmpi1cgq2oo"]
+
+[ext_resource type="Script" uid="uid://chjck7svelps7" path="res://scripts/gameLogic/classes/UnitStatsData.gd" id="1_y7j2o"]
+
+[resource]
+script = ExtResource("1_y7j2o")
+id = "set1:PeasantMonkey"
+imgPath = "Monkey"
+hpBase = 22
+drBase = 1
+mrBase = 0
+aggroBase = 0
+grade = 2
+potential = 8
+wisdomBase = 2
+equipmentLimit = 1
+powerBase = 5
+damageType = 0
+attackRange = 1
+atkPerTurnBase = 1
+speedBase = 2
+metadata/_custom_type_script = "uid://chjck7svelps7"

@@ -10,9 +10,10 @@ func _init(unit: AbstractUnit):
 	hideEffect = true
 
 func onStartOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void :
-	var cursedEnnemy: AbstractUnit = GameManager.getRandomUnits(1, [unitAssociated.team])[0] # TODO Should concern all players allies teams too
-	if cursedEnnemy :
-		cursedEnnemy.addEffect(CurseEffect.new(cursedEnnemy, 1, 0)) # 0 has no purpose here, curse doesn't require a value
+	if turnColor == unitAssociated.team :
+		var cursedEnnemy: AbstractUnit = GameManager.getRandomUnits(1, [unitAssociated.team])[0] # TODO Should concern all players allies teams too
+		if cursedEnnemy :
+			cursedEnnemy.addEffect(CurseEffect.new(cursedEnnemy, 1, 0)) # 0 has no purpose here, curse doesn't require a value
 	super.onStartOfTurn(turnNumber, turnColor)
 
 

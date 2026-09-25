@@ -10,6 +10,7 @@ const EFFECTS := {
 	"set1:GodMonkeyMinionEffect": preload("res://Ressources/effects/unitEffects/monkeys/GodMonkeyMinionEffect.gd"),
 	"set1:QueenMonkey": preload("res://Ressources/effects/unitEffects/monkeys/QueenMonkeyEffect.gd"),
 	"set1:OrangutanEffect": preload("res://Ressources/effects/unitEffects/monkeys/OrangutanEffect.gd"),	
+	"set1:PeasantMonkeyEffect": preload("res://Ressources/effects/unitEffects/monkeys/PeasantMonkeyEffect.gd"),	
 	# MAGICAL BEASTS
 	"set1:TemporalSnailKillEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/TemporalSnailKillEffect.gd"),
 	"set1:TemporalSnailResurrectEffect": preload("res://Ressources/effects/unitEffects/magicalBeasts/TemporalSnailResurrectEffect.gd"),

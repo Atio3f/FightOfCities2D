@@ -43,6 +43,8 @@ ITEM_NAME_HARPY_BARDICHE,Bardiche Harpie,Harpy Bardiche
 ITEM_DESC_HARPY_BARDICHE,-1 P. +50% dégâts sur les unités volantes,-1 P. +50% damage on flying units
 ITEM_NAME_DREAD_CLOAK,Cape Effroi,Dread Cloak
 ITEM_DESC_DREAD_CLOAK,+4 PV et +1 P. Vole 1 MR à chaque attaque,+4 HP and +1 P. Steal 1 MR each attack
+ITEM_NAME_VAMPIRIC_FANGS,Crocs Vampiriques,Vampiric Fangs
+ITEM_NAME_VAMPIRIC_FANGS,+2 P. Donne 25% de drain de vie.,+2 P. Give 25% LifeSteal
 ITEM_NAME_HIDDEN_CROWN,Couronne cachée,Hidden Crown
 ITEM_DESC_HIDDEN_CROWN,+2 PV et +2 MR. Donne -3 Aggro,+2 HP et +2 MR. Give -3 Aggro
 ITEM_NAME_CHALLENGE_BOOTS,Bottes de défi,Challenge Boots
