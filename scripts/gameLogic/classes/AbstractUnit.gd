@@ -231,10 +231,13 @@ func addEffect(effect: AbstractEffect) -> void:
 		effects.append(effect)
 		effect.onEffectApplied(true)
 
-#Add a capacity to the unit
+## Add a capacity to the unit
 func addCapacity(capacity: AbstractCapacity) -> void:
 	capacities.append(capacity)
 
+## Remove a capacity to the unit
+func removeCapacity(capacity: AbstractCapacity) -> void:
+	capacities.erase(capacity)
 
 #Maybe we will change the type of tile and register it
 func onPlacement(tile: AbstractTile) -> void:

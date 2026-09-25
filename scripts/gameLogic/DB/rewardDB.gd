@@ -107,4 +107,5 @@ var REWARDS_DICO := {
 	"set1:VampiricFangs": {"title": "Vampiric Fangs", "desc": "Grants LifeSteal", "idReward": "set1:VampiricFangs", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
 	"set1:HiddenCrown": {"title": "Hidden Crown", "desc": "Help to control everything without getting targeted", "idReward": "set1:HiddenCrown", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
 	"set1:ChallengeBoots": {"title": "Challenge Boots", "desc": "These boots cause enemies to focus you", "idReward": "set1:ChallengeBoots", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
+	"set1:Bananarang": {"title": "Bananarang", "desc": "Gain a 3 tile attack", "idReward": "set1:Bananarang", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON}, # UNCOMMON ?
 }

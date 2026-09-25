@@ -49,3 +49,5 @@ ITEM_NAME_HIDDEN_CROWN,Couronne cachée,Hidden Crown
 ITEM_DESC_HIDDEN_CROWN,+2 PV et +2 MR. Donne -3 Aggro,+2 HP et +2 MR. Give -3 Aggro
 ITEM_NAME_CHALLENGE_BOOTS,Bottes de défi,Challenge Boots
 ITEM_DESC_CHALLENGE_BOOTS,+5 PV et +2 DR. Donne +2 Aggro,+5 HP et +2 DR. Give +2 Aggro
+ITEM_NAME_BANANARANG,Bananarang,Bananarang
+ITEM_DESC_BANANARANG,+1 P. Gagne une attaque avec 3 de portée qui inflige 6 + 30 % des P en dégâts,+1 P. Gain a capacity to attack up to 3 tiles dealing 6 + 30 % P to a single target

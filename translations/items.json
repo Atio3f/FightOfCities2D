@@ -143,4 +143,10 @@
 		"description": "ITEM_DESC_CHALLENGE_BOOTS",
 		"img": "res://assets/sprites/items/VampiricFangs.png"
 	},
+	"set1:Bananarang": {
+		"id": "set1:Bananarang",
+		"name": "ITEM_NAME_BANANARANG",
+		"description": "ITEM_DESC_BANANARANG",
+		"img": "res://assets/sprites/units/Monkey_p.png"
+	},
 }

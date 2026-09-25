@@ -18,6 +18,7 @@ const ITEMS := {
 	"set1:VampiricFangs": preload("res://Ressources/equipments/bats/VampiricFangs.gd"),
 	"set1:HiddenCrown": preload("res://Ressources/equipments/monkeys/HiddenCrown.gd"),
 	"set1:ChallengeBoots": preload("res://Ressources/equipments/bulls/ChallengeBoots.gd"),
+	"set1:Bananarang": preload("res://Ressources/equipments/monkeys/Bananarang.gd"),
 	## ITEMS
 	"set1:VitalLink" : preload("res://Ressources/items/magicalBeasts/VitalLink.gd"),
 	"set1:MagicalCoconut": preload("res://Ressources/items/others/farmsLoot/MagicalCoconut.gd"),
