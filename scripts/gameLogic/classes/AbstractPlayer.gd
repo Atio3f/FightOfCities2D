@@ -14,8 +14,8 @@ const MAX_ORBS_BASE: int = 5
 var trinkets: Array[AbstractTrinket] = []
 
 
-#Weight is the max place that your troups can take
-const WEIGHT_BASE: int = 6
+# Weight is the max place that your troups can take
+const WEIGHT_BASE: int = 5
 var weight: int
 var maxWeight: int = WEIGHT_BASE
 #Max units represent the maximum number of units of the player
@@ -258,6 +258,11 @@ func transferEquipment(idEquipment: String, targetUnit: AbstractUnit, sourceActi
 			if hand.equipmentsStock.has(targetOldEqId):
 				hand.equipmentsStock.erase(targetOldEqId)
 				sourceStoredUnit.equipmentsData.append({"id": targetOldEqId})
+
+## In case we need to delete an equipment from inventory
+## Will need adjustments when we will have dico instead of strings id
+func deleteEquipment(id: String) -> void :
+	self.hand.equipmentsStock.erase(id)
 
 ## Add the trinket to the interface
 func setTrinket(trinket: AbstractTrinket) -> void :

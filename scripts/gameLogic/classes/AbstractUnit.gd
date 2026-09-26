@@ -548,7 +548,6 @@ func equipEquipment(newEquipment: AbstractEquipment) -> void :
 	if equipmentSlot != null:
 		equipmentSlot.updateEquipment(self.equipment)
 
-
 ## Modify unit stats according to the equipment modifiers
 func addStatModifiers(modifiers: Dictionary, isAdding: bool) -> void:
 	var multiplier: int = 1 if isAdding else -1 # Check if we add or remove

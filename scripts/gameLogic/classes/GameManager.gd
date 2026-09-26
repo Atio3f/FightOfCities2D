@@ -50,7 +50,7 @@ func configPlayer(player: AbstractPlayer) -> void:
 	player.gainGold(campaign.startingGold)
 	##Add starting trinkets
 	for trinketId: String in campaign.startingTrinkets:
-		addTrinket(player, trinketId)
+		obtainTrinket(player, trinketId)
 	##Add starting units
 	for unitData: Dictionary in campaign.startingAllies:
 		player.gainUnitCard(StoredUnit.loadStoredUnit(unitData))
@@ -241,7 +241,7 @@ static func obtainTrinket(player: AbstractPlayer, idTrinket: String) -> void:
 		player.setTrinket(trinket)#Place the trinket on screen
 	trinket.onGain()
 
-##Add a trinket to a player, used during save load and doesn't activate obtain effect
+## Add a trinket to a player, used during save load and doesn't activate obtain effect
 # dataTrinket serves to recover data on save
 static func addTrinket(player: AbstractPlayer, idTrinket: String, dataTrinket: Dictionary = {}) -> void:
 	var trinket : AbstractTrinket = TrinketDb.TRINKETS[idTrinket].new(player)

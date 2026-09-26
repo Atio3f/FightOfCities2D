@@ -51,3 +51,5 @@ ITEM_NAME_CHALLENGE_BOOTS,Bottes de défi,Challenge Boots
 ITEM_DESC_CHALLENGE_BOOTS,+5 PV et +2 DR. Donne +2 Aggro,+5 HP et +2 DR. Give +2 Aggro
 ITEM_NAME_BANANARANG,Bananarang,Bananarang
 ITEM_DESC_BANANARANG,+1 P. Gagne une attaque avec 3 de portée qui inflige 6 + 30 % des P en dégâts,+1 P. Gain a capacity to attack up to 3 tiles dealing 6 + 30 % P to a single target
+ITEM_NAME_SPLINTERING_MALLET,Maillet Éclat,Splintering Mallet
+ITEM_DESC_SPLINTERING_MALLET,"+2 P. Gagne une attaque de mêlée qui inflige 8 + 100 % des P en dégâts, Détruit ensuite l’équipement.","+2 P. Gain a melee capacity that deals 8 + 100% P damage to a single target, then Destroy Equipment."

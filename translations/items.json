@@ -149,4 +149,10 @@
 		"description": "ITEM_DESC_BANANARANG",
 		"img": "res://assets/sprites/units/Monkey_p.png"
 	},
+	"set1:SplinteringMallet": {
+		"id": "set1:SplinteringMallet",
+		"name": "ITEM_NAME_SPLINTERING_MALLET",
+		"description": "ITEM_DESC_SPLINTERING_MALLET",
+		"img": "res://assets/sprites/units/Bull_p.png"
+	},
 }
