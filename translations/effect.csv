@@ -15,14 +15,14 @@ EFFECT_NAME_TEMPORAL_SNAIL_RESURRECT,Death: Ressurect Orb,Infinity Loop
 EFFECT_DESCRIPTION_TEMPORAL_SNAIL_RESURRECT,Peut ressusciter pour !C! orbe à sa mort. Le coût augmente de 1 à chaque utilisation.,Resurrect for !C! orbs. Increases the amount of orbs needed by 1 each time.
 EFFECT_NAME_TEMPORAL_SNAIL_KILL,Kill: Orb+,Kill: Orb+
 EFFECT_DESCRIPTION_TEMPORAL_SNAIL_KILL,Gain d'orbe à chaque ennemi tué.,Gain !VA! orb each kill.
-EFFECT_NAME_PENETRATION_PHYSICAL,Pas fait,Physical Penetration
-EFFECT_DESCRIPTION_PENETRATION_PHYSICAL,Pas fait,Physical attacks ignore !VA! DR.
-EFFECT_NAME_PENETRATION_MAGICAL,Pas fait,Magical Penetration
-EFFECT_DESCRIPTION_PENETRATION_MAGICAL,Pas fait,Magical attacks ignore !VA! MR.
+EFFECT_NAME_PENETRATION_PHYSICAL,Pénétration physique,Physical Penetration
+EFFECT_DESCRIPTION_PENETRATION_PHYSICAL,Les attaques physiques ignorent !VA! DR.,Physical attacks ignore !VA! DR.
+EFFECT_NAME_PENETRATION_MAGICAL,Pénétration magique,Magical Penetration
+EFFECT_DESCRIPTION_PENETRATION_MAGICAL,Les attaques magiques ignorent !VA! MR.,Magical attacks ignore !VA! MR.
 EFFECT_NAME_ORANGUTAN,Déchet,Déchet
 EFFECT_DESCRIPTION_ORANGUTAN,"Lorsqu’il consomme une banane, vous gagnez !VA! Peau de Banane. ","When eat a banana, you gain !VA! Banana Peel."
 EFFECT_NAME_REGENERATION,Régénération,Regeneration
-EFFECT_DESCRIPTION_REGENERATION,,"At the start of your turn, heal !VA! HP."
+EFFECT_DESCRIPTION_REGENERATION,Début du tour: Soin de !VA! PV,"At the start of your turn, heal !VA! HP."
 EFFECT_NAME_POISON,Poison,Poison
 EFFECT_DESCRIPTION_POISON,Pas fait,"At the start of your turn, take !VA! poison damage"
 EFFECT_NAME_FREEZE,Gel,Freeze
@@ -71,3 +71,7 @@ EFFECT_NAME_SENTINEL_BULL,Lancier,Lancier
 EFFECT_DESCRIPTION_SENTINEL_BULL,+!VA! dégâts à 2 cases de la cible,+!VA! damage at 2 tiles from target
 EFFECT_NAME_PEASANT_MONKEY,Mal au dos,Back Pain
 EFFECT_DESCRIPTION_PEASANT_MONKEY,Perd TOUTES ses attaques après un déplacement,Lose ALL attacks after moving
+EFFECT_NAME_HAMMER_HEAD_BULL,Contrecoup,Contrecoup
+EFFECT_DESCRIPTION_HAMMER_HEAD_BULL,Subit !VA! dégâts de contrecoup à chaque attaque,Subit !VA! dégâts de contrecoup on attack
+EFFECT_NAME_THUNDER_HELMET,Paratonnerre,Lightning Rod
+EFFECT_DESCRIPTION_THUNDER_HELMET,La prochaine attaque inflige +!VA! dégâts pour chaque attaque subie.(Actuellement +!C!),Next attack deals +!VA! damage for each attack taken.(Currently +!C!)

@@ -26,8 +26,8 @@ var REWARDS_DICO := {
 	## UPGRADES
 	"bonus": {"title": "Bonus", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS},
 	"UpgradeAgilityEffect": {"title": "Bonus agility", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
-	"UpgradePromotionEffect": {"title": "Bonus promotion", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
-	"UpgradeScoutEffect": {"title": "Bonus scout", "desc": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
+	"UpgradePromotionEffect": {"title": "Bonus promotion", "desc": "+1 Grade, +9 HP, +2 DR, +1 MR, +2 P",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
+	"UpgradeScoutEffect": {"title": "Bonus scout", "desc": "+4 HP. Heal 1 for each tile travelled", "desc_": "Develop unit capacities",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_COMMON},
 	"UpgradeBloodyEffect": {"title": "Bonus bloody", "desc": "Unit have developed an insatiable bloody hunger",  "rewardType": RewardTypes.rewardTypes.BONUS, "icon_name": "BloodyUpgrade.png", "rarity": Rarities.BONUS_COMMON},
 	"UpgradeHiddenPotentialEffect": {"title": "Bonus Hidden Potential", "desc": "+1 Potential",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_RARE},
 	"UpgradeBloodGiftEffect": {"title": "Bonus Blood Gift", "desc": "+1 Potential, -5 HP, +1 P",  "rewardType": RewardTypes.rewardTypes.BONUS, "rarity": Rarities.BONUS_UNCOMMON},
@@ -67,6 +67,7 @@ var REWARDS_DICO := {
 	"set1:BerserkerBull": {"title": "Berserker Bull", "desc": "Ce barbare se lance tout entier au combat, x2 aux dégâts subis et infligés", "idReward": "set1:BerserkerBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "BerserkerBull_p.png", "rarity": Rarities.UNIT_RARE},
 	"set1:HornedMonkBull": {"title": "Horned Monk Bull", "desc": "Un Taureau qui a choisi une voie plus noble que ces congénères sanglants. Réduit la puissance des unités qu'il attaque", "idReward": "set1:HornedMonkBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "HornedMonkBull_p.png", "rarity": Rarities.UNIT_COMMON},
 	"set1:SentinelBull": {"title": "Sentinel Bull", "desc": "Un Taureau en armure armée d'une lance, peu puissant au contact", "idReward": "set1:SentinelBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "SentinelBull_p.png", "rarity": Rarities.UNIT_UNCOMMON},
+	"set1:HammerHeadBull": {"title": "Hammer Head Bull", "desc": "Un Taureau à tête d'enclume", "idReward": "set1:HammerHeadBull", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "HammerHeadBull_p.png", "rarity": Rarities.UNIT_UNCOMMON},
 	
 	## TRINKETS
 	"set1:OrbCrate": {"title": "Orb Crate", "desc": "Some orbs on a box.", "idReward": "set1:OrbCrate", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "OrbCrate_p.png", "rarity": Rarities.TRINKET_COMMON},

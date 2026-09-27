@@ -2,7 +2,7 @@
 	"UpgradePromotionEffect": {
 		"stats": {
 			"potentialCost": 1,
-			"hpMax": 10,
+			"hpMax": 9,
 			"dr": 2,
 			"mr": 1,
 			"power": 2,

@@ -12,6 +12,8 @@ extends Control
 @onready var next_button = %NextButton
 @onready var page_label = %PageLabel
 
+var cases_container: MarginContainer
+
 # Dictionary associating the help ID to its information and pages
 # Description texts will use keys like HELP_DESC_COMBAT_0, HELP_DESC_COMBAT_1...
 var helps_data = {}
@@ -34,6 +36,9 @@ func _ready():
 	_on_help_unlocked("COMBAT")
 	_on_help_unlocked("PLACE_UNIT")
 	_on_help_unlocked("EQUIP_ITEM")
+	_on_help_unlocked("TILES")
+	
+	create_cases_container()
 
 func load_helps_from_file(path: String) -> void:
 	if not FileAccess.file_exists(path):
@@ -53,11 +58,13 @@ func _on_visibility_changed():
 	if visible:
 		list_container.visible = true
 		details_container.visible = false
+		if cases_container:
+			cases_container.visible = false
 
 # Handle Escape key (ui_cancel)
 func _input(event):
 	if visible and event.is_action_pressed("ui_cancel"):
-		if details_container.visible:
+		if details_container.visible or (cases_container and cases_container.visible):
 			_on_back_button_pressed() # If reading a help, Escape returns to the list
 		else:
 			_on_close_button_pressed() # If on the list, Escape closes the menu
@@ -94,8 +101,15 @@ func display_help(help_id: String):
 	current_help = help_id
 	current_page = 0
 	
+	if help_id == "TILES":
+		list_container.visible = false
+		details_container.visible = false
+		cases_container.visible = true
+		return
+	
 	# Toggle views
 	list_container.visible = false
+	cases_container.visible = false
 	details_container.visible = true
 	
 	help_title.text = tr("HELP_TITLE_" + help_id)
@@ -137,8 +151,17 @@ func _on_next_button_pressed():
 func _on_back_button_pressed():
 	# Return to the list
 	details_container.visible = false
+	if cases_container:
+		cases_container.visible = false
 	list_container.visible = true
 
 func _on_close_button_pressed():
 	# Completely close the help menu
 	visible = false
+
+func create_cases_container():
+	var cases_scene = preload("res://nodes/interface/menu_aide_cases.tscn")
+	cases_container = cases_scene.instantiate()
+	cases_container.visible = false
+	add_child(cases_container)
+	cases_container.back_pressed.connect(_on_back_button_pressed)

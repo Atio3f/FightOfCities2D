@@ -24,7 +24,8 @@ func onUnitIn(unit: AbstractUnit) -> void :
 	unitOn = unit
 	return
 
-#Quand unité est sur la case au début du tour
+# Quand unité est sur la case au début du tour
+## C'est l'unité dessus qui l'appelle pour limiter le nombre d'appels c'est pour ça _unit
 func onStartOfTurn(_unit: AbstractUnit) -> void:
 	return
 

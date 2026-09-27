@@ -1,4 +1,28 @@
+key,fr,en
 HELP_TITLE_PLACE_UNIT,Placer des unités,Place units
 HELP_DESC_PLACE_UNIT_1,,
 HELP_TITLE_EQUIP_ITEM,Equipements,Equipments
 HELP_DESC_EQUIP_ITEM_1,,
+HELP_TITLE_TILES,Types de cases terrain,Terrain tiles types guide
+HELP_TITLE_ACTIONS_UNITE,Actions d’unité,Unit Actions
+HELP_TITLE_PREPARATION_TURN,Tour de préparation (Tour 0),Preparation Turn (Turn 0)
+HELP_TITLE_SHOP,Boutique,Shop
+MOVE_WALK,Marche,Walk
+MOVE_FLY,Vole,Fly
+MOVE_SWIM,Nage,Swim
+MOVE_,,
+HELP_TILE_COSTS,Coûts de déplacement,Deplacement costs
+HELP_TILE_EFFECTS,Effets de terrain,Terrain effects
+TILE_PLAINTILE,Plaine,Plain
+TILE_FORESTTILE,Forêt,Forest
+TILE_SAKURAFORESTTILE,Forêt de sakuras,Sakura Forest
+TILE_MOUNTAINTILE,Montagne,Mountain
+TILE_SNOWPLAINTILE,Plaine enneigée,Snow Plain
+TILE_LAKETILE,Lac,Lake
+TILE_DESERTTILE,Désert,Desert
+TILE_DEEPWATERTILE,Eau profonde,Deep Water
+TILE_TROPICALFORESTTILE,Forêt tropicale,Tropical Forest
+TILE_VOLCANICROCKSTILE,Pierres volcaniques,Volcanic Rocks
+TILE_SWAMPTILE,Marais,Swamp
+TILE_DESC_SWAMPTILE,"Au début du tour, inflige 4 dégâts à l’unité dessus","At the start of turn, deals 4 damage to unit on it"
+TILE_DESC_SAKURAFORESTTILE,"Au début du tour, soigne 4 pv à l’unité dessus","At the start of turn, heal 4 hp to unit on it"

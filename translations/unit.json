@@ -79,5 +79,8 @@
 	},
 	"set1:PeasantMonkey" : {
 		"name": "UNIT_NAME_PEASANT_MONKEY"
-	}
+	},
+	"set1:HammerHeadBull" : {
+		"name": "UNIT_NAME_HAMMER_HEAD_BULL"
+	},
 }

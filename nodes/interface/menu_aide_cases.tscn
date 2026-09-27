@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8x7casesmenu"]
+
+[ext_resource type="Script" path="res://scripts/interface/menu_aide_cases.gd" id="1_script"]
+
+[node name="CasesContainer" type="MarginContainer"]
+script = ExtResource("1_script")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxTop" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBox/HBoxTop"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Retour"
+
+[node name="Title" type="Label" parent="VBox/HBoxTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "HELP_TITLE_CASES"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBox/HBoxTop"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+
+[node name="HBoxMain" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scroll" type="ScrollContainer" parent="VBox/HBoxMain"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TileList" type="VBoxContainer" parent="VBox/HBoxMain/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightPanel" type="VBoxContainer" parent="VBox/HBoxMain"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 1
+
+[node name="TileTitleLabel" type="Label" parent="VBox/HBoxMain/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="TileIconRect" type="TextureRect" parent="VBox/HBoxMain/RightPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="VBox/HBoxMain/RightPanel"]
+layout_mode = 2
+
+[node name="TileCostsLabel" type="RichTextLabel" parent="VBox/HBoxMain/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="TileEffectsSeparator" type="HSeparator" parent="VBox/HBoxMain/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TileEffectsLabel" type="RichTextLabel" parent="VBox/HBoxMain/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true

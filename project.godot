@@ -158,7 +158,7 @@ zoom_out={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/strings.en.translation", "res://translations/strings.fr.translation", "res://translations/ui.en.translation", "res://translations/ui.fr.translation", "res://translations/unit.en.translation", "res://translations/unit.fr.translation", "res://translations/trinket.en.translation", "res://translations/trinket.fr.translation", "res://translations/item.en.translation", "res://translations/item.fr.translation", "res://translations/effect.en.translation", "res://translations/effect.fr.translation", "res://translations/goals.en.translation", "res://translations/goals.fr.translation")
+locale/translations=PackedStringArray("res://translations/strings.en.translation", "res://translations/strings.fr.translation", "res://translations/ui.en.translation", "res://translations/ui.fr.translation", "res://translations/unit.en.translation", "res://translations/unit.fr.translation", "res://translations/trinket.en.translation", "res://translations/trinket.fr.translation", "res://translations/item.en.translation", "res://translations/item.fr.translation", "res://translations/effect.en.translation", "res://translations/effect.fr.translation", "res://translations/goals.en.translation", "res://translations/goals.fr.translation", "res://translations/help.en.translation", "res://translations/help.fr.translation")
 
 [rendering]
 

@@ -9,6 +9,7 @@ func setData(_additionalData: String) -> void :
 		"set1:MoonStone": Rarities.EQUIP_COMMON, "set1:MudCharm": Rarities.EQUIP_COMMON,
 		"set1:WarAxe": Rarities.EQUIP_COMMON, "set1:HarpyBardiche": Rarities.EQUIP_COMMON,
 		"set1:VampiricFangs": Rarities.EQUIP_COMMON, "set1:Bananarang": Rarities.EQUIP_COMMON,
+		"set1:BrambleGauntlet": Rarities.EQUIP_COMMON,
 		## UNCOMMON
 		"set1:SwagBananaBag": Rarities.EQUIP_UNCOMMON, "set1:DemonAxe": Rarities.EQUIP_UNCOMMON,
 		"set1:DreadCloak": Rarities.EQUIP_UNCOMMON, "set1:SplinteringMallet": Rarities.EQUIP_UNCOMMON,

@@ -233,5 +233,15 @@
 		"id": "set1:PeasantMonkeyEffect",
 		"name": "EFFECT_NAME_PEASANT_MONKEY",
 		"description": "EFFECT_DESCRIPTION_PEASANT_MONKEY"
-	}
+	},
+	"set1:HammerHeadBullEffect": {
+		"id": "set1:HammerHeadBullEffect",
+		"name": "EFFECT_NAME_HAMMER_HEAD_BULL",
+		"description": "EFFECT_DESCRIPTION_HAMMER_HEAD_BULL"
+	},
+	"set1:ThunderHelmetEffect": {
+		"id": "set1:ThunderHelmetEffect",
+		"name": "EFFECT_NAME_THUNDER_HELMET",
+		"description": "EFFECT_DESCRIPTION_THUNDER_HELMET"
+	},
 }

@@ -22,6 +22,7 @@ const EFFECTS := {
 	"set1:BerserkerBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/BerserkerBullEffect.gd"),
 	"set1:HornedMonkBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/HornedMonkBullEffect.gd"),
 	"set1:SentinelBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/SentinelBullEffect.gd"),
+	"set1:HammerHeadBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/HammerHeadBullEffect.gd"),
 	## UPGRADE EFFECTS
 	"UpgradeTestEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeTestEffect.gd"),
 	"UpgradePromotionEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradePromotionEffect.gd"),
@@ -50,6 +51,7 @@ const EFFECTS := {
 	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),
 	"set1:BouquetOfLiesEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BouquetOfLiesEffect.gd"),
 	"set1:DreadCloak": preload("res://Ressources/effects/itemEffects/magicalBeasts/DreadCloakEffect.gd"),
+	"set1:ThunderHelmetEffect":  preload("res://Ressources/effects/itemEffects/bulls/ThunderHelmetEffect.gd"),
 }
 
 var effects_data: Dictionary = {}

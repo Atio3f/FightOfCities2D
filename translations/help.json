@@ -13,15 +13,22 @@
 		]
 	},
 	"PLACE_UNIT": {
+		"category": "PreparationTurn",
 		"menu_icon": "res://assets/interface/unite/UIuniteInfosStats(512x512).png",
 		"pages": [
 			"res://assets/interface/unite/UIuniteInfosStats(512x512).png"
 		]
 	},
 	"EQUIP_ITEM": {
+		"category": "PreparationTurn",
 		"menu_icon": "res://assets/interface/unite/UIuniteInfosStats(512x512).png",
 		"pages": [
 			"res://assets/interface/unite/UIuniteInfosStats(512x512).png"
 		]
+	},
+	"TILES": {
+		"category": "PreparationTurn",
+		"menu_icon": "res://assets/interface/unite/UIuniteInfosStats(512x512).png",
+		"pages": []
 	}
 }

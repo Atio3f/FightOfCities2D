@@ -13,6 +13,7 @@ const TILES := {
 	"set1:DeepWaterTile" : preload("res://Ressources/tiles/DeepWaterTile.gd"),
 	"set1:TropicalForestTile" : preload("res://Ressources/tiles/TropicalForestTile.gd"),
 	"set1:VolcanicRocksTile" : preload("res://Ressources/tiles/VolcanicRocksTile.gd"),
+	"set1:FortressTile" : preload("res://Ressources/tiles/FortressTile.gd"),
 }
 
 #Pour récup du tileset
@@ -38,4 +39,5 @@ const TILES_VECTORS := {
 	"set1:DeepWaterTile" : Vector2i(4, 0),
 	"set1:TropicalForestTile" : Vector2i(4, 1),
 	"set1:VolcanicRocksTile" : Vector2i(5, 0),
+	"set1:FortressTile" : Vector2i(5, 1),
 }
