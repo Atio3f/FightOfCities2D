@@ -1,3 +1,5 @@
+## Display Unit Summary while hovering it. Work on existing units, units id and units stats resource. 
+## It can be reused anywhere and will always go on top right corner
 extends PanelContainer
 class_name UnitInfoCard
 
@@ -53,7 +55,7 @@ func place_next_to(node: Control, offset_x: float = 25, offset_y: float = 0) -> 
 ## Init with unit ID (Show base stats)
 func setup_from_id(unit_id: String) -> void:
 	var unit_data = UnitDb.getUnit(unit_id)
-	var stats = UnitDb.getUnitStats(unit_id)
+	var stats: UnitStats = UnitDb.getUnitStats(unit_id)
 	
 	if unit_data.is_empty() or stats == null:
 		push_error("UnitInfoCard: Impossible de charger les données pour l'unité " + unit_id)
@@ -71,6 +73,7 @@ func setup_from_id(unit_id: String) -> void:
 	update_stats(
 		str(stats.hpBase),
 		stats.powerBase,
+		stats.damageType,
 		stats.drBase,
 		stats.mrBase,
 		str(stats.speedBase),
@@ -136,9 +139,35 @@ func setup_from_unit(unit: AbstractUnit) -> void:
 		used_pot = unit.statModifiers["potentialCost"]
 	var pot_str = str(used_pot) + "/" + str(unit.potential)
 	
+	var upgrades_names = []
+	for effect in unit.effects:
+		if effect.hideEffect and (unit.permanentUpgrades.has(effect.id) or "Upgrade" in effect.id):
+			var effectData = EffectDb.getEffectData(effect.id)
+			var effectName = tr(effectData["name"]) if effectData.has("name") else effect.nameEffect
+			upgrades_names.append(effectName)
+			
+	if upgrades_names.size() > 0:
+		var upgrades_str = ""
+		var current_line_len = 0
+		for i in range(upgrades_names.size()):
+			var u_name = upgrades_names[i]
+			if i > 0:
+				upgrades_str += ", "
+				current_line_len += 2
+			
+			if current_line_len > 0 and (current_line_len + u_name.length()) > 18:
+				upgrades_str += "\n"
+				current_line_len = 0
+				
+			upgrades_str += u_name
+			current_line_len += u_name.length()
+			
+		pot_str += "\n" + upgrades_str
+	
 	update_stats(
 		hp_str,
 		unit.power,
+		unit.damageType,
 		unit.dr,
 		unit.mr,
 		speed_str,
@@ -157,6 +186,7 @@ func setup_from_unit(unit: AbstractUnit) -> void:
 	# Effets
 	clear_effects()
 	var effects_text = ""
+	
 	for effect in unit.effects:
 		if not effect.hideEffect:
 			if effects_text != "":
@@ -177,11 +207,11 @@ func clear_effects() -> void:
 		child.queue_free()
 
 ## Met à jour les labels avec les préfixes de stats
-func update_stats(hp_str: String, power: int, dr: int, mr: int, speed_str: String, range_val: int, wisdom: int, potential_str: String) -> void:
+func update_stats(hp_str: String, power: int, damage_type: DamageTypes.DamageTypes, dr: int, mr: int, speed_str: String, range_val: int, wisdom: int, potential_str: String) -> void:
 	hp_label.text = "HP: " + hp_str
-	power_label.text = "Power: " + str(power)
+	power_label.text = "Power: " + str(power) + " | "+ tr(str(DamageTypes.DamageTypes.find_key(damage_type)))
 	armor_label.text = "DR|MR: " + str(dr) + "|" + str(mr)
 	speed_label.text = "Speed: " + speed_str
 	range_label.text = "Range: " + str(range_val)
 	wisdom_label.text = "Wisdom: " + str(wisdom)
-	#unit_potentiel_label.text = "Potential: " + potential_str
+	unit_potentiel_label.text = "Potential: " + potential_str

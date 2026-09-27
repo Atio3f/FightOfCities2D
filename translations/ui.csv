@@ -5,3 +5,11 @@ UI_LABEL_REMAINING_ACTIONS,À vous de jouer,It’s your turn
 UI_LABEL_TEAM_WEIGHT,Poids %s/%s,Weight %s/%s
 UI_LABEL_TURN_NUMBER,Tour %s,Turn %s
 UI_LABEL_WHICH_PLAYER_TURN,Au tour de %s,Turn of %s
+,,
+PHYSICAL,Physique,Physical
+MAGICAL,Magique,Magical
+PURE,Pur,Pure
+THORNS,Épine,Thorns
+POISON,Poison,Poison
+FIRE,Feu,Fire
+UNKNOW,Inconnu,Unknow

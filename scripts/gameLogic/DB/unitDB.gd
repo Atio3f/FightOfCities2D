@@ -77,7 +77,7 @@ func getUnit(unit_id: String) -> Dictionary:
 		push_error("unit id not found : " + unit_id)
 		return {}
 
-func getUnitStats(unit_id: String):
+func getUnitStats(unit_id: String) -> UnitStats:
 	if _stats_cache.has(unit_id):
 		return _stats_cache[unit_id]
 	## Fallback : si le cache n'est pas encore prêt, on charge directement

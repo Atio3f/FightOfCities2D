@@ -167,4 +167,10 @@
 		"description": "ITEM_DESC_THUNDER_HELMET",
 		"img": "res://assets/sprites/items/ThunderHelmet.png"
 	},
+	"set1:Tomahawk": {
+		"id": "set1:Tomahawk",
+		"name": "ITEM_NAME_TOMAHAWK",
+		"description": "ITEM_DESC_TOMAHAWK",
+		"img": "res://assets/sprites/items/WarAxe.png"
+	},
 }

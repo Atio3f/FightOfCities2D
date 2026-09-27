@@ -54,4 +54,6 @@ ITEM_DESC_BANANARANG,+1 P. Gagne une attaque avec 3 de portée qui inflige 6 + 3
 ITEM_NAME_SPLINTERING_MALLET,Maillet Éclat,Splintering Mallet
 ITEM_DESC_SPLINTERING_MALLET,"+2 P. Gagne une attaque de mêlée qui inflige 8 + 100 % des P en dégâts, Détruit ensuite l’équipement.","+2 P. Gain a melee capacity that deals 8 + 100% P damage to a single target, then Destroy Equipment."
 ITEM_NAME_THUNDER_HELMET,Casque tonnerre,Thunder Helmet
-ITEM_DESC_THUNDER_HELMET,Les attaques subies augmentent de 2 les dégâts de votre prochaine attaque.,Next attack deals +2 damage for each attack taken.
+ITEM_DESC_THUNDER_HELMET,+2 DR et +2 V. Les attaques subies augmentent de 2 les dégâts de votre prochaine attaque.,+2 DR et +2 V. Next attack deals +2 damage for each attack taken.
+ITEM_NAME_TOMAHAWK,Tomahawk,Tomahawk
+ITEM_DESC_TOMAHAWK,-1 DR et +3 P. Gagne une attaque avec 2 de portée qui inflige 80 % des P en dégâts. La portée passe à 3 pour les unités avec 20 P ou plus.,-1 DR and +3 P. Gain a capacity to attack up to 2 tiles dealing 80 % P to a single target. Increase reach to 3 for units with 20 P or more.
