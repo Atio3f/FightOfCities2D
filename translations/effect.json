@@ -244,4 +244,59 @@
 		"name": "EFFECT_NAME_THUNDER_HELMET",
 		"description": "EFFECT_DESCRIPTION_THUNDER_HELMET"
 	},
+	"UpgradeCrossfitDudeEffect": {
+		"id": "UpgradeCrossfitDudeEffect",
+		"name": "EFFECT_NAME_CROSSFIT_DUDE",
+		"description": "EFFECT_DESCRIPTION_CROSSFIT_DUDE"
+	},
+	"UpgradeCursedEffect": {
+		"id": "UpgradeCursedEffect",
+		"name": "EFFECT_NAME_CURSED",
+		"description": "EFFECT_DESCRIPTION_CURSED"
+	},
+	"UpgradeFragileEffect": {
+		"id": "UpgradeFragileEffect",
+		"name": "EFFECT_NAME_FRAGILE",
+		"description": "EFFECT_DESCRIPTION_FRAGILE"
+	},
+	"UpgradeStealthilyEffect": {
+		"id": "UpgradeStealthilyEffect",
+		"name": "EFFECT_NAME_STEALTHILY",
+		"description": "EFFECT_DESCRIPTION_STEALTHILY"
+	},
+	"UpgradeFortuneWheelEffect": {
+		"id": "UpgradeFortuneWheelEffect",
+		"name": "EFFECT_NAME_FORTUNE_WHEEL",
+		"description": "EFFECT_DESCRIPTION_FORTUNE_WHEEL"
+	},
+	"UpgradeWasteTreatmentEffect": {
+		"id": "UpgradeWasteTreatmentEffect",
+		"name": "EFFECT_NAME_WASTE_TREATMENT",
+		"description": "EFFECT_DESCRIPTION_WASTE_TREATMENT"
+	},
+	"DynamicPowerEffect": {
+		"id": "DynamicPowerEffect",
+		"name": "EFFECT_NAME_DYNAMIC_POWER",
+		"description": "EFFECT_DESCRIPTION_DYNAMIC_POWER"
+	},
+	"UpgradeBanâneEffect": {
+		"id": "UpgradeBanâneEffect",
+		"name": "EFFECT_NAME_BANÂNE",
+		"description": "EFFECT_DESCRIPTION_BANÂNE"
+	},
+	"UpgradeBloodGiftEffect": {
+		"id": "UpgradeBloodGiftEffect",
+		"name": "EFFECT_NAME_BLOOD_GIFT",
+		"description": "EFFECT_DESCRIPTION_BLOOD_GIFT"
+	},
+	"UpgradeMultitaskingEffect": {
+		"id": "UpgradeMultitaskingEffect",
+		"name": "EFFECT_NAME_MULTITASKING",
+		"description": "EFFECT_DESCRIPTION_MULTITASKING"
+	},
+	"UpgradeGlassCanonEffect": {
+		"id": "UpgradeGlassCanonEffect",
+		"name": "EFFECT_NAME_BONUS_GLASS_CANON",
+		"description": "EFFECT_DESCRIPTION_BONUS_GLASS_CANON"
+	}
 }

@@ -20,6 +20,7 @@ func displayUnits() -> void:
 	
 	for storedUnit: StoredUnit in unitsStock:
 		var btn = Button.new()
+		btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		
 		# Get unit data
 		var unitData: UnitStats = UnitDb.getUnitStats(storedUnit.id)

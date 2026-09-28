@@ -20,6 +20,7 @@ class_name UnitInfoCard
 @onready var equipment_icon: TextureRect = %EquipmentIcon
 
 @onready var effects_list: VBoxContainer = %EffectsList
+var upgrades_label: Label
 
 
 func _ready() -> void:
@@ -30,6 +31,17 @@ func _ready() -> void:
 	style.content_margin_left += 15
 	style.content_margin_bottom += 15
 	add_theme_stylebox_override("panel", style)
+
+	upgrades_label = Label.new()
+	upgrades_label.add_theme_font_size_override("font_size", 13) # Plus petit que la police par défaut
+	upgrades_label.modulate = Color(1, 0.85, 0.4) # Couleur dorée
+	upgrades_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	upgrades_label.custom_minimum_size = Vector2(380, 0)
+	upgrades_label.hide()
+	
+	var parent = unit_potentiel_label.get_parent()
+	parent.add_child(upgrades_label)
+	parent.move_child(upgrades_label, unit_potentiel_label.get_index() + 1)
 
 
 ## Place the card at the top right of the viewport
@@ -84,6 +96,9 @@ func setup_from_id(unit_id: String) -> void:
 	
 	# Hide equipment (generic card)
 	equipment_section.hide()
+	
+	if upgrades_label:
+		upgrades_label.hide()
 	
 	# Base effects (optional, not implemented as effects are often applied dynamically)
 	clear_effects()
@@ -140,12 +155,12 @@ func setup_from_unit(unit: AbstractUnit) -> void:
 	var pot_str = str(used_pot) + "/" + str(unit.potential)
 	
 	var upgrades_names = []
-	for effect in unit.effects:
-		if effect.hideEffect and (unit.permanentUpgrades.has(effect.id) or "Upgrade" in effect.id):
-			var effectData = EffectDb.getEffectData(effect.id)
-			var effectName = tr(effectData["name"]) if effectData.has("name") else effect.nameEffect
-			upgrades_names.append(effectName)
-			
+	for upgrade_id in unit.permanentUpgrades:
+		var effectData = EffectDb.getEffectData(upgrade_id)
+		var effectName = tr(effectData["name"]) if effectData.has("name") else upgrade_id
+		upgrades_names.append(effectName)
+		print(effectName)
+	
 	if upgrades_names.size() > 0:
 		var upgrades_str = ""
 		var current_line_len = 0
@@ -162,7 +177,12 @@ func setup_from_unit(unit: AbstractUnit) -> void:
 			upgrades_str += u_name
 			current_line_len += u_name.length()
 			
-		pot_str += "\n" + upgrades_str
+		if upgrades_label:
+			upgrades_label.text = upgrades_str
+			upgrades_label.show()
+	else:
+		if upgrades_label:
+			upgrades_label.hide()
 	
 	update_stats(
 		hp_str,

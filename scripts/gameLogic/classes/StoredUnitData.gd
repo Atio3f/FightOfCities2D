@@ -87,6 +87,10 @@ func applyToUnit(unit: AbstractUnit) -> void:
 
 ## Add a permanent upgrade and its stat changes to the model, used on upgrade reward interface and when collecting units from json
 func addPermanentUpgrade(upgradeId: String) -> void:
+	# For display usage
+	if not permanentUpgrades.has(upgradeId):
+		permanentUpgrades.append(upgradeId)
+		
 	var modifiers = UpgradeDB.get_stat_modifiers(upgradeId)
 	
 	## Add a default cost of 1 if the cost isn't present

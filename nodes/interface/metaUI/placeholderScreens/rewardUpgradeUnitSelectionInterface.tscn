@@ -12,16 +12,6 @@ grow_vertical = 2
 script = ExtResource("1_mmgkj")
 metadata/_custom_type_script = "uid://4fxyeijtset2"
 
-[node name="ReturnBtn" type="Button" parent="."]
-custom_minimum_size = Vector2(60, 25)
-layout_mode = 0
-anchor_left = 0.0434028
-anchor_top = 0.0771605
-anchor_right = 0.0954861
-anchor_bottom = 0.115741
-text = "Return"
-metadata/_edit_use_anchors_ = true
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -45,5 +35,17 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="ReturnBtn" type="Button" parent="."]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0434028
+anchor_top = 0.0771605
+anchor_right = 0.0954861
+anchor_bottom = 0.115741
+mouse_default_cursor_shape = 2
+text = "Return"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="ReturnBtn" to="." method="_on_return_btn_pressed"]
