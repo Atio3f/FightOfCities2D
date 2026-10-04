@@ -59,4 +59,10 @@
 		"description": "TRINKET_DESC_FAIRY_BENEDICTION",
 		"preview": "TRINKET_PREVIEW_FAIRY_BENEDICTION"
 	},
+	"set1:ScorpioPalm": {
+		"id": "set1:ScorpioPalm",
+		"name": "TRINKET_NAME_SCORPIO_PALM",
+		"description": "TRINKET_DESC_SCORPIO_PALM",
+		"preview": "TRINKET_PREVIEW_SCORPIO_PALM"
+	},
 }

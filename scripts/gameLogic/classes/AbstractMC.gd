@@ -40,4 +40,3 @@ func removeSelfWithoutUnequip(checkWin: bool) -> void:
 	if TurnManager.turn != 0 && checkWin:
 		GameManager.checkWin()
 	queue_free()
-

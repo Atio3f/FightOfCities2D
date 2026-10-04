@@ -59,3 +59,5 @@ ITEM_NAME_TOMAHAWK,Tomahawk,Tomahawk
 ITEM_DESC_TOMAHAWK,-1 DR et +3 P. Gagne une attaque avec 2 de portée qui inflige 80 % des P en dégâts. La portée passe à 3 pour les unités avec 20 P ou plus.,-1 DR and +3 P. Gain a capacity to attack up to 2 tiles dealing 80 % P to a single target. Increase reach to 3 for units with 20 P or more.
 ITEM_NAME_SCORPIO_PALM,Paume du scorpion,Scorpio Palm
 ITEM_DESC_SCORPIO_PALM,Vos attaques de mêlée infligent 1 Paralysie.,Melee Attacks inflict 1 Paralysis.
+ITEM_NAME_HIDDEN_BLADE,Lame cachée,Hidden Blade
+ITEM_DESC_HIDDEN_BLADE,+3 P et +1 V. Gagne une attaque de mêlée qui inflige 80 % des P en dégâts et applique 3 [PARALYSIS]. Une utilisation par combat,+3 P and +1 V. Gain a melee capacity that deals 80 % P and inflicts 3 [PARALYSIS] to a single target. One use per battle

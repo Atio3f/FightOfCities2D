@@ -29,3 +29,6 @@ TRINKET_PREVIEW_WAR_BANNER,Vos unités : +!VA! PV Max et +!VB! Puissance,Team Un
 TRINKET_NAME_FAIRY_BENEDICTION,Bénédiction féerique,Fairy Benediction
 TRINKET_DESC_FAIRY_BENEDICTION,Soigne !VB! unités blessées pour !VA! au début de chaque tour.,Heal !VB! random wounded units for !VA! each turn 
 TRINKET_PREVIEW_FAIRY_BENEDICTION,Début du tour : Soigne !VB! unités blessées pour !VA!,Start of turn: Heal !VB! wounded units for !VA!
+TRINKET_NAME_SCORPIO_PALM,Paume du scorpion,Scorpio Palm
+TRINKET_DESC_SCORPIO_PALM,Vos attaques de mêlée infligent !VA! [PARALYSIS].,Melee Attacks inflict !VA! [PARALYSIS].
+TRINKET_PREVIEW_SCORPIO_PALM,Attaque de mêlée : applique 1 [PARALYSIS],Melee attack : inflicts 1 [PARALYSIS]

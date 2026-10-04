@@ -11,6 +11,7 @@ const TRINKETS := {
 	"set1:GiftedRecruit" : preload("uid://28ddg4daxwy7"),
 	"set1:LocalHero" : preload("uid://dtlaebebwafdd"),
 	"set1:WarBanner" : preload("uid://b33fvcogcajoc"),
+	"set1:ScorpioPalm" : preload("uid://dmnfmo3fvv5a6"),
 }
 
 

@@ -173,4 +173,10 @@
 		"description": "ITEM_DESC_TOMAHAWK",
 		"img": "res://assets/sprites/items/WarAxe.png"
 	},
+	"set1:HiddenBlade": {
+		"id": "set1:HiddenBlade",
+		"name": "ITEM_NAME_HIDDEN_BLADE",
+		"description": "ITEM_DESC_HIDDEN_BLADE",
+		"img": "res://assets/sprites/items/LaserBladeMonkey.png"
+	}
 }

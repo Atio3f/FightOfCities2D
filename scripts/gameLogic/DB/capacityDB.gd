@@ -6,4 +6,5 @@ const CAPACITIES := {
 	"set1:BananarangCapacity": preload("res://Ressources/capacities/equipments/BananarangCapacity.gd"),
 	"set1:SplinteringMalletCapacity": preload("res://Ressources/capacities/equipments/SplinteringMalletCapacity.gd"),
 	"set1:TomahawkCapacity": preload("res://Ressources/capacities/equipments/TomahawkCapacity.gd"),
+	"set1:HiddenBladeCapacity": preload("res://Ressources/capacities/equipments/HiddenBladeCapacity.gd"),
 }

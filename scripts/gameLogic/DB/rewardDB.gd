@@ -112,4 +112,5 @@ var REWARDS_DICO := {
 	"set1:SplinteringMallet": {"title": "Splintering Mallet", "desc": "Gain a strong melee attacks that breaks with single use", "idReward": "set1:SplinteringMallet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
 	"set1:ThunderHelmet": {"title": "Thunder Helmet", "desc": "Stock power for next attack when attacked", "idReward": "set1:ThunderHelmet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
 	"set1:Tomahawk": {"title": "Tomahawk", "desc": "Gain a 2 tile attack or 3 for stronger units", "idReward": "set1:Tomahawk", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
+	"set1:HiddenBlade": {"title": "Tomahawk", "desc": "Gain a single use per battle melee attack that inflict paralysis", "idReward": "set1:HiddenBlade", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
 }

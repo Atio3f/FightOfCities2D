@@ -9,7 +9,7 @@ var capacity: AbstractCapacity = null
 
 func _init():
 	value_A = 6 # Base damage, will be increases by BONUS_DMG_MONKEYS if equipped by a Monkey
-	value_B = 33 # % of P from unit, will increases total damage from Bananarang
+	value_B = 33 # % of P from unit, total damage from Tomahawk capacity
 	super()
 
 func getStatModifiers() -> Dictionary:
