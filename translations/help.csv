@@ -26,3 +26,5 @@ TILE_VOLCANICROCKSTILE,Pierres volcaniques,Volcanic Rocks
 TILE_SWAMPTILE,Marais,Swamp
 TILE_DESC_SWAMPTILE,"Au début du tour, inflige 4 dégâts à l’unité dessus","At the start of turn, deals 4 damage to unit on it"
 TILE_DESC_SAKURAFORESTTILE,"Au début du tour, soigne 4 pv à l’unité dessus","At the start of turn, heal 4 hp to unit on it"
+TILE_FORTRESSTILE,Fort,Fortress
+TILE_DESC_FORTRESSTILE,"Au début du tour, soigne 5 pv à l’unité dessus. +2 DR","At the start of turn, heal 5 hp to unit on it. +2 DR on it"

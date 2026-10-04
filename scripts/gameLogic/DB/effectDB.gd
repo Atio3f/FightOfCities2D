@@ -46,6 +46,8 @@ const EFFECTS := {
 	"set1:SpeedPlusEffect": preload("res://Ressources/effects/SpeedPlusEffect.gd"),
 	"set1:DRPlusEffect": preload("res://Ressources/effects/DRPlusEffect.gd"),
 	"set1:MRPlusEffect": preload("res://Ressources/effects/MRPlusEffect.gd"),
+	"set1:ParalysisEffect": preload("res://Ressources/effects/keywordEffects/ParalysisEffect.gd"),
+	"set1:OnHitApplyStatusEffect": preload("res://Ressources/effects/OnHitApplyStatusEffect.gd"),
 	## ITEM EFFECTS
 	"set1:BrambleGauntletEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BrambleGauntletEffect.gd"),
 	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),

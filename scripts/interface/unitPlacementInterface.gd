@@ -20,14 +20,13 @@ func setUnitPreview(unit: AbstractUnit, storedUnitData: StoredUnit, coords: Vect
 	var weight: int = stats.grade + storedUnitData.statModifiers.get("grade", 0)
 	
 	%Preview.text = getPreviewText(tr(unitData["name"]), weight)
-	if unit.STATS.imgPath != null and unit.STATS.imgPath != "" :
-		%BtnUnit.icon = load(unit.getImagePath()+"_p.png")
+	if stats.imgPath != null and stats.imgPath != "" :
+		%BtnUnit.icon = load("res://assets/sprites/units/"+stats.imgPath+"_p.png")
 		
 	if storedUnitData.equipmentsData.size() > 0:
 		var eqId = storedUnitData.equipmentsData[0].get("id", "")
-		var itemDbNode = Engine.get_main_loop().root.get_node_or_null("ItemDb")
-		if itemDbNode != null and itemDbNode.ITEMS.has(eqId):
-			var eqInstance = itemDbNode.ITEMS[eqId].new()
+		if ItemDb.ITEMS.has(eqId):
+			var eqInstance = ItemDb.ITEMS[eqId].new()
 			%EquipmentIcon.texture = load(eqInstance.getImagePath())
 			%EquipmentIcon.show()
 	else:

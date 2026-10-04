@@ -48,7 +48,7 @@ func getPreviewText(trinket: AbstractTrinket) -> String :
 				finalText += str(trinket.counter2)
 			_:
 				finalText += t
-	return finalText
+	return TextParser.parse_icons(finalText)
 
 ## When the mouse entered the trinket illustration, we show a preview of effect
 func _on_sprite_trinket_mouse_entered() -> void:

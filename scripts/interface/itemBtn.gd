@@ -16,7 +16,12 @@ func toggleItems(itemId: String, player: AbstractPlayer, inventoryInterface: Con
 	unitStocked = unit
 	if itemId != "" :
 		var itemData: Dictionary = ItemDb.getItem(itemId)
-		%PreviewItem.text = tr(itemData["description"])
+		if ItemDb.ITEMS.has(itemId):
+			var itemInstance: AbstractItem = ItemDb.ITEMS[itemId].new()
+			%PreviewItem.text = itemInstance.getDescription()
+			itemInstance.queue_free()
+		else:
+			%PreviewItem.text = tr(itemData["description"])
 		%NameItem.text = tr(itemData["name"])
 		%ItemBtn.icon = load(itemData["img"])
 	else :

@@ -14,12 +14,15 @@ size_flags_horizontal = 8
 mouse_default_cursor_shape = 16
 stretch_mode = 2
 
-[node name="Preview" type="Label" parent="SpriteTrinket"]
+[node name="Preview" type="RichTextLabel" parent="SpriteTrinket"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.766667
 anchor_right = 2.26666
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="SpriteTrinket" to="." method="_on_sprite_trinket_mouse_entered"]

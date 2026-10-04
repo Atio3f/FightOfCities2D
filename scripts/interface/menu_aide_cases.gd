@@ -31,6 +31,20 @@ func _ready():
 		var tile_name = tile_id.split(":")[1]
 		btn.text = tr("TILE_" + tile_name.to_upper())
 		btn.custom_minimum_size = Vector2(0, 60)
+		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		
+		# Set Button Icon
+		if TileDb.TILES_VECTORS.has(tile_id) and tileset != null:
+			var coords = TileDb.TILES_VECTORS[tile_id]
+			var source = tileset.get_source(0)
+			if source is TileSetAtlasSource:
+				var atlas_tex = AtlasTexture.new()
+				atlas_tex.atlas = source.texture
+				var region_size = source.texture_region_size
+				atlas_tex.region = Rect2(coords * region_size, region_size)
+				btn.icon = atlas_tex
+				btn.expand_icon = true
+				btn.add_theme_constant_override("icon_max_width", 48)
 		
 		btn.mouse_entered.connect(func(): _on_tile_hovered(tile_name, tile_instance, tile_id, tileset))
 		

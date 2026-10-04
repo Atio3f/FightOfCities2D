@@ -110,4 +110,6 @@ EFFECT_DESCRIPTION_BONUS_STEALTHILY,todo,todo
 EFFECT_NAME_BONUS_FORTUNE_WHEEL,Roue de la fortune,Fortune Wheel 
 EFFECT_DESCRIPTION_BONUS_FORTUNE_WHEEL,todo,todo
 EFFECT_NAME_BONUS_WASTE_TREATMENT,Traitement des déchets,Waste Treatment 
-EFFECT_DESCRIPTION_BONUS_WASTE_TREATMENT,todo,todo
+EFFECT_DESCRIPTION_BONUS_WASTE_TREATMENT,Soin de 6 à chaque objet utilisé,Heal 6 each time an item is used
+EFFECT_NAME_PARALYSIS,Paralysie,Paralysis
+EFFECT_DESCRIPTION_PARALYSIS,Paralyse 1 tour à !VA! [PARALYSIS]. +1 [PARALYSIS] requis à chaque application. (Charges actuelles : !C!/!VA!),Stuns for 1 turn at !VA! [PARALYSIS]. Required amount +1 [PARALYSIS] after each trigger. (Current stacks: !C!/!VA!)

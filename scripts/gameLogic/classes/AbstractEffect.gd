@@ -134,7 +134,7 @@ func getDescription() -> String:
 				finalDesc += str(counter)
 			_:
 				finalDesc += t
-	return finalDesc
+	return TextParser.parse_icons(finalDesc)
 
 func registerEffect() -> Dictionary:
 	var effectAssociatedUid: String

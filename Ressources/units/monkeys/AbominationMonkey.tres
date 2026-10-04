@@ -5,13 +5,15 @@
 [resource]
 script = ExtResource("1_8g8ll")
 id = "set1:AbominationMonkey"
-imgPath = "Monkey"
+imgPath = "AbominationMonkey"
 hpBase = 41
 drBase = 2
 mrBase = 3
+aggroBase = 0
 grade = 2
 potential = 2
 wisdomBase = 0
+equipmentLimit = 1
 powerBase = 13
 damageType = 0
 attackRange = 1

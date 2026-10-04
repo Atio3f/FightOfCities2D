@@ -214,9 +214,10 @@ func setup_from_unit(unit: AbstractUnit) -> void:
 			effects_text += effect.getDescription()
 			
 	if effects_text != "":
-		var label = Label.new()
+		var label = RichTextLabel.new()
 		label.text = effects_text
-		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.bbcode_enabled = true
+		label.fit_content = true
 		# Give it fixed width to make it wrap
 		label.custom_minimum_size = Vector2(380, 0)
 		effects_list.add_child(label)

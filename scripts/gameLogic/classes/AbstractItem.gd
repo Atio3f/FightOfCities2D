@@ -16,41 +16,24 @@ var value_B: int
 var value_C: int 
 var counter: int #Can be used to increment a value 
 
+var itemId: String = "UNDEFINED"
+
 var avgPrice: int #Price on shops, items can be sell from 40% of this value
 func _init() -> void:
-	var item_id: String = "UNDEFINED"
 	
 	var script = self.get_script()
 	if script != null and script.has_method("getId"):
-		item_id = script.call("getId")
+		itemId = script.call("getId")
 	elif self.has_method("getId"):
-		item_id = self.call("getId")
+		itemId = self.call("getId")
 		
-	if item_id != "UNDEFINED":
-		var tree = Engine.get_main_loop() as SceneTree
-		if tree != null and tree.root != null:
-			var itemDbNode = tree.root.get_node_or_null("ItemDb")
-			if itemDbNode != null:
-				var data: Dictionary = itemDbNode.getItem(item_id)
-				if data.has("name"):
-					self.nameItem = tr(data["name"])
-				if data.has("img"):
-					self.imgPath = data["img"]
-
-#_init sera rarement appelé car généralement on va directement appliquer l'effet de l'objet dans les enfants de cette classe
-#func _init(id: String, imgPath: String, playerAssociated: AbstractPlayer, orbsCost: int, equipable: bool, value_A: int, value_B: int = 0, value_C: int = 0, counter: int = 0):
-	#self.id = id
-	#self.nameItem = id.substr(5)
-	#self.imgPath = imgPath
-	##INSERER IMAGE A PARTIR DU PATH ICI
-	#self.playerAssociated = playerAssociated
-	#self.orbCost = orbCost
-	#self.orbCostBase = orbCost
-	#self.equipable = equipable
-	#self.value_A = value_A
-	#self.value_B = value_B
-	#self.value_C = value_C
-	#self.counter = counter
+	if itemId != "UNDEFINED":
+		if ItemDb.has_method("getItem"):
+			var data: Dictionary = ItemDb.getItem(itemId)
+			if data.has("name"):
+				self.nameItem = tr(data["name"])
+			if data.has("img"):
+				self.imgPath = data["img"]
 
 func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	pass
@@ -105,8 +88,12 @@ func getName() -> String :
 	return nameItem
 
 func getDescription() -> String:
-	if !Global.effectsStrings["en"].has(id) : return "DESCRIPTION NOT FOUND"
-	var desc: String = Global.effectsStrings["en"][id]["DESCRIPTION"]
+	var desc: String = "DESCRIPTION NOT FOUND"
+	if itemId != "UNDEFINED" and ItemDb.has_method("getItem"):
+		var data = ItemDb.getItem(itemId)
+		if data.has("description"):
+			desc = tr(data["description"])
+
 	var finalDesc : String = ""
 	for t: String in desc.split("!"):
 		match t:
@@ -122,7 +109,7 @@ func getDescription() -> String:
 				finalDesc += str(orbCost)
 			_:
 				finalDesc += t
-	return finalDesc
+	return TextParser.parse_icons(finalDesc)
 
 func registerItem() -> Dictionary:
 	return {}

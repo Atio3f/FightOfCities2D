@@ -39,7 +39,7 @@ grow_vertical = 0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PreviewItem" type="Label" parent="ItemBtn"]
+[node name="PreviewItem" type="RichTextLabel" parent="ItemBtn"]
 unique_name_in_owner = true
 editor_description = "Contains the effect description"
 z_index = 2
@@ -53,10 +53,11 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/line_spacing = -4
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
 text = "DESC NOT FOUND"
-horizontal_alignment = 1
-vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="BgItem" type="ColorRect" parent="ItemBtn/PreviewItem"]

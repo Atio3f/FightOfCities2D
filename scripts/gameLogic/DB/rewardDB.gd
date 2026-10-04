@@ -45,7 +45,7 @@ var REWARDS_DICO := {
 	## UNITS
 	"set1:Monkey": {"title": "Monkey", "desc": "A Monkey who tried its best.", "idReward": "set1:Monkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Monkey_p.png", "rarity": Rarities.UNIT_COMMON},
 	"set1:KnightMonkey": {"title": "Knight Monkey", "desc": "He always help the weakest.", "idReward": "set1:KnightMonkey", "rewardType": RewardTypes.rewardTypes.UNIT, "rarity": Rarities.UNIT_COMMON},
-	"set1:AbominationMonkey": {"title": "Abomination Monkey", "desc": "A failed experiementation. Poor Monkey...", "idReward": "set1:AbominationMonkey", "rewardType": RewardTypes.rewardTypes.UNIT, "rarity": Rarities.UNIT_UNCOMMON},
+	"set1:AbominationMonkey": {"title": "Abomination Monkey", "desc": "A failed experiementation. Poor Monkey...", "idReward": "set1:AbominationMonkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "AbominationMonkey_p.png", "rarity": Rarities.UNIT_UNCOMMON},
 	"set1:QueenMonkey": {"title": "Queen Monkey", "desc": "Did you expected to touch a queen?", "idReward": "set1:QueenMonkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "QueenMonkey_p.png", "rarity": Rarities.UNIT_RARE},
 	"set1:GodMonkey": {"title": "God Monkey", "desc": "The god of all Monkeys.", "idReward": "set1:GodMonkey", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Monkey_p.png", "rarity": Rarities.UNIT_LEGENDARY},
 	"set1:Orangutan": {"title": "Orangutan", "desc": "Il n’est peut être pas très fut fut mais vous pouvez toujours compter sur lui en cas de pépins.", "idReward": "set1:Orangutan", "rewardType": RewardTypes.rewardTypes.UNIT, "icon_name": "Monkey_p.png", "rarity": Rarities.UNIT_COMMON},

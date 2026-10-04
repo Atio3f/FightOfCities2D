@@ -1,9 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8x7casesmenu"]
 
-[ext_resource type="Script" path="res://scripts/interface/menu_aide_cases.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cvr6qlseffpwi" path="res://scripts/interface/menu_aide_cases.gd" id="1_script"]
 
 [node name="CasesContainer" type="MarginContainer"]
-script = ExtResource("1_script")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,6 +12,7 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
+script = ExtResource("1_script")
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2

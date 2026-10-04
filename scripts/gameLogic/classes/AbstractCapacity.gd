@@ -108,7 +108,7 @@ func onEndOfTurn(turnNumber: int, turnColor: TeamsColor.TeamsColor) -> void:
 
 func getDescription() -> String:
 	if !Global.effectsStrings["en"].has(id) : return "DESCRIPTION NOT FOUND"
-	return Global.effectsStrings["en"][id]["DESCRIPTION"]
+	return TextParser.parse_icons(Global.effectsStrings["en"][id]["DESCRIPTION"])
 
 func registerCapacity() -> Dictionary:
 	return {

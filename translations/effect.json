@@ -298,5 +298,10 @@
 		"id": "UpgradeGlassCanonEffect",
 		"name": "EFFECT_NAME_BONUS_GLASS_CANON",
 		"description": "EFFECT_DESCRIPTION_BONUS_GLASS_CANON"
-	}
+	},
+	"ParalysisEffect": {
+		"id": "ParalysisEffect",
+		"name": "EFFECT_NAME_PARALYSIS",
+		"description": "EFFECT_DESCRIPTION_PARALYSIS"
+	},
 }
