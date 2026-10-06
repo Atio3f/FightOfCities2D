@@ -54,6 +54,8 @@ const EFFECTS := {
 	"set1:BouquetOfLiesEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BouquetOfLiesEffect.gd"),
 	"set1:DreadCloak": preload("res://Ressources/effects/itemEffects/magicalBeasts/DreadCloakEffect.gd"),
 	"set1:ThunderHelmetEffect":  preload("res://Ressources/effects/itemEffects/bulls/ThunderHelmetEffect.gd"),
+	"set1:MashedBananasEffect": preload("res://Ressources/effects/itemEffects/monkeys/MashedBananasEffect.gd"),
+	"set1:BandageEffect": preload("res://Ressources/effects/itemEffects/others/BandageEffect.gd"),
 }
 
 var effects_data: Dictionary = {}

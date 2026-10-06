@@ -6,6 +6,7 @@ const ICONS = {
 	"[PARALYSIS]": "res://assets/sprites/icons/status/Paralysis.png",
 	"[FREEZE]": "res://assets/sprites/icons/status/Freeze.png",
 	"[POISON]": "res://assets/sprites/icons/status/Poison.png",
+	#"[CURSE]": "res://assets/sprites/icons/status/Curse.png",
 	#"[BURN]": "res://assets/sprites/icons/status/Burn.png",
 	#"[BLEED]": "res://assets/sprites/icons/status/Bleed.png"
 }

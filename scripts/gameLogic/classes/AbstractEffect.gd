@@ -132,6 +132,9 @@ func getDescription() -> String:
 				finalDesc += str(value_C)
 			"C":
 				finalDesc += str(counter)
+			"RT":
+				if remainingTurns == -1 : finalDesc += "∞"
+				else : finalDesc += str(remainingTurns)
 			_:
 				finalDesc += t
 	return TextParser.parse_icons(finalDesc)

@@ -13,7 +13,8 @@ const STATUS_IDS = [
 	"set1:FreezeEffect",
 	"set1:PoisonEffect",
 	"set1:BurnEffect",
-	"set1:BleedEffect"
+	"set1:BleedEffect",
+	"set1:CurseEffect",
 ]
 
 func _init(unit: AbstractUnit, remainingTurns: int, value_A: int = 0, value_B: int = 0, value_C: int = 0, counter: int = 0):

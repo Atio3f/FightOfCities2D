@@ -57,7 +57,19 @@ ITEM_NAME_THUNDER_HELMET,Casque tonnerre,Thunder Helmet
 ITEM_DESC_THUNDER_HELMET,+2 DR et +2 V. Les attaques subies augmentent de 2 les dégâts de votre prochaine attaque.,+2 DR et +2 V. Next attack deals +2 damage for each attack taken.
 ITEM_NAME_TOMAHAWK,Tomahawk,Tomahawk
 ITEM_DESC_TOMAHAWK,-1 DR et +3 P. Gagne une attaque avec 2 de portée qui inflige 80 % des P en dégâts. La portée passe à 3 pour les unités avec 20 P ou plus.,-1 DR and +3 P. Gain a capacity to attack up to 2 tiles dealing 80 % P to a single target. Increase reach to 3 for units with 20 P or more.
-ITEM_NAME_SCORPIO_PALM,Paume du scorpion,Scorpio Palm
-ITEM_DESC_SCORPIO_PALM,Vos attaques de mêlée infligent 1 Paralysie.,Melee Attacks inflict 1 Paralysis.
 ITEM_NAME_HIDDEN_BLADE,Lame cachée,Hidden Blade
 ITEM_DESC_HIDDEN_BLADE,+3 P et +1 V. Gagne une attaque de mêlée qui inflige 80 % des P en dégâts et applique 3 [PARALYSIS]. Une utilisation par combat,+3 P and +1 V. Gain a melee capacity that deals 80 % P and inflicts 3 [PARALYSIS] to a single target. One use per battle
+ITEM_NAME_SPIRITUAL_CURSE,Malédiction spirituel,Spiritual Curse
+ITEM_DESC_SPIRITUAL_CURSE,Maudit une unité pour le reste du combat,Curse an unit for the rest of combat
+ITEM_NAME_MASHED_BANANAS,Purée de bananes,Mashed Bananas
+ITEM_DESC_MASHED_BANANAS,Monkey only. Permet de survivre le prochain coup fatal pendant les 3 prochains tours avec 1 PV,Monkey only. Lets unit survives next fatal hit for the 3 next turns with 1 HP
+ITEM_NAME_BANANA_CAKE,Gâteau à la banane,Banana Cake
+ITEM_DESC_BANANA_CAKE,Donne +3P et -5 V pdt 5 tours et soigne 10 PV.  Aucun malus de V pour les Monkeys,Give +3 P and -5 V for 5 turns and heal 10 HP. No V malus on Monkeys
+ITEM_NAME_CHARGED_BANANA_JUICE,Jus de banane énergisé,Charged Banana Juice
+ITEM_DESC_CHARGED_BANANA_JUICE,"Restaure 80% V ce tour.  Ignore la limite de stat. Ensuite, -3 V pour les non Monkeys","Restore 80 % V this turn. Ignore stat limit. Then, -3 V for non Monkeys"
+ITEM_NAME_ELECTRIC_BANANA,Banane électrique,Electric Banana
+ITEM_DESC_ELECTRIC_BANANA,Les attaques appliquent 1 [PARALYSIS] pendant 4 tours.  Soigne 5 PV pour les Monkeys,Attacks deal 1 [PARALYSIS] for 4 turns. Heal 5 HP on Monkeys
+ITEM_NAME_BANDAGE,Pansement,Bandage
+ITEM_DESC_BANDAGE,Soigne 6 PV à la fin du tour pendant 3 tours,Heal 6 HP at the end of turn for 3 turns
+ITEM_NAME_SCOPE,Viseur,Scope
+ITEM_DESC_SCOPE,+1 portée. Peut uniquement être équipé par des unités avec une portée > 1,+1 range. Can only be equipped on units with range > 1

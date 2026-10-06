@@ -111,5 +111,13 @@ EFFECT_NAME_BONUS_FORTUNE_WHEEL,Roue de la fortune,Fortune Wheel
 EFFECT_DESCRIPTION_BONUS_FORTUNE_WHEEL,todo,todo
 EFFECT_NAME_BONUS_WASTE_TREATMENT,Traitement des déchets,Waste Treatment 
 EFFECT_DESCRIPTION_BONUS_WASTE_TREATMENT,Soin de 6 à chaque objet utilisé,Heal 6 each time an item is used
+EFFECT_NAME_BONUS_STEALTHILY,Pas de loup,Stealthily 
+EFFECT_DESCRIPTION_BONUS_STEALTHILY,+1 P. Réduit l’aggro,+1 P. Reduces aggro
 EFFECT_NAME_PARALYSIS,Paralysie,Paralysis
 EFFECT_DESCRIPTION_PARALYSIS,Paralyse 1 tour à !VA! [PARALYSIS]. +1 [PARALYSIS] requis à chaque application. (Charges actuelles : !C!/!VA!),Stuns for 1 turn at !VA! [PARALYSIS]. Required amount +1 [PARALYSIS] after each trigger. (Current stacks: !C!/!VA!)
+EFFECT_NAME_PARALYSIS,Paralysie,Paralysis
+EFFECT_DESCRIPTION_PARALYSIS,Paralyse 1 tour à !VA! [PARALYSIS]. +1 [PARALYSIS] requis à chaque application. (Charges actuelles : !C!/!VA!),Stuns for 1 turn at !VA! [PARALYSIS]. Required amount +1 [PARALYSIS] after each trigger. (Current stacks: !C!/!VA!)
+EFFECT_NAME_MASHED_BANANAS,Bonne purée,Nice cooked mash
+EFFECT_DESCRIPTION_MASHED_BANANAS,La prochaine attaque fatale vous laisse à !VA! PV,Next fatal attack lets you live with !VA! HP
+EFFECT_NAME_BANDAGE,Pansement,Bandage
+EFFECT_DESCRIPTION_BANDAGE,Soigne !VA! PV à la fin du tour pour !RT! tours,Heal !VA! for !RT! turns

@@ -86,10 +86,16 @@ var REWARDS_DICO := {
 	"set1:Banana": {"title": "Banana", "desc": "Good to eat", "idReward": "set1:Banana", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_COMMON},
 	"set1:BananaPeel": {"title": "Banana Peel", "desc": "Once placed by a wise Monkey, falling is always the end", "idReward": "set1:BananaPeel", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_COMMON},
 	"set1:VitalLink": {"title": "Vital Link", "desc": "Heal an unit for 10, or more on magical beasts", "idReward": "set1:VitalLink", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_COMMON},
-	"set1:IcyBreeze": {"title": "Icy Breeze", "desc": "Slow ALL units and randomly freeze", "idReward": "set1:IcyBreeze", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_COMMON},
+	"set1:IcyBreeze": {"title": "Icy Breeze", "desc": "Slow ALL units and randomly freeze one", "idReward": "set1:IcyBreeze", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_COMMON},
 	"set1:TemptationPoison": {"title": "Temptation Poison", "desc": "Poison an unit, more effective on a dumb target", "idReward": "set1:TemptationPoison", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_COMMON},
 	"set1:AssaultDroneMonkeyDeployment": {"title": "Assault Drone Monkey Deployment", "desc": "Deploy a drone on an empty tile", "idReward": "set1:AssaultDroneMonkeyDeployment", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_UNCOMMON},
 	"set1:FairyMiracle": {"title": "Fairy Miracle", "desc": "Fully heal an unit", "idReward": "set1:FairyMiracle", "rewardType": RewardTypes.rewardTypes.ITEM, "icon_name": "FairyMiracle.png", "rarity": Rarities.ITEM_RARE},
+	"set1:SpiritualCurse": {"title": "Spiritual Curse", "desc": "Curse an unit forever. 1 orb cost", "idReward": "set1:SpiritualCurse", "rewardType": RewardTypes.rewardTypes.ITEM, "icon_name": "VitalLink.png", "rarity": Rarities.ITEM_RARE},
+	"set1:MashedBananas": {"title": "Mashed Bananas", "desc": "Fully heal an unit", "idReward": "set1:MashedBananas", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_UNCOMMON},
+	"set1:BananaCake": {"title": "Banana Cake", "desc": "Fully heal an unit", "idReward": "set1:BananaCake", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_RARE},
+	"set1:ChargedBananaJuice": {"title": "Charged Banana Juice", "desc": "Eat it to regain your stamina. Beware of negative effects after that", "idReward": "set1:ChargedBananaJuice", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_UNCOMMON},
+	"set1:Bandage": {"title": "Bandage", "desc": "Slowly heal an unit", "idReward": "set1:Bandage", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_COMMON},
+	"set1:ElectricBanana": {"title": "Electric Banana", "desc": "Attacks inflicts paralysis for 4 turns. Heal Monkey too", "idReward": "set1:ElectricBanana", "rewardType": RewardTypes.rewardTypes.ITEM, "rarity": Rarities.ITEM_RARE},
 
 	## EQUIPMENTS
 	"set1:BrambleGauntlet": {"title": "Bramble Gauntlet", "desc": "It spikes on contact !", "idReward": "set1:BrambleGauntlet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "icon_name": "BrambleGauntlet.png"},
@@ -113,4 +119,5 @@ var REWARDS_DICO := {
 	"set1:ThunderHelmet": {"title": "Thunder Helmet", "desc": "Stock power for next attack when attacked", "idReward": "set1:ThunderHelmet", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
 	"set1:Tomahawk": {"title": "Tomahawk", "desc": "Gain a 2 tile attack or 3 for stronger units", "idReward": "set1:Tomahawk", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
 	"set1:HiddenBlade": {"title": "Tomahawk", "desc": "Gain a single use per battle melee attack that inflict paralysis", "idReward": "set1:HiddenBlade", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
+	"set1:Scope": {"title": "Scope", "desc": "Increase range unit range", "idReward": "set1:Scope", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
 }

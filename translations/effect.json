@@ -81,38 +81,38 @@
 	},
 	"UpgradeTestEffect": {
 		"id": "UpgradeTestEffect",
-		"name": "EFFECT_NAME_UPGRADE_TEST",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_TEST"
+		"name": "EFFECT_NAME_BONUS_TEST",
+		"description": "EFFECT_DESCRIPTION_BONUS_TEST"
 	},
 	"UpgradeAgilityEffect": {
 		"id": "UpgradeAgilityEffect",
-		"name": "EFFECT_NAME_UPGRADE_AGILITY",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_AGILITY"
+		"name": "EFFECT_NAME_BONUS_AGILITY",
+		"description": "EFFECT_DESCRIPTION_BONUS_AGILITY"
 	},
 	"UpgradeScoutEffect": {
 		"id": "UpgradeScoutEffect",
-		"name": "EFFECT_NAME_UPGRADE_SCOUT",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_SCOUT"
+		"name": "EFFECT_NAME_BONUS_SCOUT",
+		"description": "EFFECT_DESCRIPTION_BONUS_SCOUT"
 	},
 	"UpgradePromotionEffect": {
 		"id": "UpgradePromotionEffect",
-		"name": "EFFECT_NAME_UPGRADE_PROMOTION",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_PROMOTION"
+		"name": "EFFECT_NAME_BONUS_PROMOTION",
+		"description": "EFFECT_DESCRIPTION_BONUS_PROMOTION"
 	},
 	"UpgradeBloodyEffect": {
 		"id": "UpgradeBloodyEffect",
-		"name": "EFFECT_NAME_UPGRADE_BLOODY",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_BLOODY"
+		"name": "EFFECT_NAME_BONUS_BLOODY",
+		"description": "EFFECT_DESCRIPTION_BONUS_BLOODY"
 	},
 	"UpgradeHiddenPotentialEffect": {
 		"id": "UpgradeHiddenPotentialEffect",
-		"name": "EFFECT_NAME_UPGRADE_HIDDEN_POTENTIAL",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_HIDDEN_POTENTIAL"
+		"name": "EFFECT_NAME_BONUS_HIDDEN_POTENTIAL",
+		"description": "EFFECT_DESCRIPTION_BONUS_HIDDEN_POTENTIAL"
 	},
 	"UpgradeSneakyEffect": {
 		"id": "UpgradeSneakyEffect",
-		"name": "EFFECT_NAME_UPGRADE_SNEAKY",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_SNEAKY"
+		"name": "EFFECT_NAME_BONUS_SNEAKY",
+		"description": "EFFECT_DESCRIPTION_BONUS_SNEAKY"
 	},
 	"set1:PowerPlusEffect": {
 		"id": "set1:PowerPlusEffect",
@@ -181,8 +181,8 @@
 	},
 	"set1:UpgradeMultitaskingEffect": {
 		"id": "set1:UpgradeMultitaskingEffect",
-		"name": "EFFECT_NAME_UPGRADE_MULTITASKING",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_MULTITASKING"
+		"name": "EFFECT_NAME_BONUS_MULTITASKING",
+		"description": "EFFECT_DESCRIPTION_BONUS_MULTITASKING"
 	},
 	"set1:AtlasLionEffect": {
 		"id": "set1:AtlasLionEffect",
@@ -199,11 +199,6 @@
 		"name": "EFFECT_NAME_DREAD_CLOAK",
 		"description": "EFFECT_DESCRIPTION_DREAD_CLOAK"
 	},
-	"set1:UpgradeCursedEffect": {
-		"id": "set1:UpgradeCursedEffect",
-		"name": "EFFECT_NAME_UPGRADE_CURSED",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_CURSED"
-	},
 	"set1:CurseEffect": {
 		"id": "set1:CurseEffect",
 		"name": "EFFECT_NAME_CURSE",
@@ -211,8 +206,8 @@
 	},
 	"set1:UpgradeFragileffect": {
 		"id": "set1:UpgradeFragileEffect",
-		"name": "EFFECT_NAME_UPGRADE_FRAGILE",
-		"description": "EFFECT_DESCRIPTION_UPGRADE_FRAGILE"
+		"name": "EFFECT_NAME_BONUS_FRAGILE",
+		"description": "EFFECT_DESCRIPTION_BONUS_FRAGILE"
 	},
 	"set1:LifeStealEffect": {
 		"id": "set1:LifeStealEffect",
@@ -246,53 +241,53 @@
 	},
 	"UpgradeCrossfitDudeEffect": {
 		"id": "UpgradeCrossfitDudeEffect",
-		"name": "EFFECT_NAME_CROSSFIT_DUDE",
-		"description": "EFFECT_DESCRIPTION_CROSSFIT_DUDE"
+		"name": "EFFECT_NAME_BONUS_CROSSFIT_DUDE",
+		"description": "EFFECT_DESCRIPTION_BONUS_CROSSFIT_DUDE"
 	},
 	"UpgradeCursedEffect": {
 		"id": "UpgradeCursedEffect",
-		"name": "EFFECT_NAME_CURSED",
-		"description": "EFFECT_DESCRIPTION_CURSED"
+		"name": "EFFECT_NAME_BONUS_CURSED",
+		"description": "EFFECT_DESCRIPTION_BONUS_CURSED"
 	},
 	"UpgradeFragileEffect": {
 		"id": "UpgradeFragileEffect",
-		"name": "EFFECT_NAME_FRAGILE",
-		"description": "EFFECT_DESCRIPTION_FRAGILE"
+		"name": "EFFECT_NAME_BONUS_FRAGILE",
+		"description": "EFFECT_DESCRIPTION_BONUS_FRAGILE"
 	},
 	"UpgradeStealthilyEffect": {
 		"id": "UpgradeStealthilyEffect",
-		"name": "EFFECT_NAME_STEALTHILY",
-		"description": "EFFECT_DESCRIPTION_STEALTHILY"
+		"name": "EFFECT_NAME_BONUS_STEALTHILY",
+		"description": "EFFECT_DESCRIPTION_BONUS_STEALTHILY"
 	},
 	"UpgradeFortuneWheelEffect": {
 		"id": "UpgradeFortuneWheelEffect",
-		"name": "EFFECT_NAME_FORTUNE_WHEEL",
-		"description": "EFFECT_DESCRIPTION_FORTUNE_WHEEL"
+		"name": "EFFECT_NAME_BONUS_FORTUNE_WHEEL",
+		"description": "EFFECT_DESCRIPTION_BONUS_FORTUNE_WHEEL"
 	},
 	"UpgradeWasteTreatmentEffect": {
 		"id": "UpgradeWasteTreatmentEffect",
-		"name": "EFFECT_NAME_WASTE_TREATMENT",
-		"description": "EFFECT_DESCRIPTION_WASTE_TREATMENT"
+		"name": "EFFECT_NAME_BONUS_WASTE_TREATMENT",
+		"description": "EFFECT_DESCRIPTION_BONUS_WASTE_TREATMENT"
 	},
 	"DynamicPowerEffect": {
 		"id": "DynamicPowerEffect",
-		"name": "EFFECT_NAME_DYNAMIC_POWER",
-		"description": "EFFECT_DESCRIPTION_DYNAMIC_POWER"
+		"name": "EFFECT_NAME_BONUS_DYNAMIC_POWER",
+		"description": "EFFECT_DESCRIPTION_BONUS_DYNAMIC_POWER"
 	},
 	"UpgradeBanâneEffect": {
 		"id": "UpgradeBanâneEffect",
-		"name": "EFFECT_NAME_BANÂNE",
-		"description": "EFFECT_DESCRIPTION_BANÂNE"
+		"name": "EFFECT_NAME_BONUS_BANÂNE",
+		"description": "EFFECT_DESCRIPTION_BONUS_BANÂNE"
 	},
 	"UpgradeBloodGiftEffect": {
 		"id": "UpgradeBloodGiftEffect",
-		"name": "EFFECT_NAME_BLOOD_GIFT",
-		"description": "EFFECT_DESCRIPTION_BLOOD_GIFT"
+		"name": "EFFECT_NAME_BONUS_BLOOD_GIFT",
+		"description": "EFFECT_DESCRIPTION_BONUS_BLOOD_GIFT"
 	},
 	"UpgradeMultitaskingEffect": {
 		"id": "UpgradeMultitaskingEffect",
-		"name": "EFFECT_NAME_MULTITASKING",
-		"description": "EFFECT_DESCRIPTION_MULTITASKING"
+		"name": "EFFECT_NAME_BONUS_MULTITASKING",
+		"description": "EFFECT_DESCRIPTION_BONUS_MULTITASKING"
 	},
 	"UpgradeGlassCanonEffect": {
 		"id": "UpgradeGlassCanonEffect",
@@ -304,4 +299,14 @@
 		"name": "EFFECT_NAME_PARALYSIS",
 		"description": "EFFECT_DESCRIPTION_PARALYSIS"
 	},
+	"set1:MashedBananasEffect": {
+		"id": "set1:MashedBananasEffect",
+		"name": "EFFECT_NAME_MASHED_BANANAS",
+		"description": "EFFECT_DESCRIPTION_MASHED_BANANAS"
+	},
+	"set1:BandageEffect": {
+		"id": "set1:BandageEffect",
+		"name": "EFFECT_NAME_BANDAGE",
+		"description": "EFFECT_DESCRIPTION_BANDAGE"
+	}
 }

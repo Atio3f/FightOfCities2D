@@ -23,6 +23,7 @@ const ITEMS := {
 	"set1:ThunderHelmet": preload("res://Ressources/equipments/bulls/ThunderHelmet.gd"),
 	"set1:Tomahawk": preload("res://Ressources/equipments/bulls/Tomahawk.gd"),
 	"set1:HiddenBlade": preload("res://Ressources/equipments/monkeys/HiddenBlade.gd"),
+	"set1:Scope": preload("res://Ressources/equipments/others/Scope.gd"),
 	## ITEMS
 	"set1:VitalLink" : preload("res://Ressources/items/magicalBeasts/VitalLink.gd"),
 	"set1:MagicalCoconut": preload("res://Ressources/items/others/farmsLoot/MagicalCoconut.gd"),
@@ -32,6 +33,12 @@ const ITEMS := {
 	"set1:AssaultDroneMonkeyDeployment": preload("res://Ressources/items/monkeys/AssaultDroneMonkeyDeployment.gd"),
 	"set1:IcyBreeze": preload("res://Ressources/items/magicalBeasts/IcyBreeze.gd"),
 	"set1:TemptationPoison": preload("res://Ressources/items/magicalBeasts/TemptationPoison.gd"),
+	"set1:BananaCake": preload("res://Ressources/items/monkeys/BananaCake.gd"),
+	"set1:MashedBananas": preload("res://Ressources/items/monkeys/MashedBananas.gd"),
+	"set1:SpiritualCurse": preload("res://Ressources/items/bulls/SpiritualCurse.gd"),
+	"set1:ChargedBananaJuice": preload("res://Ressources/items/monkeys/ChargedBananaJuice.gd"),
+	"set1:Bandage": preload("res://Ressources/items/others/Bandage.gd"),
+	"set1:ElectricBanana": preload("res://Ressources/items/monkeys/ElectricBanana.gd"),
 }
 
 # Don't forget to add to items.json to have the item register everywhere

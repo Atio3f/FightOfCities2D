@@ -4,8 +4,8 @@ class_name VitalLink
 const idItem = "set1:VitalLink"
 const img = "Monkey"
 const ORB_COST = 0
-const HEAL_VALUE = 10
-const BONUS_HEAL = 5
+const HEAL_VALUE = 14
+const BONUS_HEAL = 6
  
 func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
 	if unitAssociated.tags.has(Tags.tags.MAGICAL_BEAST) : unitAssociated.healHp(HEAL_VALUE + BONUS_HEAL)

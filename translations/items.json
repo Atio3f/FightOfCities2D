@@ -178,5 +178,47 @@
 		"name": "ITEM_NAME_HIDDEN_BLADE",
 		"description": "ITEM_DESC_HIDDEN_BLADE",
 		"img": "res://assets/sprites/items/LaserBladeMonkey.png"
+	},
+	"set1:BananaCake": {
+		"id": "set1:BananaCake",
+		"name": "ITEM_NAME_BANANA_CAKE",
+		"description": "ITEM_DESC_BANANA_CAKE",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:MashedBananas": {
+		"id": "set1:MashedBananas",
+		"name": "ITEM_NAME_MASHED_BANANAS",
+		"description": "ITEM_DESC_MASHED_BANANAS",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:SpiritualCurse": {
+		"id": "set1:SpiritualCurse",
+		"name": "ITEM_NAME_SPIRITUAL_CURSE",
+		"description": "ITEM_DESC_SPIRITUAL_CURSE",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:ChargedBananaJuice": {
+		"id": "set1:ChargedBananaJuice",
+		"name": "ITEM_NAME_CHARGED_BANANA_JUICE",
+		"description": "ITEM_DESC_CHARGED_BANANA_JUICE",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:Bandage": {
+		"id": "set1:Bandage",
+		"name": "ITEM_NAME_BANDAGE",
+		"description": "ITEM_DESC_BANDAGE",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:ElectricBanana": {
+		"id": "set1:ElectricBanana",
+		"name": "ITEM_NAME_ELECTRIC_BANANA",
+		"description": "ITEM_DESC_ELECTRIC_BANANA",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:Scope": {
+		"id": "set1:Scope",
+		"name": "ITEM_NAME_SCOPE",
+		"description": "ITEM_DESC_SCOPE",
+		"img": "res://assets/sprites/items/VitalLink.png"
 	}
 }
