@@ -11,7 +11,11 @@ config_version=5
 [application]
 
 config/name="Fight Of Cities 2D"
+config/name_localized={
+"fr_FR": "Périple fantastique"
+}
 config/description="Fight Of Cities est un jeu de stratégie tour par tour multijoueur dans lequel vous contrôler une armée d'unités variées allant des singes aux chauves-souris. Il vous faudra vous développer, prendre le contrôle de la carte pour avancer puis exploiter des objets et des sorts pour venir à bout de votre adversaire que ce soit en 1vs1 ou bien 2vs2(pas encore implémenté)."
+config/version="2.3.8"
 run/main_scene="uid://dsu83w022fw8v"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://boihmxqw3jfv"
@@ -159,6 +163,8 @@ zoom_out={
 [internationalization]
 
 locale/translations=PackedStringArray("res://translations/strings.en.translation", "res://translations/strings.fr.translation", "res://translations/ui.en.translation", "res://translations/ui.fr.translation", "res://translations/unit.en.translation", "res://translations/unit.fr.translation", "res://translations/trinket.en.translation", "res://translations/trinket.fr.translation", "res://translations/item.en.translation", "res://translations/item.fr.translation", "res://translations/effect.en.translation", "res://translations/effect.fr.translation", "res://translations/goals.en.translation", "res://translations/goals.fr.translation", "res://translations/help.en.translation", "res://translations/help.fr.translation")
+locale/locale_filter_mode=1
+locale/language_filter=["en", "es", "fr"]
 
 [rendering]
 
