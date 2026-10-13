@@ -22,4 +22,3 @@ func onItemUsed(player: AbstractPlayer, item: AbstractItem, isMalus: bool) -> vo
 		
 	# Add to the item's positive multiplier (1 base + value_A)
 	item.positiveMultiplier += value_A
-

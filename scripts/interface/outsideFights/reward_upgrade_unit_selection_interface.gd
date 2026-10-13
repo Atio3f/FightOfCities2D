@@ -12,27 +12,29 @@ func setup(_bonusId: String, _parentReward: AbstractReward = null) -> void:
 	displayUnits()
 
 func displayUnits() -> void:
+	for child in %UnitsList.get_children():
+		child.queue_free()
+
 	var unitsStock = GameManager.getMainPlayer().hand.getUnitsStocked()
 	
 	var upgradeStats = UpgradeDB.get_stat_modifiers(bonusId)
 	var upgradePotentialCost = upgradeStats.get("potentialCost", 999)
 	assert(upgradePotentialCost != 999, "Upgrade potential cost not found")
 	
+	# Display bonus name and potential cost in header
+	var effectData = EffectDb.getEffectData(bonusId) if EffectDb else {}
+	var bonusName = tr(effectData.get("name", bonusId)) if not effectData.is_empty() else bonusId
+	if has_node("%TitleLabel"):
+		%TitleLabel.text = tr("Select a unit for: ") + bonusName
+	if has_node("%CostLabel"):
+		%CostLabel.text = tr("Potential cost: ") + str(int(upgradePotentialCost))
+	
+	var eligibleUnitsCount: int = 0
+	
 	for storedUnit: StoredUnit in unitsStock:
-		var btn = Button.new()
-		btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		
 		# Get unit data
 		var unitData: UnitStats = UnitDb.getUnitStats(storedUnit.id)
 		var unitName = UnitDb.getUnit(storedUnit.id).get("name", "ERROR") # ou unitData.name si c'est directement l'objet
-		
-		# Get its grade
-		#var baseGrade = unitData.get("grade", 50)
-		
-		#Calc final grade with the stat modifiers
-		#var finalGrade = baseGrade
-		#if storedUnit.statModifiers.has("grade"):
-		#	finalGrade += storedUnit.statModifiers["grade"]
 		
 		# Get its potential
 		var basePotential: int = unitData.get("potential") if unitData else 50
@@ -43,20 +45,30 @@ func displayUnits() -> void:
 		## Will need to find an other way to calculate used potential bc some upgrades will cost more than 1 potential
 		var usedPotential: int = storedUnit.statModifiers.get("potentialCost", 0)
 		
-		# Display remaining potential on button
-		btn.text = tr(unitName) + "\n Remaining potential : " + str(usedPotential) + "/"+ str(finalPotential) 
+		# Check if unit has enough potential to equip this upgrade
+		var canEquip: bool = (usedPotential + upgradePotentialCost) <= finalPotential || (upgradePotentialCost <= 0 && basePotential != 0)
+		if not canEquip:
+			continue # Hide units that cannot equip this upgrade
 		
-		# Connect button to the upgrade selection if unit haven't already reach potential limit or if upgrade cost 0
-		if (usedPotential + upgradePotentialCost) <= finalPotential || (upgradePotentialCost <= 0 && basePotential != 0):
-			btn.pressed.connect(func(): _onUnitSelected(storedUnit))
-		else :
-			btn.disabled = true # Disable button if unit has reached its max potential
+		eligibleUnitsCount += 1
+		var btn = Button.new()
+		btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		
+		# Display remaining potential on button along with upgrade cost
+		btn.text = tr(unitName) + tr("\n Remaining potential : ") + str(usedPotential) + "/"+ str(finalPotential) # + tr(" (Cost: ") + str(int(upgradePotentialCost)) + ")" # Dans le cas où des upgrades pourraient coûter plus cher selon certains critères d'unité
+		btn.pressed.connect(func(): _onUnitSelected(storedUnit))
 			
 		## Hover preview for the unit info card
 		btn.mouse_entered.connect(func(): _on_btn_mouse_entered(storedUnit))
 		btn.mouse_exited.connect(_on_btn_mouse_exited)
 		
 		%UnitsList.add_child(btn)
+
+	if eligibleUnitsCount == 0:
+		var emptyLabel = Label.new()
+		emptyLabel.text = tr("No unit has enough potential for this upgrade.")
+		emptyLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		%UnitsList.add_child(emptyLabel)
 		
 func _on_btn_mouse_entered(storedUnit: StoredUnit) -> void:
 	if not is_instance_valid(info_card_instance):

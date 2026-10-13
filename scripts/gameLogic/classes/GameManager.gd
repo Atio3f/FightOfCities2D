@@ -323,25 +323,41 @@ static func endMap(victoryStatus: bool) -> void :
 	isGameActive = false
 	#TODO Add rewards from each goal
 	## Remove current goals and associated interface
-	for goal: AbstractGoal in currentGoals :
-		goal.goal_delete.emit()
-		currentGoals.erase(goal)
-		goal.free()
-	for unit: AbstractUnit in getMainPlayer().getUnits().duplicate() :
-		unit.placeOnInventory()	#Return the unit card on the mainPlayer hand and delete it from the map
-	##Delete all players except the main one
-	players.erase(getMainPlayer())
-	for player: AbstractPlayer in players:
-		players.erase(player)
-		if player : 
-			# If it delete also the main player it is because players had multiple exemples of him
+	for goal: AbstractGoal in currentGoals.duplicate():
+		if is_instance_valid(goal):
+			goal.goal_delete.emit()
+			goal.queue_free()
+	currentGoals.clear()
+
+	## Return main player units to inventory
+	var main_p: AbstractPlayer = getMainPlayer()
+	if main_p:
+		for unit: AbstractUnit in main_p.getUnits().duplicate():
+			if is_instance_valid(unit):
+				unit.placeOnInventory()
+
+	## Delete all other players and their units
+	for player: AbstractPlayer in players.duplicate():
+		if player != main_p and is_instance_valid(player):
+			for unit: AbstractUnit in player.getUnits().duplicate():
+				if is_instance_valid(unit):
+					unit.removeSelf(false)
 			player.queue_free()
-			#TODO Check si ça marche réellement dans des scénarios sans
-			for unit: AbstractUnit in player.getUnits() :
-				unit.removeSelf(false)
-	players.append(getMainPlayer())
-	##Play dialogs and then go to the next map on the endMap method from AbstractCampaign
-	campaign.endMap(victoryStatus)
+
+	## Fallback: clean any remaining orphan units in nodeStorage, just in case it happens w/ old method 
+	if Global.gameManager and Global.gameManager.nodeStorage:
+		for child in Global.gameManager.nodeStorage.get_children():
+			if is_instance_valid(child):
+				child.queue_free()
+
+	## Keep only the main player in the players list
+	players.clear()
+	if main_p:
+		players.append(main_p)
+
+	## Play dialogs and go to next map
+	if campaign:
+		campaign.endMap(victoryStatus)
 
 static var file_name: String = "";
 
