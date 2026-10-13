@@ -8,10 +8,12 @@ const DURATION = 3
 const HEAL_VALUE = 5
 
 func _init() -> void:
+	value_A = HEAL_VALUE
+	value_B = DURATION
 	super()
 
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
-	var effect = BandageEffect.new(unitAssociated, DURATION, HEAL_VALUE)
+func applyPositiveEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
+	var effect = BandageEffect.new(unitAssociated, value_B, value_A * multiplier)
 	unitAssociated.addEffect(effect)
 
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :

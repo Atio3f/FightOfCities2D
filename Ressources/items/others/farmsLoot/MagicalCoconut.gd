@@ -8,14 +8,20 @@ const img = "Monkey"
 const ORB_COST = 0
 const DMG_VALUE = 18
 const ORB_GAIN = 1
- 
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
-	playerAssociated.gainOrbs(ORB_GAIN)
+func _init() -> void:
+	value_A = DMG_VALUE
+	value_B = ORB_GAIN
+	super()
+
+func applyPositiveEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
+	playerAssociated.gainOrbs(value_B * multiplier)
+
+func applyNegativeEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
 	# Get one random unit from other team
 	var units: Array[AbstractUnit] = GameManager.getRandomUnits(1, [playerAssociated.team])
 	
 	if units.size() > 0 :
-		units[0].onDamageTaken(null, DMG_VALUE, DamageTypes.DamageTypes.PHYSICAL, false)
+		units[0].onDamageTaken(null, value_A * multiplier, DamageTypes.DamageTypes.PHYSICAL, false)
 
 # TODO Fonction s'active bien pour check objets utilisables mais il manque l'utilisation
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :

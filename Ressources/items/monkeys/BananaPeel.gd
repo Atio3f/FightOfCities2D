@@ -8,10 +8,15 @@ const ORB_COST = 0
 const DMG_VALUE = 8
 const SPEED_LOSE_AMT = 4
 const SPEED_LOSE_DURATION = 3
- 
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
-	unitAssociated.onDamageTaken(null, DMG_VALUE, DamageTypes.DamageTypes.PHYSICAL, false)
-	var effectSpeed: AbstractEffect = SpeedPlusEffect.new(unitAssociated, SPEED_LOSE_DURATION, -SPEED_LOSE_AMT)
+func _init() -> void:
+	value_A = DMG_VALUE
+	value_B = SPEED_LOSE_AMT
+	value_C = SPEED_LOSE_DURATION
+	super()
+
+func applyNegativeEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
+	unitAssociated.onDamageTaken(null, value_A * multiplier, DamageTypes.DamageTypes.PHYSICAL, false)
+	var effectSpeed: AbstractEffect = SpeedPlusEffect.new(unitAssociated, value_C, -value_B * multiplier)
 	unitAssociated.addEffect(effectSpeed)
 
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :

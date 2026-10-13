@@ -24,6 +24,7 @@ const ITEMS := {
 	"set1:Tomahawk": preload("res://Ressources/equipments/bulls/Tomahawk.gd"),
 	"set1:HiddenBlade": preload("res://Ressources/equipments/monkeys/HiddenBlade.gd"),
 	"set1:Scope": preload("res://Ressources/equipments/others/Scope.gd"),
+	"set1:BananaSaber": preload("res://Ressources/equipments/monkeys/BananaSaber.gd"),
 	## ITEMS
 	"set1:VitalLink" : preload("res://Ressources/items/magicalBeasts/VitalLink.gd"),
 	"set1:MagicalCoconut": preload("res://Ressources/items/others/farmsLoot/MagicalCoconut.gd"),

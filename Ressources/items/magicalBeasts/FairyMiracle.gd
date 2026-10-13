@@ -8,10 +8,13 @@ const img = "Monkey"
 const ORB_COST = 1
 const HEAL_PERCENT = 100
 const BONUS_HP_TEMP = 15
- 
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func _init() -> void:
+	value_A = BONUS_HP_TEMP
+	super()
+
+func applyPositiveEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
 	unitAssociated.healHp(unitAssociated.hpMax)
-	unitAssociated.gainHpTemp(BONUS_HP_TEMP)
+	unitAssociated.gainHpTemp(value_A * multiplier)
 
 
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :

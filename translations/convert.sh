@@ -21,7 +21,17 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
+FORCE=0
+for arg in "$@"; do
+    if [ "$arg" = "--force" ] || [ "$arg" = "-f" ]; then
+        FORCE=1
+    fi
+done
+
 echo "Démarrage de la conversion des fichiers .ods en .csv..."
+if [ "$FORCE" -eq 1 ]; then
+    echo "[INFO] Mode --force activé : tous les fichiers seront convertis."
+fi
 echo "-------------------------------------------------------"
 
 # Vérifier s'il y a des fichiers .ods
@@ -32,11 +42,21 @@ if [ "$ODS_COUNT" -eq 0 ]; then
 fi
 
 HAS_ERROR=0
+CONVERT_COUNT=0
+SKIP_COUNT=0
 
 # Boucle sur tous les fichiers .ods du dossier
 for f in *.ods; do
+    CSV_FILE="${f%.ods}.csv"
+    if [ "$FORCE" -eq 0 ] && [ -f "$CSV_FILE" ] && [ "$CSV_FILE" -nt "$f" ]; then
+        echo "[IGNORÉ] $f ($CSV_FILE est déjà à jour)"
+        SKIP_COUNT=$((SKIP_COUNT + 1))
+        continue
+    fi
+
     echo "Traitement de : $f"
     "$SOFFICE_PATH" --headless --convert-to csv:"Text - txt - csv (StarCalc)":44,34,76 --outdir "$SCRIPT_DIR" "$f"
+    CONVERT_COUNT=$((CONVERT_COUNT + 1))
 done
 
 echo ""
@@ -89,5 +109,5 @@ if [ "$HAS_ERROR" -ne 0 ]; then
     echo "Corrigez les fichiers .ods concernés (ajoutez la ligne d'en-tête 'key,fr,en') puis relancez ce script."
     exit 1
 else
-    echo "Conversion terminée avec succès !"
+    echo "Conversion terminée avec succès ! ($CONVERT_COUNT converti(s), $SKIP_COUNT déjà à jour)"
 fi

@@ -18,6 +18,9 @@ var counter: int #Can be used to increment a value
 
 var itemId: String = "UNDEFINED"
 
+var positiveMultiplier: int = 1
+var negativeMultiplier: int = 1
+
 var avgPrice: int #Price on shops, items can be sell from 40% of this value
 func _init() -> void:
 	
@@ -36,6 +39,13 @@ func _init() -> void:
 				self.imgPath = data["img"]
 
 func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+	applyPositiveEffects(playerAssociated, unitAssociated, positiveMultiplier)
+	applyNegativeEffects(playerAssociated, unitAssociated, negativeMultiplier)
+
+func applyPositiveEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
+	pass
+
+func applyNegativeEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
 	pass
 
 func applyEffectOnTile(playerAssociated: AbstractPlayer, tileTargeted: AbstractTile) -> void:
@@ -99,10 +109,22 @@ func getDescription() -> String:
 		match t:
 			"VA":
 				finalDesc += str(value_A)
+			"VA+":
+				finalDesc += str(value_A * positiveMultiplier)
+			"VA-":
+				finalDesc += str(value_A * negativeMultiplier)
 			"VB":
 				finalDesc += str(value_B)
+			"VB+":
+				finalDesc += str(value_B * positiveMultiplier)
+			"VB-":
+				finalDesc += str(value_B * negativeMultiplier)
 			"VC":
 				finalDesc += str(value_C)
+			"VC+":
+				finalDesc += str(value_C * positiveMultiplier)
+			"VC-":
+				finalDesc += str(value_C * negativeMultiplier)
 			"C":
 				finalDesc += str(counter)
 			"OC":

@@ -4,27 +4,31 @@ class_name BananaCake
 const idItem = "set1:BananaCake"
 const img = "BananaCake"
 const ORB_COST = 0
-const HEAL_VALUE = 10
 const POWER_BOOST_AMT = 3
 const SPEED_DEBUFF_AMT = -5 # Only for non Monkeys
 const BOOST_DURATION = 5
+const HEAL_VALUE = 10
 
 func _init() -> void:
+	value_A = POWER_BOOST_AMT
+	value_B = SPEED_DEBUFF_AMT
+	value_C = HEAL_VALUE
 	tags.append(Tags.tags.FOOD)
 	tags.append(Tags.tags.BANANA)
 	super()
 
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func applyPositiveEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
 	# Heal unit
-	unitAssociated.healHp(HEAL_VALUE)
+	unitAssociated.healHp(HEAL_VALUE * multiplier)
 	
 	# Power +3
-	var effectPower: AbstractEffect = PowerPlusEffect.new(unitAssociated, BOOST_DURATION, POWER_BOOST_AMT)
+	var effectPower: AbstractEffect = PowerPlusEffect.new(unitAssociated, BOOST_DURATION, POWER_BOOST_AMT * multiplier)
 	unitAssociated.addEffect(effectPower)
-	
+
+func applyNegativeEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
 	# Speed -5 if not Monkey
 	if not unitAssociated.tags.has(Tags.tags.MONKEY):
-		var effectSpeed: AbstractEffect = SpeedPlusEffect.new(unitAssociated, BOOST_DURATION, SPEED_DEBUFF_AMT)
+		var effectSpeed: AbstractEffect = SpeedPlusEffect.new(unitAssociated, BOOST_DURATION, SPEED_DEBUFF_AMT * multiplier)
 		unitAssociated.addEffect(effectSpeed)
 
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :

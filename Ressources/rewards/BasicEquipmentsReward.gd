@@ -18,5 +18,8 @@ func setData(_additionalData: String) -> void :
 		## RARE
 		"set1:WoodlandDoll": Rarities.EQUIP_RARE, "set1:BouquetOfLies": Rarities.EQUIP_RARE,
 		"set1:ForceMonkeySweater": Rarities.EQUIP_RARE, "set1:HiddenBlade": Rarities.EQUIP_RARE,
+		"set1:BananaSaber": Rarities.EQUIP_RARE,
 	}
+	#if GameManager.getMainPlayer().getUnitsByTag(Tags.tags.MONKEY).size() > 0 :  # TODO ça va sûrement pas marcher c'est plutôt avec les unités dans l'inventaire
+		#rewardsAvailable["set1:BananaSaber"] = Rarities.EQUIP_RARE
 	initWeight()

@@ -308,5 +308,10 @@
 		"id": "set1:BandageEffect",
 		"name": "EFFECT_NAME_BANDAGE",
 		"description": "EFFECT_DESCRIPTION_BANDAGE"
+	},
+	"set1:BananaSaberEffect": {
+		"id": "set1:BananaSaberEffect",
+		"name": "EFFECT_NAME_BANANA_SABER",
+		"description": "EFFECT_DESCRIPTION_BANANA_SABER"
 	}
 }

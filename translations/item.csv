@@ -2,15 +2,15 @@ key,fr,en
 ITEM_NAME_BRAMBLE_GAUNTLET,Gantelet de ronces,Bramble Gauntlet
 ITEM_DESC_BRAMBLE_GAUNTLET,Augmente les dégâts des attaques de contact de 4 et réduit la vitesse de la cible de 3 pendant 2 tours,Increases contact damage by 4 and reduce target speed by 3 for 2 turns
 ITEM_NAME_VITAL_LINK,Lien Vital,Vital Link
-ITEM_DESC_VITAL_LINK,Soigne 10 pv à une unité dans une forêt (15 si c’est une Magical Beast),"Heal unit on forest for 10, or 15 if Magical Beast"
+ITEM_DESC_VITAL_LINK,Soigne !VA+! pv à une unité dans une forêt (!VB+! si c’est une Magical Beast),"Heal unit on forest for !VA+!, or !VB+! if Magical Beast"
 ITEM_NAME_MAGICAL_COCONUT,Noix de coco magique,Magical Coconut
-ITEM_DESC_MAGICAL_COCONUT,Inflige 18 dégâts physiques à un ennemi aléatoire. Gagne 1 orbe,Deal 18 physical damage to a random ennemi. Gain 1 orb
+ITEM_DESC_MAGICAL_COCONUT,Inflige !VA-! dégâts physiques à un ennemi aléatoire. Gagne !VB+! orbe,Deal !VA-! physical damage to a random ennemi. Gain !VB+! orb
 ITEM_NAME_FAIRY_MIRACLE,Miracle féérique,Fairy Miracle
-ITEM_DESC_FAIRY_MIRACLE,Soigne une unité à 100% de ses pv et lui donne 15 PV Temp,Heal an unit at 100% and give it 15 HP Temp
+ITEM_DESC_FAIRY_MIRACLE,Soigne une unité à 100% de ses pv et lui donne !VA+! PV Temp,Heal an unit at 100% and give it !VA+! HP Temp
 ITEM_NAME_BANANA_PEEL,Peau de banane,Banana Peel
-ITEM_DESC_BANANA_PEEL,Inflige 8 dégâts physiques et réduit la vitesse de 4 pour 3 tours,Deal 8 physical damage and reduces speed by 4 for 3 turns
+ITEM_DESC_BANANA_PEEL,Inflige !VA-! dégâts physiques et réduit la vitesse de !VB-! pour 3 tours,Deal !VA-! physical damage and reduces speed by !VB-! for 3 turns
 ITEM_NAME_BANANA,Banane,Banana
-ITEM_DESC_BANANA,"Donne +3P et +3V pdt 2 tours et soigne 5PV.  +1P, +1V et soigne +2PV aux Monkeys",Give 3 P and 3 V for 2 turns and heal 5 HP. Give +1 P and V and heal 1 more on Monkeys
+ITEM_DESC_BANANA,Donne +!VA+! P et V pdt 2 tours et soigne !VB+! PV.  +!VC+! P et V et soigne +!VC+! PV aux Monkeys,Give !VA+! P and V for 2 turns and heal !VB+! HP. Give +!VC+! P and V and heal !VC+! more on Monkeys
 ITEM_NAME_ASSAULT_DRONE_MONKEY_DEPLOYMENT,Déploiement drone d’assault Monkey,Assault Drone Monkey Deployment
 ITEM_DESC_ASSAULT_DRONE_MONKEY_DEPLOYMENT,Déploit un drone d’assaut Monkey sur n’importe quelle case libre (nécessite un tour avant de pouvoir agir),Deploy a assault drone Monkey on any empty space (requires one turn before it can act)
 ITEM_NAME_LASER_BLADE_MONKEY,Lame laser Monkey,Laser blade Monkey
@@ -30,11 +30,11 @@ ITEM_DESC_WOODLAND_DOLL,+9 PV. Renvoie 3 dégâts bruts pour les attaques de mê
 ITEM_NAME_FUSED_EQUIPMENT,Equipements fusionnés,Fused equipments
 ITEM_DESC_FUSED_EQUIPMENT,La fusion de 2 équipements. La description devrait être la somme des 2 et non celle ci,Fusion of 2 equipments. Description should be sum of both equipments not this one
 ITEM_NAME_ICY_BREEZE,Brise glaciale,Icy Breeze
-ITEM_DESC_ICY_BREEZE,TOUTES les unités (les vôtres aussi) perdent 3 V pour 1 tour. [FREEZE] un ennemi aléatoire,ALL units lose 3 V for 1 turn. [FREEZE] random enemy
+ITEM_DESC_ICY_BREEZE,TOUTES les unités (les vôtres aussi) perdent !VA-! V pour !VB! tour. [FREEZE] un ennemi aléatoire,ALL units lose !VA-! V for !VB! turn. [FREEZE] random enemy
 ITEM_NAME_BOUQUET_OF_LIES,Bouquet mensonger,Bouquet of lies
 ITEM_DESC_BOUQUET_OF_LIES,"+5 PV, +2 MR, -2 P Convertit les dégâts infligés en [POISON] à hauteur de !VA!% (arrondi au supérieur)","+5 HP, +2 MR, -2 P. Converts !VA!% damage dealt into [POISON] (rounded up). Ricochet on !VB! other enemies."
 ITEM_NAME_TEMPTATION_POISON,Poison de la tentation,Temptation Poison
-ITEM_DESC_TEMPTATION_POISON,Applique [POISON] 6 - 1 pour chaque 4 S de la cible,Apply [POISON] 6 – 1 for each 4 S from target
+ITEM_DESC_TEMPTATION_POISON,Applique [POISON] !VA-! - 1 pour chaque !VB! S de la cible,Apply [POISON] !VA-! – 1 for each !VB! S from target
 ITEM_NAME_FORCE_MONKEY_SWEATER,Pull FORCE MONKEY,FORCE MONKEY Sweater
 ITEM_DESC_FORCE_M0NKEY_SWEATER,+5 PV. +2 P à TOUS vos Monkey,+5 HP. +2 P to ALL your Monkeys
 ITEM_NAME_DEMON_AXE,Hache démone,Demon Axe
@@ -62,14 +62,16 @@ ITEM_DESC_HIDDEN_BLADE,+3 P et +1 V. Gagne une attaque de mêlée qui inflige 80
 ITEM_NAME_SPIRITUAL_CURSE,Malédiction spirituel,Spiritual Curse
 ITEM_DESC_SPIRITUAL_CURSE,Maudit une unité pour le reste du combat,Curse an unit for the rest of combat
 ITEM_NAME_MASHED_BANANAS,Purée de bananes,Mashed Bananas
-ITEM_DESC_MASHED_BANANAS,Monkey only. Permet de survivre le prochain coup fatal pendant les 3 prochains tours avec 1 PV,Monkey only. Lets unit survives next fatal hit for the 3 next turns with 1 HP
+ITEM_DESC_MASHED_BANANAS,Monkey only. Permet de survivre le prochain coup fatal pendant les !VA+! prochains tours avec !VB+! PV,Monkey only. Lets unit survives next fatal hit for the !VA+! next turns with !VB+! HP
 ITEM_NAME_BANANA_CAKE,Gâteau à la banane,Banana Cake
-ITEM_DESC_BANANA_CAKE,Donne +3P et -5 V pdt 5 tours et soigne 10 PV.  Aucun malus de V pour les Monkeys,Give +3 P and -5 V for 5 turns and heal 10 HP. No V malus on Monkeys
+ITEM_DESC_BANANA_CAKE,Donne +!VA+! P et !VB-! V pdt 5 tours et soigne !VC+! PV.  Aucun malus de V pour les Monkeys,Give +!VA+! P and !VB-! V for 5 turns and heal !VC+! HP. No V malus on Monkeys
 ITEM_NAME_CHARGED_BANANA_JUICE,Jus de banane énergisé,Charged Banana Juice
-ITEM_DESC_CHARGED_BANANA_JUICE,"Restaure 80% V ce tour.  Ignore la limite de stat. Ensuite, -3 V pour les non Monkeys","Restore 80 % V this turn. Ignore stat limit. Then, -3 V for non Monkeys"
+ITEM_DESC_CHARGED_BANANA_JUICE,"Restaure !VA+!% V ce tour.  Ignore la limite de stat. Ensuite, -!VB-! V pour les non Monkeys","Restore !VA+! % V this turn. Ignore stat limit. Then, -!VB-! V for non Monkeys"
 ITEM_NAME_ELECTRIC_BANANA,Banane électrique,Electric Banana
-ITEM_DESC_ELECTRIC_BANANA,Les attaques appliquent 1 [PARALYSIS] pendant 4 tours.  Soigne 5 PV pour les Monkeys,Attacks deal 1 [PARALYSIS] for 4 turns. Heal 5 HP on Monkeys
+ITEM_DESC_ELECTRIC_BANANA,+!VA+! V. Les attaques appliquent !VB+! [PARALYSIS] pendant 4 tours.  Soigne !VC+! PV pour les Monkeys,+!VA+! V. !Attacks deal !VB+! [PARALYSIS] for 4 turns. Heal !VC+! HP on Monkeys
 ITEM_NAME_BANDAGE,Pansement,Bandage
-ITEM_DESC_BANDAGE,Soigne 6 PV à la fin du tour pendant 3 tours,Heal 6 HP at the end of turn for 3 turns
+ITEM_DESC_BANDAGE,Soigne !VA+! PV à la fin du tour pendant !VB! tours,Heal !VA+! HP at the end of turn for !VB! turns
 ITEM_NAME_SCOPE,Viseur,Scope
 ITEM_DESC_SCOPE,+1 portée. Peut uniquement être équipé par des unités avec une portée > 1,+1 range. Can only be equipped on units with range > 1
+ITEM_NAME_BANANA_SABER,Sabre Banane,Banana Saber
+ITEM_DESC_BANANA_SABER,"Monkey : +3 P, +1 V. Double les effets positifs des bananes sur l'unité équipée.","Monkey : +3 P, +1 V. Doubles positive banana effects on equipped unit. Monkeys only."

@@ -9,10 +9,12 @@ const DURATION = 3
 func _init() -> void:
 	tags.append(Tags.tags.FOOD)
 	tags.append(Tags.tags.BANANA)
+	value_A = DURATION
+	value_B = 1
 	super()
 
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
-	var endureEffect = MashedBananasEffect.new(unitAssociated, DURATION, 1)
+func applyPositiveEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
+	var endureEffect = MashedBananasEffect.new(unitAssociated, value_A * multiplier, value_B * multiplier)
 	unitAssociated.addEffect(endureEffect)
 
 static func canBeUsedOnUnit(playerUsing: AbstractPlayer, unit: AbstractUnit, orbCost: int = ORB_COST) -> bool :

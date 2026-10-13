@@ -79,6 +79,7 @@ var REWARDS_DICO := {
 	"set1:BananaRecipes": {"title": "Banana Recipes", "desc": "Give some bananas and increases heal value on bananas", "idReward": "set1:BananaRecipes", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "BananaRecipes_p.png", "rarity": Rarities.TRINKET_UNCOMMON},
 	"set1:HRDiploma": {"title": "HR Diploma", "desc": "New recruits should be better now. Right ?", "idReward": "set1:HRDiploma", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "BananaRecipes_p.png", "rarity": Rarities.TRINKET_COMMON},
 	"set1:WarBanner": {"title": "War Banner", "desc": "Rally your units with this banner. Make them a little bit stronger.", "idReward": "set1:WarBanner", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "WarBanner_p.png", "rarity": Rarities.TRINKET_COMMON},
+	"set1:ScorpioPalm": {"title": "Scorpio Palm", "desc": "All melee units inflicts paralysis now", "idReward": "set1:ScorpioPalm", "rewardType": RewardTypes.rewardTypes.TRINKET, "rarity": Rarities.TRINKET_RARE},
 	## BOSS TRINKETS
 	"set1:LocalHero": {"title": "Local Hero", "desc": "You've proven yourself in these battles", "idReward": "set1:LocalHero", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "WarBanner_p.png", "rarity": Rarities.TRINKET_SPECIAL},
 	
@@ -120,4 +121,5 @@ var REWARDS_DICO := {
 	"set1:Tomahawk": {"title": "Tomahawk", "desc": "Gain a 2 tile attack or 3 for stronger units", "idReward": "set1:Tomahawk", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
 	"set1:HiddenBlade": {"title": "Tomahawk", "desc": "Gain a single use per battle melee attack that inflict paralysis", "idReward": "set1:HiddenBlade", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
 	"set1:Scope": {"title": "Scope", "desc": "Increase range unit range", "idReward": "set1:Scope", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
+	"set1:BananaSaber": {"title": "Banana Saber", "desc": "Increase banana effects on equipped unit. Monkey exclusivity", "idReward": "set1:BananaSaber", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
 }

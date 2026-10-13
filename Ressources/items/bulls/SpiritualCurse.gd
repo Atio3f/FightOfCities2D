@@ -8,7 +8,7 @@ const ORB_COST = 1
 func _init() -> void:
 	super()
 
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
+func applyNegativeEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
 	var curseEffect = CurseEffect.new(unitAssociated, -1, 0)
 	unitAssociated.addEffect(curseEffect)
 

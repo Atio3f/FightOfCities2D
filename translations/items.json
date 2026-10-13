@@ -220,5 +220,11 @@
 		"name": "ITEM_NAME_SCOPE",
 		"description": "ITEM_DESC_SCOPE",
 		"img": "res://assets/sprites/items/VitalLink.png"
+	},
+	"set1:BananaSaber": {
+		"id": "set1:BananaSaber",
+		"name": "ITEM_NAME_BANANA_SABER",
+		"description": "ITEM_DESC_BANANA_SABER",
+		"img": "res://assets/sprites/items/VitalLink.png"
 	}
 }

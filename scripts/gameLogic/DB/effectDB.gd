@@ -56,6 +56,7 @@ const EFFECTS := {
 	"set1:ThunderHelmetEffect":  preload("res://Ressources/effects/itemEffects/bulls/ThunderHelmetEffect.gd"),
 	"set1:MashedBananasEffect": preload("res://Ressources/effects/itemEffects/monkeys/MashedBananasEffect.gd"),
 	"set1:BandageEffect": preload("res://Ressources/effects/itemEffects/others/BandageEffect.gd"),
+	"set1:BananaSaberEffect": preload("res://Ressources/effects/itemEffects/monkeys/BananaSaberEffect.gd"),
 }
 
 var effects_data: Dictionary = {}

@@ -8,8 +8,13 @@ const ORB_COST = 0
 const POISON_BASE_AMT = 6
 const WISDOM_STEP = 4 # Diminish poison amt each 4 S from target
  
-func applyEffect(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit) -> void:
-	var poisonAmount: int = POISON_BASE_AMT - (unitAssociated.wisdom / WISDOM_STEP)
+func _init() -> void:
+	value_A = POISON_BASE_AMT
+	value_B = WISDOM_STEP
+	super()
+
+func applyNegativeEffects(playerAssociated: AbstractPlayer, unitAssociated: AbstractUnit, multiplier: int = 1) -> void:
+	var poisonAmount: int = (value_A - (unitAssociated.wisdom / value_B)) * multiplier
 	if poisonAmount > 0 :
 		var poisonEffect: AbstractEffect = PoisonEffect.new(unitAssociated, -1, poisonAmount)
 		unitAssociated.addEffect(poisonEffect)
