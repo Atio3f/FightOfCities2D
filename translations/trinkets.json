@@ -65,4 +65,16 @@
 		"description": "TRINKET_DESC_SCORPIO_PALM",
 		"preview": "TRINKET_PREVIEW_SCORPIO_PALM"
 	},
+	"set1:JellyfishSens": {
+		"id": "set1:JellyfishSens",
+		"name": "TRINKET_NAME_JELLYFISH_SENS",
+		"description": "TRINKET_DESC_JELLYFISH_SENS",
+		"preview": "TRINKET_PREVIEW_JELLYFISH_SENS"
+	},
+	"set1:LimitBreaker": {
+		"id": "set1:LimitBreaker",
+		"name": "TRINKET_NAME_LIMIT_BREAKER",
+		"description": "TRINKET_DESC_LIMIT_BREAKER",
+		"preview": "TRINKET_PREVIEW_LIMIT_BREAKER"
+	}
 }

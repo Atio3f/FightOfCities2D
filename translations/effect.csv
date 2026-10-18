@@ -123,3 +123,7 @@ EFFECT_NAME_BANDAGE,Pansement,Bandage
 EFFECT_DESCRIPTION_BANDAGE,Soigne !VA! PV à la fin du tour pour !RT! tours,Heal !VA! for !RT! turns
 EFFECT_NAME_BANANA_SABER,Amoureux des ,Banana lover
 EFFECT_DESCRIPTION_BANANA_SABER,Double les effets positifs des bananes,Double positive effects from bananas
+EFFECT_NAME_JELLYFISH_SENS,Sens de la méduse,Jellyfish Sense
+EFFECT_DESCRIPTION_JELLYFISH_SENS,"Applique !VA! [PARALYSIS] quand attaqué, une fois par tour.","Inflicts !VA! [PARALYSIS] when attacked, once per turn."
+EFFECT_NAME_LIMIT_BREAKER,Briseur de limite,Limit Breaker
+EFFECT_DESCRIPTION_LIMIT_BREAKER,Les attaques infligent au moins !VA! dégâts,Attacks deal at least !VA! damage

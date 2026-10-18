@@ -80,6 +80,8 @@ var REWARDS_DICO := {
 	"set1:HRDiploma": {"title": "HR Diploma", "desc": "New recruits should be better now. Right ?", "idReward": "set1:HRDiploma", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "BananaRecipes_p.png", "rarity": Rarities.TRINKET_COMMON},
 	"set1:WarBanner": {"title": "War Banner", "desc": "Rally your units with this banner. Make them a little bit stronger.", "idReward": "set1:WarBanner", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "WarBanner_p.png", "rarity": Rarities.TRINKET_COMMON},
 	"set1:ScorpioPalm": {"title": "Scorpio Palm", "desc": "All melee units inflicts paralysis now", "idReward": "set1:ScorpioPalm", "rewardType": RewardTypes.rewardTypes.TRINKET, "rarity": Rarities.TRINKET_RARE},
+	"set1:JellyfishSens": {"title": "Jellyfish Sens", "desc": "All units inflict 1 paralysis to attackers", "idReward": "set1:JellyfishSens", "rewardType": RewardTypes.rewardTypes.TRINKET, "rarity": Rarities.TRINKET_UNCOMMON},
+	"set1:LimitBreaker": {"title": "Limit Breaker", "desc": "Increases minimum damage per attack to 4", "idReward": "set1:LimitBreaker", "rewardType": RewardTypes.rewardTypes.TRINKET, "rarity": Rarities.TRINKET_COMMON},
 	## BOSS TRINKETS
 	"set1:LocalHero": {"title": "Local Hero", "desc": "You've proven yourself in these battles", "idReward": "set1:LocalHero", "rewardType": RewardTypes.rewardTypes.TRINKET, "icon_name": "WarBanner_p.png", "rarity": Rarities.TRINKET_SPECIAL},
 	

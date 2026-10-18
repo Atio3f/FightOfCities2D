@@ -48,6 +48,8 @@ const EFFECTS := {
 	"set1:MRPlusEffect": preload("res://Ressources/effects/MRPlusEffect.gd"),
 	"set1:ParalysisEffect": preload("res://Ressources/effects/keywordEffects/ParalysisEffect.gd"),
 	"set1:OnHitApplyStatusEffect": preload("res://Ressources/effects/OnHitApplyStatusEffect.gd"),
+	"set1:JellyfishSensEffect": preload("res://Ressources/effects/JellyfishSensEffect.gd"),
+	"set1:LimitBreakerEffect": preload("res://Ressources/effects/LimitBreakerEffect.gd"),
 	## ITEM EFFECTS
 	"set1:BrambleGauntletEffect": preload("res://Ressources/effects/itemEffects/magicalBeasts/BrambleGauntletEffect.gd"),
 	"set1:WarAxeEffect": preload("res://Ressources/effects/itemEffects/bulls/WarAxeEffect.gd"),

@@ -313,5 +313,15 @@
 		"id": "set1:BananaSaberEffect",
 		"name": "EFFECT_NAME_BANANA_SABER",
 		"description": "EFFECT_DESCRIPTION_BANANA_SABER"
+	},
+	"set1:JellyfishSensEffect": {
+		"id": "set1:JellyfishSensEffect",
+		"name": "EFFECT_NAME_JELLYFISH_SENS",
+		"description": "EFFECT_DESCRIPTION_JELLYFISH_SENS"
+	},
+	"set1:LimitBreakerEffect": {
+		"id": "set1:LimitBreakerEffect",
+		"name": "EFFECT_NAME_LIMIT_BREAKER",
+		"description": "EFFECT_DESCRIPTION_LIMIT_BREAKER"
 	}
 }

@@ -32,3 +32,9 @@ TRINKET_PREVIEW_FAIRY_BENEDICTION,Début du tour : Soigne !VB! unités blessée
 TRINKET_NAME_SCORPIO_PALM,Paume du scorpion,Scorpio Palm
 TRINKET_DESC_SCORPIO_PALM,Vos attaques de mêlée infligent !VA! [PARALYSIS].,Melee Attacks inflict !VA! [PARALYSIS].
 TRINKET_PREVIEW_SCORPIO_PALM,Attaque de mêlée : applique 1 [PARALYSIS],Melee attack : inflicts 1 [PARALYSIS]
+TRINKET_NAME_JELLYFISH_SENS,Sens de la méduse,Jellyfish Sense
+TRINKET_DESC_JELLYFISH_SENS,"A toutes vos unités : Inflige !VA! [PARALYSIS] aux ennemis qui vous attaquent, une fois par tour par unité attaquée.","To all your units: Inflict !VA! [PARALYSIS] to attacking enemies, once per turn per attacked unit."
+TRINKET_PREVIEW_JELLYFISH_SENS,Subir une attaque : applique !VA! [PARALYSIS] (1/tour/unité),When attacked: inflicts !VA! [PARALYSIS] (1/turn/unit)
+TRINKET_NAME_LIMIT_BREAKER,Briseur du limiteur,Limit Breaker
+TRINKET_DESC_LIMIT_BREAKER,A toutes vos unités : Augmente le minimum de dégâts par attaque à !VA! (+!VB!).,To all your units: Increases minimum damage per attack to !VA! (+!VB!).
+TRINKET_PREVIEW_LIMIT_BREAKER,Dégâts min par attaque : !VA!,Min damage per attack: !VA!

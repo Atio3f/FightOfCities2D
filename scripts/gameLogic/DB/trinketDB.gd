@@ -12,6 +12,8 @@ const TRINKETS := {
 	"set1:LocalHero" : preload("uid://dtlaebebwafdd"),
 	"set1:WarBanner" : preload("uid://b33fvcogcajoc"),
 	"set1:ScorpioPalm" : preload("uid://dmnfmo3fvv5a6"),
+	"set1:JellyfishSens" : preload("res://Ressources/trinkets/JellyfishSens.gd"),
+	"set1:LimitBreaker" : preload("res://Ressources/trinkets/LimitBreaker.gd"),
 }
 
 

@@ -198,6 +198,8 @@ func execute_command(command_line: String) -> void:
 			_cmd_win(args)
 		"list":
 			_cmd_list(args)
+		"trinket":
+			_cmd_trinket(args)
 		_:
 			_log_error("Unknown command: '%s'. Type [b]help[/b] for command list." % cmd)
 
@@ -435,12 +437,31 @@ func _cmd_list(args: Array[String]) -> void:
 	_log_info("[color=#ffd54f]List (%s - %d entries):[/color]" % [category, results.size()])
 	_log_info(", ".join(results))
 
+func _cmd_trinket(args: Array[String]) -> void :
+	if args.is_empty():
+		_log_error("Syntax: trinket <trinket_id>")
+		return
+	
+	var trinket_spec = args[0]
+	var resolved_id = _resolve_trinket_id(trinket_spec)
+	if resolved_id.is_empty():
+		_log_error("Trinket not found for: '%s'." % trinket_spec)
+		return
+
+	var player = GameManager.getMainPlayer()
+	if player == null:
+		_log_error("No active main player found.")
+		return
+	GameManager.addTrinket(player, resolved_id)
+	_log_success("Trinket '%s' added to player %s." % [resolved_id, player])
+
 ## Command 'help'
 func _cmd_help(args: Array[String]) -> void:
 	_log_info("[color=#81d4fa][b]Available commands:[/b][/color]")
 	_log_info("  [b]gold <amount>[/b] : Adds gold to player (e.g.: [color=#ce93d8]gold 500[/color])")
-	_log_info("  [b]item <id> [quantity][/b] : Adds item or equipment (e.g.: [color=#ce93d8]item Banana 2[/color], [color=#ce93d8]item WarAxe[/color])")
 	_log_info("  [b]unit <id>[bonus1,bonus2][/b] : Adds unit to player cards (e.g.: [color=#ce93d8]unit Bull[Agility,Promotion][/color])")
+	_log_info("  [b]trinket <id> [id][/b] : Adds trinket (e.g.: [color=#ce93d8]trinket artofwar[/color], [color=#ce93d8]trinket set1:OrbCrate[/color])")
+	_log_info("  [b]item <id> [quantity][/b] : Adds item or equipment (e.g.: [color=#ce93d8]item Banana 2[/color], [color=#ce93d8]item WarAxe[/color])")
 	_log_info("  [b]spawn <id>[bonus] <green|red> [x y][/b] : Spawns unit directly on map.")
 	_log_info("    (If x y omitted: spawns on cell under mouse cursor. Teams: green/g or red/r)")
 	_log_info("  [b]win[/b] / [b]end [victory][/b] : Immediately finishes level (e.g.: [color=#ce93d8]win[/color])")
@@ -550,6 +571,21 @@ func _resolve_upgrade_id(query: String) -> String:
 		if query_lower in key.to_lower():
 			return key
 
+	return ""
+
+## Resolves trinket ID (supports short names without 'set1:' and case-insensitive matching)
+func _resolve_trinket_id(query: String) -> String:
+	if TrinketDb.TRINKETS.has(query):
+		return query
+
+	var prefixed = "set1:" + query
+	if TrinketDb.TRINKETS.has(prefixed):
+		return prefixed
+	
+	var query_lower: String = query.to_lower()
+	for key in TrinketDb.TRINKETS.keys():
+		if query_lower in key.to_lower():
+			return key
 	return ""
 
 # ==============================================================================
