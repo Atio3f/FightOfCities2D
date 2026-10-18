@@ -14,6 +14,7 @@ const TRINKETS := {
 	"set1:ScorpioPalm" : preload("uid://dmnfmo3fvv5a6"),
 	"set1:JellyfishSens" : preload("res://Ressources/trinkets/JellyfishSens.gd"),
 	"set1:LimitBreaker" : preload("res://Ressources/trinkets/LimitBreaker.gd"),
+	"set1:Sundial" : preload("res://Ressources/trinkets/Sundial.gd"),
 }
 
 

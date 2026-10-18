@@ -76,5 +76,11 @@
 		"name": "TRINKET_NAME_LIMIT_BREAKER",
 		"description": "TRINKET_DESC_LIMIT_BREAKER",
 		"preview": "TRINKET_PREVIEW_LIMIT_BREAKER"
+	},
+	"set1:Sundial": {
+		"id": "set1:Sundial",
+		"name": "TRINKET_NAME_SUNDIAL",
+		"description": "TRINKET_DESC_SUNDIAL",
+		"preview": "TRINKET_PREVIEW_SUNDIAL"
 	}
 }

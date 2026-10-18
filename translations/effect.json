@@ -323,5 +323,10 @@
 		"id": "set1:LimitBreakerEffect",
 		"name": "EFFECT_NAME_LIMIT_BREAKER",
 		"description": "EFFECT_DESCRIPTION_LIMIT_BREAKER"
+	},
+	"set1:SundialEffect": {
+		"id": "set1:SundialEffect",
+		"name": "EFFECT_NAME_SUNDIAL",
+		"description": "EFFECT_DESCRIPTION_SUNDIAL"
 	}
 }

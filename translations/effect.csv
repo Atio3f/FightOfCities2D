@@ -127,3 +127,5 @@ EFFECT_NAME_JELLYFISH_SENS,Sens de la méduse,Jellyfish Sense
 EFFECT_DESCRIPTION_JELLYFISH_SENS,"Applique !VA! [PARALYSIS] quand attaqué, une fois par tour.","Inflicts !VA! [PARALYSIS] when attacked, once per turn."
 EFFECT_NAME_LIMIT_BREAKER,Briseur de limite,Limit Breaker
 EFFECT_DESCRIPTION_LIMIT_BREAKER,Les attaques infligent au moins !VA! dégâts,Attacks deal at least !VA! damage
+EFFECT_NAME_SUNDIAL,Cadran solaire,Sundial
+EFFECT_DESCRIPTION_SUNDIAL,"Tour impair: +!VA! Puissance, Tour pair: +!VB! DR et MR","Odd Turn: +!VA! Power, Even Turn: +!VB! DR and MR"

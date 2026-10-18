@@ -38,3 +38,6 @@ TRINKET_PREVIEW_JELLYFISH_SENS,Subir une attaque : applique !VA! [PARALYSIS] (1/
 TRINKET_NAME_LIMIT_BREAKER,Briseur du limiteur,Limit Breaker
 TRINKET_DESC_LIMIT_BREAKER,A toutes vos unités : Augmente le minimum de dégâts par attaque à !VA! (+!VB!).,To all your units: Increases minimum damage per attack to !VA! (+!VB!).
 TRINKET_PREVIEW_LIMIT_BREAKER,Dégâts min par attaque : !VA!,Min damage per attack: !VA!
+TRINKET_NAME_SUNDIAL,Cadran solaire,Sundial
+TRINKET_DESC_SUNDIAL,"Vos unités gagnent +!VA! Puissance les tours impairs, et +!VB! DR et +!VC! MR les tours pairs.","ALL your units: +!VA! Power on odd turns, and +!VB! DR and +!VC! MR on even turns."
+TRINKET_PREVIEW_SUNDIAL,Tours impairs : +!VA! P. Tours pairs : +!VB! DR/MR,Odd turns: +!VA! P. Even turns: +!VB! DR/MR
