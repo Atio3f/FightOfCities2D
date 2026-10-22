@@ -1,0 +1,7 @@
+key,fr,en
+EVENT_CROSSROAD_TITLE,Première étape,First Stop
+EVENT_CROSSROAD_INTRO,Vous arrivez à un croisement. Deux chemins s'offrent à vous.,You arrive at a crossroad. Two paths lie ahead.
+EVENT_CROSSROAD_OPT_INN,Prendre le chemin de gauche vers l'auberge (5 km),Take the right path towards the inn (5 km)
+EVENT_CROSSROAD_RESULT_INN,Vous faites halte à l'auberge et vous ravitaillez,You stop at the inn and find some supplies.
+EVENT_CROSSROAD_OPT_TOWN,Prendre le chemin de droite vers la ville (9 km),Take the left path towards the town (9 km)
+EVENT_CROSSROAD_RESULT_TOWN,Vous vous dirigez vers la ville et entrez dans un magasin.,You head towards the town and go to a local shop.

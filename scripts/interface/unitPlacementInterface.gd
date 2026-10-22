@@ -38,7 +38,7 @@ func setUnitPreview(unit: AbstractUnit, storedUnitData: StoredUnit, coords: Vect
 
 ## Add a preview text on top
 func getPreviewText(name: String, weight: int) -> String :
-	var finalText : String = name + "\nWeight "+ str(weight)
+	var finalText : String = name + "\n" + tr("UNIT_WEIGHT_STR") + " " + str(weight)
 	return finalText
 
 func _on_btn_unit_button_up():

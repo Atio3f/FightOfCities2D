@@ -393,7 +393,11 @@ func onDeath(unit: AbstractUnit = null) -> void:
 	for trinket: AbstractTrinket in player.trinkets:
 		trinket.onDeath(unit, self)
 	isDead = true	#You're not supposed to be able to survive once you're in this function
+	# Track allied deaths for lastMapStats
+	if player != null and player.isGamePlayer:
+		player.deadUnitsThisMap.append(self.id)
 	removeSelf(true)
+
 
 ## Remove the unit from active units and its tile and hide it, will be called by onDeath method and the delete button on interface.
 ## Param checkWin served to avoid check win when we remove units at the end of a map

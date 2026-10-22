@@ -13,3 +13,9 @@ THORNS,Épine,Thorns
 POISON,Poison,Poison
 FIRE,Feu,Fire
 UNKNOW,Inconnu,Unknow
+UNIT_WEIGHT_STR,Coût,Cost
+UI_POPUP_START_BATTLE_TITLE,Préparation incomplète,Incomplete Preparation
+UI_WARNING_UNITS_REMAINING,Il vous reste des unités que vous pouvez encore déployer.,You have units that can still be placed.
+UI_WARNING_EQUIPMENTS_REMAINING,Moins de la moitié de vos unités sont équipées alors qu'il vous reste des équipements disponibles.,Less than half of your units are equipped while you still have equipment available.
+UI_BUTTON_RETURN_TO_PREP,Retour à la préparation,Back to preparation
+UI_BUTTON_START_ANYWAY,Lancer sans modifier,Start anyway

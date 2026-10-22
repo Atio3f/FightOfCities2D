@@ -25,6 +25,10 @@ var hand: PlayerHand
 var activeCapacity	#capacité active actuelle
 var isGamePlayer: bool = false	#Serve to know if the player is the one you control the game
 
+## Ids of allied units that died during the current map
+## Used to populate AbstractCampaign.lastMapStats.
+var deadUnitsThisMap: Array[String] = []
+
 var playerPointer: pointeurJoueur	#Will allow interfaces to access some functions on Pointeur_Selection, for main player only
 var metaInterface: MetaUI = null
 

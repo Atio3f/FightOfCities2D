@@ -85,7 +85,7 @@
 				"reward:bonus",
 				"reward:gold:10"
 			],
-			"nextMission": "shop1"
+			"nextMission": "event1"
 		},
 		
 		"map2": {
@@ -583,6 +583,15 @@
 		"shop2": {
 			"shopType": "MonkeyShop",
 			"nextMission": "map7"
+		},
+		"shop_crossroad": {
+			"shopType": "MonkeyShop",
+			"nextMission": "map2"
+		}
+	},
+	"events": {
+		"event1": {
+			"eventType": "CrossroadEvent"
 		}
 	}
 }

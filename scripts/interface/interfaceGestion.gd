@@ -2,9 +2,12 @@ extends Control
 class_name CombatUI
 
 @onready var labelActionsRest : Label = $FondActionsRestantes/LabelActionsRestantes
-@onready var bouttonFinTour : Button = $bouttonFinTour/ButtonFinTour
+@onready var bouttonFinTour : EndTurnButton = $bouttonFinTour
 var goalDisplayScene: PackedScene = null
 var dialogDisplayScene: PackedScene = null
+
+const WARNING_POPUP_SCENE = preload("res://nodes/interface/StartBattleWarningPopup.tscn")
+var warning_popup_instance: StartBattleWarningPopup = null
 
 var sourisOnInterface : bool = false	#Booléan de la présence ou non de la souris sur l'interface
 var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un endroit global
@@ -13,6 +16,8 @@ var actionsRest : int = 3	#Temporaire ici faudra la déplacer après dans un end
 var dialogsList: Array[DialogInterface] = []
 var indexNextDialog: int = 0
 
+var can_pass_turn: bool = true
+
 func _ready() -> void :
 	updateInterface()
 
@@ -20,21 +25,19 @@ func _ready() -> void :
 func updateInterface() -> void:
 	#We check if we are during the preparation turn
 	if TurnManager.turn == 0 :
-		%LabelEndTurn.text = tr("UI_BUTTON_START_BATTLE")
 		%LabelCouleurTour.text = tr("UI_LABEL_TEAM_WEIGHT") % [mainPlayer.weight, mainPlayer.maxWeight]	#We show the weight remaining of the player during preparation turn
-		%ButtonFinTour.disabled = (mainPlayer.getUnits().size() == 0)	#We can't go outside preparation turn without units on board
+		bouttonFinTour.setup_mode(true, mainPlayer.getUnits().is_empty())
 		%MaxUnitLabel.visible = true
 		%MaxUnitLabel.text = tr("UI_LABEL_TEAM_NBR") % [mainPlayer.units.size(), mainPlayer.maxUnits]
 	else :
 		%MaxUnitLabel.visible = false
-		%LabelEndTurn.text = tr("UI_BUTTON_END_TURN")
 		%LabelCouleurTour.text = tr("UI_LABEL_TURN_NUMBER") % [TurnManager.turn / TurnManager.teams.size() + 1]
 		if TurnManager.actualTurn() == mainPlayer.team :
 			%LabelActionsRestantes.text = tr("UI_LABEL_REMAINING_ACTIONS")
-			bouttonFinTour.disabled = false
+			bouttonFinTour.setup_mode(false, false)
 		else :
 			%LabelActionsRestantes.text = tr("UI_LABEL_WHICH_PLAYER_TURN") % [str(TurnManager.actualTurn())]
-			bouttonFinTour.disabled = true
+			bouttonFinTour.setup_mode(false, true)
 
 ## Add goal on interface
 func addGoalInterface(goal: AbstractGoal) -> void :
@@ -90,13 +93,55 @@ func _on_mouse_exited() -> void:
 	print("mouseExited")
 
 # Fonction pour réaliser la fin du tour
-func _on_button_fin_tour_pressed() -> void:
-	bouttonFinTour.disabled = true
+func try_pass_turn() -> void:
+	if not can_pass_turn:
+		return
+
+	# Pendant la préparation (tour 0), il faut au moins 1 unité posée
+	if TurnManager.turn == 0:
+		if mainPlayer.getUnits().is_empty():
+			return
+
+		# Check des oublis du joueur pour afficher ou non le popup de validation
+		var warnings := StartBattleWarningPopup.get_warnings(mainPlayer)
+		if warnings.size() > 0:
+			_show_battle_warning_popup(warnings)
+			return
+	else:
+		# En combat, seul le joueur dont c'est le tour peut passer
+		if TurnManager.actualTurn() != mainPlayer.team:
+			return
+
+	_execute_pass_turn()
+
+## Popup to warn player about forgetfulness before starting the battle
+func _show_battle_warning_popup(warnings: Array[String]) -> void:
+	if warning_popup_instance == null:
+		warning_popup_instance = WARNING_POPUP_SCENE.instantiate()
+		add_child(warning_popup_instance)
+		warning_popup_instance.confirmed.connect(_execute_pass_turn)
+	warning_popup_instance.display_warnings(warnings)
+
+func _execute_pass_turn() -> void:
+	can_pass_turn = false
+	bouttonFinTour.set_btn_disabled(true)
+
 	TurnManager.nextTurn()
 	updateInterface()
-	if mainPlayer.playerPointer.Selection :
+
+	if mainPlayer.playerPointer and mainPlayer.playerPointer.Selection:
 		mainPlayer.playerPointer._deselect_active_unit()
-	mainPlayer.playerPointer._clear_active_unit()
+	if mainPlayer.playerPointer:
+		mainPlayer.playerPointer._clear_active_unit()
+
+	# Délai anti-double-déclenchement avant de réautoriser le passage de tour
+	await get_tree().create_timer(0.4).timeout
+	can_pass_turn = true
+	if is_instance_valid(self):
+		updateInterface()
+
+func _on_button_fin_tour_pressed() -> void:
+	try_pass_turn()
 
 func _on_help_button_pressed() -> void:
 	var help_menu = $HelpMenu

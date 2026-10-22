@@ -21,3 +21,4 @@ mono_crash.*.json
 *.tmp
 diffs.txt
 /export
+.gemini/process_creation_trinket.md

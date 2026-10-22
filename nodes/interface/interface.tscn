@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://vt2pgrwdeiji"]
+[gd_scene load_steps=8 format=3 uid="uid://vt2pgrwdeiji"]
 
 [ext_resource type="Script" uid="uid://c7i1c8lhhkhp1" path="res://scripts/interface/interfaceGestion.gd" id="1_bss64"]
 [ext_resource type="Texture2D" uid="uid://c1p2hm7yoduhf" path="res://assets/interface/interfaceArrierePlan.tres" id="1_btko8"]
 [ext_resource type="Texture2D" uid="uid://b4cgkquia40u" path="res://assets/interface/unite/UIuniteInfosStats(512x512).png" id="2_tex_aide"]
 [ext_resource type="PackedScene" uid="uid://dq5b1helpmenu" path="res://nodes/interface/menu_aide.tscn" id="3_scene_aide"]
+[ext_resource type="Script" uid="uid://dl3lbd5dm0jiw" path="res://scripts/interface/EndTurnButton.gd" id="4_endturnbtn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d73ns"]
 font_size = 18
@@ -130,6 +131,7 @@ anchor_right = 1.0
 anchor_bottom = 0.942901
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("4_endturnbtn")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureBackground" type="TextureRect" parent="bouttonFinTour"]
@@ -140,9 +142,8 @@ expand_mode = 5
 [node name="ButtonFinTour" type="Button" parent="bouttonFinTour"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
-toggle_mode = true
-action_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="bouttonFinTour"]
 layout_mode = 2

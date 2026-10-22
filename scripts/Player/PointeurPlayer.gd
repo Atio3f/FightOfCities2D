@@ -93,16 +93,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("show_danger_zone") and not event.echo:
 		toggleDangerZone()
-	if event.is_action_released("pass_turn") and not event.echo and can_pass_turn:
-		can_pass_turn = false
-		TurnManager.nextTurn()
-		GameManager.getMainPlayer().updateInterface()
-		if Selection :
-			_deselect_active_unit()
-		_clear_active_unit()
-		
-		await get_tree().create_timer(0.5).timeout
-		can_pass_turn = true
+	if event.is_action_released("pass_turn") and not event.echo:
+		var main_player: AbstractPlayer = $".."
+		if main_player and main_player.has_node("Actions") and main_player.get_node("Actions").combatUI:
+			main_player.get_node("Actions").combatUI.try_pass_turn()
 	
 	if event.is_action("zoom_in"):
 		position_cam.zoom_in()
@@ -311,10 +305,9 @@ func cursorPressed(cell: Vector2i, typeClick : String) -> void:
 				if casesAutourTarget.has(Selection.tile.getCoords()) :
 					#Selection.attaque(Global._units[cellI])
 					GameManager.fight(Selection, unitOnTile)
-					_deselect_active_unit()
-					_clear_active_unit()
+					_refresh_active_unit()
 				else :
-					
+					target = unitOnTile
 					attaqueEnAttente = true
 					visuActions.clearNumbers()
 					visuActions.draw_attackable_cells([cellI])	#La seule case rouge affichée est celle de l'unité(à changer quand y'aura des attaques de zone)
@@ -379,21 +372,56 @@ func _move_active_unit(new_cell: Vector2i) -> void:
 	Selection.speedRemaining -= _walkable_cells[new_cell]
 	print("finTT")
 	if attaqueEnAttente :
-		await Selection.signalFinMouvement
 		visuActions.clearNumbers()
 		visuZoneCapa.clearNumbers()
-		_attackable_cells = [target.tile.getCoords()]
 		attaqueEnAttenteCells = {}	#We don't need to keep them visibles after moving
-		visuActions.draw_attackable_cells(_attackable_cells)
-		visuActions.draw_walkable_cells(attaqueEnAttenteCells, Selection.team)
+
+		_walkable_cells.clear()
+		_unit_path.stop()
+		
+		await Selection.signalFinMouvement
 		attaqueEnAttente = false
 		# Attaquer automatiquement la cible. Elle est censée être à portée
 		GameManager.fight(Selection, target)
+		_refresh_active_unit()
 
 	else :
 		_deselect_active_unit()
 		await Selection.signalFinMouvement
 		_clear_active_unit()
+	
+
+## Refreshes the active unit's state and cell overlays after an action.
+## If the unit has no attack remaining or is dead, it is deselected and cleared.
+func _refresh_active_unit() -> void:
+	if Selection == null or not is_instance_valid(Selection) or Selection.hpActual <= 0 or Selection.isDead:
+		if Selection != null and is_instance_valid(Selection):
+			_deselect_active_unit()
+		_clear_active_unit()
+		return
+	
+	if Selection.atkRemaining <= 0:
+		_deselect_active_unit()
+		_clear_active_unit()
+		return
+	
+	visuActions.clearNumbers()
+	visuZoneCapa.clearNumbers()
+	_unit_path.stop()
+	caseTarget.visible = false
+	attaqueEnAttente = false
+	attaqueEnAttenteCells = {}
+	
+	_walkable_cells = get_walkable_cells(Selection)
+	_attackable_cells = get_attackable_cells(Selection)
+	
+	if (!menuOpen or TurnManager.turn == 0) and Selection != null:
+		if Selection.atkRemaining > 0:
+			visuActions.draw_attackable_cells(_attackable_cells)
+		visuActions.draw_walkable_cells(_walkable_cells, Selection.team)
+		
+	if not menuOpen and Selection != null:
+		_unit_path.initialize(_walkable_cells)
 	
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing. But keep the active unit to get infos if needed before _clear_active_unit

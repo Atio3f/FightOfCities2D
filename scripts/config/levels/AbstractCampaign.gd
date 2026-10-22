@@ -15,7 +15,13 @@ var difficulty: int	#Ascension like system, start at 0 and will go up to 5
 var progress: String = ""	#Actual level on the campaign
 var dataMaps: Dictionary = {}	#Data with all maps
 var dataShops: Dictionary = {}	#Data with all shops
+var dataEvents: Dictionary = {}	#Data with all events
 var nextMission: String	#Next mission to be played, useful with reward interface
+
+## Snapshot of the last completed map's statistics.
+## Actual collected datas: "rounds" (int), "alliesAlive" (int), "deadUnitIds" (Array[String]),
+##        "primaryGoalCompleted" (bool), "secondaryGoalsCompleted" (bool)
+var lastMapStats: Dictionary = {}
 
 func _init(campaignName: String) -> void:
 	self.campaignName = campaignName
@@ -49,6 +55,7 @@ func startNextMission() -> void :
 		var data: Dictionary = JSON.parse_string(content)
 		dataMaps = data.get("maps", {})
 		dataShops = data.get("shops", {})
+		dataEvents = data.get("events", {})
 		
 		if dataMaps.has(nextMission):
 			var dataMap : Dictionary = dataMaps.get(nextMission)
@@ -121,6 +128,36 @@ func startNextMission() -> void :
 			MapManager.resetMap() # Clear terrain
 			GameManager.getMainPlayer().toggleMetaUI() # Hide combat UI, show Meta UI
 			GameManager.isGameActive = false # Not in combat
+
+		# Next mission is an Event
+		elif dataEvents.has(nextMission):
+			var dataEvent: Dictionary = dataEvents.get(nextMission)
+			progress = nextMission
+
+			## Instance event class
+			var event_logic: AbstractEvent
+			var eventType: String = dataEvent.get("eventType", "")
+			# TODO Remplacer par une DB des events ou un dico dans AbstractEvent au moins
+			if eventType == "CrossroadEvent":
+				event_logic = CrossroadEvent.new()
+			if !event_logic:
+				push_error("AbstractCampaign: event_logic is null")
+				file.close()
+				return
+			
+			## Instance event scene
+			var event_scene_res = load("res://nodes/interface/metaUI/events/Event.tscn")
+			if event_scene_res:
+				var event_scene: EventUI = event_scene_res.instantiate()
+				event_scene.setup(event_logic, lastMapStats)
+				GameManager.getMainPlayer().metaInterface.placeInterface(event_scene, true)
+			else:
+				push_error("AbstractCampaign: Event.tscn not found")
+
+			MapManager.resetMap()
+			GameManager.getMainPlayer().toggleMetaUI()
+			GameManager.isGameActive = false
+
 	file.close()
 	#GameManager.savingGame()
 
@@ -140,10 +177,30 @@ func endMap(victoryStatus: bool) -> void:
 		##Clean le board(dans GameManager en fait)
 		##Get rewards from map victory
 		var dataMap : Dictionary = dataMaps.get(progress)
+		var mainPlayer: AbstractPlayer = GameManager.getMainPlayer()
+
+		## Snapshot map statistics before any reset occurs
+		var teams_count : int = max(1, TurnManager.teams.size())
+		var primary_completed := true
+		var secondary_completed := true
+		for goal: AbstractGoal in GameManager.currentGoals:
+			if goal.primaryGoal:
+				primary_completed = primary_completed and goal.isCompleted
+			else:
+				secondary_completed = secondary_completed and goal.isCompleted
+		lastMapStats = {
+			"rounds": int((TurnManager.turn - 1) / teams_count) + 1,
+			"alliesAlive": mainPlayer.units.size(),
+			"deadUnitIds": mainPlayer.deadUnitsThisMap.duplicate(),
+			"primaryGoalCompleted": primary_completed,
+			"secondaryGoalsCompleted": secondary_completed
+		}
+		## Reset per-map death tracking
+		mainPlayer.deadUnitsThisMap.clear()
+
 		##Update info about next mission
 		if dataMap.has("nextMission") : 
 			nextMission = dataMap["nextMission"]
-		var mainPlayer: AbstractPlayer = GameManager.getMainPlayer()
 		var reward: AbstractReward
 		for rewardS: String in dataMap["rewards"] :
 			var parts = rewardS.split(":")
@@ -158,9 +215,6 @@ func endMap(victoryStatus: bool) -> void:
 			reward.randomizeRewards()
 			#Show interface to get rewards
 			mainPlayer.metaInterface.placeInterface(reward.getScreenReward(), true)
-		
-		print("WOUHOU")
-		print(progress)
 	else :
 		GameManager.campaign = null
 		## C'est pas ça mais il va falloir comment reset la scène, il y a souci de caméra là (supprimer joueur pê ?)
@@ -175,7 +229,8 @@ func saveCampaignProgress() -> Dictionary :
 		"campaignFile": self.campaignFile,
 		"difficulty": self.difficulty,
 		"progress": self.progress,
-		"nextMission": self.nextMission
+		"nextMission": self.nextMission,
+		"lastMapStats": self.lastMapStats
 	}
 
 static func recoverCampaign(campaignDico: Dictionary) -> AbstractCampaign :
@@ -186,9 +241,12 @@ static func recoverCampaign(campaignDico: Dictionary) -> AbstractCampaign :
 	if file :
 		var content : String = file.get_as_text()
 		var data: Dictionary = JSON.parse_string(content)
-		campaign.dataMaps = data.get("maps")
+		campaign.dataMaps = data.get("maps", {})
+		campaign.dataShops = data.get("shops", {})
+		campaign.dataEvents = data.get("events", {})
 	campaign.progress = campaignDico["progress"]
 	campaign.nextMission = campaignDico["nextMission"]
 	campaign.difficulty = campaignDico["difficulty"]
+	campaign.lastMapStats = campaignDico.get("lastMapStats", {})
 	campaign.startCampaign(campaignDico["difficulty"])
 	return campaign

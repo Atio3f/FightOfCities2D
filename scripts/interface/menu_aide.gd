@@ -32,10 +32,10 @@ func _ready():
 	Global.unlock_help.connect(_on_help_unlocked)
 	
 	# Pre-unlocked helps for testing
-	_on_help_unlocked("DEPLACEMENT")
-	_on_help_unlocked("COMBAT")
-	_on_help_unlocked("PLACE_UNIT")
-	_on_help_unlocked("EQUIP_ITEM")
+	#_on_help_unlocked("DEPLACEMENT")
+	#_on_help_unlocked("COMBAT")
+	#_on_help_unlocked("PLACE_UNIT")
+	#_on_help_unlocked("EQUIP_ITEM")
 	_on_help_unlocked("TILES")
 	
 	create_cases_container()
