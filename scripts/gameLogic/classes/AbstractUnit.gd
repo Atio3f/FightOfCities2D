@@ -656,6 +656,10 @@ func registerUnit() -> Dictionary :
 		"level": self.level,
 		"xp": self.xp,
 		"tags": self.tags,
+		"permanentUpgrades": self.permanentUpgrades.duplicate(),
+		"markersEffects": self.markersEffects.duplicate(),
+		"statModifiers": self.statModifiers.duplicate(),
+		"equipment": {"id": self.equipment.getId()} if self.equipment != null else null,
 		"movementTypes": self.movementTypes,
 		"actualMovementTypes": self.actualMovementTypes,
 		"tileCoords": {"x": self.tile.getCoords().x, "y": self.tile.getCoords().y},
@@ -683,6 +687,23 @@ static func recoverUnit(data: Dictionary, player: AbstractPlayer) -> Dictionary 
 		unit.initStats(data["uid"], data["hpMax"], data["hpActual"], data["hpTemp"], data["power"], data["speed"], data["speedRemaining"], data["atkPerTurn"], data["atkRemaining"], data["dr"], data["mr"], data["wisdom"], data["level"])
 		if "livesRemaining" in unit and data.has("livesRemaining"):
 			unit.set("livesRemaining", data["livesRemaining"])
+		if data.has("potential"):
+			unit.potential = data["potential"]
+		if data.has("permanentUpgrades"):
+			unit.permanentUpgrades.assign(data["permanentUpgrades"])
+		if data.has("statModifiers"):
+			unit.statModifiers = data["statModifiers"].duplicate()
+			unit.applyStatModifiers()
+		if data.has("markersEffects"):
+			unit.markersEffects = data["markersEffects"].duplicate()
+		for upgradeId: String in unit.permanentUpgrades:
+			unit.activatePermanentUpgrade(upgradeId)
+		if data.get("equipment") != null and data["equipment"].has("id"):
+			var eqId = data["equipment"]["id"]
+			if ItemDb.ITEMS.has(eqId):
+				var eq = ItemDb.ITEMS[eqId].new()
+				eq.playerAssociated = unit.player
+				unit.equipEquipment(eq)
 		unit.tile = tile
 		unit.position = MapManager.calculate_map_position(tile.getCoords())
 		tile.unitOn = unit #Place unit on tile

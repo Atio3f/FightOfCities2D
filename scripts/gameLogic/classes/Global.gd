@@ -58,6 +58,8 @@ func change_gameM_instance(campaignNode: AbstractCampaign = null, is_loading_sav
 	
 	GameManager.players.clear()
 	GameManager.mainPlayer = null
+	if not is_loading_save:
+		GameManager.file_name = ""
 	
 	if campaignNode != null : 
 		gameM.campaign = campaignNode	# Setup campaign

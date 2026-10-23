@@ -8,9 +8,9 @@ class_name StoredUnit
 
 # --- PROGRESSION ---
 
-#@export_group("Progress")
-#@export var potential: int = 0
-#@export var level_bonus: int = 0
+@export_group("Progress")
+@export var potential: int = 0
+@export var livesRemaining: int = -1 # -1 Pour les unités ordinaires, >= 0 pour les main characters
 
 
 # --- UPGRADES ? ---
@@ -42,6 +42,7 @@ static func createFromUnit(unit: AbstractUnit) -> StoredUnit:
 	storedUnitData.permanentUpgrades  = unit.permanentUpgrades.duplicate()
 	storedUnitData.markersEffects = unit.markersEffects.duplicate()
 	storedUnitData.statModifiers = unit.statModifiers.duplicate()
+	storedUnitData.potential = unit.potential
 	# Sauvegarde des effets
 	# Get permanent effects that need to be keep, we will call all effects and some of them will added data on markersEffects dico
 	# storedUnitData.markersEffects = unit.getPermanentsEffects()
@@ -50,8 +51,7 @@ static func createFromUnit(unit: AbstractUnit) -> StoredUnit:
 		storedUnitData.equipmentsData.append({
 			"id": unit.equipment.getId()
 		})
-	#if unit is AbstractMC:
-	#	storedUnitData.livesRemaining = unit.livesRemaining
+	if "livesRemaining" in unit : storedUnitData.livesRemaining = unit.livesRemaining
 	return storedUnitData
 
 ## Apply data on load
@@ -60,9 +60,11 @@ func applyToUnit(unit: AbstractUnit) -> void:
 	unit.permanentUpgrades = self.permanentUpgrades.duplicate()
 	unit.statModifiers = self.statModifiers.duplicate()
 	unit.markersEffects = self.markersEffects.duplicate()
+	if self.potential > 0:
+		unit.potential = self.potential
 	
-	#if unit is AbstractMC:
-	#	unit.livesRemaining = self.livesRemaining
+	if self.livesRemaining >= 0:
+		unit.livesRemaining = self.livesRemaining
 	
 	## Recalculate statModifiers with new permanentUpgrades
 	unit.applyStatModifiers() # Apply stat changes from upgrades
@@ -108,14 +110,17 @@ func modifyStat(statName: String, amt: int) -> void :
 ## SERIALIZATION (JSON)
 ## Les Resources Godot ne se mettent pas directement dans JSON.stringify
 func saveStoredUnit() -> Dictionary:
-	return {
+	var dico := {
 		"id": id,
-		#"livesRemaining": livesRemaining,
+		"potential": potential,
 		"permanentUpgrades": permanentUpgrades,
 		"markersEffects": markersEffects,
 		"modifiers": statModifiers,
 		"equipmentsData": equipmentsData
 	}
+	if livesRemaining >= 0:
+		dico["livesRemaining"] = livesRemaining
+	return dico
 
 ## DESERIALIZATION (Load a Json)
 static func loadStoredUnit(data: Dictionary) -> StoredUnit:
@@ -124,7 +129,8 @@ static func loadStoredUnit(data: Dictionary) -> StoredUnit:
 		push_warning("Unit have not be recovered bc its id was empty")
 		return null
 	var storage = StoredUnit.new(idUnit)
-	#storage.livesRemaining = data.get("livesRemaining", 0)
+	storage.potential = data.get("potential", 0)
+	storage.livesRemaining = data.get("livesRemaining", -1)
 	storage.permanentUpgrades.assign(data.get("permanentUpgrades", []))
 	storage.markersEffects = data.get("markersEffects", {})
 	var loadedEquipments = data.get("equipmentsData", [])

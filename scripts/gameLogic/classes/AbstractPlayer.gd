@@ -334,6 +334,7 @@ static func recoverPlayer(data: Dictionary) -> Dictionary :
 	player.gold = data.gold
 	player.weight = data.weight
 	player.maxWeight = data.maxWeight
+	player.maxUnits = data.maxUnits
 	player.fixCameraLimit(MapManager.length, MapManager.width)
 	var playerDico: Dictionary = {"effectsDico": {}, "unitsDico": {}}
 	var unitDico: Dictionary

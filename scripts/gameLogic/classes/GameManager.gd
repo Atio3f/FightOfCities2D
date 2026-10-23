@@ -223,10 +223,11 @@ static func generateMap(width: int, length: int, mapConfig: String) -> void :
 
 ## Draw placeables tiles for the main player
 static func drawPlaceablesTiles(placementTiles: Array[Vector2i]) -> void :
-	getMainPlayer().playerPointer.draw_placeable_cells(placementTiles)
+	if getMainPlayer() and getMainPlayer().playerPointer:
+		getMainPlayer().playerPointer.draw_placeable_cells(placementTiles)
 
 static func getPlaceablesTiles() -> Array[Vector2i] :
-	if getMainPlayer().playerPointer :
+	if getMainPlayer() and getMainPlayer().playerPointer :
 		return getMainPlayer().playerPointer.get_placeables_cells()
 	else :
 		return []
@@ -364,8 +365,23 @@ static var file_name: String = "";
 ## Save state of the game
 # State is saved before each fight
 static func savingGame() -> void :
+	var dir_path := "user://saves"
+	var dir := DirAccess.open(dir_path)
+	if dir == null:
+		DirAccess.make_dir_absolute(dir_path)
+		dir = DirAccess.open(dir_path)
+	
+	if file_name == "" and dir != null:
+		var existing_files := dir.get_files()
+		var i := 1
+		var filename : String = "save%d.json" % i
+		while filename in existing_files:
+			i += 1
+			filename = "save%d.json" % i
+		file_name = filename
 	
 	var gameData := {
+		"saveName": file_name,
 		"turnData": TurnManager.registerTurnM(),
 		"mapData": MapManager.registerMap(),
 		"players": [],
@@ -397,10 +413,10 @@ static func saveJson(json: String) -> void:
 		var i := 1
 		var filename : String = "save%d.json" % i
 		while filename in existing_files:
-			filename = "save%d.json" % i
 			i += 1
+			filename = "save%d.json" % i
 		file_name = filename
-		full_path = "%s/%s" % [dir_path, "save%d.json" % i]
+		full_path = "%s/%s" % [dir_path, file_name]
 	else :
 		full_path = "%s/%s" % [dir_path, file_name]
 	
@@ -466,13 +482,24 @@ static func getSave(save: String) -> Dictionary:
 
 static func loadSave(save: Dictionary) -> void :
 	Global.change_gameM_instance(null, true)	#Add the gameManager singleton to Global
-	if save["saveName"] : file_name = save["saveName"]
+	if save.has("saveName") and save["saveName"] != "":
+		file_name = save["saveName"]
 	TurnManager.recoverTurnManager(save["turnData"])
 	MapManager.recoverMap(save["mapData"])
 	players = []
 	var playersDico: Dictionary = {}
+	var playerRecreated: AbstractPlayer
 	for player: Dictionary in save["players"]:
+		#playerRecreated = AbstractPlayer.recoverPlayer(player)
 		playersDico.merge(AbstractPlayer.recoverPlayer(player))
+	
+	if getMainPlayer():
+		getMainPlayer().updateInterface()
+		if save.has("mapData") and save["mapData"].has("placementTiles") and save["mapData"]["placementTiles"].size() > 0:
+			var placementTiles: Array[Vector2i] = []
+			placementTiles.assign(save["mapData"]["placementTiles"].map(func(e): return str_to_var("Vector2i" + e)))
+			drawPlaceablesTiles(placementTiles)
+	
 	##Iterate through all units to add unitsStocked and effectStocked on all effects
 	for unit: AbstractUnit in getAllUnits() :
 		unit.recoverUnitsStocked(playersDico)

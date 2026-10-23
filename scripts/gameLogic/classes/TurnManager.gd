@@ -81,4 +81,5 @@ static func registerTurnM() -> Dictionary:
 
 static func recoverTurnManager(data: Dictionary) -> void :
 	turn = data.turn
+	teams.clear()
 	teams.append_array(data.teams)

@@ -103,6 +103,7 @@ func startNextMission() -> void :
 			#Hide Meta Interface
 			GameManager.getMainPlayer().toggleCombatUI()
 			GameManager.isGameActive = true
+			GameManager.savingGame()
 			
 		elif dataShops.has(nextMission):
 			var dataShop: Dictionary = dataShops.get(nextMission)
@@ -159,7 +160,6 @@ func startNextMission() -> void :
 			GameManager.isGameActive = false
 
 	file.close()
-	#GameManager.savingGame()
 
 func checkWin() -> bool :
 	var isWinning: bool = true
@@ -216,6 +216,10 @@ func endMap(victoryStatus: bool) -> void:
 			#Show interface to get rewards
 			mainPlayer.metaInterface.placeInterface(reward.getScreenReward(), true)
 	else :
+		if GameManager.file_name != "":
+			GameManager.deleteSave(GameManager.file_name)
+			GameManager.file_name = ""
+
 		GameManager.campaign = null
 		## C'est pas ça mais il va falloir comment reset la scène, il y a souci de caméra là (supprimer joueur pê ?)
 		Global.gameManager.mapManager.queue_free()
@@ -237,6 +241,8 @@ static func recoverCampaign(campaignDico: Dictionary) -> AbstractCampaign :
 	print("campaignRECOVER name")
 	var campaign: AbstractCampaign = load(CampaignDb.CAMPAIGNS[campaignDico["campaignName"]]).new(campaignDico["campaignName"])
 	campaign.campaignFile = campaignDico["campaignFile"]
+	campaign.startCampaign(campaignDico["difficulty"])
+	
 	var file : FileAccess = FileAccess.open(campaign.campaignFile, FileAccess.READ)	#Pê créer un autre fichier pour ça
 	if file :
 		var content : String = file.get_as_text()
@@ -244,9 +250,10 @@ static func recoverCampaign(campaignDico: Dictionary) -> AbstractCampaign :
 		campaign.dataMaps = data.get("maps", {})
 		campaign.dataShops = data.get("shops", {})
 		campaign.dataEvents = data.get("events", {})
+		file.close()
+	
+	campaign.difficulty = campaignDico["difficulty"]
 	campaign.progress = campaignDico["progress"]
 	campaign.nextMission = campaignDico["nextMission"]
-	campaign.difficulty = campaignDico["difficulty"]
 	campaign.lastMapStats = campaignDico.get("lastMapStats", {})
-	campaign.startCampaign(campaignDico["difficulty"])
 	return campaign

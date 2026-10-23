@@ -97,7 +97,7 @@ func try_pass_turn() -> void:
 	if not can_pass_turn:
 		return
 
-	# Pendant la préparation (tour 0), il faut au moins 1 unité posée
+	# Pendant le tour 0, il faut au moins 1 unité posée pour activer le bouton
 	if TurnManager.turn == 0:
 		if mainPlayer.getUnits().is_empty():
 			return
@@ -134,7 +134,7 @@ func _execute_pass_turn() -> void:
 	if mainPlayer.playerPointer:
 		mainPlayer.playerPointer._clear_active_unit()
 
-	# Délai anti-double-déclenchement avant de réautoriser le passage de tour
+	# Avoid double turn pass
 	await get_tree().create_timer(0.4).timeout
 	can_pass_turn = true
 	if is_instance_valid(self):

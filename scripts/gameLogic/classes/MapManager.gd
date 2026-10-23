@@ -174,8 +174,3 @@ static func recoverMap(data: Dictionary) -> void :
 		placeTile(tile, tile.getCoords())
 	length = data.length
 	width = data.width
-	
-	# 
-	var placementTiles: Array[Vector2i] = []
-	placementTiles.assign(data.placementTiles.map(func(e): return str_to_var("Vector2i" + e)))
-	GameManager.drawPlaceablesTiles(placementTiles)
