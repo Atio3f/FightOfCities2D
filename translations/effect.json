@@ -328,5 +328,10 @@
 		"id": "set1:SundialEffect",
 		"name": "EFFECT_NAME_SUNDIAL",
 		"description": "EFFECT_DESCRIPTION_SUNDIAL"
-	}
+	},
+	"set1:ClaySoldierEffect": {
+		"id": "set1:ClaySoldierEffect",
+		"name": "EFFECT_NAME_CLAY_SOLDIER",
+		"description": "EFFECT_DESCRIPTION_CLAY_SOLDIER"
+	},
 }

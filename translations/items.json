@@ -226,5 +226,11 @@
 		"name": "ITEM_NAME_BANANA_SABER",
 		"description": "ITEM_DESC_BANANA_SABER",
 		"img": "res://assets/sprites/items/VitalLink.png"
-	}
+	},
+	"set1:Solactite": {
+		"id": "set1:Solactite",
+		"name": "ITEM_NAME_SOLACTITE",
+		"description": "ITEM_DESC_SOLACTITE",
+		"img": "res://assets/sprites/items/VitalLink.png"
+	},
 }

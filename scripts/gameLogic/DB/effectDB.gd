@@ -23,6 +23,8 @@ const EFFECTS := {
 	"set1:HornedMonkBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/HornedMonkBullEffect.gd"),
 	"set1:SentinelBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/SentinelBullEffect.gd"),
 	"set1:HammerHeadBullEffect":  preload("res://Ressources/effects/unitEffects/bulls/HammerHeadBullEffect.gd"),
+	# OTHERS
+	"set1:ClaySoldier":  preload("res://Ressources/effects/unitEffects/others/ClaySoldierEffect.gd"),
 	## UPGRADE EFFECTS
 	"UpgradeTestEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradeTestEffect.gd"),
 	"UpgradePromotionEffect": preload("res://Ressources/effects/permanentUpgradesEffects/UpgradePromotionEffect.gd"),

@@ -83,4 +83,7 @@
 	"set1:HammerHeadBull" : {
 		"name": "UNIT_NAME_HAMMER_HEAD_BULL"
 	},
+	"set1:ClaySoldier" : {
+		"name": "UNIT_NAME_CLAY_SOLDIER"
+	},
 }

@@ -75,3 +75,5 @@ ITEM_NAME_SCOPE,Viseur,Scope
 ITEM_DESC_SCOPE,+1 portée. Peut uniquement être équipé par des unités avec une portée > 1,+1 range. Can only be equipped on units with range > 1
 ITEM_NAME_BANANA_SABER,Sabre Banane,Banana Saber
 ITEM_DESC_BANANA_SABER,"Monkey : +3 P, +1 V. Double les effets positifs des bananes sur l'unité équipée.","Monkey : +3 P, +1 V. Doubles positive banana effects on equipped unit. Monkeys only."
+ITEM_NAME_SOLACTITE,Solactite,Solactite
+ITEM_DESC_SOLACTITE,-2 P. Gagne une attaque de mêlée qui applique [FREEZE]. Consomme toutes les attaques,-2 P. Gain a melee capacity that apply [FREEZE] to a single target. Consume all attacks

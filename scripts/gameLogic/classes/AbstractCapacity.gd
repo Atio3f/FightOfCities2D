@@ -78,7 +78,7 @@ func conditionActivation(targetTile: AbstractTile, targetUnits: Array) -> bool:
 
 ## Return true if the capacity can be used right now (checks cooldown, cost, and if at least one valid target exists)
 func isUsable() -> bool:
-	if currentCooldown > 0 or usesRemaining == 0:
+	if (currentCooldown > 0 and cooldown != 0) or usesRemaining == 0: # Si le cooldown de base est de 0 on n'a pas besoin de check le currentCooldown
 		return false
 	if usedAttacks > 0 and usedAttacks > unitAssociated.atkRemaining:
 		return false

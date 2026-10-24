@@ -125,4 +125,5 @@ var REWARDS_DICO := {
 	"set1:HiddenBlade": {"title": "Tomahawk", "desc": "Gain a single use per battle melee attack that inflict paralysis", "idReward": "set1:HiddenBlade", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
 	"set1:Scope": {"title": "Scope", "desc": "Increase range unit range", "idReward": "set1:Scope", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_COMMON},
 	"set1:BananaSaber": {"title": "Banana Saber", "desc": "Increase banana effects on equipped unit. Monkey exclusivity", "idReward": "set1:BananaSaber", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_RARE},
+	"set1:Solactite": {"title": "Solactite", "desc": "Une pierre glaciale imprégnée de mana à équipper pour geler ses adversaires", "idReward": "set1:Solactite", "rewardType": RewardTypes.rewardTypes.EQUIPMENT, "rarity": Rarities.EQUIP_UNCOMMON},
 }
